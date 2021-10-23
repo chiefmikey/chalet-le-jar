@@ -1,0 +1,24 @@
+{
+  "name": "chalet-le-jar",
+  "version": "0.0.1",
+  "description": "Chalet le Jar",
+  "main": "app.js",
+  "scripts": {
+    "test": "hehe"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chiefmikey/chalet-le-jar.git"
+  },
+  "keywords": [
+    "chalet",
+    "le",
+    "jar"
+  ],
+  "author": "me",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chiefmikey/chalet-le-jar/issues"
+  },
+  "homepage": "https://github.com/chiefmikey/chalet-le-jar#readme"
+}
