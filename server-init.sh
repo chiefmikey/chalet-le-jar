@@ -12,6 +12,7 @@ sudo touch ~/$INSTANCE_ALREADY_STARTED
     wget https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.34.02.zip
     unzip bedrock-server-1.17.34.02.zip
     rm bedrock-server-1.17.34.02.zip
+    git add permissions.json server.properties whitelist.json
     git pull origin main -f
     LD_LIBRARY_PATH=. screen -S bedrock -dm sudo ./bedrock_server
 else
