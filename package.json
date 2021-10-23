@@ -6,19 +6,29 @@
   "scripts": {
     "test": "hehe"
   },
+  "devDependencies": {
+    "@mikey-pro/style-guide": "^1.5.14"
+  },
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chiefmikey/chalet-le-jar.git"
+  },
+  "homepage": "https://github.com/chiefmikey/chalet-le-jar#readme",
+  "author": "me",
+  "bugs": {
+    "url": "https://github.com/chiefmikey/chalet-le-jar/issues"
   },
   "keywords": [
     "chalet",
     "le",
     "jar"
   ],
-  "author": "me",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/chiefmikey/chalet-le-jar/issues"
+  "prettier": "@mikey-pro/prettier-config",
+  "eslintConfig": {
+    "extends": "@mikey-pro/eslint-config"
   },
-  "homepage": "https://github.com/chiefmikey/chalet-le-jar#readme"
+  "stylelint": {
+    "extends": "@mikey-pro/stylelint-config"
+  }
 }
