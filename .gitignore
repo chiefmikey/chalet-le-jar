@@ -125,3 +125,22 @@ build.js.map
 
 # Rollup
 rollup-cache.json
+
+.bash_history
+.bash_logout
+.bashrc
+.cache/
+.profile
+.ssh/
+.sudo_as_admin_successful
+.wget-hsts
+Dedicated_Server.txt
+bedrock_server
+bedrock_server_how_to.html
+bedrock_server_symbols.debug
+behavior_packs/
+definitions/
+release-notes.txt
+resource_packs/
+structures/
+valid_known_packs.json
