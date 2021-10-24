@@ -6,7 +6,7 @@ sudo touch ~/$INSTANCE_ALREADY_STARTED
   echo "-- First instance startup --"
     sudo apt update -y
     sudo apt upgrade -y
-    sudo apt install -y wget unzip git gitsome
+    sudo apt install -y wget unzip git gitsome jq
     git config --global user.name "chiefmikey"
     git config --global user.email "wolfemikl@gmail.com"
     git init
@@ -17,6 +17,9 @@ sudo touch ~/$INSTANCE_ALREADY_STARTED
     wget -O ~/awscliv2.zip https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
     unzip ~/awscliv2.zip
     sudo ~/aws/install
+    pw=$(aws secretsmanager get-secret-value --secret-id profile-languages | jq -r '.SecretString' | jq '.TOKEN')
+
+
     git init
     git config --global user.name "chiefmikey"
     git config --global user.email "wolfemikl@gmail.com"
@@ -28,8 +31,6 @@ else
   echo "-- Not first instance startup --"
     sudo apt update -y
     sudo apt upgrade -y
-    sudo wget -O ~/server.properties https://raw.githubusercontent.com/chiefmikey/scripts/main/mc-server/server.properties
-    sudo wget -O ~/whitelist.json https://raw.githubusercontent.com/chiefmikey/scripts/main/mc-server/whitelist.json
-    sudo wget -O ~/permissions.json https://raw.githubusercontent.com/chiefmikey/scripts/main/mc-server/permissions.json
+    git pull origin main
     LD_LIBRARY_PATH=. screen -S bedrock -dm sudo ./bedrock_server
 fi
