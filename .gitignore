@@ -153,3 +153,4 @@ aws/
 ]
 sudo
 sudo apt update
+-r
