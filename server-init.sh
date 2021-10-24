@@ -7,9 +7,9 @@ sudo touch ~/$INSTANCE_ALREADY_STARTED
     sudo apt update -y
     sudo apt upgrade -y
     sudo apt install -y wget unzip git jq awscli
-    wget https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.34.02.zip
-    unzip bedrock-server-1.17.34.02.zip
-    rm bedrock-server-1.17.34.02.zip
+    wget -O ~/bedrock-server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.40.06.zip
+    unzip ~/bedrock-server.zip
+    rm ~/bedrock-server.zip
     pw=$(aws secretsmanager get-secret-value --secret-id repo | jq -r '.SecretString' | jq -r '.repo')
     git init
     git config credential.helper store
@@ -18,10 +18,10 @@ sudo touch ~/$INSTANCE_ALREADY_STARTED
     git config user.name chalet-le-jar
     git config user.email chaletlejar@gmail.com
     git remote add origin https://chalet-le-jar@github.com/chiefmikey/chalet-le-jar.git
-    git checkout main
     git add permissions.json server.properties whitelist.json
     git pull --no-edit origin main -f
-    sudo chmod +x ~/server-backup.sh ~/server-stop.sh ~/server-init.sh
+    git checkout main
+    chmod +x ~/server-backup.sh ~/server-stop.sh ~/server-init.sh
     git add .
     git commit -am 'Initialize server'
     git push origin main
