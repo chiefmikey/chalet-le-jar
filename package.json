@@ -1,0 +1,34 @@
+{
+  "name": "chalet-le-jar",
+  "version": "0.0.1",
+  "description": "Chalet le Jar",
+  "main": "app.js",
+  "scripts": {
+    "test": "hehe"
+  },
+  "devDependencies": {
+    "@mikey-pro/style-guide": "^1.5.14"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chiefmikey/chalet-le-jar.git"
+  },
+  "homepage": "https://github.com/chiefmikey/chalet-le-jar#readme",
+  "author": "me",
+  "bugs": {
+    "url": "https://github.com/chiefmikey/chalet-le-jar/issues"
+  },
+  "keywords": [
+    "chalet",
+    "le",
+    "jar"
+  ],
+  "prettier": "@mikey-pro/prettier-config",
+  "eslintConfig": {
+    "extends": "@mikey-pro/eslint-config"
+  },
+  "stylelint": {
+    "extends": "@mikey-pro/stylelint-config"
+  }
+}
