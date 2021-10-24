@@ -22,6 +22,9 @@ sudo touch ~/$INSTANCE_ALREADY_STARTED
     git add permissions.json server.properties whitelist.json
     git pull --no-edit origin main -f
     sudo chmod +x ~/server-backup.sh ~/server-save.sh ~/server-stop.sh
+    git add .
+    git commit -am 'Initialize server'
+    git push origin main
     LD_LIBRARY_PATH=. screen -S bedrock -dm sudo ./bedrock_server
 else
   echo "-- Not first instance startup --"
