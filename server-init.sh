@@ -14,8 +14,8 @@ sudo touch ~/$INSTANCE_ALREADY_STARTED
     git init
     git config credential.helper store
     echo https://chiefmikey:${pw}@github.com > ~/.git-credentials
-    chmod 0600 ~/.git-credentials
-    git remote add origin https://github.com/chiefmikey/chalet-le-jar.git
+    chmod 400 ~/.git-credentials
+    git remote add origin https://chiefmikey@github.com/chiefmikey/chalet-le-jar.git
     git add permissions.json server.properties whitelist.json
     git pull origin main -f
     LD_LIBRARY_PATH=. screen -S bedrock -dm sudo ./bedrock_server
