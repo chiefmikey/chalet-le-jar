@@ -148,3 +148,8 @@ valid_known_packs.json
 .local/
 Downloads/
 aws/
+.git-credentials
+.gitconfig
+]
+sudo
+sudo apt update

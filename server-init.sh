@@ -10,12 +10,15 @@ sudo touch ~/$INSTANCE_ALREADY_STARTED
     wget https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.34.02.zip
     unzip bedrock-server-1.17.34.02.zip
     rm bedrock-server-1.17.34.02.zip
-    pw=$(aws secretsmanager get-secret-value --secret-id repo | jq -r '.SecretString' | jq '.repo')
-
-
+    pw=$(aws secretsmanager get-secret-value --secret-id repo | jq -r '.SecretString' | jq -r '.repo')
+    git config —-global credential.helper store
     git init
+    git config --global credential.helper store
     git config --global user.name "chiefmikey"
     git config --global user.email "wolfemikl@gmail.com"
+
+    echo https://chiefmikey:${pw}@github.com > ~/.git-credentials
+    chmod 0600 ~/.git-credentials
     git remote add origin https://github.com/chiefmikey/chalet-le-jar.git
     git add permissions.json server.properties whitelist.json
 
