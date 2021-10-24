@@ -21,7 +21,7 @@ sudo touch ~/$INSTANCE_ALREADY_STARTED
     git checkout main
     git add permissions.json server.properties whitelist.json
     git pull --no-edit origin main -f
-    sudo chmod +x ~/server-backup.sh ~/server-save.sh ~/server-stop.sh
+    sudo chmod +x ~/server-backup.sh ~/server-stop.sh ~/server-init.sh
     git add .
     git commit -am 'Initialize server'
     git push origin main
