@@ -13,16 +13,21 @@ sudo touch ~/$INSTANCE_ALREADY_STARTED
     pw=$(aws secretsmanager get-secret-value --secret-id repo | jq -r '.SecretString' | jq -r '.repo')
     git init
     git config credential.helper store
-    echo https://chiefmikey:${pw}@github.com > ~/.git-credentials
+    echo https://chalet-le-jar:${pw}@github.com > ~/.git-credentials
     chmod 400 ~/.git-credentials
-    git remote add origin https://chiefmikey@github.com/chiefmikey/chalet-le-jar.git
+    git config user.name chalet-le-jar
+    git config user.email chaletlejar@gmail.com
+    git remote add origin https://chalet-le-jar@github.com/chiefmikey/chalet-le-jar.git
+    git checkout main
     git add permissions.json server.properties whitelist.json
-    git pull origin main -f
+    git pull --no-edit origin main -f
+    sudo chmod +x ~/server-backup.sh ~/server-save.sh ~/server-stop.sh
     LD_LIBRARY_PATH=. screen -S bedrock -dm sudo ./bedrock_server
 else
   echo "-- Not first instance startup --"
     sudo apt update -y
     sudo apt upgrade -y
-    git pull origin main -f
+    git checkout main
+    git pull --no-edit origin main -f
     LD_LIBRARY_PATH=. screen -S bedrock -dm sudo ./bedrock_server
 fi
