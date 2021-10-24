@@ -144,3 +144,7 @@ release-notes.txt
 resource_packs/
 structures/
 valid_known_packs.json
+.config/
+.local/
+Downloads/
+aws/
