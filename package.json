@@ -4,10 +4,24 @@
   "description": "Chalet le Jar",
   "main": "app.js",
   "scripts": {
-    "test": "hehe"
+    "build": "webpack --mode development",
+    "dev": "webpack --mode development -w",
+    "start": "node app.js",
+    "test": "nodemon app.js"
+  },
+  "dependencies": {
+    "axios": "^0.23.0"
   },
   "devDependencies": {
-    "@mikey-pro/style-guide": "^1.5.14"
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@mikey-pro/style-guide": "^1.5.14",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^6.4.0",
+    "nodemon": "^2.0.13",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.58.1",
+    "webpack-cli": "^4.9.0"
   },
   "license": "MIT",
   "repository": {
@@ -15,15 +29,21 @@
     "url": "git+https://github.com/chiefmikey/chalet-le-jar.git"
   },
   "homepage": "https://github.com/chiefmikey/chalet-le-jar#readme",
-  "author": "me",
+  "author": "Mikl Wolfe <wolfe@mikl.io> (https://mikl.io)",
   "bugs": {
     "url": "https://github.com/chiefmikey/chalet-le-jar/issues"
   },
   "keywords": [
+    "chalet-le-jar",
+    "chaletlejar",
     "chalet",
     "le",
     "jar"
   ],
+  "contributors": [
+    "Mikl Wolfe <wolfe@mikl.io> (https://mikl.io)"
+  ],
+  "type": "module",
   "prettier": "@mikey-pro/prettier-config",
   "eslintConfig": {
     "extends": "@mikey-pro/eslint-config"
