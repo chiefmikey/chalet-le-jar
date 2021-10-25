@@ -1,7 +1,7 @@
 import path from 'path';
 
-const SRC_DIR = path.join(path.resolve(), '/src');
-const DIST_DIR = path.join(path.resolve(), '/');
+const SRC_DIR = path.join(path.resolve(), '/client/src');
+const DIST_DIR = path.join(path.resolve(), '/client/dist');
 
 export default {
   mode: 'development',
