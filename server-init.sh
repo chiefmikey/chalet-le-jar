@@ -25,12 +25,12 @@ sudo touch ~/$INSTANCE_ALREADY_STARTED
     git add .
     git commit -am 'Initialize server'
     git push origin main
-    LD_LIBRARY_PATH=. screen -S bedrock -dm sudo ./bedrock_server
+    LD_LIBRARY_PATH=. screen -S bedrock -dm sudo ~/bedrock_server
 else
   echo "-- Not first instance startup --"
     sudo apt update -y
     sudo apt upgrade -y
     git checkout main
     git pull --no-edit origin main -f
-    LD_LIBRARY_PATH=. screen -S bedrock -dm sudo ./bedrock_server
+    LD_LIBRARY_PATH=. screen -S bedrock -dm sudo ~/bedrock_server
 fi

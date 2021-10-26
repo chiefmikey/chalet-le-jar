@@ -16,4 +16,4 @@ screen -S bedrock -X stuff 'stop\n'
 sudo apt update -y
 sudo apt upgrade -y
 git pull --no-edit origin main -f
-LD_LIBRARY_PATH=. screen -S bedrock -dm sudo ./bedrock_server
+LD_LIBRARY_PATH=. screen -S bedrock -dm sudo ~/bedrock_server
