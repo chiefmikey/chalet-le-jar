@@ -126,7 +126,7 @@ button:hover {
 
 #console {
   margin-top: 10px;
-  border: 10px solid #454a4d;
+  border: 10px solid transparent;
   background-color: #454a4d;
   font-size: 14px;
   color: #fafafa9b;
