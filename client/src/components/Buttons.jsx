@@ -3,14 +3,22 @@ import On from './buttons/On.jsx';
 
 const Buttons = () => (
   <div id="all-buttons">
-    <div id="left-buttons">
+    <div id="top-buttons">
       <On />
-      <button id="button-off">Off</button>
+      <button id="button-off">
+        <h5>OFF</h5>
+      </button>
     </div>
-    <div id="right-buttons">
-      <button id="button-save">Save</button>
-      <button id="button-refresh">Refresh</button>
-      <button id="button-rewind">Rewind</button>
+    <div id="bottom-buttons">
+      <button id="button-save">
+        <h5>SAVE</h5>
+      </button>
+      <button id="button-refresh">
+        <h5>REFRESH</h5>
+      </button>
+      <button id="button-rewind">
+        <h5>REWIND</h5>
+      </button>
     </div>
   </div>
 );

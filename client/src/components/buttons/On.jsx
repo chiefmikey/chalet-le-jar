@@ -19,7 +19,7 @@ const submitOn = async () => {
 
 const On = () => (
   <button id="button-on" onClick={submitOn}>
-    On
+    <h5>ON</h5>
   </button>
 );
 
