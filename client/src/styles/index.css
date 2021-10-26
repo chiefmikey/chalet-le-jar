@@ -1,15 +1,26 @@
 html,
 body {
-  width: 100%;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: center;
   padding: 0;
   margin: 0;
-  background: #444;
+  background: #33373a;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
   color: #fafafa;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  height: 100vh;
+}
+
+body {
+  width: 100%;
+  height: 100%;
 }
 
 * {
@@ -18,8 +29,9 @@ body {
 }
 
 h1 {
-  font-size: 44px;
-  padding-top: 40px;
+  font-size: 24px;
+  font-weight: 100;
+  letter-spacing: 5px;
 }
 
 h6 {
@@ -30,81 +42,103 @@ h6 {
 
 button {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 20px;
   border: none;
   background: none;
   color: #fafafa;
   font-weight: 600;
-  opacity: 75%;
-  width: 250px;
+  opacity: 69%;
   user-select: none;
+  margin: 10px;
+  overflow: hidden;
+  word-break: break-all;
 }
 
 button:hover {
   opacity: 100%;
+  filter: saturate(2);
 }
 
 #app {
+  width: 100%;
+  height: 100%;
+  min-width: 355px;
+  min-height: 455px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  transform-origin: center;
 }
 
 #all-buttons {
+  width: 100%;
+  height: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#top-buttons {
   display: flex;
   flex-direction: row;
+  width: 100%;
+  height: 100%;
   justify-content: center;
 }
 
-#left-buttons {
+#bottom-buttons {
   display: flex;
-  flex-direction: column;
-}
-
-#right-buttons {
-  display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
 }
 
 #button-on {
-  background-color: rgb(0 128 60);
-  height: 100px;
+  width: 100%;
+  background-color: #0c6235;
+  margin-left: 0;
 }
 
 #button-off {
-  background-color: rgb(149 1 10);
-  height: 100px;
+  background-color: #671518;
+  width: 100%;
+  margin-right: 0;
 }
 
 #button-save {
-  background-color: rgb(12 122 221);
-  height: 100px;
+  background-color: #0b61b0;
+  width: 100%;
+  margin-left: 0;
 }
 
 #button-refresh {
-  background-color: rgb(159 60 164);
-  height: 100px;
+  background-color: #6c3371;
+  width: 100%;
 }
 
 #button-rewind {
-  background-color: rgb(200 121 37);
-  height: 100px;
+  background-color: #9f621d;
+  width: 100%;
+  margin-right: 0;
 }
 
 #console {
-  background-color: rgb(91 91 91);
-  padding: 20px;
-  font-size: 12px;
+  margin-top: 10px;
+  border: 10px solid #454a4d;
+  background-color: #454a4d;
+  font-size: 14px;
   color: #fafafa9b;
   font-family: monospace;
-  width: 500px;
-  height: 250px;
   text-align: left;
   word-break: break-word;
   overflow: scroll;
   overflow-anchor: none;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  width: 100%;
+  height: 35%;
 }
 
 #console::-webkit-scrollbar {
