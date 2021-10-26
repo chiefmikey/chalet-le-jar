@@ -11,18 +11,29 @@
     "test": "nodemon app.js"
   },
   "dependencies": {
-    "axios": "^0.23.0"
+    "@aws-sdk/client-ec2": "^3.38.0",
+    "@aws-sdk/credential-providers": "^3.38.0",
+    "axios": "^0.24.0",
+    "console-events": "^0.2.0",
+    "preact": "^10.5.15"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
+    "@babel/plugin-transform-react-jsx": "^7.14.9",
     "@babel/preset-env": "^7.15.8",
+    "@mikey-pro/eslint-config-preact": "^1.0.5",
     "@mikey-pro/style-guide": "^1.5.14",
-    "babel-loader": "^8.2.2",
+    "babel-loader": "^8.2.3",
     "css-loader": "^6.4.0",
-    "nodemon": "^2.0.13",
+    "nodemon": "^2.0.14",
+    "path-browserify": "^1.0.1",
+    "sass-loader": "^12.2.0",
+    "source-map-js": "^0.6.2",
+    "source-map-loader": "^3.0.0",
+    "style-loader": "^3.3.1",
     "url-loader": "^4.1.1",
-    "webpack": "^5.58.1",
-    "webpack-cli": "^4.9.0"
+    "webpack": "^5.60.0",
+    "webpack-cli": "^4.9.1"
   },
   "license": "MIT",
   "repository": {
@@ -47,7 +58,7 @@
   "type": "module",
   "prettier": "@mikey-pro/prettier-config",
   "eslintConfig": {
-    "extends": "@mikey-pro/eslint-config"
+    "extends": "@mikey-pro/eslint-config-preact"
   },
   "stylelint": {
     "extends": "@mikey-pro/stylelint-config"
