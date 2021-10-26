@@ -17,8 +17,7 @@ class App extends Component {
   render() {
     return (
       <div id="app">
-        <h1>Chalet le Jar</h1>
-        <h6>Welcome friends and friendly people</h6>
+        <h1>CHALET LE JAR</h1>
         <Buttons />
         <Console />
       </div>
