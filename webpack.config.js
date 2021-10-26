@@ -1,4 +1,7 @@
 import path from 'path';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 
 const SRC_DIR = path.join(path.resolve(), '/client/src');
 const DIST_DIR = path.join(path.resolve(), '/client/dist');
@@ -66,6 +69,14 @@ export default {
       'react-dom': 'preact/compat',
       'react/jsx-runtime': 'preact/jsx-runtime',
     },
-    fallback: { path: import.meta.url.resolve('path-browserify') },
+    fallback: {
+      fs: false,
+      url: require.resolve('url'),
+      http: require.resolve('stream-http'),
+      crypto: require.resolve('crypto-browserify'),
+      path: require.resolve('path-browserify'),
+      stream: require.resolve('stream-browserify'),
+      os: require.resolve('os-browserify/browser'),
+    },
   },
 };
