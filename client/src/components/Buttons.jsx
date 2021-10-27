@@ -1,30 +1,18 @@
 import { h } from 'preact';
 import On from './buttons/On.jsx';
 
-const store = {};
-
 const blurButton = (ev) => {
-  ev.preventDefault();
-  if (!store[ev.target.id]) {
-    ev.target.addEventListener(
-      'touchstart',
-      () => {
-        setTimeout(() => {
-          console.log('ok');
-          ev.target.blur();
-        }, 1000);
-      },
-      { passive: true },
-    );
-    store[ev.target.id] = true;
-  }
+  setTimeout(() => {
+    console.log('ok');
+    ev.target.blur();
+  }, 1000);
 };
 
 const Buttons = () => (
   <div id="all-buttons">
     <div id="top-buttons">
       <On />
-      <button id="button-off" onClick={blurButton}>
+      <button id="button-off" onClick={blurButton} hidefocus="true">
         <h5>OFF</h5>
       </button>
     </div>
