@@ -24,7 +24,7 @@ body {
 }
 
 h1 {
-  font-size: 24px;
+  font-size: calc(1.5vmin + 1.5vw);
   font-weight: 100;
   letter-spacing: 5px;
   margin-bottom: calc(0.5vmin + 0.5vh);
@@ -58,6 +58,7 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 button:hover {
@@ -69,8 +70,8 @@ button:hover {
   width: 100vw;
   height: 100vh;
   min-width: 355px;
-  min-height: 455px;
-  padding: 20px;
+  min-height: 355px;
+  padding: calc(1vmin + 1vh);
   display: flex;
   flex-direction: column;
   align-items: center;
