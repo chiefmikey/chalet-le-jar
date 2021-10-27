@@ -19,7 +19,9 @@ const submitOn = async () => {
 
 const On = () => (
   <button id="button-on" onClick={submitOn}>
-    <h5>ON</h5>
+    <div className="button-text">
+      <h5>ON</h5>
+    </div>
   </button>
 );
 

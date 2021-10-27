@@ -35,6 +35,8 @@ h1 {
 h5 {
   user-select: none;
   touch-action: none;
+  text-align: left;
+  line-height: 85%;
 }
 
 h6 {
@@ -103,6 +105,12 @@ button:hover {
   width: 100%;
   height: 100%;
   justify-content: center;
+}
+
+.button-text {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
 }
 
 #button-on {

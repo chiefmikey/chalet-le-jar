@@ -13,20 +13,28 @@ const Buttons = () => (
     <div id="top-buttons">
       <On />
       <button id="button-off" onClick={blurButton} hidefocus="true">
-        <h5>OFF</h5>
+        <div className="button-text">
+          <h5>OFF</h5>
+        </div>
       </button>
     </div>
     <div id="bottom-buttons">
       <button id="button-refresh">
-        <h5>RE</h5>
-        <h5>FRESH</h5>
+        <div className="button-text">
+          <h5>RE</h5>
+          <h5>FRESH</h5>
+        </div>
       </button>
       <button id="button-save">
-        <h5>SAVE</h5>
+        <div className="button-text">
+          <h5>SAVE</h5>
+        </div>
       </button>
       <button id="button-rewind">
-        <h5>RE</h5>
-        <h5>WIND</h5>
+        <div className="button-text">
+          <h5>RE</h5>
+          <h5>WIND</h5>
+        </div>
       </button>
     </div>
   </div>
