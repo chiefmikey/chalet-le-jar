@@ -4,7 +4,7 @@ import On from './buttons/On.jsx';
 const buttons = document.getElementsByTagName('button');
 for (let i = 0; i < buttons.length; i += 1) {
   buttons[i].addEventListener('click', () => {
-    buttons[i].blur();
+    setTimeout(() => buttons[i].blur(), 100);
   });
 }
 
