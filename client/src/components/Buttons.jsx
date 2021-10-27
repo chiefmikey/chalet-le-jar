@@ -1,29 +1,30 @@
 import { h } from 'preact';
 import On from './buttons/On.jsx';
 
+const buttons = document.getElementsByTagName('button');
+for (let i = 0; i < buttons.length; i += 1) {
+  buttons[i].addEventListener('click', () => {
+    buttons[i].blur();
+  });
+}
+
 const Buttons = () => (
   <div id="all-buttons">
     <div id="top-buttons">
       <On />
       <button id="button-off">
-        <h5>O</h5>
-        <h5>F</h5>
-        <h5>F</h5>
+        <h5>OFF</h5>
       </button>
     </div>
     <div id="bottom-buttons">
       <button id="button-refresh">
-        <h5>R E</h5>
-        <h5>F R E S H</h5>
+        <h5>REFRESH</h5>
       </button>
-      <button id="button-clone">
-        <h5>C</h5>
-        <h5>L</h5>
-        <h5>O N E</h5>
+      <button id="button-save">
+        <h5>SAVE</h5>
       </button>
       <button id="button-rewind">
-        <h5>R E W</h5>
-        <h5>I N D</h5>
+        <h5>REWIND</h5>
       </button>
     </div>
   </div>
