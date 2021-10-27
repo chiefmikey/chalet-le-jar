@@ -53,7 +53,7 @@ button {
   overflow: hidden;
   text-align: center;
   touch-action: none;
-  font-size: calc(3.3vmin + 3.3vw);
+  font-size: calc(3.2vmin + 3.2vw);
   display: flex;
   flex-direction: column;
   align-items: center;
