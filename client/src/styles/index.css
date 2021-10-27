@@ -12,7 +12,6 @@ body {
   font-weight: 400;
   color: #fafafa;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   user-select: none;
 }
 
@@ -53,6 +52,7 @@ button {
   user-select: none;
   margin: 5px;
   overflow: hidden;
+  text-align: center;
 }
 
 button:hover {
@@ -61,8 +61,8 @@ button:hover {
 }
 
 #app {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   min-width: 355px;
   min-height: 455px;
   padding: 20px;
