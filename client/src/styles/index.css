@@ -144,7 +144,7 @@ button:hover {
 
 #console {
   margin-top: calc(0.5vmin + 0.5vh);
-  border: 10px solid transparent;
+  border: calc(1vmin + 1vh) solid transparent;
   background-color: #454a4d;
   font-size: calc(1vmin + 1vw);
   color: #fafafa9b;
