@@ -21,7 +21,7 @@ const Buttons = () => (
     <div id="bottom-buttons">
       <button id="button-refresh">
         <div className="button-text">
-          <h5>RE</h5>
+          <h6>RE</h6>
           <h5>FRESH</h5>
         </div>
       </button>
@@ -32,7 +32,7 @@ const Buttons = () => (
       </button>
       <button id="button-rewind">
         <div className="button-text">
-          <h5>RE</h5>
+          <h6>RE</h6>
           <h5>WIND</h5>
         </div>
       </button>
