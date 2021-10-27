@@ -53,6 +53,7 @@ button {
   margin: 5px;
   overflow: hidden;
   text-align: center;
+  user-select: none;
 }
 
 button:hover {
