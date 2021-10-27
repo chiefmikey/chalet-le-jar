@@ -50,9 +50,8 @@ button {
   font-weight: 600;
   opacity: 69%;
   user-select: none;
-  margin: 10px;
+  margin: 5px;
   overflow: hidden;
-  word-break: break-all;
 }
 
 button:hover {
@@ -126,7 +125,7 @@ button:hover {
 }
 
 #console {
-  margin-top: 10px;
+  margin-top: 5px;
   border: 10px solid transparent;
   background-color: #454a4d;
   font-size: 14px;
