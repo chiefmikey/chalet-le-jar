@@ -12,7 +12,7 @@ body {
   background: #292c2e;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
-  color: #aaaaa7;
+  color: #fafafa;
   -webkit-font-smoothing: antialiased;
   touch-action: none;
   user-select: none;
@@ -27,7 +27,7 @@ body {
 
 h1 {
   font-size: calc(1.5vmin + 1.5vw);
-  font-weight: 200;
+  font-weight: 100;
   letter-spacing: 5px;
   margin-bottom: calc(0.5vmin + 0.5vh);
 }
@@ -49,8 +49,9 @@ button {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   border: none;
   background: none;
-  color: #aaaaa7;
+  color: #fafafa;
   font-weight: 600;
+  opacity: 69%;
   user-select: none;
   touch-action: none;
   margin: calc(0.5vmin + 0.5vh);
@@ -67,7 +68,7 @@ button {
 
 button:hover {
   opacity: 100%;
-  filter: saturate(3);
+  filter: saturate(2);
 }
 
 #app {
@@ -114,29 +115,29 @@ button:hover {
 
 #button-on {
   width: 100%;
-  background-color: #19442b;
+  background-color: #0c6235;
   margin-left: 0;
 }
 
 #button-off {
-  background-color: #461a1d;
+  background-color: #671518;
   width: 100%;
   margin-right: 0;
 }
 
+#button-save {
+  background-color: #0b61b0;
+  width: 100%;
+}
+
 #button-refresh {
-  background-color: #482a4c;
+  background-color: #6c3371;
   width: 100%;
   margin-left: 0;
 }
 
-#button-save {
-  background-color: #1a446f;
-  width: 100%;
-}
-
 #button-rewind {
-  background-color: #634420;
+  background-color: #9f621d;
   width: 100%;
   margin-right: 0;
 }
@@ -144,9 +145,9 @@ button:hover {
 #console {
   margin-top: calc(0.5vmin + 0.5vh);
   border: 10px solid transparent;
-  background-color: #383c3e;
-  font-size: calc(0.7vmin + 0.7vw);
-  color: #aaaaa7;
+  background-color: #454a4d;
+  font-size: calc(1vmin + 1vw);
+  color: #fafafa9b;
   font-family: monospace;
   text-align: left;
   word-break: break-word;
