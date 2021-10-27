@@ -27,6 +27,12 @@ h1 {
   font-size: 24px;
   font-weight: 100;
   letter-spacing: 5px;
+  margin-bottom: calc(0.5vmin + 0.5vh);
+}
+
+h5 {
+  user-select: none;
+  touch-action: none;
 }
 
 h6 {
@@ -37,18 +43,21 @@ h6 {
 
 button {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 28px;
   border: none;
   background: none;
   color: #fafafa;
   font-weight: 600;
   opacity: 69%;
   user-select: none;
-  margin: 5px;
+  margin: calc(0.5vmin + 0.5vh);
   overflow: hidden;
   text-align: center;
   touch-action: none;
-  font-size: 20px;
+  font-size: calc(3.3vmin + 3.3vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 button:hover {
@@ -104,15 +113,15 @@ button:hover {
   margin-right: 0;
 }
 
-#button-clone {
+#button-save {
   background-color: #0b61b0;
   width: 100%;
-  margin-left: 0;
 }
 
 #button-refresh {
   background-color: #6c3371;
   width: 100%;
+  margin-left: 0;
 }
 
 #button-rewind {
@@ -122,7 +131,7 @@ button:hover {
 }
 
 #console {
-  margin-top: 5px;
+  margin-top: calc(0.5vmin + 0.5vh);
   border: 10px solid transparent;
   background-color: #454a4d;
   font-size: 14px;
