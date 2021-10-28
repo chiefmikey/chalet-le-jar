@@ -13,6 +13,9 @@ const onSignIn = (googleUser) => {
 
 const User = () => {
   useEffect(() => {
+    const lockScreen = document.createElement('div');
+    lockScreen.setAttribute('id', 'lock-screen');
+    document.getElementById('app').appendChild(lockScreen);
     if (window.gapi) {
       window.gapi.signin2.render('g-signin2', {
         scope: 'https://www.googleapis.com/auth/plus.login',
