@@ -5,11 +5,20 @@ import state from '../../helpers/state.js';
 const dns = false;
 const server = false;
 
-const healthCheck = async () => {
+const dnsHealthCheck = async () => {
   const health = await axios.get(`${dns}/health`);
   if (health.data.status === 'UP') {
     return true;
   }
+  return false;
+};
+
+const serverHealthCheck = async () => {
+  const health = await axios.get(`${server}/health`);
+  if (health.data.status === 'UP') {
+    return true;
+  }
+  return false;
 };
 
 const submitOn = async () => {
@@ -20,8 +29,11 @@ const submitOn = async () => {
   }
   console.log(startUp);
   // repeat dns healthcheck until success
-
-  healthCheck();
+  // or get success response from startUp/state
+  // let dnsHealth = false;
+  // while (!dnsHealth) {
+  //   dnsHealth = dnsHealthCheck();
+  // }
 
   // while (!startUp.StartingInstances)
   // when dns is true, turn on server

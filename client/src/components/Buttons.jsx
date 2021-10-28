@@ -22,8 +22,7 @@ const Buttons = () => (
     <div id="bottom-buttons">
       <button id="button-refresh" onClick={lightUp}>
         <div className="button-text">
-          <h6>RE</h6>
-          <h5>FRESH</h5>
+          <h5>REFRESH</h5>
         </div>
       </button>
       <button id="button-save" onClick={lightUp}>
@@ -33,8 +32,7 @@ const Buttons = () => (
       </button>
       <button id="button-rewind" onClick={lightUp}>
         <div className="button-text">
-          <h6>RE</h6>
-          <h5>WIND</h5>
+          <h5>REWIND</h5>
         </div>
       </button>
     </div>

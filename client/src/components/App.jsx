@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
 import Buttons from './Buttons.jsx';
 import Console from './Console.jsx';
+import User from './User.jsx';
 
 class App extends Component {
   state = { value: '', name: 'world' };
@@ -17,6 +18,7 @@ class App extends Component {
   render() {
     return (
       <div id="app">
+        <User />
         <h1>CHALET LE JAR</h1>
         <Buttons />
         <Console />

@@ -42,7 +42,8 @@ h5 {
 h6 {
   font-size: calc(1.8vmin + 1.8vw);
   text-align: left;
-  line-height: 50%;
+  line-height: 80%;
+  font-weight: 400;
 }
 
 button {
@@ -80,6 +81,18 @@ button {
   flex-direction: column;
   align-items: center;
   transform-origin: center;
+}
+
+#lock-screen {
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #292c2e;
+  position: fixed;
 }
 
 #all-buttons {

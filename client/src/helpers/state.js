@@ -22,7 +22,6 @@ const state = async (command) => {
       return data;
     } catch (err) {
       console.log('Error', err);
-      return undefined;
     }
   }
 };

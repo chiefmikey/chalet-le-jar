@@ -6,7 +6,7 @@ const IDENTITY_POOL_ID = 'us-east-2:9de629c9-c774-42ef-b641-d06eb430f8d8';
 const ec2Client = new EC2Client({
   region: REGION,
   credentials: fromCognitoIdentityPool({
-    clientConfig: { region: REGION }, // Configure the underlying CognitoIdentityClient.
+    clientConfig: { region: REGION },
     identityPoolId: IDENTITY_POOL_ID,
   }),
 });
