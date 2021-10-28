@@ -109,8 +109,8 @@ button {
 
 #sign-out {
   position: absolute;
-  right: 10;
-  top: 10;
+  right: calc(0.5vmin + 0.5vh);
+  top: calc(0.5vmin + 0.5vh);
   font-size: 18px;
   text-decoration: none;
   color: #fafafa;
