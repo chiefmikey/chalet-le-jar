@@ -5,8 +5,8 @@ import launchClient from '../libs/ec2Client';
 
 const onSignIn = (googleUser) => {
   const { id_token } = googleUser.getAuthResponse();
-  document.getElementsByClassName('g-signin2').style.display = 'none';
-  document.getElementById('lock-screen').style.display = 'none';
+  document.getElementsByClassName('g-signin2').remove();
+  document.getElementById('lock-screen').remove();
   launchClient(id_token);
   console.log('weeeeee');
 };

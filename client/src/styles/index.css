@@ -84,8 +84,8 @@ button {
 }
 
 #lock-screen {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -93,6 +93,12 @@ button {
   justify-content: center;
   background-color: #292c2e;
   position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.g-signin2 {
+  z-index: 11;
 }
 
 #all-buttons {

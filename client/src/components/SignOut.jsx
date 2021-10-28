@@ -7,10 +7,12 @@ const signOutUser = () => {
       const auth2 = await window.gapi.auth2.getAuthInstance();
       await auth2.signOut();
       console.log('User signed out');
-      // document.getElementsByClassName('g-signin2').style.display = 'visible';
       const lockScreen = document.createElement('div');
       lockScreen.setAttribute('id', 'lock-screen');
       document.getElementById('app').appendChild(lockScreen);
+      const signInButton = document.createElement('div');
+      signInButton.className('g-signin2');
+      document.getElementById('app').appendChild(signInButton);
     } catch (e) {
       console.log('Sign out user error', e);
     }
