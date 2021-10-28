@@ -21,6 +21,7 @@ class App extends Component {
     document.getElementById('lock-screen').remove();
     launchClient(id_token);
     this.onLogin();
+    console.log('User signed in');
   };
 
   render() {
