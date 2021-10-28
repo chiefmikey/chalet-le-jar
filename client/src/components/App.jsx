@@ -29,8 +29,10 @@ class App extends Component {
       <div id="app">
         {loggedIn ? (
           <div id="main">
-            <h1>CHALET LE JAR</h1>
-            <SignOut onLogout={this.onLogout} />
+            <div id="header">
+              <h1>CHALET LE JAR</h1>
+              <SignOut onLogout={this.onLogout} />
+            </div>
             <Buttons />
             <Console />
           </div>
