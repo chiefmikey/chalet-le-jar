@@ -13,8 +13,14 @@ const signOutUser = () => {
   });
 };
 
-const SignOut = () => (
-  <button id="sign-out" onClick={signOutUser}>
+const SignOut = ({ onLogout }) => (
+  <button
+    id="sign-out"
+    onClick={() => {
+      signOutUser();
+      onLogout();
+    }}
+  >
     Sign out
   </button>
 );

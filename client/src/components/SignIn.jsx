@@ -1,17 +1,7 @@
 import { h } from 'preact';
 import { useEffect } from 'preact/hooks';
 
-import launchClient from '../libs/ec2Client';
-
-const onSignIn = (googleUser) => {
-  const { id_token } = googleUser.getAuthResponse();
-  document.getElementsByClassName('g-signin2').remove();
-  document.getElementById('lock-screen').remove();
-  launchClient(id_token);
-  console.log('weeeeee');
-};
-
-const User = () => {
+const SignIn = ({ onSignIn }) => {
   useEffect(() => {
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen');
@@ -29,4 +19,4 @@ const User = () => {
   });
 };
 
-export default User;
+export default SignIn;
