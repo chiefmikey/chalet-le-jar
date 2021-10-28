@@ -8,13 +8,11 @@ import launchClient from '../libs/ec2Client';
 class App extends Component {
   state = { loggedIn: false };
 
-  onLogin = (ev) => {
-    ev.preventDefault();
+  onLogin = () => {
     this.setState({ loggedIn: true });
   };
 
-  onLogout = (ev) => {
-    ev.preventDefault();
+  onLogout = () => {
     this.setState({ loggedIn: false });
   };
 
