@@ -17,7 +17,7 @@ const User = () => {
     lockScreen.setAttribute('id', 'lock-screen');
     document.getElementById('app').appendChild(lockScreen);
     if (window.gapi) {
-      window.gapi.signin2.render('g-signin2', {
+      window.gapi.signin2.render('lock-screen', {
         scope: 'https://www.googleapis.com/auth/plus.login',
         width: 200,
         height: 50,
