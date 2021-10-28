@@ -9,7 +9,7 @@ const signOutUser = () => {
       console.log('User signed out');
       // document.getElementsByClassName('g-signin2').style.display = 'visible';
       const lockScreen = document.createElement('div');
-      lockScreen.className = 'lock-screen';
+      lockScreen.setAttribute('id', 'lock-screen');
       document.getElementById('app').appendChild(lockScreen);
     } catch (e) {
       console.log('Sign out user error', e);
