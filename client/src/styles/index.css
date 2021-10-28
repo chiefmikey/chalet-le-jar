@@ -66,9 +66,8 @@ button {
   outline: none;
 }
 
-button:hover {
-  opacity: 100%;
-  filter: saturate(2);
+.light-up {
+  filter: saturate(4);
 }
 
 #app {

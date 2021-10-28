@@ -1,36 +1,37 @@
 import { h } from 'preact';
 import On from './buttons/On.jsx';
 
-const blurButton = (ev) => {
-  setTimeout(() => {
-    console.log('ok');
-    ev.target.blur();
-  }, 1000);
+const lightUp = (ev) => {
+  ev.target.classList.add('light-up');
+};
+
+const lightOff = (ev) => {
+  ev.target.classList.remove('light-up');
 };
 
 const Buttons = () => (
   <div id="all-buttons">
     <div id="top-buttons">
-      <On />
-      <button id="button-off" onClick={blurButton} hidefocus="true">
+      <On lightUp={lightUp} lightOff={lightOff} />
+      <button id="button-off" onClick={lightUp} hidefocus="true">
         <div className="button-text">
           <h5>OFF</h5>
         </div>
       </button>
     </div>
     <div id="bottom-buttons">
-      <button id="button-refresh">
+      <button id="button-refresh" onClick={lightUp}>
         <div className="button-text">
           <h6>RE</h6>
           <h5>FRESH</h5>
         </div>
       </button>
-      <button id="button-save">
+      <button id="button-save" onClick={lightUp}>
         <div className="button-text">
           <h5>SAVE</h5>
         </div>
       </button>
-      <button id="button-rewind">
+      <button id="button-rewind" onClick={lightUp}>
         <div className="button-text">
           <h6>RE</h6>
           <h5>WIND</h5>
