@@ -5,7 +5,7 @@ const Console = () => {
   console.addEventListener('log', (e) => {
     let newline = '/';
     const consoleWindow = document.getElementById('console');
-    if (e.arguments.length > 0) {
+    if (consoleWindow && e.arguments.length > 0) {
       for (let i = 0; i < e.arguments.length; i += 1) {
         consoleWindow.append(`${e.arguments[i]} `);
         for (let j = e.arguments[i].length; j < 97; j += 1) {
