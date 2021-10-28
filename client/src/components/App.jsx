@@ -28,12 +28,12 @@ class App extends Component {
     return (
       <div id="app">
         {loggedIn ? (
-          <>
+          <div id="main">
             <h1>CHALET LE JAR</h1>
             <SignOut onLogout={this.onLogout} />
             <Buttons />
             <Console />
-          </>
+          </div>
         ) : (
           <SignIn onSignIn={this.onSignIn} />
         )}
