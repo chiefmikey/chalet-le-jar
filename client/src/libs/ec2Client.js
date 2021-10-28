@@ -3,12 +3,23 @@ import { fromCognitoIdentityPool } from '@aws-sdk/credential-providers';
 
 const REGION = 'us-east-2';
 const IDENTITY_POOL_ID = 'us-east-2:9de629c9-c774-42ef-b641-d06eb430f8d8';
-const ec2Client = new EC2Client({
+let ID_TOKEN;
+
+export const onSignIn = (googleUser) => {
+  const { id_token } = googleUser.getAuthResponse();
+  ID_TOKEN = id_token;
+  document.getElementById('sign-in-button').style.display = 'none';
+  document.getElementById('lock-screen').style.display = 'none';
+  console.log('weeeeee');
+};
+
+export const ec2Client = new EC2Client({
   region: REGION,
   credentials: fromCognitoIdentityPool({
     clientConfig: { region: REGION },
     identityPoolId: IDENTITY_POOL_ID,
+    logins: {
+      'accounts.google.com': ID_TOKEN,
+    },
   }),
 });
-
-export default ec2Client;

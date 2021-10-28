@@ -2,7 +2,7 @@ import {
   StartInstancesCommand,
   StopInstancesCommand,
 } from '@aws-sdk/client-ec2';
-import ec2Client from '../libs/ec2Client.js';
+import { ec2Client } from '../libs/ec2Client.js';
 
 const params = { InstanceIds: ['i-0ca1ce46c83788324', 'i-0c043740e90887911'] };
 
