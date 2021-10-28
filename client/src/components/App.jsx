@@ -37,7 +37,7 @@ class App extends Component {
             <Console />
           </>
         ) : (
-          <SignIn onSignIn={onSignIn} />
+          <SignIn onSignIn={this.onSignIn} />
         )}
       </div>
     );
