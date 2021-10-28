@@ -11,7 +11,7 @@ const signOutUser = () => {
       lockScreen.setAttribute('id', 'lock-screen');
       document.getElementById('app').appendChild(lockScreen);
       const signInButton = document.createElement('div');
-      signInButton.className('g-signin2');
+      signInButton.className = 'g-signin2';
       document.getElementById('app').appendChild(signInButton);
     } catch (e) {
       console.log('Sign out user error', e);
