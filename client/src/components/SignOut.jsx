@@ -7,7 +7,7 @@ const signOutUser = async () => {
       const auth2 = await window.gapi.auth2.getAuthInstance();
       await auth2.signOut();
       console.log('User signed out');
-      document.getElementsByClassName('g-signin2').style.display = 'visible';
+      // document.getElementsByClassName('g-signin2').style.display = 'visible';
       document.getElementById('lock-screen').style.display = 'visible';
     });
   } catch (e) {
