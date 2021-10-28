@@ -1,13 +1,21 @@
 import { h } from 'preact';
 
 const signOutUser = () => {
-  window.gapi.auth2
-    .getAuthInstance()
-    .signOut()
-    .then(() => {
-      console.log('User signed out');
-    })
-    .catch((e) => console.log('Sign out user error', e));
+  window.gapi.load('auth2', () => {
+    window.gapi.auth2.init();
+  });
+  if (window.gapi && window.gapi.auth2) {
+    const auth2 = window.gapi.auth2.getAuthInstance();
+    auth2
+      .getAuthInstance()
+      .signOut()
+      .then(() => {
+        console.log('User signed out');
+        document.getElementById('sign-in-button').style.display = 'visible';
+        document.getElementById('lock-screen').style.display = 'visible';
+      })
+      .catch((e) => console.log('Sign out user error', e));
+  }
 };
 
 const SignOut = () => (

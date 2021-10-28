@@ -13,14 +13,16 @@ const onSignIn = (googleUser) => {
 
 const User = () => {
   useEffect(() => {
-    window.gapi.signin2.render('g-signin2', {
-      scope: 'https://www.googleapis.com/auth/plus.login',
-      width: 200,
-      height: 50,
-      longtitle: true,
-      theme: 'dark',
-      onsuccess: onSignIn,
-    });
+    if (window.gapi) {
+      window.gapi.signin2.render('g-signin2', {
+        scope: 'https://www.googleapis.com/auth/plus.login',
+        width: 200,
+        height: 50,
+        longtitle: true,
+        theme: 'dark',
+        onsuccess: onSignIn,
+      });
+    }
   });
 };
 
