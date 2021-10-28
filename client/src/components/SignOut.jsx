@@ -7,7 +7,6 @@ const signOutUser = () => {
   if (window.gapi && window.gapi.auth2) {
     const auth2 = window.gapi.auth2.getAuthInstance();
     auth2
-      .getAuthInstance()
       .signOut()
       .then(() => {
         console.log('User signed out');
