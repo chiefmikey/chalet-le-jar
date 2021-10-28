@@ -108,10 +108,13 @@ button {
 }
 
 #sign-out {
-  justify-self: flex-end;
-  font-size: 14px;
+  position: absolute;
+  right: 10;
+  top: 10;
+  font-size: 18px;
   text-decoration: none;
   color: #fafafa;
+  font-weight: 400;
 }
 
 #all-buttons {
