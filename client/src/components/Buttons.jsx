@@ -13,7 +13,7 @@ const Buttons = () => (
   <div id="all-buttons">
     <div id="top-buttons">
       <On lightUp={lightUp} lightOff={lightOff} />
-      <button id="button-off" onClick={lightUp} hidefocus="true">
+      <button id="button-off" onClick={lightUp}>
         <div className="button-text">
           <h5>OFF</h5>
         </div>
