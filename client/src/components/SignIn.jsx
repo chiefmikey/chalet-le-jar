@@ -9,8 +9,8 @@ const SignIn = ({ onSignIn }) => {
     if (window.gapi) {
       window.gapi.signin2.render('lock-screen', {
         scope: 'https://www.googleapis.com/auth/plus.login',
-        width: 200,
-        height: 50,
+        width: 400,
+        height: 100,
         longtitle: true,
         theme: 'dark',
         onsuccess: onSignIn,
