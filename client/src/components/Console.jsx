@@ -7,8 +7,9 @@ const Console = () => {
     const consoleWindow = document.getElementById('console');
     if (consoleWindow && e.arguments.length > 0) {
       for (let i = 0; i < e.arguments.length; i += 1) {
-        consoleWindow.append(`${e.arguments[i]} `);
-        for (let j = e.arguments[i].length; j < 97; j += 1) {
+        const statement = `${JSON.stringify(e.arguments[i])} `;
+        consoleWindow.append(statement);
+        for (let j = statement.length; j < 80; j += 1) {
           newline += '-';
         }
         newline += '/ ';
