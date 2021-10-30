@@ -21,7 +21,7 @@ const SignOut = ({ onLogout }) => (
       onLogout();
     }}
   >
-    Sign out
+    SIGN OUT
   </button>
 );
 
