@@ -6,7 +6,6 @@ const IDENTITY_POOL_ID = 'us-east-2:9de629c9-c774-42ef-b641-d06eb430f8d8';
 
 const launchClient = async (ID_TOKEN) => {
   try {
-    console.log('toooken', ID_TOKEN);
     if (ID_TOKEN) {
       return await new EC2Client({
         region: REGION,

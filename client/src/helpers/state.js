@@ -10,6 +10,7 @@ const state = async (command, token) => {
   if (command.toUpperCase() === 'START') {
     try {
       const launch = await launchClient(token);
+      console.log(launch);
       if (launch) {
         const data = await launch.send(new StartInstancesCommand(params));
         console.log('Success - starting instances', data.StartingInstances);
