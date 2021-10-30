@@ -24,9 +24,6 @@ const serverHealthCheck = async () => {
 const submitOn = async () => {
   // aws sdk turn on ec2 instance dns
   const startUp = await state('START');
-  if (!startUp) {
-    return true;
-  }
   console.log(startUp);
   // repeat dns healthcheck until success
   // or get success response from startUp/state
