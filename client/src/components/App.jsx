@@ -17,9 +17,12 @@ class App extends Component {
 
   onSignIn = (googleUser) => {
     const { id_token } = googleUser.getAuthResponse();
-    document.getElementById('lock-screen').remove();
-    this.onLogin(id_token);
-    console.log('User signed in');
+    const email = googleUser.getBasicProfile().getEmail();
+    if (email === 'wolfemikl@gmail.com') {
+      document.getElementById('lock-screen').remove();
+      this.onLogin(id_token);
+      console.log('User signed in');
+    }
   };
 
   render() {
