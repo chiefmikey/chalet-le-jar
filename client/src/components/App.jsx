@@ -3,13 +3,12 @@ import Buttons from './Buttons.jsx';
 import Console from './Console.jsx';
 import SignIn from './SignIn.jsx';
 import SignOut from './SignOut.jsx';
-import launchClient from '../libs/ec2Client';
 
 class App extends Component {
-  state = { loggedIn: false };
+  state = { loggedIn: process.env.NODE_ENV !== 'production', token: null };
 
-  onLogin = () => {
-    this.setState({ loggedIn: true });
+  onLogin = (token) => {
+    this.setState({ loggedIn: true, token });
   };
 
   onLogout = () => {
@@ -19,13 +18,12 @@ class App extends Component {
   onSignIn = (googleUser) => {
     const { id_token } = googleUser.getAuthResponse();
     document.getElementById('lock-screen').remove();
-    launchClient(id_token);
-    this.onLogin();
+    this.onLogin(id_token);
     console.log('User signed in');
   };
 
   render() {
-    const { loggedIn } = this.state;
+    const { loggedIn, token } = this.state;
     return (
       <div id="app">
         {loggedIn ? (
@@ -34,7 +32,7 @@ class App extends Component {
               <h1>CHALET LE JAR</h1>
               <SignOut onLogout={this.onLogout} />
             </div>
-            <Buttons />
+            <Buttons token={token} />
             <Console />
           </div>
         ) : (
