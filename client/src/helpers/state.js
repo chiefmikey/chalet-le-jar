@@ -10,14 +10,13 @@ const state = async (command, token) => {
   if (command.toUpperCase() === 'START') {
     try {
       const launch = await launchClient(token);
-      console.log(launch);
       if (launch) {
         const data = await launch.send(new StartInstancesCommand(params));
         console.log('Success - starting instances', data.StartingInstances);
         return data;
       }
     } catch (e) {
-      console.log('Error2', e);
+      console.log('Error starting instances', e);
     }
   } else if (command.toUpperCase() === 'STOP') {
     try {
@@ -28,7 +27,7 @@ const state = async (command, token) => {
         return data;
       }
     } catch (e) {
-      console.log('Error', e);
+      console.log('Error stopping instances', e);
     }
   }
   return null;
