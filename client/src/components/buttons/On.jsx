@@ -22,20 +22,24 @@ const serverHealthCheck = async () => {
 };
 
 const submitOn = async (token) => {
-  // aws sdk turn on ec2 instance dns
-  const startUp = await state('START', token);
-  console.log(startUp);
-  // repeat dns healthcheck until success
-  // or get success response from startUp/state
-  // let dnsHealth = false;
-  // while (!dnsHealth) {
-  //   dnsHealth = dnsHealthCheck();
-  // }
-  // while (!startUp.StartingInstances)
-  // when dns is true, turn on server
-  // server healthcheck until success
-  // when server is true
-  // await axios.post('/api/on');
+  try {
+    // aws sdk turn on ec2 instance dns
+    const startUp = await state('START', token);
+    console.log('turnin on yo', startUp);
+    // repeat dns healthcheck until success
+    // or get success response from startUp/state
+    // let dnsHealth = false;
+    // while (!dnsHealth) {
+    //   dnsHealth = dnsHealthCheck();
+    // }
+    // while (!startUp.StartingInstances)
+    // when dns is true, turn on server
+    // server healthcheck until success
+    // when server is true
+    // await axios.post('/api/on');
+  } catch (e) {
+    console.log('error in submit On', e);
+  }
 };
 
 const On = ({ lightUp, lightOff, token }) => (
