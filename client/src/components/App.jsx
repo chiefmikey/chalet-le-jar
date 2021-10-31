@@ -5,7 +5,11 @@ import SignIn from './SignIn.jsx';
 import SignOut from './SignOut.jsx';
 
 class App extends Component {
-  state = { loggedIn: process.env.NODE_ENV !== 'production', token: null };
+  state = {
+    loggedIn: process.env.NODE_ENV !== 'production',
+    token: null,
+    statement: 'prod',
+  };
 
   onLogin = (token) => {
     this.setState({ loggedIn: true, token });
@@ -25,18 +29,35 @@ class App extends Component {
     }
   };
 
+  toggleDev = (ev) => {
+    const { statement } = this.state;
+    if (Array.from(ev.target.classList).includes('dev-on')) {
+      ev.target.classList.remove('dev-on');
+    } else {
+      ev.target.classList.add('dev-on');
+    }
+    if (statement === 'prod') {
+      this.setState({ statement: 'dev' });
+    } else if (statement === 'dev') {
+      this.setState({ statement: 'prod' });
+    }
+  };
+
   render() {
-    const { loggedIn, token } = this.state;
+    const { loggedIn, token, statement } = this.state;
     return (
       <div id="app">
         {loggedIn ? (
           <div id="main">
             <div id="header">
+              <button id="dev-switch" onClick={this.toggleDev}>
+                DEV
+              </button>
               <h1>CHALET LE JAR</h1>
               <SignOut onLogout={this.onLogout} />
             </div>
             <Buttons token={token} />
-            <Console />
+            <Console statement={statement} />
           </div>
         ) : (
           <SignIn onSignIn={this.onSignIn} />
