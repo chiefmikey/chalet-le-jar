@@ -23,9 +23,8 @@ const serverHealthCheck = async () => {
 
 const submitOff = async (token) => {
   try {
-    // aws sdk turn on ec2 instance dns
+    console.log('Shutting down...');
     const turnOff = await state('STOP', token);
-    console.log('turnin off yo', turnOff);
     // repeat dns healthcheck until success
     // or get success response from turnOff/state
     // let dnsHealth = false;

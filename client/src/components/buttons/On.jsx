@@ -1,31 +1,10 @@
 import { h } from 'preact';
-import axios from 'axios';
 import state from '../../helpers/state.js';
-
-const dns = false;
-const server = false;
-
-const dnsHealthCheck = async () => {
-  const health = await axios.get(`${dns}/health`);
-  if (health.data.status === 'UP') {
-    return true;
-  }
-  return false;
-};
-
-const serverHealthCheck = async () => {
-  const health = await axios.get(`${server}/health`);
-  if (health.data.status === 'UP') {
-    return true;
-  }
-  return false;
-};
 
 const submitOn = async (token) => {
   try {
-    // aws sdk turn on ec2 instance dns
+    console.log('Starting up...');
     const startUp = await state('START', token);
-    console.log('turnin on yo', startUp);
     // repeat dns healthcheck until success
     // or get success response from startUp/state
     // let dnsHealth = false;
