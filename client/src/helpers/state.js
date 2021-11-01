@@ -6,7 +6,9 @@ import launchClient from '../libs/ec2Client.js';
 
 const params = { InstanceIds: ['i-0ca1ce46c83788324', 'i-0c043740e90887911'] };
 
-const interval = (data) =>
+const interval = (command, data) => {
+  let done = false;
+  console.log(data);
   setInterval(() => {
     for (let i = 0; i < data.length; i += 1) {
       console.log(
@@ -15,11 +17,20 @@ const interval = (data) =>
         'Current State: ',
         data[i].currentState.name,
       );
+      if (data[i].currentState.name === command) {
+        console.log('State successfully updated');
+        done = true;
+      }
     }
-    return data;
   }, 5000);
+  if (done) {
+    console.log('Done');
+    return done;
+  }
+  return done;
+};
 
-const startInstances = async (token) => {
+const startInstances = async (command, token) => {
   try {
     const launch = await launchClient(token);
     if (launch) {
@@ -38,7 +49,7 @@ const startInstances = async (token) => {
   return null;
 };
 
-const stopInstances = async (token) => {
+const stopInstances = async (command, token) => {
   try {
     const launch = await launchClient(token);
     if (launch) {
