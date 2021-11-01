@@ -22,24 +22,29 @@ const serverHealthCheck = async () => {
 };
 
 const submitOff = async (token) => {
-  try {
-    console.log('Shutting down...');
-    const turnOff = await state('STOP', token);
-    console.log(turnOff);
-    // repeat dns healthcheck until success
-    // or get success response from turnOff/state
-    // let dnsHealth = false;
-    // while (!dnsHealth) {
-    //   dnsHealth = dnsHealthCheck();
-    // }
-    // while (!turnOff.StartingInstances)
-    // when dns is true, turn on server
-    // server healthcheck until success
-    // when server is true
-    // await axios.post('/api/on');
-  } catch (e) {
-    console.log('error in submit On', e);
-  }
+  console.log('Shutting down...');
+  setInterval(async () => {
+    try {
+      const turnOff = await state('STOP', token);
+      for (let i = 0; i < turnOff.length; i += 1) {
+        console.log('Instance 1: ', turnOff[i].previousState.name);
+        console.log('Instance 2: ', turnOff[i].currentState.name);
+      }
+    } catch (e) {
+      console.log('error in submit On', e);
+    }
+  }, 1000);
+  // repeat dns healthcheck until success
+  // or get success response from turnOff/state
+  // let dnsHealth = false;
+  // while (!dnsHealth) {
+  //   dnsHealth = dnsHealthCheck();
+  // }
+  // while (!turnOff.StartingInstances)
+  // when dns is true, turn on server
+  // server healthcheck until success
+  // when server is true
+  // await axios.post('/api/on');
 };
 
 const Off = ({ lightUp, lightOff, token }) => (
