@@ -6,68 +6,41 @@ import launchClient from '../libs/ec2Client.js';
 
 const params = { InstanceIds: ['i-0ca1ce46c83788324', 'i-0c043740e90887911'] };
 
-const interval = (command, data) => {
-  let done = false;
-  console.log(data);
-  const run = setInterval(() => {
-    for (let i = 0; i < data.length; i += 1) {
-      console.log(
-        'Previous State: ',
-        data[i].PreviousState.Name,
-        'Current State: ',
-        data[i].CurrentState.Name,
-      );
-      if (command === 'STOP' && data[i].CurrentState.Name === 'stopped') {
-        console.log('Instance successfully updated');
-        done = true;
+const interval = (command, launch) => {
+  let ready = {};
+  const checkState = setInterval(async () => {
+    try {
+      const SendCommand =
+        command === 'START' ? StartInstancesCommand : StopInstancesCommand;
+      const data = await launch.send(new SendCommand(params));
+      if (data) {
+        for (let i = 0; i < data.length; i += 1) {
+          console.log(
+            `${data[i].InstanceId} Previous State: ${data[i].PreviousState.Name}`,
+            ` ${data[i].InstanceId} Current State: ${data[i].CurrentState.Name}`,
+          );
+          if (command === 'STOP' && data[i].CurrentState.Name === 'stopped') {
+            ready[data[i].InstanceId] = true;
+            ready += 1;
+            console.log('Instance updated');
+          }
+          if (command === 'START' && data[i].CurrentState.Name === 'running') {
+            ready[data[i].InstanceId] = true;
+            ready += 1;
+            console.log('Instance updated');
+          }
+          if (Object.keys(ready).length === data.length) {
+            console.log('All instances updated');
+            clearInterval(checkState);
+          }
+        }
+      } else {
+        console.log('Error sending launch command', data);
       }
+    } catch (e) {
+      console.log('Error creating interval', e);
     }
   }, 5000);
-  run();
-  if (done) {
-    console.log('Done');
-    clearInterval(run);
-    return done;
-  }
-  return done;
-};
-
-const startInstances = async (command, token) => {
-  try {
-    const launch = await launchClient(token);
-    if (launch) {
-      const data = await launch.send(new StartInstancesCommand(params));
-      if (data) {
-        interval(command, data.StartingInstances);
-      } else {
-        console.log('Error sending start command', data);
-      }
-    } else {
-      console.log('Error launching AWS client', launch);
-    }
-  } catch (e) {
-    console.log('Error launching AWS client', e);
-  }
-  return null;
-};
-
-const stopInstances = async (command, token) => {
-  try {
-    const launch = await launchClient(token);
-    if (launch) {
-      const data = await launch.send(new StopInstancesCommand(params));
-      if (data) {
-        interval(command, data.StoppingInstances);
-      } else {
-        console.log('Error sending stop command', data);
-      }
-    } else {
-      console.log('Error launching AWS client', launch);
-    }
-  } catch (e) {
-    console.log('Error launching AWS client', e);
-  }
-  return null;
 };
 
 const state = async (command, token) => {
@@ -76,15 +49,14 @@ const state = async (command, token) => {
       console.log('Token missing, please sign in');
       return null;
     }
-    if (command.toUpperCase() === 'START') {
-      return await startInstances(command, token);
+    const launch = await launchClient(token);
+    if (launch) {
+      interval(command, launch);
+    } else {
+      console.log('Error launching AWS client', launch);
     }
-    if (command.toUpperCase() === 'STOP') {
-      return await stopInstances(command, token);
-    }
-    return null;
   } catch (e) {
-    console.log('Error with instance command', e);
+    console.log('Error launching AWS client', e);
   }
   return null;
 };
