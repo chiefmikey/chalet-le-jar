@@ -31,7 +31,7 @@ const submitOff = async (token) => {
         console.log('Instance 2: ', turnOff[i].currentState.name);
       }
     } catch (e) {
-      console.log('error in submit On', e);
+      console.log('error in STOP command', e);
     }
   }, 1000);
   // repeat dns healthcheck until success
