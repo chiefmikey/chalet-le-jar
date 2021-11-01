@@ -20,6 +20,7 @@ class App extends Component {
   };
 
   onSignIn = (googleUser) => {
+    // eslint-disable-next-line camelcase
     const { id_token } = googleUser.getAuthResponse();
     const email = googleUser.getBasicProfile().getEmail();
     if (email === 'wolfemikl@gmail.com') {
