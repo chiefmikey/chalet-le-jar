@@ -36,9 +36,11 @@ const interval = (command, launch) => {
         }
       } else {
         console.log('Error sending launch command', data);
+        clearInterval(checkState);
       }
     } catch (e) {
       console.log('Error creating interval', e);
+      clearInterval(checkState);
     }
   }, 5000);
 };
