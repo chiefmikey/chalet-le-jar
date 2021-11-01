@@ -9,7 +9,7 @@ const params = { InstanceIds: ['i-0ca1ce46c83788324', 'i-0c043740e90887911'] };
 const interval = (command, data) => {
   let done = false;
   console.log(data);
-  setInterval(() => {
+  const run = setInterval(() => {
     for (let i = 0; i < data.length; i += 1) {
       console.log(
         'Previous State: ',
@@ -17,14 +17,16 @@ const interval = (command, data) => {
         'Current State: ',
         data[i].currentState.name,
       );
-      if (data[i].currentState.name === command) {
-        console.log('State successfully updated');
+      if (command === 'STOP' && data[i].currentState.name === 'stopped') {
+        console.log('Instance successfully updated');
         done = true;
       }
     }
   }, 5000);
+  run();
   if (done) {
     console.log('Done');
+    clearInterval(run);
     return done;
   }
   return done;
