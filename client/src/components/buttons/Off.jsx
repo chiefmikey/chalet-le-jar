@@ -25,6 +25,7 @@ const submitOff = async (token) => {
   try {
     console.log('Shutting down...');
     const turnOff = await state('STOP', token);
+    console.log(turnOff);
     // repeat dns healthcheck until success
     // or get success response from turnOff/state
     // let dnsHealth = false;
