@@ -26,7 +26,11 @@ const startInstances = async (token) => {
       const data = await launch.send(new StartInstancesCommand(params));
       if (data && data.length > 0) {
         interval(data);
+      } else {
+        console.log('Error sending start command');
       }
+    } else {
+      console.log('Error launching AWS client');
     }
   } catch (e) {
     console.log('Error launching AWS client', e);
@@ -41,7 +45,11 @@ const stopInstances = async (token) => {
       const data = await launch.send(new StopInstancesCommand(params));
       if (data && data.length > 0) {
         interval(data);
+      } else {
+        console.log('Error sending stop command');
       }
+    } else {
+      console.log('Error launching AWS client');
     }
   } catch (e) {
     console.log('Error launching AWS client', e);
