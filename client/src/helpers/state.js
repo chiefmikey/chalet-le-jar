@@ -75,10 +75,10 @@ const state = async (command, token) => {
       return null;
     }
     if (command.toUpperCase() === 'START') {
-      return await startInstances(token);
+      return await startInstances(command, token);
     }
     if (command.toUpperCase() === 'STOP') {
-      return await stopInstances(token);
+      return await stopInstances(command, token);
     }
     return null;
   } catch (e) {
