@@ -36,7 +36,7 @@ const startInstances = async (command, token) => {
     if (launch) {
       const data = await launch.send(new StartInstancesCommand(params));
       if (data) {
-        interval(data.StartingInstances);
+        interval(command, data.StartingInstances);
       } else {
         console.log('Error sending start command', data);
       }
@@ -55,7 +55,7 @@ const stopInstances = async (command, token) => {
     if (launch) {
       const data = await launch.send(new StopInstancesCommand(params));
       if (data) {
-        interval(data.StoppingInstances);
+        interval(command, data.StoppingInstances);
       } else {
         console.log('Error sending stop command', data);
       }
