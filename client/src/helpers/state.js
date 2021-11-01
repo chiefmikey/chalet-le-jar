@@ -13,11 +13,11 @@ const interval = (command, data) => {
     for (let i = 0; i < data.length; i += 1) {
       console.log(
         'Previous State: ',
-        data[i].previousState.name,
+        data[i].PreviousState.Name,
         'Current State: ',
-        data[i].currentState.name,
+        data[i].CurrentState.Name,
       );
-      if (command === 'STOP' && data[i].currentState.name === 'stopped') {
+      if (command === 'STOP' && data[i].CurrentState.Name === 'stopped') {
         console.log('Instance successfully updated');
         done = true;
       }
