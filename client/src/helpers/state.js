@@ -24,7 +24,9 @@ const startInstances = async (token) => {
     const launch = await launchClient(token);
     if (launch) {
       const data = await launch.send(new StartInstancesCommand(params));
-      interval(data);
+      if (data && data.length > 0) {
+        interval(data);
+      }
     }
   } catch (e) {
     console.log('Error launching AWS client', e);
@@ -37,7 +39,9 @@ const stopInstances = async (token) => {
     const launch = await launchClient(token);
     if (launch) {
       const data = await launch.send(new StopInstancesCommand(params));
-      interval(data);
+      if (data && data.length > 0) {
+        interval(data);
+      }
     }
   } catch (e) {
     console.log('Error launching AWS client', e);
@@ -52,9 +56,10 @@ const state = async (command, token) => {
       return null;
     }
     if (command.toUpperCase() === 'START') {
-      await startInstances(token);
-    } else if (command.toUpperCase() === 'STOP') {
-      await stopInstances(token);
+      return await startInstances(token);
+    }
+    if (command.toUpperCase() === 'STOP') {
+      return await stopInstances(token);
     }
     return null;
   } catch (e) {
