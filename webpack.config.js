@@ -79,4 +79,7 @@ export default {
       os: require.resolve('os-browserify/browser'),
     },
   },
+  experiments: {
+    topLevelAwait: true,
+  },
 };
