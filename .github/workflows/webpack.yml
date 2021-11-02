@@ -31,7 +31,7 @@ jobs:
     - name: Add and Commit
       uses: EndBug/add-and-commit@v7
       with:
-        add: 'client/dist --force'
+        add: 'client/dist index.html .aws CNAME --force'
         # author_name: Mikl Wolfe
         # author_email: wolfemikl@gmail.com
         branch: main
@@ -42,7 +42,7 @@ jobs:
         message: 'Update bundle'
         pathspec_error_handling: exitImmediately
         pull: 'NO-PULL'
-        push: git push origin pages --set-upstream
+        push: origin pages
         # remove: './dir/old_file.js'
         signoff: false
         # tag: 'v1.0.0 --force'
