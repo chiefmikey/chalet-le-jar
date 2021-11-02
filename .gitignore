@@ -124,6 +124,9 @@ build.js.map
 # Rollup
 rollup-cache.json
 
+# Token
+token.js
+
 .bash_history
 .bash_logout
 .bashrc
