@@ -127,6 +127,9 @@ rollup-cache.json
 # Token
 token.js
 
+# Dist
+dist
+
 .bash_history
 .bash_logout
 .bashrc
