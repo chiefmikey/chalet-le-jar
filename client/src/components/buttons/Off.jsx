@@ -3,6 +3,7 @@ import state from '../../helpers/state.js';
 
 const submitOff = async (token) => {
   try {
+    console.log(token);
     console.log('Shutting down...');
     const turnOff = await state('STOP', token);
     console.log('Shut down complete', turnOff);
