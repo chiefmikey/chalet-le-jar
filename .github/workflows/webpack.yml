@@ -26,10 +26,10 @@ jobs:
       run: |
         npm install
         NODE_ENV=production npx webpack --mode production
+        git config advice.addIgnoredFile false
 
     - name: Add and Commit
       uses: EndBug/add-and-commit@v7
-      run: git config advice.addIgnoredFile false
       with:
         add: 'client/dist' --force
         author_name: Mikl Wolfe
