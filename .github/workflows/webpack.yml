@@ -27,3 +27,20 @@ jobs:
         npm install
         NODE_ENV=production npx webpack --mode production
 
+    - uses: EndBug/add-and-commit@v7
+      with:
+        add: 'client/dist'
+        author_name: Mikl Wolfe
+        author_email: wolfemikl@gmail.com
+        branch: main
+        committer_name: GitHub Actions
+        committer_email: actions@github.com
+        cwd: '.'
+        default_author: user_info
+        message: 'Update bundle'
+        pathspec_error_handling: exitImmediately
+        pull: 'NO-PULL or --rebase --autostash ...'
+        push: true
+        # remove: './dir/old_file.js'
+        signoff: false
+        # tag: 'v1.0.0 --force'
