@@ -13,6 +13,7 @@ const interval = (command, launch) => {
       const SendCommand =
         command === 'START' ? StartInstancesCommand : StopInstancesCommand;
       const data = await launch.send(new SendCommand(params));
+      console.log(command, 'command sent');
       if (data) {
         for (let i = 0; i < data.length; i += 1) {
           console.log(
