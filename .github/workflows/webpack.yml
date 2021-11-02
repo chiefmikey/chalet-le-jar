@@ -42,7 +42,7 @@ jobs:
         message: 'Update bundle'
         pathspec_error_handling: exitImmediately
         pull: 'NO-PULL'
-        push: origin pages --set-upstream
+        push: origin pages --set-upstream --force
         # remove: './dir/old_file.js'
         signoff: false
         # tag: 'v1.0.0 --force'
