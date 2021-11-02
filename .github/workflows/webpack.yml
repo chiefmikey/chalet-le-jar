@@ -34,7 +34,7 @@ jobs:
         add: 'client/dist --force'
         # author_name: Mikl Wolfe
         # author_email: wolfemikl@gmail.com
-        branch: pages
+        branch: main
         # committer_name: GitHub Actions
         # committer_email: actions@github.com
         cwd: '.'
@@ -42,7 +42,7 @@ jobs:
         message: 'Update bundle'
         pathspec_error_handling: exitImmediately
         pull: 'NO-PULL'
-        push: true
+        push: git push origin pages --set-upstream
         # remove: './dir/old_file.js'
         signoff: false
         # tag: 'v1.0.0 --force'
