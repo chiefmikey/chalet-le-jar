@@ -34,7 +34,7 @@ jobs:
         add: 'client/dist index.html .aws CNAME --force'
         # author_name: Mikl Wolfe
         # author_email: wolfemikl@gmail.com
-        branch: main
+        branch: pages
         # committer_name: GitHub Actions
         # committer_email: actions@github.com
         cwd: '.'
