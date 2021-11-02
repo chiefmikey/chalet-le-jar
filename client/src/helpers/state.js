@@ -45,13 +45,17 @@ const interval = (command, launch) => {
   }, 5000);
 };
 
+const TOKEN = await import(
+  process.env.NODE_ENV !== 'production' ? '../../../token.js' : null
+);
+
 const state = async (command, token) => {
   try {
-    if (!token) {
+    if (!token && !TOKEN.default) {
       console.log('Token missing, please sign in');
       return null;
     }
-    const launch = await launchClient(token);
+    const launch = await launchClient(token || TOKEN.default);
     if (launch) {
       interval(command, launch);
     } else {
