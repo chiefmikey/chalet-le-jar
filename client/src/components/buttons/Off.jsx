@@ -1,24 +1,25 @@
 import { h } from 'preact';
-import axios from 'axios';
 import state from '../../helpers/state.js';
 
-const dns = false;
-const server = false;
-
 const submitOff = async (token) => {
-  console.log('Shutting down...');
-  const startUp = await state('STOP', token);
-  // repeat dns healthcheck until success
-  // or get success response from turnOff/state
-  // let dnsHealth = false;
-  // while (!dnsHealth) {
-  //   dnsHealth = dnsHealthCheck();
-  // }
-  // while (!turnOff.StartingInstances)
-  // when dns is true, turn on server
-  // server healthcheck until success
-  // when server is true
-  // await axios.post('/api/on');
+  try {
+    console.log('Shutting down...');
+    const turnOff = await state('STOP', token);
+    console.log('Shut down complete', turnOff);
+    // repeat dns healthcheck until success
+    // or get success response from turnOff/state
+    // let dnsHealth = false;
+    // while (!dnsHealth) {
+    //   dnsHealth = dnsHealthCheck();
+    // }
+    // while (!turnOff.StartingInstances)
+    // when dns is true, turn on server
+    // server healthcheck until success
+    // when server is true
+    // await axios.post('/api/on');
+  } catch (e) {
+    console.log('Error creating STOP state', e);
+  }
 };
 
 const Off = ({ lightUp, lightOff, token }) => (

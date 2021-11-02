@@ -4,20 +4,21 @@ import state from '../../helpers/state.js';
 const submitOn = async (token) => {
   try {
     console.log('Starting up...');
-    const startUp = await state('START', token);
+    const turnOn = await state('START', token);
+    console.log('Start up complete', turnOn);
     // repeat dns healthcheck until success
-    // or get success response from startUp/state
+    // or get success response from turnOn/state
     // let dnsHealth = false;
     // while (!dnsHealth) {
     //   dnsHealth = dnsHealthCheck();
     // }
-    // while (!startUp.StartingInstances)
+    // while (!turnOn.StartingInstances)
     // when dns is true, turn on server
     // server healthcheck until success
     // when server is true
     // await axios.post('/api/on');
   } catch (e) {
-    console.log('error in submit On', e);
+    console.log('Error creating START state', e);
   }
 };
 
