@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Node
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
@@ -27,9 +27,11 @@ jobs:
         npm install
         NODE_ENV=production npx webpack --mode production
 
-    - uses: EndBug/add-and-commit@v7
+    - name: Add and Commit
+      uses: EndBug/add-and-commit@v7
+      run: git config advice.addIgnoredFile false
       with:
-        add: 'client/dist'
+        add: 'client/dist' --force
         author_name: Mikl Wolfe
         author_email: wolfemikl@gmail.com
         branch: main
