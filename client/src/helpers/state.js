@@ -45,9 +45,10 @@ const interval = (command, launch) => {
   }, 5000);
 };
 
-const TOKEN = await import(
-  process.env.NODE_ENV !== 'production' ? '../../../token.js' : null
-);
+const TOKEN =
+  process.env.NODE_ENV !== 'production'
+    ? await import('../../../token.js')
+    : null;
 
 const state = async (command, token) => {
   try {
