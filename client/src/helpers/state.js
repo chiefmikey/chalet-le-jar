@@ -5,68 +5,80 @@ import {
 import launchClient from '../libs/ec2Client.js';
 
 const params = { InstanceIds: ['i-0ca1ce46c83788324', 'i-0c043740e90887911'] };
+let ready = {};
 
-const interval = (command, launch) => {
-  let ready = {};
+const changeState = (data, interval, command, end) => {
+  for (let i = 0; i < data.length; i += 1) {
+    console.log(
+      `${data[i].InstanceId} Current State: ${data[i].CurrentState.Name}`,
+    );
+    if (command === 'START' && data[i].CurrentState.Name === 'running') {
+      ready[data[i].InstanceId] = true;
+    }
+    if (command === 'STOP' && data[i].CurrentState.Name === 'stopped') {
+      ready[data[i].InstanceId] = true;
+    }
+    if (Object.keys(ready).length === data.length) {
+      console.log('All instances updated');
+      clearInterval(interval);
+      ready = {};
+      end();
+      return true;
+    }
+  }
+  console.log('State change in progress...');
+  return false;
+};
+
+const interval = async (command, launch, end) => {
   const checkState = setInterval(async () => {
     try {
-      const SendCommand =
-        command === 'START' ? StartInstancesCommand : StopInstancesCommand;
+      let SendCommand;
+      if (command === 'START') {
+        SendCommand = StartInstancesCommand;
+      }
+      if (command === 'STOP') {
+        SendCommand = StopInstancesCommand;
+      }
       const data = await launch.send(new SendCommand(params));
-      console.log(command, 'command sent');
+      console.log(`${command} command sent`);
       if (data) {
-        for (let i = 0; i < data.length; i += 1) {
-          console.log(
-            `${data[i].InstanceId} Previous State: ${data[i].PreviousState.Name}`,
-            ` ${data[i].InstanceId} Current State: ${data[i].CurrentState.Name}`,
-          );
-          if (command === 'STOP' && data[i].CurrentState.Name === 'stopped') {
-            ready[data[i].InstanceId] = true;
-            ready += 1;
-            console.log('Instance updated');
-          }
-          if (command === 'START' && data[i].CurrentState.Name === 'running') {
-            ready[data[i].InstanceId] = true;
-            ready += 1;
-            console.log('Instance updated');
-          }
-          if (Object.keys(ready).length === data.length) {
-            console.log('All instances updated');
-            clearInterval(checkState);
-          }
+        if (data.StartingInstances) {
+          return changeState(data.StartingInstances, checkState, command, end);
+        }
+        if (data.StoppingInstances) {
+          return changeState(data.StoppingInstances, checkState, command, end);
         }
       } else {
         console.log('Error sending launch command', data);
         clearInterval(checkState);
       }
+      console.log('Invalid command');
+      return false;
     } catch (e) {
       console.log('Error creating interval', e);
       clearInterval(checkState);
+      return false;
     }
   }, 5000);
 };
 
-const TOKEN =
-  process.env.NODE_ENV !== 'production'
-    ? await import('../../../token.js')
-    : null;
-
-const state = async (command, token) => {
+const state = async (command, token, end) => {
   try {
-    if (!token && !TOKEN.default) {
+    if (!token && process.env.NODE_ENV === 'production') {
       console.log('Token missing, please sign in');
-      return null;
+      return false;
     }
-    const launch = await launchClient(token || TOKEN.default);
+    const launch = await launchClient(token);
     if (launch) {
-      interval(command, launch);
-    } else {
-      console.log('Error launching AWS client', launch);
+      return interval(command, launch, end);
     }
+    console.log('Error launching AWS client', launch);
+    return false;
   } catch (e) {
     console.log('Error launching AWS client', e);
+    return false;
   }
-  return null;
 };
 
 export default state;
