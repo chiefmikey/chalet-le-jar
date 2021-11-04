@@ -84,7 +84,8 @@ button {
   transform-origin: center;
 }
 
-#lock-screen {
+#lock-screen,
+#lock-screen-clear {
   width: 100%;
   height: 100%;
   display: flex;
@@ -94,6 +95,10 @@ button {
   position: fixed;
   left: 0;
   top: 0;
+}
+
+#lock-screen-clear {
+  opacity: 0%;
 }
 
 .g-signin2 {
