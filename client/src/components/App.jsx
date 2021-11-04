@@ -6,7 +6,7 @@ import SignOut from './SignOut.jsx';
 
 class App extends Component {
   state = {
-    loggedIn: process.env.NODE_ENV !== 'production',
+    loggedIn: false,
     token: null,
     statement: 'prod',
   };
