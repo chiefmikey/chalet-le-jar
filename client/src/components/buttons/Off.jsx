@@ -1,35 +1,37 @@
 import { h } from 'preact';
 import state from '../../helpers/state.js';
 
-const submitOff = async (token) => {
+let event;
+let offLight;
+
+const end = () => {
+  console.log('Shut down complete');
+  offLight(event);
+  document.getElementById('lock-screen-clear').remove();
+};
+
+const submitOff = (token, end) => {
   try {
     console.log('Shutting down...');
-    const turnOff = await state('STOP', token);
-    console.log('Shut down complete', turnOff);
-    // repeat dns healthcheck until success
-    // or get success response from turnOff/state
-    // let dnsHealth = false;
-    // while (!dnsHealth) {
-    //   dnsHealth = dnsHealthCheck();
-    // }
-    // while (!turnOff.StartingInstances)
-    // when dns is true, turn on server
-    // server healthcheck until success
-    // when server is true
-    // await axios.post('/api/on');
+    const lockScreen = document.createElement('div');
+    lockScreen.setAttribute('id', 'lock-screen-clear');
+    document.getElementById('app').appendChild(lockScreen);
+    return state('STOP', token, end);
   } catch (e) {
     console.log('Error creating STOP state', e);
+    return e;
   }
 };
 
 const Off = ({ lightUp, lightOff, token }) => (
   <button
     id="button-off"
-    onClick={async (ev) => {
+    onClick={(ev) => {
       ev.preventDefault();
+      event = ev;
+      offLight = lightOff;
       lightUp(ev);
-      await submitOff(token);
-      lightOff(ev);
+      submitOff(token, end);
     }}
   >
     <div className="button-text">
