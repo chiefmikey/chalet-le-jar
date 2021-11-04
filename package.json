@@ -39,7 +39,7 @@
     "@mikey-pro/eslint-config-preact": "^1.0.5",
     "@mikey-pro/style-guide": "^1.5.14",
     "babel-loader": "^8.2.3",
-    "css-loader": "^6.5.0",
+    "css-loader": "^6.5.1",
     "dotenv-webpack": "^7.0.3",
     "nodemon": "^2.0.14",
     "sass-loader": "^12.3.0",
