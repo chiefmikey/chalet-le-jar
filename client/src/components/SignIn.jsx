@@ -8,7 +8,7 @@ const SignIn = ({ onSignIn }) => {
     document.getElementById('app').appendChild(lockScreen);
     if (window.gapi) {
       window.gapi.signin2.render('lock-screen', {
-        scope: 'https://www.googleapis.com/auth/plus.login',
+        scope: 'email openid',
         width: 400,
         height: 100,
         longtitle: true,
