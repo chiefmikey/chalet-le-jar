@@ -7,11 +7,13 @@
     "build": "NODE_ENV=development webpack --mode development",
     "dev": "NODE_ENV=development webpack --mode development -w",
     "prod": "NODE_ENV=production webpack --mode production",
-    "start": "node app.js",
-    "test": "nodemon app.js"
+    "start": "node client/app.js",
+    "test": "nodemon client/app.js"
   },
   "dependencies": {
     "@aws-sdk/client-ec2": "^3.39.0",
+    "@aws-sdk/credential-provider-ini": "^3.39.0",
+    "@aws-sdk/credential-provider-node": "^3.39.0",
     "@aws-sdk/credential-providers": "^3.39.0",
     "aws-crt": "^1.10.2",
     "axios": "^0.24.0",
@@ -19,9 +21,12 @@
     "crypto-browserify": "^3.12.0",
     "dotenv": "^10.0.0",
     "fs": "^0.0.1-security",
+    "koa": "^2.13.4",
+    "koa-static": "^5.0.0",
     "os-browserify": "^0.3.0",
     "path-browserify": "^1.0.1",
     "preact": "^10.5.15",
+    "process": "^0.11.10",
     "smoothscroll-polyfill": "^0.4.4",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
