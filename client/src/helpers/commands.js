@@ -51,10 +51,12 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
           return end(command, token);
         }
       }
+      return null;
     } catch (e) {
       console.log('Error checking command status', e);
       clearInterval(interval);
       error();
+      return e;
     }
   }, 1000);
 };
