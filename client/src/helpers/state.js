@@ -2,12 +2,12 @@ import {
   StartInstancesCommand,
   StopInstancesCommand,
 } from '@aws-sdk/client-ec2';
-import launchClient from '../libs/ec2Client.js';
+import ec2 from '../libs/ec2Client.js';
 
 const params = { InstanceIds: ['i-0ca1ce46c83788324', 'i-0c043740e90887911'] };
 let ready = {};
 
-const changeState = (data, interval, command, end) => {
+const changeState = (data, interval, command, end, token) => {
   for (let i = 0; i < data.length; i += 1) {
     console.log(
       `${data[i].InstanceId} Current State: ${data[i].CurrentState.Name}`,
@@ -22,15 +22,14 @@ const changeState = (data, interval, command, end) => {
       console.log('All instances updated');
       clearInterval(interval);
       ready = {};
-      end();
-      return true;
+      return end(command, token);
     }
   }
   console.log('State change in progress...');
-  return false;
+  return null;
 };
 
-const interval = async (command, launch, end) => {
+const interval = async (command, launch, end, token, complete, error) => {
   const checkState = setInterval(async () => {
     try {
       let SendCommand;
@@ -41,43 +40,62 @@ const interval = async (command, launch, end) => {
         SendCommand = StopInstancesCommand;
       }
       const data = await launch.send(new SendCommand(params));
-      console.log(`${command} command sent`);
+      console.log(`${command} state sent`);
       if (data) {
         if (data.StartingInstances) {
-          return changeState(data.StartingInstances, checkState, command, end);
+          return changeState(
+            data.StartingInstances,
+            checkState,
+            command,
+            end,
+            token,
+          );
         }
         if (data.StoppingInstances) {
-          return changeState(data.StoppingInstances, checkState, command, end);
+          return changeState(
+            data.StoppingInstances,
+            checkState,
+            command,
+            end,
+            token,
+          );
         }
       } else {
-        console.log('Error sending launch command', data);
+        console.log('Error sending state', data);
         clearInterval(checkState);
+        error();
+        return data;
       }
       console.log('Invalid command');
-      return false;
+      error();
+      return null;
     } catch (e) {
       console.log('Error creating interval', e);
       clearInterval(checkState);
-      return false;
+      error();
+      return e;
     }
   }, 5000);
 };
 
-const state = async (command, token, end) => {
+const state = async (command, token, end, complete, error) => {
   try {
     if (!token && process.env.NODE_ENV === 'production') {
       console.log('Token missing, please sign in');
-      return false;
+      error();
+      return null;
     }
-    const launch = await launchClient(token);
+    const launch = await ec2(token);
     if (launch) {
-      return interval(command, launch, end);
+      return interval(command, launch, end, token, complete, error);
     }
-    console.log('Error launching AWS client', launch);
-    return false;
+    console.log('Error in state', launch);
+    error();
+    return launch;
   } catch (e) {
-    console.log('Error launching AWS client', e);
-    return false;
+    console.log('Error in state', e);
+    error();
+    return e;
   }
 };
 
