@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-ec2": "^3.39.0",
+    "@aws-sdk/client-ssm": "^3.39.0",
     "@aws-sdk/credential-provider-ini": "^3.39.0",
     "@aws-sdk/credential-provider-node": "^3.39.0",
     "@aws-sdk/credential-providers": "^3.39.0",
@@ -43,11 +44,11 @@
     "dotenv-webpack": "^7.0.3",
     "nodemon": "^2.0.14",
     "sass-loader": "^12.3.0",
-    "source-map-js": "^0.6.2",
+    "source-map-js": "^1.0.0",
     "source-map-loader": "^3.0.0",
     "style-loader": "^3.3.1",
     "url-loader": "^4.1.1",
-    "webpack": "^5.61.0",
+    "webpack": "^5.62.0",
     "webpack-cli": "^4.9.1"
   },
   "license": "MIT",
