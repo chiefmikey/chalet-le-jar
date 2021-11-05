@@ -10,7 +10,7 @@ sudo touch ~/$INSTANCE_ALREADY_STARTED
     wget -O ~/bedrock-server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.40.06.zip
     unzip ~/bedrock-server.zip
     rm ~/bedrock-server.zip
-    pw=$(aws secretsmanager get-secret-value --secret-id repo | jq -r '.SecretString' | jq -r '.repo')
+    pw=$(aws secretsmanager get-secret-value --secret-id repo | jq -r ".SecretString" | jq -r ".repo")
     git init
     git config credential.helper store
     echo https://chalet-le-jar:${pw}@github.com > ~/.git-credentials
@@ -23,7 +23,7 @@ sudo touch ~/$INSTANCE_ALREADY_STARTED
     git checkout main
     chmod +x ~/server-backup.sh ~/server-stop.sh ~/server-init.sh
     git add .
-    git commit -am 'Initialize server'
+    git commit -am "Initialize server"
     git push origin main
     LD_LIBRARY_PATH=. screen -S bedrock -dm sudo ~/bedrock_server
 else
