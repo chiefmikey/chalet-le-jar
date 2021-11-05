@@ -23,7 +23,7 @@ touch /home/ubuntu/$INSTANCE_ALREADY_STARTED
     git pull --no-edit origin main -f
     chmod +x /home/ubuntu/server-backup.sh /home/ubuntu/server-stop.sh /home/ubuntu/server-init.sh
     currentDate=$(date +%y-%m-%d-%H-%M-%S)
-    echo $currentDate > /home/ubuntu/logs/startup-log.txt
+    echo $currentDate > /home/ubuntu/log/startup-log.txt
     git commit -am "Instance initialize server"
     git push origin main
     LD_LIBRARY_PATH=. screen -S bedrock -dm /home/ubuntu/bedrock_server
