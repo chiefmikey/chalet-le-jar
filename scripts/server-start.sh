@@ -18,11 +18,10 @@ sudo touch ~/$INSTANCE_ALREADY_STARTED
     git config user.name chalet-le-jar
     git config user.email chaletlejar@gmail.com
     git remote add origin https://chalet-le-jar@github.com/chiefmikey/chalet-le-jar.git
+    git checkout main
     git add permissions.json server.properties whitelist.json
     git pull --no-edit origin main -f
-    git checkout main
     chmod +x ~/server-backup.sh ~/server-stop.sh ~/server-init.sh
-    git add .
     git commit -am "Initialize server"
     git push origin main
     LD_LIBRARY_PATH=. screen -S bedrock -dm sudo ~/bedrock_server
