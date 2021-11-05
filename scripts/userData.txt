@@ -1,4 +1,5 @@
 #!/bin/bash
+cd /home/ubuntu
 INSTANCE_ALREADY_STARTED="INSTANCE_ALREADY_STARTED_PLACEHOLDER"
 if [ ! -e /home/ubuntu/$INSTANCE_ALREADY_STARTED ]; then
 touch /home/ubuntu/$INSTANCE_ALREADY_STARTED

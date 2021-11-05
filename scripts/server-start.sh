@@ -1,5 +1,6 @@
 #!/bin/sh
 
+cd /home/ubuntu
 INSTANCE_ALREADY_STARTED="INSTANCE_ALREADY_STARTED_PLACEHOLDER"
 if [ ! -e /home/ubuntu/$INSTANCE_ALREADY_STARTED ]; then
 sudo touch /home/ubuntu/$INSTANCE_ALREADY_STARTED
