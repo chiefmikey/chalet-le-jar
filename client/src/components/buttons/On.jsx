@@ -12,7 +12,8 @@ const complete = () => {
 };
 
 const end = (command, token) => {
-  commands(command, token, complete);
+  complete();
+  // commands(command, token, complete);
 };
 
 const submitOff = (token, end) => {
