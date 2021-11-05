@@ -1,14 +1,18 @@
 import { h } from 'preact';
 import state from '../../helpers/state.js';
+import commands from '../../helpers/commands.js';
 
 let event;
 let offLight;
 
-const end = () => {
+const complete = () => {
   console.log('Start up complete');
-  event.target.style.pointerEvents = 'auto';
   offLight(event);
   document.getElementById('lock-screen-clear').remove();
+};
+
+const end = (command, token) => {
+  commands(command, token, complete);
 };
 
 const submitOff = (token, end) => {
@@ -20,6 +24,7 @@ const submitOff = (token, end) => {
     return state('START', token, end);
   } catch (e) {
     console.log('Error creating START state', e);
+    complete();
     return e;
   }
 };
