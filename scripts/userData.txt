@@ -1,12 +1,11 @@
-#!/bin/sh
-
+#!/bin/bash
 INSTANCE_ALREADY_STARTED="INSTANCE_ALREADY_STARTED_PLACEHOLDER"
 if [ ! -e /home/ubuntu/$INSTANCE_ALREADY_STARTED ]; then
-sudo touch /home/ubuntu/$INSTANCE_ALREADY_STARTED
+touch /home/ubuntu/$INSTANCE_ALREADY_STARTED
   echo "-- First instance startup --"
-    sudo apt update -y
-    sudo apt upgrade -y
-    sudo apt install -y wget unzip git jq awscli
+    apt update -y
+    apt upgrade -y
+    apt install -y wget unzip git jq awscli
     wget -O /home/ubuntu/bedrock-server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.40.06.zip
     unzip /home/ubuntu/bedrock-server.zip
     rm /home/ubuntu/bedrock-server.zip
@@ -24,12 +23,12 @@ sudo touch /home/ubuntu/$INSTANCE_ALREADY_STARTED
     chmod +x /home/ubuntu/server-backup.sh /home/ubuntu/server-stop.sh /home/ubuntu/server-init.sh
     git commit -am "Initialize server"
     git push origin main
-    LD_LIBRARY_PATH=. screen -S bedrock -dm sudo /home/ubuntu/bedrock_server
+    LD_LIBRARY_PATH=. screen -S bedrock -dm /home/ubuntu/bedrock_server
 else
   echo "-- Not first instance startup --"
-    sudo apt update -y
-    sudo apt upgrade -y
+    apt update -y
+    apt upgrade -y
     git checkout main
     git pull --no-edit origin main -f
-    LD_LIBRARY_PATH=. screen -S bedrock -dm sudo /home/ubuntu/bedrock_server
+    LD_LIBRARY_PATH=. screen -S bedrock -dm /home/ubuntu/bedrock_server
 fi
