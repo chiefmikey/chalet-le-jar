@@ -3,27 +3,22 @@ import {
   ListCommandInvocationsCommand,
 } from '@aws-sdk/client-ssm';
 import ssm from '../libs/ssmClient.js';
-import start from '../scripts/start.js';
-import stop from '../scripts/stop.js';
-import refresh from '../scripts/refresh.js';
-import save from '../scripts/save.js';
-import rewind from '../scripts/rewind.js';
 
 const setScript = (command, error) => {
   if (command === 'START') {
-    return start;
+    return 'sudo ~/scripts/server-start.sh';
   }
   if (command === 'STOP') {
-    return stop;
+    return 'sudo ~/scripts/server-stop.sh';
   }
   if (command === 'REFRESH') {
-    return refresh;
+    return 'sudo ~/scripts/server-refresh.sh';
   }
   if (command === 'SAVE') {
-    return save;
+    return 'sudo ~/scripts/server-save.sh';
   }
   if (command === 'REWIND') {
-    return rewind;
+    return 'sudo ~/scripts/server-rewind.sh';
   }
   console.log('Invalid command');
   error();
@@ -41,7 +36,10 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
       const data = await launch.send(new ListCommandInvocationsCommand(input));
       console.log(`Checking command status...`);
       if (data) {
-        console.log(`Status: ${data.CommandInvocations[0].Status}`);
+        console.log(
+          `Status: ${data.CommandInvocations[0].Status}`,
+          `Details: ${data.CommandInvocations[0].StatusDetails}`,
+        );
         if (data.CommandInvocations[0].Status === 'Success') {
           console.log('Command executed successfully');
           clearInterval(interval);
@@ -58,7 +56,7 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
       error();
       return e;
     }
-  }, 1000);
+  }, 5000);
 };
 
 const sendCommand = async (command, launch, complete, error, end, token) => {
@@ -74,7 +72,6 @@ const sendCommand = async (command, launch, complete, error, end, token) => {
     const data = await launch.send(new SendCommandCommand(params));
     console.log(`${command} command sent`);
     if (data) {
-      console.log('Pull data:::', data.Command.CommandId);
       return checkStatus(
         launch,
         data.Command.CommandId,
