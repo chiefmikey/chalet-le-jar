@@ -10,18 +10,18 @@ touch /home/ubuntu/$INSTANCE_ALREADY_STARTED
     wget -O /home/ubuntu/bedrock-server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.40.06.zip
     unzip /home/ubuntu/bedrock-server.zip
     rm /home/ubuntu/bedrock-server.zip
-    pw=$(aws secretsmanager get-secret-value --secret-id repo | jq -r ".SecretString" | jq -r ".repo")
     git init
     git config credential.helper store
-    echo https://chalet-le-jar:${pw}@github.com > /home/ubuntu/.git-credentials
-    chmod 400 /home/ubuntu/.git-credentials
     git config user.name chalet-le-jar
     git config user.email chaletlejar@gmail.com
     git remote add origin https://chalet-le-jar@github.com/chiefmikey/chalet-le-jar.git
-    git checkout main
     git add permissions.json server.properties whitelist.json
     git pull --no-edit origin main -f
-    chmod +x /home/ubuntu/server-backup.sh /home/ubuntu/server-stop.sh /home/ubuntu/server-init.sh
+    git checkout main
+    pw=$(aws secretsmanager get-secret-value --secret-id repo | jq -r ".SecretString" | jq -r ".repo")
+    echo https://chalet-le-jar:${pw}@github.com > /home/ubuntu/.git-credentials
+    chmod 400 /home/ubuntu/.git-credentials
+    chmod +x /home/ubuntu/scripts/server-backup.sh /home/ubuntu/scripts/server-stop.sh /home/ubuntu/scripts/server-init.sh
     currentDate=$(date +%y-%m-%d-%H-%M-%S)
     echo $currentDate > /home/ubuntu/log/startup-log.txt
     git commit -am "Instance initialize server"
