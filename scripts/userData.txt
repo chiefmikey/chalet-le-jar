@@ -21,7 +21,7 @@ touch /home/ubuntu/$INSTANCE_ALREADY_STARTED
     pw=$(aws secretsmanager get-secret-value --secret-id repo | jq -r ".SecretString" | jq -r ".repo")
     echo https://chalet-le-jar:${pw}@github.com > /home/ubuntu/.git-credentials
     chmod 400 /home/ubuntu/.git-credentials
-    chmod +x /home/ubuntu/scripts/server-backup.sh /home/ubuntu/scripts/server-stop.sh /home/ubuntu/scripts/server-init.sh
+    chmod +x /home/ubuntu/scripts/server-save.sh /home/ubuntu/scripts/server-stop.sh /home/ubuntu/scripts/server-refresh.sh /home/ubuntu/scripts/server-rewind.sh
     currentDate=$(date +%y-%m-%d-%H-%M-%S)
     echo $currentDate > /home/ubuntu/log/startup-log.txt
     git commit -am "Instance initialize server"
