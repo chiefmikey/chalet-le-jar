@@ -18,7 +18,7 @@ touch /home/ubuntu/$INSTANCE_ALREADY_STARTED
     git add permissions.json server.properties whitelist.json
     git pull --no-edit origin main -f
     git checkout main
-    pw=$(aws --region us-east-2 secretsmanager get-secret-value --secret-id repo | jq -r ".SecretString" | jq -r ".repo")
+    pw=$(aws secretsmanager get-secret-value --secret-id repo | jq -r ".SecretString" | jq -r ".repo")
     echo https://chalet-le-jar:${pw}@github.com > /home/ubuntu/.git-credentials
     chmod 400 /home/ubuntu/.git-credentials
     chmod +x /home/ubuntu/scripts/server-save.sh /home/ubuntu/scripts/server-stop.sh /home/ubuntu/scripts/server-refresh.sh /home/ubuntu/scripts/server-rewind.sh
