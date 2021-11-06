@@ -11,7 +11,7 @@ touch /home/ubuntu/$INSTANCE_ALREADY_STARTED
     unzip /home/ubuntu/bedrock-server.zip
     rm /home/ubuntu/bedrock-server.zip
     git init
-    git config credential.helper store --file /home/ubuntu/.git-credentials
+    git config --global credential.helper 'store --file /home/ubuntu/.git-credentials'
     git config user.name chalet-le-jar
     git config user.email chaletlejar@gmail.com
     git remote add origin https://chalet-le-jar@github.com/chiefmikey/chalet-le-jar.git
