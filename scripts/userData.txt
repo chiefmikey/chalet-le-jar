@@ -12,10 +12,8 @@ touch /home/ubuntu/$INSTANCE_ALREADY_STARTED
     rm /home/ubuntu/bedrock-server.zip
     pw=$(aws secretsmanager --region us-east-2 get-secret-value --secret-id repo | jq -r ".SecretString" | jq -r ".repo")
     git init
-    git config --global credential.helper 'store --file /home/ubuntu/.git-credentials'
-    chmod 400 /home/ubuntu/.git-credentials
-    git config --global user.name chalet-le-jar
-    git config --global user.email chaletlejar@gmail.com
+    git config user.name chalet-le-jar
+    git config user.email chaletlejar@gmail.com
     git remote add origin https://chalet-le-jar:${pw}@github.com/chiefmikey/chalet-le-jar.git
     git add permissions.json server.properties whitelist.json
     git pull --no-edit origin main -f
