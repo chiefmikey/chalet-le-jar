@@ -15,6 +15,7 @@ touch /home/ubuntu/$INSTANCE_ALREADY_STARTED
     git config user.name chalet-le-jar
     git config user.email chaletlejar@gmail.com
     git remote add origin https://chalet-le-jar:${pw}@github.com/chiefmikey/chalet-le-jar.git
+    git add /home/ubuntu/permissions.json /home/ubuntu/server.properties /home/ubuntu/whitelist.json
     git fetch --all
     git checkout main
     git reset --hard origin/main
