@@ -52,7 +52,7 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
           }
         }
         if (data.CommandInvocations[0].Status === 'Success') {
-          console.log('Command executed successfully');
+          console.log('Commands executed successfully');
           clearInterval(interval);
           if (!end) {
             return complete();
