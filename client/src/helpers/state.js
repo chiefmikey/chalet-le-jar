@@ -22,6 +22,9 @@ const changeState = (data, interval, command, end, token, complete) => {
       console.log('All instances updated');
       clearInterval(interval);
       ready = {};
+      if (!end) {
+        return complete();
+      }
       return end(command, token);
     }
   }
