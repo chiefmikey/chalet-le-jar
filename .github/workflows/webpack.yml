@@ -34,15 +34,15 @@ jobs:
         add: 'docs/index.html docs/client/public --force'
         # author_name: Mikl Wolfe
         # author_email: wolfemikl@gmail.com
-        branch: pages
+        branch: client
         # committer_name: GitHub Actions
         # committer_email: actions@github.com
         cwd: '.'
         default_author: github_actions
-        message: 'Update bundle'
+        message: 'Update production bundle'
         pathspec_error_handling: exitImmediately
         pull: 'NO-PULL'
-        push: origin pages --set-upstream --force
+        push: origin client --set-upstream --force
         # remove: '-r whitelist.json webpack.config.js server.properties README.md permissions.json package.json package-lock.json .gitignore .deepsource.toml worlds dns scripts client/src client/app.js .github'
         signoff: false
         # tag: 'v1.0.0 --force'
