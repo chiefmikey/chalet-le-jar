@@ -5,20 +5,17 @@ import {
 import ssm from '../libs/ssmClient.js';
 
 const setScript = (command, error) => {
-  if (command === 'START') {
-    return 'sudo ~/scripts/server-start.sh';
-  }
   if (command === 'STOP') {
-    return 'sudo ~/scripts/server-stop.sh';
+    return '/home/ubuntu/scripts/server-stop.sh';
   }
   if (command === 'REFRESH') {
-    return 'sudo ~/scripts/server-refresh.sh';
+    return '/home/ubuntu/scripts/server-refresh.sh';
   }
   if (command === 'SAVE') {
-    return 'sudo ~/scripts/server-save.sh';
+    return '/home/ubuntu/scripts/server-save.sh';
   }
   if (command === 'REWIND') {
-    return 'sudo ~/scripts/server-rewind.sh';
+    return '/home/ubuntu/scripts/server-rewind.sh';
   }
   console.log('Invalid command');
   error();
