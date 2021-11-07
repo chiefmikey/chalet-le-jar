@@ -4,7 +4,7 @@ import {
 } from '@aws-sdk/client-ec2';
 import ec2 from '../libs/ec2Client.js';
 
-const params = { InstanceIds: ['i-00519e760db81afd3', 'i-0c043740e90887911'] };
+const params = { InstanceIds: ['i-040f3376bc4e85068', 'i-0c043740e90887911'] };
 let ready = {};
 
 const changeState = (data, interval, command, end, token, complete) => {
