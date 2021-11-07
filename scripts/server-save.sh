@@ -7,6 +7,7 @@ currentDate=$(date +%y-%m-%d-%H-%M-%S)
 git checkout main
 git add worlds
 git commit -am $currentDate
+git push origin main
 git checkout -b $currentDate
 git push origin $currentDate
 git checkout main
