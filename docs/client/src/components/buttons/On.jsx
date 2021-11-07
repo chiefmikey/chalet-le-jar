@@ -5,16 +5,19 @@ import commands from '../../helpers/commands.js';
 let event;
 let offLight;
 
-const complete = () => {
-  console.log('Start up complete');
+const allClear = () => {
   offLight(event);
   document.getElementById('lock-screen-clear').remove();
 };
 
+const complete = () => {
+  console.log('Start up complete');
+  allClear();
+};
+
 const error = () => {
   console.log('Start up was interrupted');
-  offLight(event);
-  document.getElementById('lock-screen-clear').remove();
+  allClear();
 };
 
 const end = (command, token) => {

@@ -5,16 +5,19 @@ import commands from '../../helpers/commands.js';
 let event;
 let offLight;
 
-const complete = () => {
-  console.log('Shut down complete');
+const allClear = () => {
   offLight(event);
   document.getElementById('lock-screen-clear').remove();
 };
 
+const complete = () => {
+  console.log('Shut down complete');
+  allClear();
+};
+
 const error = () => {
   console.log('Shut down was interrupted');
-  offLight(event);
-  document.getElementById('lock-screen-clear').remove();
+  allClear();
 };
 
 const end = (command, token) => {
