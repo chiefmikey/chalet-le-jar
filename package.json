@@ -7,15 +7,15 @@
     "build": "NODE_ENV=development webpack --mode development",
     "dev": "NODE_ENV=development webpack --mode development -w",
     "prod": "NODE_ENV=production webpack --mode production",
-    "start": "node client/app.js",
-    "test": "nodemon client/app.js"
+    "start": "node docs/client/app.js",
+    "test": "nodemon docs/client/app.js"
   },
   "dependencies": {
-    "@aws-sdk/client-ec2": "^3.39.0",
-    "@aws-sdk/client-ssm": "^3.39.0",
-    "@aws-sdk/credential-provider-ini": "^3.39.0",
-    "@aws-sdk/credential-provider-node": "^3.39.0",
-    "@aws-sdk/credential-providers": "^3.39.0",
+    "@aws-sdk/client-ec2": "^3.40.0",
+    "@aws-sdk/client-ssm": "^3.40.0",
+    "@aws-sdk/credential-provider-ini": "^3.40.0",
+    "@aws-sdk/credential-provider-node": "^3.40.0",
+    "@aws-sdk/credential-providers": "^3.40.0",
     "aws-crt": "^1.10.2",
     "axios": "^0.24.0",
     "console-events": "^0.2.0",
@@ -48,7 +48,7 @@
     "source-map-loader": "^3.0.0",
     "style-loader": "^3.3.1",
     "url-loader": "^4.1.1",
-    "webpack": "^5.62.0",
+    "webpack": "^5.62.1",
     "webpack-cli": "^4.9.1"
   },
   "license": "MIT",
