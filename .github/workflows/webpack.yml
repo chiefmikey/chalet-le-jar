@@ -31,7 +31,7 @@ jobs:
     - name: Add and Commit
       uses: EndBug/add-and-commit@v7
       with:
-        add: 'client/dist index.html CNAME favicon.ico social.png --force'
+        add: 'docs/index.html docs/client/public --force'
         # author_name: Mikl Wolfe
         # author_email: wolfemikl@gmail.com
         branch: pages
@@ -43,6 +43,6 @@ jobs:
         pathspec_error_handling: exitImmediately
         pull: 'NO-PULL'
         push: origin pages --set-upstream --force
-        remove: '-r whitelist.json webpack.config.js server.properties README.md permissions.json package.json package-lock.json .gitignore .deepsource.toml worlds dns scripts client/src client/app.js .github'
+        # remove: '-r whitelist.json webpack.config.js server.properties README.md permissions.json package.json package-lock.json .gitignore .deepsource.toml worlds dns scripts client/src client/app.js .github'
         signoff: false
         # tag: 'v1.0.0 --force'
