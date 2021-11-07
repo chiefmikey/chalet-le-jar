@@ -18,7 +18,7 @@ app
   //   }),
   // )
   // .use(bodyParser())
-  .use(serve(path.resolve()));
+  .use(serve(path.join(path.resolve(), 'docs')));
 
 app.listen(port, () => console.log('Koa is listening on port', port));
 
