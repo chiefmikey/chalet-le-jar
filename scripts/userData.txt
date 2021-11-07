@@ -10,17 +10,16 @@ touch /home/ubuntu/$INSTANCE_ALREADY_STARTED
     wget -O /home/ubuntu/bedrock-server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.40.06.zip
     unzip /home/ubuntu/bedrock-server.zip
     rm /home/ubuntu/bedrock-server.zip
+    pw=$(aws secretsmanager --region us-east-2 get-secret-value --secret-id repo | jq -r ".SecretString" | jq -r ".repo")
     git init
     git config --global credential.helper 'store --file /home/ubuntu/.git-credentials'
-    git config user.name chalet-le-jar
-    git config user.email chaletlejar@gmail.com
-    git remote add origin https://chalet-le-jar@github.com/chiefmikey/chalet-le-jar.git
+    chmod 400 /home/ubuntu/.git-credentials
+    git config --global user.name chalet-le-jar
+    git config --global user.email chaletlejar@gmail.com
+    git remote add origin https://chalet-le-jar:${pw}@github.com/chiefmikey/chalet-le-jar.git
     git add permissions.json server.properties whitelist.json
     git pull --no-edit origin main -f
     git checkout main
-    pw=$(aws secretsmanager --region us-east-2 get-secret-value --secret-id repo | jq -r ".SecretString" | jq -r ".repo")
-    echo https://chalet-le-jar:${pw}@github.com > /home/ubuntu/.git-credentials
-    chmod 400 /home/ubuntu/.git-credentials
     chmod +x /home/ubuntu/scripts/server-save.sh /home/ubuntu/scripts/server-stop.sh /home/ubuntu/scripts/server-refresh.sh /home/ubuntu/scripts/server-rewind.sh
     chown -R ubuntu:root /home/ubuntu
     currentDate=$(date +%y-%m-%d-%H-%M-%S)
@@ -32,6 +31,9 @@ else
   echo "-- Not first instance startup --"
     apt update -y
     apt upgrade -y
+    pw=$(aws secretsmanager --region us-east-2 get-secret-value --secret-id repo | jq -r ".SecretString" | jq -r ".repo")
+    git remote remove origin
+    git remote add origin https://chalet-le-jar:${pw}@github.com/chiefmikey/chalet-le-jar.git
     git checkout main
     git pull --no-edit origin main -f
     LD_LIBRARY_PATH=. screen -S bedrock -dm /home/ubuntu/bedrock_server
