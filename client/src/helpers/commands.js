@@ -4,30 +4,32 @@ import {
 } from '@aws-sdk/client-ssm';
 import ssm from '../libs/ssmClient.js';
 
-const setScript = (command, error) => {
+const setScript = (command, error, end, token) => {
   if (command === 'STOP') {
-    return '/home/ubuntu/scripts/server-stop.sh';
+    return 'sudo /home/ubuntu/scripts/server-stop.sh';
   }
   if (command === 'REFRESH') {
-    return '/home/ubuntu/scripts/server-refresh.sh';
+    return 'sudo /home/ubuntu/scripts/server-refresh.sh';
   }
   if (command === 'SAVE') {
-    return '/home/ubuntu/scripts/server-save.sh';
+    return 'sudo /home/ubuntu/scripts/server-save.sh';
   }
   if (command === 'REWIND') {
-    return '/home/ubuntu/scripts/server-rewind.sh';
+    return 'sudo /home/ubuntu/scripts/server-rewind.sh';
   }
   console.log('Invalid command');
-  error();
+  end(command, token);
   return null;
 };
+
+let tries = 0;
 
 const checkStatus = (launch, id, complete, error, end, command, token) => {
   const interval = setInterval(async () => {
     try {
       const input = {
         CommandId: id,
-        InstanceId: 'i-0ca1ce46c83788324',
+        InstanceId: 'i-06e517e42639034d6',
         Details: true,
       };
       const data = await launch.send(new ListCommandInvocationsCommand(input));
@@ -37,6 +39,18 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
           `Status: ${data.CommandInvocations[0].Status}`,
           `Details: ${data.CommandInvocations[0].StatusDetails}`,
         );
+        if (data.CommandInvocations[0].Status === 'Failed') {
+          tries += 1;
+          if (tries === 3) {
+            console.log('Command failed...');
+            clearInterval(interval);
+            tries = 0;
+            if (!end) {
+              return error();
+            }
+            return end(command, token);
+          }
+        }
         if (data.CommandInvocations[0].Status === 'Success') {
           console.log('Command executed successfully');
           clearInterval(interval);
@@ -50,7 +64,7 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
     } catch (e) {
       console.log('Error checking command status', e);
       clearInterval(interval);
-      error();
+      end(command, token);
       return e;
     }
   }, 5000);
@@ -60,10 +74,14 @@ const sendCommand = async (command, launch, complete, error, end, token) => {
   try {
     const params = {
       DocumentName: 'AWS-RunShellScript',
-      InstanceIds: ['i-0ca1ce46c83788324'],
+      InstanceIds: ['i-06e517e42639034d6'],
       Comment: 'Sending shell script...',
       Parameters: {
-        commands: setScript(command, error),
+        commands: [
+          '#!/bin/bash',
+          'cd /home/ubuntu',
+          setScript(command, error, end, token),
+        ],
       },
     };
     const data = await launch.send(new SendCommandCommand(params));
@@ -79,12 +97,12 @@ const sendCommand = async (command, launch, complete, error, end, token) => {
         token,
       );
     }
-    console.log('Error sending command', data);
-    error();
+    console.log('Error sending launch command', data);
+    end(command, token);
     return null;
   } catch (e) {
-    console.log('Error sending command', e);
-    error();
+    console.log('Error in send command', e);
+    end(command, token);
     return e;
   }
 };
@@ -93,7 +111,7 @@ const commands = async (command, token, complete, error, end = () => null) => {
   try {
     if (!token && process.env.NODE_ENV === 'production') {
       console.log('Token missing, please sign in');
-      error();
+      end(command, token);
       return null;
     }
     const launch = await ssm(token);
@@ -101,11 +119,11 @@ const commands = async (command, token, complete, error, end = () => null) => {
       return sendCommand(command, launch, complete, error, end, token);
     }
     console.log('Error in state', launch);
-    error();
+    end(command, token);
     return launch;
   } catch (e) {
     console.log('Error in ssm', e);
-    error();
+    end(command, token);
     return e;
   }
 };

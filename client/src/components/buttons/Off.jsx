@@ -18,7 +18,7 @@ const error = () => {
 };
 
 const end = (command, token) => {
-  state(command, token, end, complete, error);
+  state(command, token, null, complete, error);
 };
 
 const submitOff = (token) => {

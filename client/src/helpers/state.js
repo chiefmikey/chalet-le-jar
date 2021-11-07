@@ -4,10 +4,10 @@ import {
 } from '@aws-sdk/client-ec2';
 import ec2 from '../libs/ec2Client.js';
 
-const params = { InstanceIds: ['i-0ca1ce46c83788324', 'i-0c043740e90887911'] };
+const params = { InstanceIds: ['i-06e517e42639034d6', 'i-0c043740e90887911'] };
 let ready = {};
 
-const changeState = (data, interval, command, end, token) => {
+const changeState = (data, interval, command, end, token, complete) => {
   for (let i = 0; i < data.length; i += 1) {
     console.log(
       `${data[i].InstanceId} Current State: ${data[i].CurrentState.Name}`,
@@ -49,6 +49,7 @@ const interval = async (command, launch, end, token, complete, error) => {
             command,
             end,
             token,
+            complete,
           );
         }
         if (data.StoppingInstances) {
@@ -58,6 +59,7 @@ const interval = async (command, launch, end, token, complete, error) => {
             command,
             end,
             token,
+            complete,
           );
         }
       } else {
