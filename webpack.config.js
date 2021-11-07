@@ -3,8 +3,8 @@ import { createRequire } from 'module';
 
 const require = createRequire(import.meta.url);
 
-const SRC_DIR = path.join(path.resolve(), '/client/src');
-const DIST_DIR = path.join(path.resolve(), '/client/dist');
+const SRC_DIR = path.join(path.resolve(), '/docs/client/src');
+const DIST_DIR = path.join(path.resolve(), '/docs/client/public/dist');
 
 const css = ['style-loader', 'css-loader'];
 const scss = ['style-loader', 'css-loader', 'sass-loader'];
