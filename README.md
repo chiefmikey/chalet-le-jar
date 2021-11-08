@@ -1,5 +1,5 @@
 <div align="center">
 
-![Chalet le Jar](social.png)
+![Chalet le Jar](docs/client/public/assets/social.png)
 
 </div>

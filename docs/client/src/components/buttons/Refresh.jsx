@@ -1,56 +1,57 @@
 import { h } from 'preact';
-import state from '../../helpers/state.js';
 import commands from '../../helpers/commands.js';
 
 let event;
 let offLight;
 
-const complete = () => {
-  console.log('Start up complete');
+const allClear = () => {
   offLight(event);
   document.getElementById('lock-screen-clear').remove();
+};
+
+const complete = () => {
+  console.log('Refresh complete');
+  allClear();
 };
 
 const error = () => {
-  console.log('Start up was interrupted');
-  offLight(event);
-  document.getElementById('lock-screen-clear').remove();
+  console.log('Refresh was interrupted');
+  allClear();
 };
 
-const end = (command, token) => {
+const end = () => {
   complete();
-  // commands(command, token, complete);
 };
 
-const submitOff = (token) => {
+const submitRefresh = (token) => {
   try {
-    console.log('Starting up...');
+    console.log('Refreshing...');
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen-clear');
     document.getElementById('app').appendChild(lockScreen);
-    return state('START', token, end, complete, error);
+    return commands('REFRESH', token, complete, error, end);
   } catch (e) {
-    console.log('Error creating START state', e);
-    complete();
+    console.log('Error creating REFRESH state', e);
+    error();
     return e;
   }
 };
 
-const On = ({ lightUp, lightOff, token }) => (
+const Refresh = ({ lightUp, lightOff, token }) => (
   <button
-    id="button-on"
+    id="button-refresh"
     onClick={(ev) => {
       ev.preventDefault();
       event = ev;
       offLight = lightOff;
       lightUp(ev);
-      submitOff(token);
+      submitRefresh(token);
     }}
   >
     <div className="button-text">
-      <h5>ON</h5>
+      <h5>REFRESH</h5>
     </div>
   </button>
 );
 
-export default On;
+export default Refresh;

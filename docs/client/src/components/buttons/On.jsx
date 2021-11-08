@@ -5,39 +5,42 @@ import commands from '../../helpers/commands.js';
 let event;
 let offLight;
 
-const complete = () => {
-  console.log('Shut down complete');
+const allClear = () => {
   offLight(event);
   document.getElementById('lock-screen-clear').remove();
+};
+
+const complete = () => {
+  console.log('Start up complete');
+  allClear();
 };
 
 const error = () => {
-  console.log('Shut down was interrupted');
-  offLight(event);
-  document.getElementById('lock-screen-clear').remove();
+  console.log('Start up was interrupted');
+  allClear();
 };
 
 const end = (command, token) => {
-  state(command, token, null, complete, error);
+  commands(command, token, complete, error, null);
 };
 
 const submitOff = (token) => {
   try {
-    console.log('Shutting down...');
+    console.log('Starting up...');
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen-clear');
     document.getElementById('app').appendChild(lockScreen);
-    return commands('STOP', token, complete, error, end);
+    return state('START', token, end, complete, error);
   } catch (e) {
-    console.log('Error creating STOP state', e);
-    complete();
+    console.log('Error creating START state', e);
+    error();
     return e;
   }
 };
 
-const Off = ({ lightUp, lightOff, token }) => (
+const On = ({ lightUp, lightOff, token }) => (
   <button
-    id="button-off"
+    id="button-on"
     onClick={(ev) => {
       ev.preventDefault();
       event = ev;
@@ -47,9 +50,9 @@ const Off = ({ lightUp, lightOff, token }) => (
     }}
   >
     <div className="button-text">
-      <h5>OFF</h5>
+      <h5>ON</h5>
     </div>
   </button>
 );
 
-export default Off;
+export default On;
