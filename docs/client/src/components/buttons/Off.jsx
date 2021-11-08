@@ -33,7 +33,7 @@ const submitOff = (token) => {
     return commands('STOP', token, complete, error, end);
   } catch (e) {
     console.log('Error creating STOP state', e);
-    complete();
+    error();
     return e;
   }
 };

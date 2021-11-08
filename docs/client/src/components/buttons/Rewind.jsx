@@ -1,5 +1,4 @@
 import { h } from 'preact';
-import state from '../../helpers/state.js';
 import commands from '../../helpers/commands.js';
 
 let event;
@@ -11,48 +10,48 @@ const allClear = () => {
 };
 
 const complete = () => {
-  console.log('Start up complete');
+  console.log('Rewind complete');
   allClear();
 };
 
 const error = () => {
-  console.log('Start up was interrupted');
+  console.log('Rewind was interrupted');
   allClear();
 };
 
-const end = (command, token) => {
-  commands(command, token, complete, error, null);
+const end = () => {
+  complete();
 };
 
-const submitOff = (token) => {
+const submitRewind = (token) => {
   try {
-    console.log('Starting up...');
+    console.log('Rewinding...');
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen-clear');
     document.getElementById('app').appendChild(lockScreen);
-    return state('START', token, end, complete, error);
+    return commands('REWIND', token, complete, error, end);
   } catch (e) {
-    console.log('Error creating START state', e);
+    console.log('Error creating REWIND state', e);
     error();
     return e;
   }
 };
 
-const On = ({ lightUp, lightOff, token }) => (
+const Rewind = ({ lightUp, lightOff, token }) => (
   <button
-    id="button-on"
+    id="button-rewind"
     onClick={(ev) => {
       ev.preventDefault();
       event = ev;
       offLight = lightOff;
       lightUp(ev);
-      submitOff(token);
+      submitRewind(token);
     }}
   >
     <div className="button-text">
-      <h5>ON</h5>
+      <h5>REWIND</h5>
     </div>
   </button>
 );
 
-export default On;
+export default Rewind;

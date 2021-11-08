@@ -17,9 +17,21 @@ const setScript = (command, error, end, token) => {
   if (command === 'REWIND') {
     return 'sudo /home/ubuntu/scripts/server-rewind.sh';
   }
+  if (command === 'START') {
+    return 'sudo /home/ubuntu/scripts/server-start.sh';
+  }
   console.log('Invalid command');
   end(command, token);
   return null;
+};
+
+const finish = (command, token, interval, end, complete) => {
+  console.log('Commands executed successfully');
+  clearInterval(interval);
+  if (!end) {
+    return complete();
+  }
+  return end(command, token);
 };
 
 let tries = 0;
@@ -52,12 +64,7 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
           }
         }
         if (data.CommandInvocations[0].Status === 'Success') {
-          console.log('Commands executed successfully');
-          clearInterval(interval);
-          if (!end) {
-            return complete();
-          }
-          return end(command, token);
+          return finish(command, token, interval, end, complete);
         }
       }
       return null;
@@ -107,7 +114,7 @@ const sendCommand = async (command, launch, complete, error, end, token) => {
   }
 };
 
-const commands = async (command, token, complete, error, end = () => null) => {
+const commands = async (command, token, complete, error, end) => {
   try {
     if (!token && process.env.NODE_ENV === 'production') {
       console.log('Token missing, please sign in');
