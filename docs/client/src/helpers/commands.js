@@ -41,7 +41,7 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
     try {
       const input = {
         CommandId: id,
-        InstanceId: 'i-040f3376bc4e85068',
+        InstanceId: 'i-0c35872f8d010202c',
         Details: true,
       };
       const data = await launch.send(new ListCommandInvocationsCommand(input));
@@ -81,7 +81,7 @@ const sendCommand = async (command, launch, complete, error, end, token) => {
   try {
     const params = {
       DocumentName: 'AWS-RunShellScript',
-      InstanceIds: ['i-040f3376bc4e85068'],
+      InstanceIds: ['i-0c35872f8d010202c'],
       Comment: 'Sending shell script...',
       Parameters: {
         commands: [
