@@ -7,13 +7,12 @@ currentDate=$(date +%y-%m-%d-%H-%M-%S)
 git checkout main
 git add worlds
 git commit -am $currentDate
-git pull --no-edit origin main
-git push origin main
 git checkout -b $currentDate
 git push origin $currentDate
 git checkout main
+git pull --no-edit origin main
 screen -S bedrock -X stuff "save resume\n"
 screen -S bedrock -X stuff "stop\n"
 sudo apt update -y
 sudo apt upgrade -y
-LD_LIBRARY_PATH=. screen -S bedrock -dm sudo /home/ubuntu/bedrock_server
+LD_LIBRARY_PATH=/home/ubuntu sudo su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
