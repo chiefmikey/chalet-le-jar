@@ -9,10 +9,9 @@ const getBranches = async () => {
       owner: 'chiefmikey',
       repo: 'chalet-le-jar',
     });
-    for (let i = 0; i < res.length; i += 1) {
-      branches.push(res[i].name);
+    for (let i = 0; i < res.data.length; i += 1) {
+      branches.push(res.data[i].name);
     }
-    console.log(branches);
     return branches;
   } catch (e) {
     console.log('Error getting branch list', e);
