@@ -3,7 +3,7 @@ import On from './buttons/On.jsx';
 import Off from './buttons/Off.jsx';
 import Refresh from './buttons/Refresh.jsx';
 import Save from './buttons/Save.jsx';
-import Rewind from './buttons/Rewind.jsx';
+import { Rewind } from './buttons/Rewind.jsx';
 
 const lightUp = (ev) => {
   ev.target.classList.add('light-up');
