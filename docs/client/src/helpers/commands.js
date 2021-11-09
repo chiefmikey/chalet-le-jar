@@ -4,7 +4,7 @@ import {
 } from '@aws-sdk/client-ssm';
 import ssm from '../libs/ssmClient.js';
 
-const setScript = (command, error, end, token) => {
+const setScript = (command, error, end, token, branch) => {
   if (command === 'STOP') {
     return 'sudo /home/ubuntu/scripts/server-stop.sh';
   }
@@ -15,7 +15,7 @@ const setScript = (command, error, end, token) => {
     return 'sudo /home/ubuntu/scripts/server-save.sh';
   }
   if (command === 'REWIND') {
-    return 'sudo /home/ubuntu/scripts/server-rewind.sh';
+    return `branch=${branch} sudo /home/ubuntu/scripts/server-rewind.sh`;
   }
   if (command === 'START') {
     return 'sudo /home/ubuntu/scripts/server-start.sh';
@@ -77,7 +77,15 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
   }, 5000);
 };
 
-const sendCommand = async (command, launch, complete, error, end, token) => {
+const sendCommand = async (
+  command,
+  launch,
+  complete,
+  error,
+  end,
+  token,
+  branch,
+) => {
   try {
     const params = {
       DocumentName: 'AWS-RunShellScript',
@@ -87,7 +95,7 @@ const sendCommand = async (command, launch, complete, error, end, token) => {
         commands: [
           '#!/bin/bash',
           'cd /home/ubuntu',
-          setScript(command, error, end, token),
+          setScript(command, error, end, token, branch),
         ],
       },
     };
@@ -105,32 +113,32 @@ const sendCommand = async (command, launch, complete, error, end, token) => {
       );
     }
     console.log('Error sending launch command', data);
-    end(command, token);
+    error(command, token);
     return null;
   } catch (e) {
     console.log('Error in send command', e);
-    end(command, token);
+    error(command, token);
     return e;
   }
 };
 
-const commands = async (command, token, complete, error, end) => {
+const commands = async (command, token, complete, error, end, branch) => {
   try {
     if (!token && process.env.NODE_ENV === 'production') {
       console.log('Token missing, please sign in');
-      end(command, token);
+      error(command, token);
       return null;
     }
     const launch = await ssm(token);
     if (launch) {
-      return sendCommand(command, launch, complete, error, end, token);
+      return sendCommand(command, launch, complete, error, end, token, branch);
     }
     console.log('Error in state', launch);
-    end(command, token);
+    error(command, token);
     return launch;
   } catch (e) {
     console.log('Error in ssm', e);
-    end(command, token);
+    error(command, token);
     return e;
   }
 };
