@@ -1,7 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
 import commands from '../../helpers/commands.js';
-import Modal from '../Modal.jsx';
 
 let event;
 let offLight;
@@ -25,7 +24,7 @@ const end = () => {
   complete();
 };
 
-const submitRewind = (token, branch) => {
+export const submitRewind = (token, branch) => {
   try {
     console.log('Rewinding...');
     const lockScreen = document.createElement('div');
@@ -39,12 +38,7 @@ const submitRewind = (token, branch) => {
   }
 };
 
-const selectBranch = (token) => {
-  const insert = <Modal token={token} />;
-  document.getElementById('app').append(insert);
-};
-
-export const Rewind = ({ lightUp, lightOff, token }) => (
+export const Rewind = ({ lightUp, lightOff, toggleModal }) => (
   <button
     type="button"
     id="button-rewind"
@@ -53,7 +47,7 @@ export const Rewind = ({ lightUp, lightOff, token }) => (
       event = ev;
       offLight = lightOff;
       lightUp(ev);
-      selectBranch(token);
+      toggleModal();
     }}
   >
     <div className="button-text">
