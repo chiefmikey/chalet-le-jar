@@ -29,7 +29,7 @@ const submitRefresh = (token) => {
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen-clear');
     document.getElementById('app').appendChild(lockScreen);
-    return commands('REFRESH', token, complete, error, end);
+    return commands('REFRESH', token, complete, error, end, null);
   } catch (e) {
     console.log('Error creating REFRESH state', e);
     error();
@@ -39,6 +39,7 @@ const submitRefresh = (token) => {
 
 const Refresh = ({ lightUp, lightOff, token }) => (
   <button
+    type="button"
     id="button-refresh"
     onClick={(ev) => {
       ev.preventDefault();

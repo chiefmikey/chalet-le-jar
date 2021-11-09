@@ -30,7 +30,7 @@ const submitOff = (token) => {
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen-clear');
     document.getElementById('app').appendChild(lockScreen);
-    return commands('STOP', token, complete, error, end);
+    return commands('STOP', token, complete, error, end, null);
   } catch (e) {
     console.log('Error creating STOP state', e);
     error();
@@ -40,6 +40,7 @@ const submitOff = (token) => {
 
 const Off = ({ lightUp, lightOff, token }) => (
   <button
+    type="button"
     id="button-off"
     onClick={(ev) => {
       ev.preventDefault();

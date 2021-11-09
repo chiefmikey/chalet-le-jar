@@ -29,7 +29,7 @@ const submitSave = (token) => {
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen-clear');
     document.getElementById('app').appendChild(lockScreen);
-    return commands('SAVE', token, complete, error, end);
+    return commands('SAVE', token, complete, error, end, null);
   } catch (e) {
     console.log('Error creating SAVE state', e);
     error();
@@ -39,6 +39,7 @@ const submitSave = (token) => {
 
 const Save = ({ lightUp, lightOff, token }) => (
   <button
+    type="button"
     id="button-save"
     onClick={(ev) => {
       ev.preventDefault();

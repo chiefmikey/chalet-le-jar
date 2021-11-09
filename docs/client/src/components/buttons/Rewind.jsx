@@ -1,5 +1,7 @@
+// eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
 import commands from '../../helpers/commands.js';
+import Modal from '../Modal.jsx';
 
 let event;
 let offLight;
@@ -23,13 +25,13 @@ const end = () => {
   complete();
 };
 
-const submitRewind = (token) => {
+const submitRewind = (token, branch) => {
   try {
     console.log('Rewinding...');
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen-clear');
     document.getElementById('app').appendChild(lockScreen);
-    return commands('REWIND', token, complete, error, end);
+    return commands('REWIND', token, complete, error, end, branch);
   } catch (e) {
     console.log('Error creating REWIND state', e);
     error();
@@ -37,15 +39,21 @@ const submitRewind = (token) => {
   }
 };
 
-const Rewind = ({ lightUp, lightOff, token }) => (
+const selectBranch = (token) => {
+  const insert = <Modal token={token} />;
+  document.getElementById('app').append(insert);
+};
+
+export const Rewind = ({ lightUp, lightOff, token }) => (
   <button
+    type="button"
     id="button-rewind"
     onClick={(ev) => {
       ev.preventDefault();
       event = ev;
       offLight = lightOff;
       lightUp(ev);
-      submitRewind(token);
+      selectBranch(token);
     }}
   >
     <div className="button-text">
@@ -53,5 +61,3 @@ const Rewind = ({ lightUp, lightOff, token }) => (
     </div>
   </button>
 );
-
-export default Rewind;

@@ -21,7 +21,7 @@ const error = () => {
 };
 
 const end = (command, token) => {
-  commands(command, token, complete, error, null);
+  commands(command, token, complete, error, null, null);
 };
 
 const submitOff = (token) => {
@@ -40,6 +40,7 @@ const submitOff = (token) => {
 
 const On = ({ lightUp, lightOff, token }) => (
   <button
+    type="button"
     id="button-on"
     onClick={(ev) => {
       ev.preventDefault();
