@@ -13,15 +13,13 @@
   "dependencies": {
     "@aws-sdk/client-ec2": "^3.40.0",
     "@aws-sdk/client-ssm": "^3.40.0",
-    "@aws-sdk/credential-provider-ini": "^3.40.0",
-    "@aws-sdk/credential-provider-node": "^3.40.0",
     "@aws-sdk/credential-providers": "^3.40.0",
+    "@octokit/core": "^3.5.1",
     "airbnb-browser-shims": "^3.3.0",
     "aws-crt": "^1.10.2",
     "axios": "^0.24.0",
     "console-events": "^0.2.0",
     "crypto-browserify": "^3.12.0",
-    "dotenv": "^10.0.0",
     "fs": "^0.0.1-security",
     "koa": "^2.13.4",
     "koa-static": "^5.0.0",
@@ -29,7 +27,6 @@
     "path-browserify": "^1.0.1",
     "preact": "^10.5.15",
     "process": "^0.11.10",
-    "smoothscroll-polyfill": "^0.4.4",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
     "url": "^0.11.0"
@@ -38,18 +35,16 @@
     "@babel/core": "^7.16.0",
     "@babel/plugin-transform-react-jsx": "^7.16.0",
     "@babel/preset-env": "^7.16.0",
-    "@mikey-pro/eslint-config-preact": "^1.0.5",
     "@mikey-pro/style-guide": "^2.0.3",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
-    "dotenv-webpack": "^7.0.3",
     "nodemon": "^2.0.14",
     "sass-loader": "^12.3.0",
     "source-map-js": "^1.0.1",
     "source-map-loader": "^3.0.0",
     "style-loader": "^3.3.1",
     "url-loader": "^4.1.1",
-    "webpack": "^5.62.1",
+    "webpack": "^5.62.2",
     "webpack-cli": "^4.9.1"
   },
   "license": "MIT",
@@ -75,7 +70,7 @@
   "type": "module",
   "prettier": "@mikey-pro/prettier-config",
   "eslintConfig": {
-    "extends": "@mikey-pro/eslint-config-preact"
+    "extends": "@mikey-pro/eslint-config"
   },
   "stylelint": {
     "extends": "@mikey-pro/stylelint-config"
