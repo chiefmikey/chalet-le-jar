@@ -1,21 +1,35 @@
 // eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
 
-const sayYes = () => {
-  console.log('Yes!');
+const sayYes = (submitFunction, token, selectedBranch, toggleSure) => {
+  toggleSure(null, null);
+  submitFunction(token, selectedBranch);
+  if (selectedBranch) {
+    console.log(selectedBranch);
+  }
 };
 
-const sayNo = () => {
-  console.log('No!');
+const sayNo = (toggleSure) => {
+  toggleSure(null, null);
 };
 
-const Sure = () => (
+const Sure = ({ submitFunction, token, selectedBranch, toggleSure }) => (
   <div id="sure">
-    <h1>ARE YOU SURE</h1>
-    <button type="button" onClick={sayYes}>
+    <div id="sure-header">
+      <h1>ARE YOU SURE</h1>
+    </div>
+    <button
+      type="button"
+      className="sure-button yes"
+      onClick={() => sayYes(submitFunction, token, selectedBranch, toggleSure)}
+    >
       YES
     </button>
-    <button type="button" onClick={sayNo}>
+    <button
+      type="button"
+      className="sure-button no"
+      onClick={() => sayNo(toggleSure)}
+    >
       NO
     </button>
   </div>

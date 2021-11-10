@@ -77,6 +77,24 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
   }, 5000);
 };
 
+let checkInterval;
+
+const checkSend = (
+  command,
+  launch,
+  complete,
+  error,
+  end,
+  token,
+  selectedBranch,
+) => {
+  checkInterval = setInterval(async () => {
+    sendCommand(command, launch, complete, error, end, token, selectedBranch);
+  }, 5000);
+};
+
+let trySend = 0;
+
 const sendCommand = async (
   command,
   launch,
@@ -116,9 +134,18 @@ const sendCommand = async (
     error(command, token);
     return null;
   } catch (e) {
-    console.log('Error in send command', e);
-    error(command, token);
-    return e;
+    if (trySend === 3) {
+      trySend = 0;
+      console.log('Error in send command', e);
+      clearInterval(checkInterval);
+      error(command, token);
+      return e;
+    }
+    console.log('Retrying...');
+    if (trySend === 0) {
+      checkSend(command, launch, complete, error, end, token, selectedBranch);
+    }
+    trySend += 1;
   }
 };
 

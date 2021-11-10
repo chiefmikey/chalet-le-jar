@@ -8,6 +8,7 @@ import SignIn from './SignIn.jsx';
 import SignOut from './SignOut.jsx';
 import Branches from './Branches.jsx';
 import getBranches from '../libs/ghApi.js';
+import Sure from './Sure.jsx';
 
 class App extends Component {
   state = {
@@ -18,6 +19,9 @@ class App extends Component {
     selectedBranch: null,
     allBranches: [],
     previousSelection: null,
+    sure: false,
+    submitFunction: null,
+    pressedButton: null,
   };
 
   onLogin = (token) => {
@@ -73,6 +77,26 @@ class App extends Component {
     }
   };
 
+  toggleSure = (submitFunction, ev) => {
+    const { sure, pressedButton } = this.state;
+    let buttonCopy;
+    if (!sure) {
+      if (ev === null) {
+        buttonCopy = document.getElementById('button-rewind');
+      }
+      buttonCopy = ev.target;
+      return this.setState({
+        sure: true,
+        submitFunction,
+        pressedButton: buttonCopy,
+      });
+    }
+    if (pressedButton) {
+      pressedButton.classList.remove('light-up');
+    }
+    return this.setState({ sure: false, submitFunction, pressedButton: ev });
+  };
+
   submitBranch = (ev) => {
     const { previousSelection } = this.state;
     if (previousSelection) {
@@ -87,8 +111,16 @@ class App extends Component {
   };
 
   render() {
-    const { loggedIn, token, statement, modal, selectedBranch, allBranches } =
-      this.state;
+    const {
+      loggedIn,
+      token,
+      statement,
+      modal,
+      selectedBranch,
+      allBranches,
+      sure,
+      submitFunction,
+    } = this.state;
     const showModal = modal ? (
       <Branches
         submitBranch={this.submitBranch}
@@ -98,11 +130,20 @@ class App extends Component {
         selectedBranch={selectedBranch}
       />
     ) : null;
+    const showSure = sure ? (
+      <Sure
+        submitFunction={submitFunction}
+        token={token}
+        selectedBranch={selectedBranch}
+        toggleSure={this.toggleSure}
+      />
+    ) : null;
     return (
       <div id="app">
         {loggedIn ? (
           <div id="main">
             {showModal}
+            {showSure}
             <div id="header">
               <button type="button" id="dev-switch" onClick={this.toggleDev}>
                 DEV
@@ -113,6 +154,7 @@ class App extends Component {
             <Buttons
               token={token}
               toggleModal={this.toggleModal}
+              toggleSure={this.toggleSure}
               selectedBranch={selectedBranch}
             />
             <Console statement={statement} />
