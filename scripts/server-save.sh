@@ -3,7 +3,7 @@
 cd /home/ubuntu
 screen -S bedrock -X stuff "save hold\n"
 sleep 5
-currentDate=$(date +%y-%m-%d-%H-%M-%S)
+currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
 git checkout main
 git add worlds
 git commit -am $currentDate

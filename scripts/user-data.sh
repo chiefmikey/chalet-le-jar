@@ -19,7 +19,7 @@ git checkout main
 git reset --hard origin/main
 chmod +x /home/ubuntu/scripts/server-save.sh /home/ubuntu/scripts/server-stop.sh /home/ubuntu/scripts/server-refresh.sh /home/ubuntu/scripts/server-rewind.sh
 chown -R ubuntu:root /home/ubuntu
-currentDate=$(date +%y-%m-%d-%H-%M-%S)
+currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
 echo $currentDate >> /home/ubuntu/log/startup-log.txt
 git commit -am "Server initialized"
 git push origin main
