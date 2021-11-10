@@ -3,11 +3,10 @@ import { h } from 'preact';
 import Branch from './Branch.jsx';
 import { submitRewind } from './buttons/Rewind.jsx';
 
-const sendBranch = (token, selectedBranch, toggleModal, ev) => {
+const sendBranch = (token, selectedBranch, toggleModal, ev, toggleSure) => {
   if (selectedBranch) {
-    submitRewind(token, selectedBranch);
+    toggleSure(submitRewind, null);
     toggleModal(token, ev);
-    console.log(selectedBranch);
   }
 };
 
@@ -22,6 +21,7 @@ const Branches = ({
   toggleModal,
   token,
   selectedBranch,
+  toggleSure,
 }) => {
   return (
     <div id="branches">
@@ -36,7 +36,9 @@ const Branches = ({
           <button
             id="modal-button"
             type="button"
-            onClick={(ev) => sendBranch(token, selectedBranch, toggleModal, ev)}
+            onClick={(ev) =>
+              sendBranch(token, selectedBranch, toggleModal, ev, toggleSure)
+            }
           >
             SUBMIT
           </button>

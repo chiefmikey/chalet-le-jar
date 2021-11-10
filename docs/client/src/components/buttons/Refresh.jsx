@@ -23,7 +23,7 @@ const end = () => {
   complete();
 };
 
-const submitRefresh = (token) => {
+const submitRefresh = (token, selectedBranch) => {
   try {
     console.log('Refreshing...');
     const lockScreen = document.createElement('div');
@@ -37,7 +37,7 @@ const submitRefresh = (token) => {
   }
 };
 
-const Refresh = ({ lightUp, lightOff, token }) => (
+const Refresh = ({ lightUp, lightOff, token, toggleSure }) => (
   <button
     type="button"
     id="button-refresh"
@@ -46,7 +46,7 @@ const Refresh = ({ lightUp, lightOff, token }) => (
       event = ev;
       offLight = lightOff;
       lightUp(ev);
-      submitRefresh(token);
+      toggleSure(submitRefresh, ev);
     }}
   >
     <div className="button-text">

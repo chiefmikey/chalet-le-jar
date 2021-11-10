@@ -24,7 +24,7 @@ const end = (command, token) => {
   state(command, token, null, complete, error);
 };
 
-const submitOff = (token) => {
+const submitOff = (token, selectedBranch) => {
   try {
     console.log('Shutting down...');
     const lockScreen = document.createElement('div');
@@ -38,7 +38,7 @@ const submitOff = (token) => {
   }
 };
 
-const Off = ({ lightUp, lightOff, token }) => (
+const Off = ({ lightUp, lightOff, token, toggleSure }) => (
   <button
     type="button"
     id="button-off"
@@ -47,7 +47,7 @@ const Off = ({ lightUp, lightOff, token }) => (
       event = ev;
       offLight = lightOff;
       lightUp(ev);
-      submitOff(token);
+      toggleSure(submitOff, ev);
     }}
   >
     <div className="button-text">
