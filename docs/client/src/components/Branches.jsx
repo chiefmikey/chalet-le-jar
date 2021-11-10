@@ -6,8 +6,14 @@ import { submitRewind } from './buttons/Rewind.jsx';
 const sendBranch = (token, selectedBranch, toggleModal) => {
   if (selectedBranch) {
     submitRewind(token, selectedBranch);
-    toggleModal();
+    toggleModal(token);
+    console.log(selectedBranch);
   }
+};
+
+const closeButton = (toggleModal) => {
+  console.log('Rewind cancelled');
+  toggleModal();
 };
 
 const Branches = ({
@@ -28,6 +34,9 @@ const Branches = ({
           >
             SUBMIT
           </button>
+          <div id="modal-header">
+            <h1>CHOOSE LE DATE</h1>
+          </div>
           <ul>
             <Branch branches={allBranches} submitBranch={submitBranch} />
           </ul>
@@ -35,8 +44,12 @@ const Branches = ({
       ) : (
         <div id="branches">No backups found</div>
       )}
-      <button id="close-button" type="button" onClick={toggleModal}>
-        X
+      <button
+        id="close-button"
+        type="button"
+        onClick={() => closeButton(toggleModal)}
+      >
+        x
       </button>
     </div>
   );
