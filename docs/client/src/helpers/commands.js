@@ -22,7 +22,6 @@ const setScript = (command, error, end, token, selectedBranch) => {
   }
   console.log('Invalid command');
   end(command, token);
-  return null;
 };
 
 const finish = (command, token, interval, end, complete) => {
@@ -67,12 +66,12 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
           return finish(command, token, interval, end, complete);
         }
       }
-      return null;
-    } catch (e) {
-      console.log('Error checking command status', e);
+      return;
+    } catch (error_) {
+      console.log('Error checking command status', error_);
       clearInterval(interval);
       end(command, token);
-      return e;
+      return error_;
     }
   }, 5000);
 };
@@ -105,7 +104,7 @@ const sendCommand = async (
   selectedBranch,
 ) => {
   try {
-    const params = {
+    const parameters = {
       DocumentName: 'AWS-RunShellScript',
       InstanceIds: ['i-0c35872f8d010202c'],
       Comment: 'Sending shell script...',
@@ -117,7 +116,7 @@ const sendCommand = async (
         ],
       },
     };
-    const data = await launch.send(new SendCommandCommand(params));
+    const data = await launch.send(new SendCommandCommand(parameters));
     console.log(`${command} command sent`);
     if (data) {
       return checkStatus(
@@ -132,14 +131,14 @@ const sendCommand = async (
     }
     console.log('Error sending launch command', data);
     error(command, token);
-    return null;
-  } catch (e) {
+    return;
+  } catch (error_) {
     if (trySend === 3) {
       trySend = 0;
-      console.log('Error in send command', e);
+      console.log('Error in send command', error_);
       clearInterval(checkInterval);
       error(command, token);
-      return e;
+      return error_;
     }
     console.log('Retrying...');
     if (trySend === 0) {
@@ -161,7 +160,7 @@ const commands = async (
     if (!token && process.env.NODE_ENV === 'production') {
       console.log('Token missing, please sign in');
       error(command, token);
-      return null;
+      return;
     }
     const launch = await ssm(token);
     if (launch) {
@@ -178,10 +177,10 @@ const commands = async (
     console.log('Error in state', launch);
     error(command, token);
     return launch;
-  } catch (e) {
-    console.log('Error in ssm', e);
+  } catch (error_) {
+    console.log('Error in ssm', error_);
     error(command, token);
-    return e;
+    return error_;
   }
 };
 

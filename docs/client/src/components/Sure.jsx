@@ -2,7 +2,7 @@
 import { h } from 'preact';
 
 const sayYes = (submitFunction, token, selectedBranch, toggleSure) => {
-  toggleSure(null, null);
+  toggleSure();
   submitFunction(token, selectedBranch);
   if (selectedBranch) {
     console.log(selectedBranch);
@@ -10,7 +10,7 @@ const sayYes = (submitFunction, token, selectedBranch, toggleSure) => {
 };
 
 const sayNo = (toggleSure) => {
-  toggleSure(null, null);
+  toggleSure();
 };
 
 const Sure = ({ submitFunction, token, selectedBranch, toggleSure }) => (

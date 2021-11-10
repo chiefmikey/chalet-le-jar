@@ -16,9 +16,9 @@ const ssm = async (ID_TOKEN) => {
         },
       }),
     });
-  } catch (e) {
-    console.log('Launch ssm client error', e);
-    return e;
+  } catch (error) {
+    console.log('Launch ssm client error', error);
+    return error;
   }
 };
 export default ssm;

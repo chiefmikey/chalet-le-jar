@@ -8,8 +8,8 @@ const signOutUser = () => {
       const auth2 = await window.gapi.auth2.getAuthInstance();
       await auth2.signOut();
       console.log('User signed out');
-    } catch (e) {
-      console.log('Sign out user error', e);
+    } catch (error) {
+      console.log('Sign out user error', error);
     }
   });
 };

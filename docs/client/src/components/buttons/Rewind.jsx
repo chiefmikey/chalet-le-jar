@@ -7,7 +7,7 @@ let offLight;
 
 const allClear = () => {
   offLight(event);
-  document.getElementById('lock-screen-clear').remove();
+  document.querySelector('#lock-screen-clear').remove();
 };
 
 const complete = () => {
@@ -29,12 +29,12 @@ export const submitRewind = (token, branch) => {
     console.log('Rewinding...');
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen-clear');
-    document.getElementById('app').appendChild(lockScreen);
+    document.querySelector('#app').append(lockScreen);
     return commands('REWIND', token, complete, error, end, branch);
-  } catch (e) {
-    console.log('Error creating REWIND state', e);
+  } catch (error_) {
+    console.log('Error creating REWIND state', error_);
     error();
-    return e;
+    return error_;
   }
 };
 
@@ -42,12 +42,12 @@ export const Rewind = ({ lightUp, lightOff, token, toggleModal }) => (
   <button
     type="button"
     id="button-rewind"
-    onClick={(ev) => {
-      ev.preventDefault();
-      event = ev;
+    onClick={(event_) => {
+      event_.preventDefault();
+      event = event_;
       offLight = lightOff;
-      lightUp(ev);
-      toggleModal(token, ev);
+      lightUp(event_);
+      toggleModal(token, event_);
       console.log('Loading backups...');
     }}
   >

@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
 import { useEffect } from 'preact/hooks';
 
@@ -5,7 +6,7 @@ const SignIn = ({ onSignIn }) => {
   useEffect(() => {
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen');
-    document.getElementById('app').appendChild(lockScreen);
+    document.querySelector('#app').append(lockScreen);
     if (window.gapi) {
       window.gapi.signin2.render('lock-screen', {
         scope: 'email openid',

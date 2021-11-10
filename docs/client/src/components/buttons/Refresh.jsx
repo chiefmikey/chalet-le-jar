@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
 import commands from '../../helpers/commands.js';
 
@@ -6,7 +7,7 @@ let offLight;
 
 const allClear = () => {
   offLight(event);
-  document.getElementById('lock-screen-clear').remove();
+  document.querySelector('#lock-screen-clear').remove();
 };
 
 const complete = () => {
@@ -28,12 +29,12 @@ const submitRefresh = (token, selectedBranch) => {
     console.log('Refreshing...');
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen-clear');
-    document.getElementById('app').appendChild(lockScreen);
-    return commands('REFRESH', token, complete, error, end, null);
-  } catch (e) {
-    console.log('Error creating REFRESH state', e);
+    document.querySelector('#app').append(lockScreen);
+    return commands('REFRESH', token, complete, error, end);
+  } catch (error_) {
+    console.log('Error creating REFRESH state', error_);
     error();
-    return e;
+    return error_;
   }
 };
 
@@ -41,12 +42,12 @@ const Refresh = ({ lightUp, lightOff, token, toggleSure }) => (
   <button
     type="button"
     id="button-refresh"
-    onClick={(ev) => {
-      ev.preventDefault();
-      event = ev;
+    onClick={(event_) => {
+      event_.preventDefault();
+      event = event_;
       offLight = lightOff;
-      lightUp(ev);
-      toggleSure(submitRefresh, ev);
+      lightUp(event_);
+      toggleSure(submitRefresh, event_);
     }}
   >
     <div className="button-text">

@@ -5,22 +5,28 @@ import { console } from 'console-events';
 
 const Console = ({ statement }) => {
   useEffect(() => {
-    console.addEventListener('log', (e) => {
-      if (e.arguments.length > 0) {
-        const devConsoleWindow = document.getElementById('dev-console');
-        const prodConsoleWindow = document.getElementById('prod-console');
-        if (devConsoleWindow && prodConsoleWindow && e.arguments.length > 0) {
-          for (let i = 0; i < e.arguments.length; i += 1) {
-            const devStatement = `${JSON.stringify(e.arguments[i])}\n`;
-            const prodStatement = `${e.arguments[i]}\n`;
-            devConsoleWindow.append(devStatement);
-            devConsoleWindow.scroll({
-              top: devConsoleWindow.scrollHeight,
+    console.addEventListener('log', (error) => {
+      if (error.arguments.length > 0) {
+        const developmentConsoleWindow = document.querySelector('#dev-console');
+        const productionConsoleWindow = document.querySelector('#prod-console');
+        if (
+          developmentConsoleWindow &&
+          productionConsoleWindow &&
+          e.arguments.length > 0
+        ) {
+          for (let index = 0; index < e.arguments.length; index += 1) {
+            const developmentStatement = `${JSON.stringify(
+              e.arguments[index],
+            )}\n`;
+            const productionStatement = `${e.arguments[index]}\n`;
+            developmentConsoleWindow.append(developmentStatement);
+            developmentConsoleWindow.scroll({
+              top: developmentConsoleWindow.scrollHeight,
               behavior: 'smooth',
             });
-            prodConsoleWindow.append(prodStatement);
-            prodConsoleWindow.scroll({
-              top: prodConsoleWindow.scrollHeight,
+            productionConsoleWindow.append(productionStatement);
+            productionConsoleWindow.scroll({
+              top: productionConsoleWindow.scrollHeight,
               behavior: 'smooth',
             });
           }
@@ -30,14 +36,14 @@ const Console = ({ statement }) => {
   }, []);
 
   useEffect(() => {
-    const devConsoleWindow = document.getElementById('dev-console');
-    const prodConsoleWindow = document.getElementById('prod-console');
-    devConsoleWindow.scroll({
-      top: devConsoleWindow.scrollHeight,
+    const developmentConsoleWindow = document.querySelector('#dev-console');
+    const productionConsoleWindow = document.querySelector('#prod-console');
+    developmentConsoleWindow.scroll({
+      top: developmentConsoleWindow.scrollHeight,
       behavior: 'smooth',
     });
-    prodConsoleWindow.scroll({
-      top: prodConsoleWindow.scrollHeight,
+    productionConsoleWindow.scroll({
+      top: productionConsoleWindow.scrollHeight,
       behavior: 'smooth',
     });
   });
