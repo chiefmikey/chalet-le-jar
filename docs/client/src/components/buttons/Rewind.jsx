@@ -38,7 +38,7 @@ export const submitRewind = (token, branch) => {
   }
 };
 
-export const Rewind = ({ lightUp, lightOff, toggleModal }) => (
+export const Rewind = ({ lightUp, lightOff, token, toggleModal }) => (
   <button
     type="button"
     id="button-rewind"
@@ -47,7 +47,8 @@ export const Rewind = ({ lightUp, lightOff, toggleModal }) => (
       event = ev;
       offLight = lightOff;
       lightUp(ev);
-      toggleModal();
+      toggleModal(token);
+      console.log('Loading backups...');
     }}
   >
     <div className="button-text">
