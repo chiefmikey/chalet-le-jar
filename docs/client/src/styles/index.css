@@ -23,7 +23,7 @@ body,
   box-sizing: border-box;
   margin: 0;
   user-select: none;
-  touch-action: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 ul {
@@ -137,10 +137,8 @@ button {
 
 .modal-button {
   width: 100%;
-  width: 100vw;
   height: 20%;
   padding: calc(1.4vmin + 1.4vw);
-  font-size: calc(1.4vmin + 1.4vw);
   margin: 0;
   border: calc(1.4vmin + 1.4vw) solid #292c2e;
   background-color: #9f621d;

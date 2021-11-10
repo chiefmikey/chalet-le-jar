@@ -32,7 +32,7 @@ const Branches = ({
             type="button"
             onClick={() => sendBranch(token, selectedBranch, toggleModal)}
           >
-            <h5>SUBMIT</h5>
+            SUBMIT
           </button>
           <div id="modal-header">
             <h1>CHOOSE LE DATE</h1>
