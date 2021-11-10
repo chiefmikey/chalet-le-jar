@@ -21,7 +21,8 @@ const error = () => {
 };
 
 const end = (command, token) => {
-  commands(command, token, complete, error, null, null);
+  complete();
+  // commands(command, token, complete, error, null, null);
 };
 
 const submitOff = (token) => {
