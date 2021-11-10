@@ -114,27 +114,24 @@ button {
   padding-top: calc(2.5vmin + 2.5vh);
   background-color: #292c2e;
   overflow: scroll;
+  user-select: auto;
   justify-content: flex-start;
   height: 80%;
-  touch-action: pan-y;
 }
 
 .branch {
   list-style-type: none;
   padding: calc(0.5vmin + 0.5vh);
-  touch-action: pan-y;
 }
 
 .selected-branch {
   background-color: #fafafa;
   color: #292c2e;
-  touch-action: pan-y;
 }
 
 .branch-button {
   text-decoration: none;
   font-weight: 400;
-  touch-action: pan-y;
 }
 
 .modal-button {
