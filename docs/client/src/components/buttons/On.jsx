@@ -8,7 +8,7 @@ let offLight;
 
 const allClear = () => {
   offLight(event);
-  document.getElementById('lock-screen-clear').remove();
+  document.querySelector('#lock-screen-clear').remove();
 };
 
 const complete = () => {
@@ -22,7 +22,7 @@ const error = () => {
 };
 
 const end = (command, token) => {
-  commands(command, token, complete, error, null, null);
+  commands(command, token, complete, error);
 };
 
 const submitOff = (token) => {
@@ -30,12 +30,12 @@ const submitOff = (token) => {
     console.log('Starting up...');
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen-clear');
-    document.getElementById('app').appendChild(lockScreen);
+    document.querySelector('#app').append(lockScreen);
     return state('START', token, end, complete, error);
-  } catch (e) {
-    console.log('Error creating START state', e);
+  } catch (error_) {
+    console.log('Error creating START state', error_);
     error();
-    return e;
+    return error_;
   }
 };
 
@@ -43,11 +43,11 @@ const On = ({ lightUp, lightOff, token }) => (
   <button
     type="button"
     id="button-on"
-    onClick={(ev) => {
-      ev.preventDefault();
-      event = ev;
+    onClick={(event_) => {
+      event_.preventDefault();
+      event = event_;
       offLight = lightOff;
-      lightUp(ev);
+      lightUp(event_);
       submitOff(token);
     }}
   >

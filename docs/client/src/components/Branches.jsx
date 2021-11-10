@@ -3,16 +3,16 @@ import { h } from 'preact';
 import Branch from './Branch.jsx';
 import { submitRewind } from './buttons/Rewind.jsx';
 
-const sendBranch = (token, selectedBranch, toggleModal, ev, toggleSure) => {
+const sendBranch = (token, selectedBranch, toggleModal, event_, toggleSure) => {
   if (selectedBranch) {
-    toggleSure(submitRewind, null);
-    toggleModal(token, ev);
+    toggleSure(submitRewind);
+    toggleModal(token, event_);
   }
 };
 
-const closeButton = (toggleModal, token, ev) => {
+const closeButton = (toggleModal, token, event_) => {
   console.log('Rewind cancelled');
-  toggleModal(token, ev);
+  toggleModal(token, event_);
 };
 
 const Branches = ({
@@ -36,8 +36,8 @@ const Branches = ({
           <button
             id="modal-button"
             type="button"
-            onClick={(ev) =>
-              sendBranch(token, selectedBranch, toggleModal, ev, toggleSure)
+            onClick={(event_) =>
+              sendBranch(token, selectedBranch, toggleModal, event_, toggleSure)
             }
           >
             SUBMIT
@@ -50,7 +50,7 @@ const Branches = ({
         <button
           id="close-button"
           type="button"
-          onClick={(ev) => closeButton(toggleModal, token, ev)}
+          onClick={(event_) => closeButton(toggleModal, token, event_)}
         >
           x
         </button>

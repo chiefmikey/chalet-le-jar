@@ -20,9 +20,9 @@ const client = async (ID_TOKEN) => {
         },
       }),
     });
-  } catch (e) {
-    console.log('Launch secrets client error', e);
-    return e;
+  } catch (error) {
+    console.log('Launch secrets client error', error);
+    return error;
   }
 };
 
@@ -35,10 +35,10 @@ const data = async (ID_TOKEN) => {
     if (data && data.SecretString) {
       return data.SecretString;
     }
-    return null;
-  } catch (e) {
-    console.log('Error sending secret value command', e);
-    return e;
+    return data;
+  } catch (error) {
+    console.log('Error sending secret value command', error);
+    return error;
   }
 };
 
@@ -46,9 +46,9 @@ const getToken = async (ID_TOKEN) => {
   try {
     const secret = await data(ID_TOKEN);
     return JSON.parse(secret).repo;
-  } catch (e) {
-    console.log('Error getting token data', e);
-    return e;
+  } catch (error) {
+    console.log('Error getting token data', error);
+    return error;
   }
 };
 

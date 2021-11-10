@@ -6,12 +6,12 @@ import Refresh from './buttons/Refresh.jsx';
 import Save from './buttons/Save.jsx';
 import { Rewind } from './buttons/Rewind.jsx';
 
-const lightUp = (ev) => {
-  ev.target.classList.add('light-up');
+const lightUp = (event_) => {
+  event_.target.classList.add('light-up');
 };
 
-const lightOff = (ev) => {
-  ev.target.classList.remove('light-up');
+const lightOff = (event_) => {
+  event_.target.classList.remove('light-up');
 };
 
 const Buttons = ({ token, toggleModal, toggleSure, selectedBranch }) => (

@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-/* eslint-disable react/state-in-constructor */
 // eslint-disable-next-line no-unused-vars
 import { h, Component } from 'preact';
 import Buttons from './Buttons.jsx';
@@ -13,15 +11,15 @@ import Sure from './Sure.jsx';
 class App extends Component {
   state = {
     loggedIn: false,
-    token: null,
+    token: undefined,
     statement: 'prod',
     modal: false,
-    selectedBranch: null,
+    selectedBranch: undefined,
     allBranches: [],
-    previousSelection: null,
+    previousSelection: undefined,
     sure: false,
-    submitFunction: null,
-    pressedButton: null,
+    submitFunction: undefined,
+    pressedButton: undefined,
   };
 
   onLogin = (token) => {
@@ -36,17 +34,17 @@ class App extends Component {
     const { id_token } = googleUser.getAuthResponse();
     const email = googleUser.getBasicProfile().getEmail();
     if (email === 'wolfemikl@gmail.com') {
-      document.getElementById('lock-screen').remove();
+      document.querySelector('#lock-screen').remove();
       this.onLogin(id_token);
     }
   };
 
-  toggleDev = (ev) => {
+  toggleDev = (event_) => {
     const { statement } = this.state;
-    if (Array.from(ev.target.classList).includes('dev-on')) {
-      ev.target.classList.remove('dev-on');
+    if ([...event_.target.classList].includes('dev-on')) {
+      event_.target.classList.remove('dev-on');
     } else {
-      ev.target.classList.add('dev-on');
+      event_.target.classList.add('dev-on');
     }
     if (statement === 'prod') {
       this.setState({ statement: 'dev' });
@@ -55,7 +53,7 @@ class App extends Component {
     }
   };
 
-  toggleModal = async (token, ev) => {
+  toggleModal = async (token, event_) => {
     const { modal } = this.state;
     try {
       if (!modal) {
@@ -66,25 +64,25 @@ class App extends Component {
           allBranches: allBranches.reverse(),
         });
       }
-      document.getElementById('modal-button').classList.remove('light-up');
-      if (ev.target.id === 'close-button') {
-        document.getElementById('button-rewind').classList.remove('light-up');
+      document.querySelector('#modal-button').classList.remove('light-up');
+      if (event_.target.id === 'close-button') {
+        document.querySelector('#button-rewind').classList.remove('light-up');
       }
-      return this.setState({ modal: false, selectedBranch: null });
-    } catch (e) {
-      console.log('Error getting branches', e);
-      return e;
+      return this.setState({ modal: false, selectedBranch: undefined });
+    } catch (error) {
+      console.log('Error getting branches', error);
+      return error;
     }
   };
 
-  toggleSure = (submitFunction, ev) => {
+  toggleSure = (submitFunction, event_) => {
     const { sure, pressedButton } = this.state;
     let buttonCopy;
     if (!sure) {
-      if (ev === null) {
-        buttonCopy = document.getElementById('button-rewind');
+      if (event_ === undefined) {
+        buttonCopy = document.querySelector('#button-rewind');
       }
-      buttonCopy = ev.target;
+      buttonCopy = event_.target;
       return this.setState({
         sure: true,
         submitFunction,
@@ -94,19 +92,23 @@ class App extends Component {
     if (pressedButton) {
       pressedButton.classList.remove('light-up');
     }
-    return this.setState({ sure: false, submitFunction, pressedButton: ev });
+    return this.setState({
+      sure: false,
+      submitFunction,
+      pressedButton: event_,
+    });
   };
 
-  submitBranch = (ev) => {
+  submitBranch = (event_) => {
     const { previousSelection } = this.state;
     if (previousSelection) {
       previousSelection.classList.remove('selected-branch');
     }
-    ev.target.classList.add('selected-branch');
-    document.getElementById('modal-button').classList.add('light-up');
+    event_.target.classList.add('selected-branch');
+    document.querySelector('#modal-button').classList.add('light-up');
     this.setState({
-      selectedBranch: ev.target.innerText,
-      previousSelection: ev.target,
+      selectedBranch: event_.target.textContent,
+      previousSelection: event_.target,
     });
   };
 
@@ -129,7 +131,7 @@ class App extends Component {
         token={token}
         selectedBranch={selectedBranch}
       />
-    ) : null;
+    ) : undefined;
     const showSure = sure ? (
       <Sure
         submitFunction={submitFunction}
@@ -137,7 +139,7 @@ class App extends Component {
         selectedBranch={selectedBranch}
         toggleSure={this.toggleSure}
       />
-    ) : null;
+    ) : undefined;
     return (
       <div id="app">
         {loggedIn ? (
