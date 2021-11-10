@@ -30,7 +30,7 @@ const changeState = (data, interval, command, end, token, complete) => {
       return end(command, token);
     }
   }
-  console.log('State change in progress...');
+  return console.log('State change in progress...');
 };
 
 const interval = async (command, launch, end, token, complete, error) => {

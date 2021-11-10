@@ -21,7 +21,7 @@ const setScript = (command, error, end, token, selectedBranch) => {
     return 'sudo /home/ubuntu/scripts/server-start.sh';
   }
   console.log('Invalid command');
-  end(command, token);
+  return end(command, token);
 };
 
 const finish = (command, token, interval, end, complete) => {
@@ -66,7 +66,7 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
           return finish(command, token, interval, end, complete);
         }
       }
-      return;
+      return data;
     } catch (error_) {
       console.log('Error checking command status', error_);
       clearInterval(interval);
@@ -131,7 +131,7 @@ const sendCommand = async (
     }
     console.log('Error sending launch command', data);
     error(command, token);
-    return;
+    return data;
   } catch (error_) {
     if (trySend === 3) {
       trySend = 0;
@@ -144,7 +144,7 @@ const sendCommand = async (
     if (trySend === 0) {
       checkSend(command, launch, complete, error, end, token, selectedBranch);
     }
-    trySend += 1;
+    return (trySend += 1);
   }
 };
 
@@ -159,8 +159,7 @@ const commands = async (
   try {
     if (!token && process.env.NODE_ENV === 'production') {
       console.log('Token missing, please sign in');
-      error(command, token);
-      return;
+      return error(command, token);
     }
     const launch = await ssm(token);
     if (launch) {

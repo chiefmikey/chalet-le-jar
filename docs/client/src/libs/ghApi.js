@@ -8,7 +8,7 @@ const getBranches = async (token) => {
     let index = 1;
     const response = async (resultsPage) => {
       try {
-        const res = await request('GET /repos/{owner}/{repo}/branches', {
+        const response_ = await request('GET /repos/{owner}/{repo}/branches', {
           headers: {
             authorization: `token ${ghToken}`,
           },
@@ -18,26 +18,26 @@ const getBranches = async (token) => {
           per_page: 100,
           page: resultsPage,
         });
-        for (let i = 0; i < res.data.length; i += 1) {
-          if (res.data[i].name.length > 16) {
-            branches.push(res.data[i].name);
+        for (let index_ = 0; index_ < response_.data.length; index_ += 1) {
+          if (response_.data[index_].name.length > 16) {
+            branches.push(response_.data[index_].name);
           }
         }
-        if (res.data.length < 100) {
+        if (response_.data.length < 100) {
           return branches;
         }
         index += 1;
         return await response(index);
-      } catch (e) {
-        console.log('Error getting branch list', e);
-        return e;
+      } catch (error) {
+        console.log('Error getting branch list', error);
+        return error;
       }
     };
 
     return await response(1);
-  } catch (e) {
-    console.log('Error getting token', e);
-    return e;
+  } catch (error) {
+    console.log('Error getting token', error);
+    return error;
   }
 };
 
