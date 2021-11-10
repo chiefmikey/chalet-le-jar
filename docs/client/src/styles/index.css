@@ -122,6 +122,7 @@ button {
 .branch {
   list-style-type: none;
   padding: calc(0.5vmin + 0.5vh);
+  user-select: none;
 }
 
 .selected-branch {
