@@ -116,21 +116,25 @@ button {
   overflow: scroll;
   justify-content: flex-start;
   height: 80%;
+  touch-action: pan-y;
 }
 
 .branch {
   list-style-type: none;
   padding: calc(0.5vmin + 0.5vh);
+  touch-action: pan-y;
 }
 
 .selected-branch {
   background-color: #fafafa;
   color: #292c2e;
+  touch-action: pan-y;
 }
 
 .branch-button {
   text-decoration: none;
   font-weight: 400;
+  touch-action: pan-y;
 }
 
 .modal-button {
@@ -143,7 +147,6 @@ button {
   position: fixed;
   left: 0;
   bottom: 0;
-  touch-action: pan-y;
   opacity: 100%;
   z-index: 15;
 }
