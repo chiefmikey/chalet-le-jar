@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
 
 const signOutUser = () => {
@@ -15,6 +16,7 @@ const signOutUser = () => {
 
 const SignOut = ({ onLogout }) => (
   <button
+    type="button"
     id="sign-out"
     onClick={() => {
       signOutUser();

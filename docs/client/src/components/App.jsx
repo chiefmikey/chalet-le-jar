@@ -51,7 +51,7 @@ class App extends Component {
     }
   };
 
-  toggleModal = async (token) => {
+  toggleModal = async (token, ev) => {
     const { modal } = this.state;
     try {
       if (!modal) {
@@ -62,7 +62,10 @@ class App extends Component {
           allBranches: allBranches.reverse(),
         });
       }
-      document.getElementById('button-rewind').classList.remove('light-up');
+      document.getElementById('modal-button').classList.remove('light-up');
+      if (ev.target.id === 'close-button') {
+        document.getElementById('button-rewind').classList.remove('light-up');
+      }
       return this.setState({ modal: false, selectedBranch: null });
     } catch (e) {
       console.log('Error getting branches', e);
@@ -76,6 +79,7 @@ class App extends Component {
       previousSelection.classList.remove('selected-branch');
     }
     ev.target.classList.add('selected-branch');
+    document.getElementById('modal-button').classList.add('light-up');
     this.setState({
       selectedBranch: ev.target.innerText,
       previousSelection: ev.target,
