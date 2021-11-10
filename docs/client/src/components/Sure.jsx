@@ -20,17 +20,15 @@ const Sure = ({ submitFunction, token, selectedBranch, toggleSure }) => (
     </div>
     <button
       type="button"
-      className="sure-button"
-      onClick={(ev) =>
-        sayYes(submitFunction, token, selectedBranch, toggleSure)
-      }
+      className="sure-button yes"
+      onClick={() => sayYes(submitFunction, token, selectedBranch, toggleSure)}
     >
       YES
     </button>
     <button
       type="button"
-      className="sure-button"
-      onClick={(ev) => sayNo(toggleSure)}
+      className="sure-button no"
+      onClick={() => sayNo(toggleSure)}
     >
       NO
     </button>

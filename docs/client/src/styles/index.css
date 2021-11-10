@@ -114,11 +114,15 @@ button {
 }
 
 #sure {
+  padding-top: calc(3.5vmin + 3.5vh);
+  background-color: #292c2e;
   z-index: 50;
+  overflow: hidden;
+  justify-content: space-evenly;
+  height: 100%;
 }
 
-#branches,
-#sure {
+#branches {
   padding-top: calc(3.5vmin + 3.5vh);
   background-color: #292c2e;
   overflow: scroll;
@@ -142,8 +146,7 @@ button {
   color: #292c2e;
 }
 
-.branch-button,
-.sure-button {
+.branch-button {
   text-decoration: none;
   font-weight: 400;
   touch-action: auto;
@@ -162,6 +165,23 @@ button {
   left: 0;
   bottom: 0;
   z-index: 99;
+}
+
+.sure-button {
+  width: 100%;
+  height: 33%;
+}
+
+.sure-button:hover {
+  filter: saturate(4);
+}
+
+.yes {
+  background-color: #0c6235;
+}
+
+.no {
+  background-color: #671518;
 }
 
 #modal-header,
