@@ -112,13 +112,16 @@ button {
 }
 
 #branches {
+  padding-top: calc(2vmin + 2vh);
   background-color: #292c2e;
   overflow: scroll;
   justify-content: flex-start;
+  height: 80%;
 }
 
 .branch {
   list-style-type: none;
+  padding: calc(0.5vmin + 0.5vh);
 }
 
 .selected-branch {
@@ -128,28 +131,46 @@ button {
 
 .branch-button {
   text-decoration: none;
-  font-size: calc(1.4vmin + 1.4vw);
+  font-size: calc(5vmin + 5vw);
+  font-weight: 400;
 }
 
 .modal-button {
+  width: 100%;
+  width: 100vw;
+  height: 20%;
   padding: calc(1.4vmin + 1.4vw);
   font-size: calc(1.4vmin + 1.4vw);
   margin: 0;
   border: calc(1.4vmin + 1.4vw) solid #292c2e;
-  width: 100%;
   background-color: #9f621d;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 11;
+  opacity: 100%;
 }
 
-.modal-button:hover {
-  filter: saturate(4);
+#modal-header {
+  padding-top: calc(1vmin + 1vh);
+  background-color: #292c2e;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 11;
 }
 
 #close-button {
-  position: absolute;
+  position: fixed;
   top: calc(1vmin + 1vh);
-  right: calc(1vmin + 1vh);
+  right: calc(1.1vmin + 1.1vh);
   font-size: calc(1.4vmin + 1.4vw);
   cursor: pointer;
+  margin: 0;
+  line-height: 1;
+  font-weight: 200;
+  z-index: 20;
 }
 
 #header {
