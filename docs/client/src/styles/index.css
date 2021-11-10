@@ -144,8 +144,9 @@ button {
   position: fixed;
   left: 0;
   bottom: 0;
-  z-index: 15;
+  touch-action: pan-y;
   opacity: 100%;
+  z-index: 15;
 }
 
 #modal-header {
