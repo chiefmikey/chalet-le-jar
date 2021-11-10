@@ -17,7 +17,7 @@ const ec2 = async (ID_TOKEN) => {
       }),
     });
   } catch (e) {
-    console.log('Launch ec2 error', e);
+    console.log('Launch ec2 client error', e);
     return e;
   }
 };

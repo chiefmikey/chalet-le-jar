@@ -17,7 +17,7 @@ const ssm = async (ID_TOKEN) => {
       }),
     });
   } catch (e) {
-    console.log('Launch ssm error', e);
+    console.log('Launch ssm client error', e);
     return e;
   }
 };
