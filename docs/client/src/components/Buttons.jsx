@@ -27,7 +27,6 @@ const Buttons = ({ token, toggleModal, selectedBranch }) => (
         lightUp={lightUp}
         lightOff={lightOff}
         token={token}
-        selectedBranch={selectedBranch}
         toggleModal={toggleModal}
       />
     </div>
