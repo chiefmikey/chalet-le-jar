@@ -23,7 +23,6 @@ body,
   box-sizing: border-box;
   margin: 0;
   user-select: none;
-  -webkit-overflow-scrolling: touch;
 }
 
 ul {
@@ -112,7 +111,7 @@ button {
 }
 
 #branches {
-  padding-top: calc(2vmin + 2vh);
+  padding-top: calc(2.5vmin + 2.5vh);
   background-color: #292c2e;
   overflow: scroll;
   justify-content: flex-start;
