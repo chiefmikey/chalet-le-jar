@@ -51,14 +51,18 @@ class App extends Component {
     }
   };
 
-  toggleModal = async () => {
+  toggleModal = async (token) => {
     const { modal } = this.state;
     try {
       if (!modal) {
-        const get = await getBranches();
-        const allBranches = get || [];
-        return this.setState({ modal: true, allBranches });
+        const get = await getBranches(token);
+        const allBranches = Array.isArray(get) ? get : [];
+        return this.setState({
+          modal: true,
+          allBranches: allBranches.reverse(),
+        });
       }
+      document.getElementById('button-rewind').classList.remove('light-up');
       return this.setState({ modal: false, selectedBranch: null });
     } catch (e) {
       console.log('Error getting branches', e);
@@ -66,16 +70,15 @@ class App extends Component {
     }
   };
 
-  submitBranch = (e) => {
+  submitBranch = (ev) => {
     const { previousSelection } = this.state;
     if (previousSelection) {
       previousSelection.classList.remove('selected-branch');
     }
-    e.target.classList.add('selected-branch');
-    console.log(e.target.innerText);
+    ev.target.classList.add('selected-branch');
     this.setState({
-      selectedBranch: e.target.innerText,
-      previousSelection: e.target,
+      selectedBranch: ev.target.innerText,
+      previousSelection: ev.target,
     });
   };
 
@@ -93,9 +96,9 @@ class App extends Component {
     ) : null;
     return (
       <div id="app">
-        {showModal}
         {loggedIn ? (
           <div id="main">
+            {showModal}
             <div id="header">
               <button type="button" id="dev-switch" onClick={this.toggleDev}>
                 DEV
