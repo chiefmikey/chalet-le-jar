@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
 import state from '../../helpers/state.js';
-// import commands from '../../helpers/commands.js';
+import commands from '../../helpers/commands.js';
 
 let event;
 let offLight;
@@ -22,8 +22,7 @@ const error = () => {
 };
 
 const end = (command, token) => {
-  complete();
-  // commands(command, token, complete, error, null, null);
+  commands(command, token, complete, error, null, null);
 };
 
 const submitOff = (token) => {
