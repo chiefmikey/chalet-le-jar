@@ -37,14 +37,16 @@ h1 {
 }
 
 h5 {
+  font-size: calc(2.2vmin + 2.2vh);
   user-select: none;
   touch-action: none;
   text-align: left;
   line-height: 100%;
+  transform: rotate(-60deg);
 }
 
 h6 {
-  font-size: calc(1.8vmin + 1.8vw);
+  font-size: calc(2vmin + 2vw);
   text-align: left;
   line-height: 80%;
   font-weight: 400;
@@ -111,7 +113,7 @@ button {
 }
 
 #branches {
-  padding-top: calc(3vmin + 3vh);
+  padding-top: calc(3.5vmin + 3.5vh);
   background-color: #292c2e;
   overflow: scroll;
   justify-content: flex-start;
@@ -126,7 +128,6 @@ button {
 
 .branch {
   list-style-type: none;
-  padding: calc(0.5vmin + 0.5vh);
   user-select: none;
 }
 
@@ -280,7 +281,7 @@ button {
 
 #prod-console,
 #dev-console {
-  font-size: calc(1vmin + 1vw);
+  font-size: calc(1.5vmin + 1.5vw);
   color: #fafafa9b;
   font-family: monospace;
   text-align: left;
