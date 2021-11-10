@@ -111,7 +111,7 @@ button {
 }
 
 #branches {
-  padding-top: calc(2.5vmin + 2.5vh);
+  padding-top: calc(4vmin + 4vh);
   background-color: #292c2e;
   overflow: scroll;
   user-select: auto;
@@ -139,7 +139,7 @@ button {
   height: 21%;
   padding: calc(1.4vmin + 1.4vw);
   margin: 0;
-  border: calc(1.4vmin + 1.4vw) solid #292c2e;
+  border: calc(1.4vmin + 1.4vw) solid #9f621d;
   background-color: #9f621d;
   position: fixed;
   left: 0;
