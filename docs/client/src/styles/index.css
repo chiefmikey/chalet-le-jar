@@ -26,6 +26,10 @@ body,
   touch-action: none;
 }
 
+ul {
+  padding: 0;
+}
+
 h1 {
   font-size: calc(1.5vmin + 1.5vw);
   font-weight: 100;
@@ -103,8 +107,49 @@ button {
 }
 
 .g-signin2,
-#branches, {
+#branches {
   z-index: 10;
+}
+
+#branches {
+  background-color: #292c2e;
+  overflow: scroll;
+  justify-content: flex-start;
+}
+
+.branch {
+  list-style-type: none;
+}
+
+.selected-branch {
+  background-color: #fafafa;
+  color: #292c2e;
+}
+
+.branch-button {
+  text-decoration: none;
+  font-size: calc(1.4vmin + 1.4vw);
+}
+
+.modal-button {
+  padding: calc(1.4vmin + 1.4vw);
+  font-size: calc(1.4vmin + 1.4vw);
+  margin: 0;
+  border: calc(1.4vmin + 1.4vw) solid #292c2e;
+  width: 100%;
+  background-color: #9f621d;
+}
+
+.modal-button:hover {
+  filter: saturate(4);
+}
+
+#close-button {
+  position: absolute;
+  top: calc(1vmin + 1vh);
+  right: calc(1vmin + 1vh);
+  font-size: calc(1.4vmin + 1.4vw);
+  cursor: pointer;
 }
 
 #header {

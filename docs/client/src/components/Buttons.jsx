@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
 import On from './buttons/On.jsx';
 import Off from './buttons/Off.jsx';
@@ -13,7 +14,7 @@ const lightOff = (ev) => {
   ev.target.classList.remove('light-up');
 };
 
-const Buttons = ({ token }) => (
+const Buttons = ({ token, toggleModal, selectedBranch }) => (
   <div id="all-buttons">
     <div id="top-buttons">
       <On lightUp={lightUp} lightOff={lightOff} token={token} />
@@ -22,7 +23,13 @@ const Buttons = ({ token }) => (
     <div id="bottom-buttons">
       <Refresh lightUp={lightUp} lightOff={lightOff} token={token} />
       <Save lightUp={lightUp} lightOff={lightOff} token={token} />
-      <Rewind lightUp={lightUp} lightOff={lightOff} token={token} />
+      <Rewind
+        lightUp={lightUp}
+        lightOff={lightOff}
+        token={token}
+        selectedBranch={selectedBranch}
+        toggleModal={toggleModal}
+      />
     </div>
   </div>
 );

@@ -4,7 +4,7 @@ import {
 } from '@aws-sdk/client-ssm';
 import ssm from '../libs/ssmClient.js';
 
-const setScript = (command, error, end, token, branch) => {
+const setScript = (command, error, end, token, selectedBranch) => {
   if (command === 'STOP') {
     return 'sudo /home/ubuntu/scripts/server-stop.sh';
   }
@@ -15,7 +15,7 @@ const setScript = (command, error, end, token, branch) => {
     return 'sudo /home/ubuntu/scripts/server-save.sh';
   }
   if (command === 'REWIND') {
-    return `branch=${branch} sudo /home/ubuntu/scripts/server-rewind.sh`;
+    return `branch=${selectedBranch} sudo /home/ubuntu/scripts/server-rewind.sh`;
   }
   if (command === 'START') {
     return 'sudo /home/ubuntu/scripts/server-start.sh';
@@ -84,7 +84,7 @@ const sendCommand = async (
   error,
   end,
   token,
-  branch,
+  selectedBranch,
 ) => {
   try {
     const params = {
@@ -95,7 +95,7 @@ const sendCommand = async (
         commands: [
           '#!/bin/bash',
           'cd /home/ubuntu',
-          setScript(command, error, end, token, branch),
+          setScript(command, error, end, token, selectedBranch),
         ],
       },
     };
@@ -122,7 +122,14 @@ const sendCommand = async (
   }
 };
 
-const commands = async (command, token, complete, error, end, branch) => {
+const commands = async (
+  command,
+  token,
+  complete,
+  error,
+  end,
+  selectedBranch,
+) => {
   try {
     if (!token && process.env.NODE_ENV === 'production') {
       console.log('Token missing, please sign in');
@@ -131,7 +138,15 @@ const commands = async (command, token, complete, error, end, branch) => {
     }
     const launch = await ssm(token);
     if (launch) {
-      return sendCommand(command, launch, complete, error, end, token, branch);
+      return sendCommand(
+        command,
+        launch,
+        complete,
+        error,
+        end,
+        token,
+        selectedBranch,
+      );
     }
     console.log('Error in state', launch);
     error(command, token);
