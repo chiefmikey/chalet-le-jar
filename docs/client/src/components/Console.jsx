@@ -12,13 +12,13 @@ const Console = ({ statement }) => {
         if (
           developmentConsoleWindow &&
           productionConsoleWindow &&
-          e.arguments.length > 0
+          error.arguments.length > 0
         ) {
-          for (let index = 0; index < e.arguments.length; index += 1) {
+          for (let index = 0; index < error.arguments.length; index += 1) {
             const developmentStatement = `${JSON.stringify(
-              e.arguments[index],
+              error.arguments[index],
             )}\n`;
-            const productionStatement = `${e.arguments[index]}\n`;
+            const productionStatement = `${error.arguments[index]}\n`;
             developmentConsoleWindow.append(developmentStatement);
             developmentConsoleWindow.scroll({
               top: developmentConsoleWindow.scrollHeight,
