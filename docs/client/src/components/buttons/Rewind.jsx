@@ -47,7 +47,7 @@ export const Rewind = ({ lightUp, lightOff, token, toggleModal }) => (
       event = ev;
       offLight = lightOff;
       lightUp(ev);
-      toggleModal(token);
+      toggleModal(token, ev);
       console.log('Loading backups...');
     }}
   >

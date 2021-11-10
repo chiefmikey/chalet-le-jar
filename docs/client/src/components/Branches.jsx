@@ -3,17 +3,17 @@ import { h } from 'preact';
 import Branch from './Branch.jsx';
 import { submitRewind } from './buttons/Rewind.jsx';
 
-const sendBranch = (token, selectedBranch, toggleModal) => {
+const sendBranch = (token, selectedBranch, toggleModal, ev) => {
   if (selectedBranch) {
     submitRewind(token, selectedBranch);
-    toggleModal(token);
+    toggleModal(token, ev);
     console.log(selectedBranch);
   }
 };
 
-const closeButton = (toggleModal) => {
+const closeButton = (toggleModal, token, ev) => {
   console.log('Rewind cancelled');
-  toggleModal();
+  toggleModal(token, ev);
 };
 
 const Branches = ({
@@ -27,30 +27,32 @@ const Branches = ({
     <div id="branches">
       {allBranches.length > 0 ? (
         <div id="branches-content">
-          <button
-            className="modal-button"
-            type="button"
-            onClick={() => sendBranch(token, selectedBranch, toggleModal)}
-          >
-            SUBMIT
-          </button>
           <div id="modal-header">
             <h1>CHOOSE LE DATE</h1>
           </div>
           <ul>
             <Branch branches={allBranches} submitBranch={submitBranch} />
           </ul>
+          <button
+            id="modal-button"
+            type="button"
+            onClick={(ev) => sendBranch(token, selectedBranch, toggleModal, ev)}
+          >
+            SUBMIT
+          </button>
         </div>
       ) : (
         <div id="branches">No backups found</div>
       )}
-      <button
-        id="close-button"
-        type="button"
-        onClick={() => closeButton(toggleModal)}
-      >
-        <h1>x</h1>
-      </button>
+      <h1>
+        <button
+          id="close-button"
+          type="button"
+          onClick={(ev) => closeButton(toggleModal, token, ev)}
+        >
+          x
+        </button>
+      </h1>
     </div>
   );
 };
