@@ -1,6 +1,7 @@
+// eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
 import state from '../../helpers/state.js';
-import commands from '../../helpers/commands.js';
+// import commands from '../../helpers/commands.js';
 
 let event;
 let offLight;
