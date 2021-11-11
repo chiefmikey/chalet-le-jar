@@ -140,7 +140,7 @@ const sendCommand = async (
       return error_;
     }
     if (trySend === 0) {
-      console.log('First attempt failed');
+      console.log('First attempt failed', 'Retrying...');
       checkSend(command, launch, complete, error, end, token, selectedBranch);
     } else {
       console.log('Retrying...');
