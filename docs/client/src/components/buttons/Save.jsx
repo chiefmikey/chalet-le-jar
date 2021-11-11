@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
+import propTypes from 'prop-types';
 import commands from '../../helpers/commands.js';
 
 let event;
@@ -57,3 +58,15 @@ const Save = ({ lightUp, lightOff, token }) => (
 );
 
 export default Save;
+
+Save.defaultProps = {
+  lightUp: () => {},
+  lightOff: () => {},
+  token: '',
+};
+
+Save.propTypes = {
+  lightUp: propTypes.func,
+  lightOff: propTypes.func,
+  token: propTypes.string,
+};

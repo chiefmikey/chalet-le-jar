@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
+import propTypes from 'prop-types';
 import Branch from './Branch.jsx';
 import { submitRewind } from './buttons/Rewind.jsx';
 
@@ -60,3 +61,21 @@ const Branches = ({
 };
 
 export default Branches;
+
+Branches.defaultProps = {
+  submitBranch: () => {},
+  allBranches: [],
+  toggleModal: () => {},
+  token: '',
+  selectedBranch: '',
+  toggleSure: () => {},
+};
+
+Branches.propTypes = {
+  submitBranch: propTypes.func,
+  allBranches: propTypes.oneOfType([propTypes.array]),
+  toggleModal: propTypes.func,
+  token: propTypes.string,
+  selectedBranch: propTypes.string,
+  toggleSure: propTypes.func,
+};

@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
+import propTypes from 'prop-types';
 
 const sayYes = (submitFunction, token, selectedBranch, toggleSure) => {
   toggleSure();
@@ -36,3 +37,17 @@ const Sure = ({ submitFunction, token, selectedBranch, toggleSure }) => (
 );
 
 export default Sure;
+
+Sure.defaultProps = {
+  submitFunction: () => {},
+  token: '',
+  selectedBranch: '',
+  toggleSure: () => {},
+};
+
+Sure.propTypes = {
+  submitFunction: propTypes.func,
+  token: propTypes.string,
+  selectedBranch: propTypes.string,
+  toggleSure: propTypes.func,
+};

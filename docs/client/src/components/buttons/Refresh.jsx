@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
+import propTypes from 'prop-types';
 import commands from '../../helpers/commands.js';
 
 let event;
@@ -24,7 +25,7 @@ const end = () => {
   complete();
 };
 
-const submitRefresh = (token, selectedBranch) => {
+const submitRefresh = (token) => {
   try {
     console.log('Refreshing...');
     const lockScreen = document.createElement('div');
@@ -38,7 +39,7 @@ const submitRefresh = (token, selectedBranch) => {
   }
 };
 
-const Refresh = ({ lightUp, lightOff, token, toggleSure }) => (
+const Refresh = ({ lightUp, lightOff, toggleSure }) => (
   <button
     type="button"
     id="button-refresh"
@@ -57,3 +58,15 @@ const Refresh = ({ lightUp, lightOff, token, toggleSure }) => (
 );
 
 export default Refresh;
+
+Refresh.defaultProps = {
+  lightUp: () => {},
+  lightOff: () => {},
+  toggleSure: () => {},
+};
+
+Refresh.propTypes = {
+  lightUp: propTypes.func,
+  lightOff: propTypes.func,
+  toggleSure: propTypes.func,
+};

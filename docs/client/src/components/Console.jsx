@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
+import propTypes from 'prop-types';
 import { useEffect } from 'preact/hooks';
 import { console } from 'console-events';
 
@@ -63,3 +64,11 @@ const Console = ({ statement }) => {
 };
 
 export default Console;
+
+Console.defaultProps = {
+  statement: '',
+};
+
+Console.propTypes = {
+  statement: propTypes.string,
+};
