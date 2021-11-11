@@ -89,7 +89,7 @@ const checkSend = (
 ) => {
   checkInterval = setInterval(async () => {
     sendCommand(command, launch, complete, error, end, token, selectedBranch);
-  }, 5000);
+  }, 10_000);
 };
 
 let trySend = 0;
@@ -116,8 +116,8 @@ const sendCommand = async (
         ],
       },
     };
-    const data = await launch.send(new SendCommandCommand(parameters));
     console.log(`${command} command sent`);
+    const data = await launch.send(new SendCommandCommand(parameters));
     if (data) {
       return checkStatus(
         launch,
@@ -140,9 +140,11 @@ const sendCommand = async (
       error(command, token);
       return error_;
     }
-    console.log('Retrying...');
     if (trySend === 0) {
+      console.log('First attempt failed');
       checkSend(command, launch, complete, error, end, token, selectedBranch);
+    } else {
+      console.log('Retrying...');
     }
     return (trySend += 1);
   }
