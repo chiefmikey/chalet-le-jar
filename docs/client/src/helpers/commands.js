@@ -4,7 +4,14 @@ import {
 } from '@aws-sdk/client-ssm';
 import ssm from '../libs/ssmClient.js';
 
-const setScript = (command, error, end, token, selectedBranch) => {
+const setScript = (
+  command,
+  error,
+  end,
+  token,
+  selectedBranch,
+  latestBranch,
+) => {
   if (command === 'STOP') {
     return 'sudo /home/ubuntu/scripts/server-stop.sh';
   }
@@ -18,7 +25,7 @@ const setScript = (command, error, end, token, selectedBranch) => {
     return `branch=${selectedBranch} sudo /home/ubuntu/scripts/server-rewind.sh`;
   }
   if (command === 'START') {
-    return 'sudo /home/ubuntu/scripts/server-start.sh';
+    return `latest=${latestBranch} sudo /home/ubuntu/scripts/server-start.sh`;
   }
   console.log('Invalid command');
   return end(command, token);
@@ -99,6 +106,7 @@ const sendCommand = async (
   end,
   token,
   selectedBranch,
+  latestBranch,
 ) => {
   try {
     const parameters = {
@@ -109,12 +117,15 @@ const sendCommand = async (
         commands: [
           '#!/bin/bash',
           'cd /home/ubuntu',
-          setScript(command, error, end, token, selectedBranch),
+          setScript(command, error, end, token, selectedBranch, latestBranch),
         ],
       },
     };
     if (trySend === 0) {
       console.log(`${command} command sent`);
+      if (command === 'START') {
+        console.log(`Loading save ${latestBranch}`);
+      }
     }
     const data = await launch.send(new SendCommandCommand(parameters));
     if (data) {
@@ -156,6 +167,7 @@ const commands = async (
   error,
   end,
   selectedBranch,
+  latestBranch,
 ) => {
   try {
     if (!token && process.env.NODE_ENV === 'production') {
@@ -172,6 +184,7 @@ const commands = async (
         end,
         token,
         selectedBranch,
+        latestBranch,
       );
     }
     console.log('Error in state', launch);

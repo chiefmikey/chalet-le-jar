@@ -3,9 +3,11 @@ import { h } from 'preact';
 import propTypes from 'prop-types';
 import state from '../../helpers/state.js';
 import commands from '../../helpers/commands.js';
+import getBranches from '../../libs/ghApi.js';
 
 let event;
 let offLight;
+let latest;
 
 const allClear = () => {
   offLight(event);
@@ -22,11 +24,27 @@ const error = () => {
   allClear();
 };
 
-const end = (command, token) => {
-  commands(command, token, complete, error);
+const end = async (command, token) => {
+  try {
+    const get = await getBranches(token);
+    const allBranches = Array.isArray(get) ? get : [];
+    [latest] = allBranches.reverse();
+    return commands(
+      command,
+      token,
+      complete,
+      error,
+      undefined,
+      undefined,
+      latest,
+    );
+  } catch (error_) {
+    console.log('Error getting most recent save', error_);
+    return error_;
+  }
 };
 
-const submitOff = (token) => {
+const submitOn = async (token) => {
   try {
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen-clear');
@@ -49,7 +67,7 @@ const On = ({ lightUp, lightOff, token }) => (
       event = event_;
       offLight = lightOff;
       lightUp(event_);
-      submitOff(token);
+      submitOn(token);
     }}
   >
     <div className="button-text">

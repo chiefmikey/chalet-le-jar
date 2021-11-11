@@ -123,6 +123,7 @@ class App extends Component {
       allBranches,
       sure,
       submitFunction,
+      latestBranch,
     } = this.state;
     const showModal = modal ? (
       <Branches
@@ -160,6 +161,7 @@ class App extends Component {
               toggleModal={this.toggleModal}
               toggleSure={this.toggleSure}
               selectedBranch={selectedBranch}
+              latestBranch={latestBranch}
             />
             <Console statement={statement} />
           </div>
