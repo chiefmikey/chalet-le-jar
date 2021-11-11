@@ -14,13 +14,13 @@ git config user.email chaletlejar@gmail.com
 git remote add origin https://chalet-le-jar:${pw}@github.com/chiefmikey/chalet-le-jar.git
 git add /home/ubuntu/permissions.json /home/ubuntu/server.properties /home/ubuntu/whitelist.json
 git commit -am 'Properties initialized'
-git fetch --all
 git checkout main
+git fetch --all
 git reset --hard origin/main
 chmod +x /home/ubuntu/scripts/server-save.sh /home/ubuntu/scripts/server-stop.sh /home/ubuntu/scripts/server-refresh.sh /home/ubuntu/scripts/server-rewind.sh
 chown -R ubuntu:root /home/ubuntu
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
-echo $currentDate >> /home/ubuntu/log/startup-log.txt
+echo $currentDate >> /home/ubuntu/log/init-log.txt
 git commit -am "Server initialized"
 git push origin main
 LD_LIBRARY_PATH=/home/ubuntu sudo su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root

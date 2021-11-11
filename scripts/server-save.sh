@@ -4,10 +4,11 @@ cd /home/ubuntu
 screen -S bedrock -X stuff "save hold\n"
 sleep 5
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
-git checkout main
-git add worlds
-git commit -am $currentDate
+git add worlds log
+git stash push
 git checkout -b $currentDate
+git stash pop
+echo $currentDate >> /home/ubuntu/log/save-log.txt
+git commit -am $currentDate
 git push origin $currentDate
-git checkout main
 screen -S bedrock -X stuff "save resume\n"
