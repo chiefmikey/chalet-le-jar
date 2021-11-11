@@ -27,7 +27,6 @@ const end = () => {
 
 export const submitRewind = (token, branch) => {
   try {
-    console.log('Rewinding...');
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen-clear');
     document.querySelector('#app').append(lockScreen);
@@ -45,11 +44,11 @@ export const Rewind = ({ lightUp, lightOff, token, toggleModal }) => (
     id="button-rewind"
     onClick={(event_) => {
       event_.preventDefault();
+      console.log('Loading backups...');
       event = event_;
       offLight = lightOff;
       lightUp(event_);
       toggleModal(token, event_);
-      console.log('Loading backups...');
     }}
   >
     <div className="button-text">

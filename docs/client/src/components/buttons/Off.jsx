@@ -28,7 +28,6 @@ const end = (command, token) => {
 
 const submitOff = (token) => {
   try {
-    console.log('Shutting down...');
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen-clear');
     document.querySelector('#app').append(lockScreen);
@@ -46,6 +45,7 @@ const Off = ({ lightUp, lightOff, toggleSure }) => (
     id="button-off"
     onClick={(event_) => {
       event_.preventDefault();
+      console.log('Shutting down...');
       event = event_;
       offLight = lightOff;
       lightUp(event_);

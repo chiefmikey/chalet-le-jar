@@ -27,7 +27,6 @@ const end = () => {
 
 const submitSave = (token) => {
   try {
-    console.log('Saving...');
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen-clear');
     document.querySelector('#app').append(lockScreen);
@@ -45,6 +44,7 @@ const Save = ({ lightUp, lightOff, token }) => (
     id="button-save"
     onClick={(event_) => {
       event_.preventDefault();
+      console.log('Saving...');
       event = event_;
       offLight = lightOff;
       lightUp(event_);

@@ -8,11 +8,12 @@ const sendBranch = (token, selectedBranch, toggleModal, event_, toggleSure) => {
   if (selectedBranch) {
     toggleSure(submitRewind);
     toggleModal(token, event_);
+    console.log('Rewinding...');
   }
 };
 
 const closeButton = (toggleModal, token, event_) => {
-  console.log('Rewind cancelled');
+  console.log('Cancelled');
   toggleModal(token, event_);
 };
 

@@ -46,10 +46,7 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
       const data = await launch.send(new ListCommandInvocationsCommand(input));
       console.log(`Checking command status...`);
       if (data) {
-        console.log(
-          `Status: ${data.CommandInvocations[0].Status}`,
-          `Details: ${data.CommandInvocations[0].StatusDetails}`,
-        );
+        console.log(`Status: ${data.CommandInvocations[0].Status}`);
         if (data.CommandInvocations[0].Status === 'Failed') {
           tries += 1;
           if (tries === 3) {
@@ -116,7 +113,9 @@ const sendCommand = async (
         ],
       },
     };
-    console.log(`${command} command sent`);
+    if (trySend === 0) {
+      console.log(`${command} command sent`);
+    }
     const data = await launch.send(new SendCommandCommand(parameters));
     if (data) {
       return checkStatus(

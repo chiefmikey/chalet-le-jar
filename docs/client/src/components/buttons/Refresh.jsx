@@ -27,7 +27,6 @@ const end = () => {
 
 const submitRefresh = (token) => {
   try {
-    console.log('Refreshing...');
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen-clear');
     document.querySelector('#app').append(lockScreen);
@@ -45,6 +44,7 @@ const Refresh = ({ lightUp, lightOff, toggleSure }) => (
     id="button-refresh"
     onClick={(event_) => {
       event_.preventDefault();
+      console.log('Refreshing...');
       event = event_;
       offLight = lightOff;
       lightUp(event_);

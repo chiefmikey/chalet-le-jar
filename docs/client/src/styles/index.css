@@ -305,6 +305,7 @@ button {
   width: 100%;
   height: 40%;
   overflow: scroll;
+  z-index: 1;
 }
 
 #prod-console,
