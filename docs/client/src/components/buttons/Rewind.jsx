@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
+import propTypes from 'prop-types';
 import commands from '../../helpers/commands.js';
 
 let event;
@@ -56,3 +57,17 @@ export const Rewind = ({ lightUp, lightOff, token, toggleModal }) => (
     </div>
   </button>
 );
+
+Rewind.defaultProps = {
+  lightUp: () => {},
+  lightOff: () => {},
+  token: '',
+  toggleModal: () => {},
+};
+
+Rewind.propTypes = {
+  lightUp: propTypes.func,
+  lightOff: propTypes.func,
+  token: propTypes.string,
+  toggleModal: propTypes.func,
+};

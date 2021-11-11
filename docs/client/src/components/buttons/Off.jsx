@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
+import propTypes from 'prop-types';
 import state from '../../helpers/state.js';
 import commands from '../../helpers/commands.js';
 
@@ -25,7 +26,7 @@ const end = (command, token) => {
   state(command, token, undefined, complete, error);
 };
 
-const submitOff = (token, selectedBranch) => {
+const submitOff = (token) => {
   try {
     console.log('Shutting down...');
     const lockScreen = document.createElement('div');
@@ -39,7 +40,7 @@ const submitOff = (token, selectedBranch) => {
   }
 };
 
-const Off = ({ lightUp, lightOff, token, toggleSure }) => (
+const Off = ({ lightUp, lightOff, toggleSure }) => (
   <button
     type="button"
     id="button-off"
@@ -58,3 +59,15 @@ const Off = ({ lightUp, lightOff, token, toggleSure }) => (
 );
 
 export default Off;
+
+Off.defaultProps = {
+  lightUp: () => {},
+  lightOff: () => {},
+  toggleSure: () => {},
+};
+
+Off.propTypes = {
+  lightUp: propTypes.func,
+  lightOff: propTypes.func,
+  toggleSure: propTypes.func,
+};

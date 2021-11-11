@@ -79,10 +79,10 @@ class App extends Component {
     const { sure, pressedButton } = this.state;
     let buttonCopy;
     if (!sure) {
-      if (event_ === undefined) {
-        buttonCopy = document.querySelector('#button-rewind');
-      }
-      buttonCopy = event_.target;
+      buttonCopy =
+        event_ === undefined
+          ? document.querySelector('#button-rewind')
+          : event_.target;
       return this.setState({
         sure: true,
         submitFunction,
@@ -130,6 +130,7 @@ class App extends Component {
         toggleModal={this.toggleModal}
         token={token}
         selectedBranch={selectedBranch}
+        toggleSure={this.toggleSure}
       />
     ) : undefined;
     const showSure = sure ? (

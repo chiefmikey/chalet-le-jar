@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
+import propTypes from 'prop-types';
 import state from '../../helpers/state.js';
 import commands from '../../helpers/commands.js';
 
@@ -58,3 +59,15 @@ const On = ({ lightUp, lightOff, token }) => (
 );
 
 export default On;
+
+On.defaultProps = {
+  lightUp: () => {},
+  lightOff: () => {},
+  token: '',
+};
+
+On.propTypes = {
+  lightUp: propTypes.func,
+  lightOff: propTypes.func,
+  token: propTypes.string,
+};

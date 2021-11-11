@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
+import propTypes from 'prop-types';
 
 const signOutUser = () => {
   window.gapi.load('auth2', async () => {
@@ -28,3 +29,11 @@ const SignOut = ({ onLogout }) => (
 );
 
 export default SignOut;
+
+SignOut.propTypes = {
+  onLogout: propTypes.func,
+};
+
+SignOut.defaultProps = {
+  onLogout: () => {},
+};
