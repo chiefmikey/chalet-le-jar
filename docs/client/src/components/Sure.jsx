@@ -11,7 +11,7 @@ const sayYes = (submitFunction, token, selectedBranch, toggleSure) => {
 };
 
 const sayNo = (toggleSure) => {
-  toggleSure();
+  toggleSure(undefined, undefined, true);
   console.log('Cancelled');
 };
 

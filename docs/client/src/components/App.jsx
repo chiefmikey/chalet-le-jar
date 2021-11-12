@@ -75,7 +75,7 @@ class App extends Component {
     }
   };
 
-  toggleSure = (submitFunction, event_) => {
+  toggleSure = (submitFunction, event_, no) => {
     const { sure, pressedButton } = this.state;
     let buttonCopy;
     if (!sure) {
@@ -89,7 +89,7 @@ class App extends Component {
         pressedButton: buttonCopy,
       });
     }
-    if (pressedButton) {
+    if (pressedButton && no) {
       pressedButton.classList.remove('light-up');
     }
     return this.setState({
