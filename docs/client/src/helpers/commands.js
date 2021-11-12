@@ -31,9 +31,8 @@ const setScript = (
   return end(command, token);
 };
 
-const finish = (command, token, interval, end, complete) => {
+const finish = (command, token, end, complete) => {
   console.log('Commands executed successfully');
-  clearInterval(interval);
   if (!end) {
     return complete();
   }
@@ -67,7 +66,8 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
           }
         }
         if (data.CommandInvocations[0].Status === 'Success') {
-          return finish(command, token, interval, end, complete);
+          clearInterval(interval);
+          return finish(command, token, end, complete);
         }
       }
       return data;

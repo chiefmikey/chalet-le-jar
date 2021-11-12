@@ -8,8 +8,11 @@ const parameters = {
   InstanceIds: ['i-0c35872f8d010202c', 'i-0c043740e90887911'],
 };
 let ready = {};
+let tries = 0;
+let runEnd = false;
 
 const changeState = (data, interval, command, end, token, complete) => {
+  tries += 1;
   for (let index = 0; index < data.length; index += 1) {
     console.log(
       `${data[index].InstanceId} Current State: ${data[index].CurrentState.Name}`,
@@ -20,11 +23,17 @@ const changeState = (data, interval, command, end, token, complete) => {
     if (command === 'STOP' && data[index].CurrentState.Name === 'stopped') {
       ready[data[index].InstanceId] = true;
     }
+    if (ready[parameters.InstanceIds[0]] && tries === 1) {
+      console.log('Server already started');
+      runEnd = true;
+    }
     if (Object.keys(ready).length === data.length) {
       console.log('All instances updated');
       clearInterval(interval);
+      tries = 0;
       ready = {};
-      if (!end) {
+      if (!end || runEnd) {
+        runEnd = false;
         return complete();
       }
       return end(command, token);
@@ -68,6 +77,7 @@ const interval = async (command, launch, end, token, complete, error) => {
       } else {
         console.log('Error sending state', data);
         clearInterval(checkState);
+        tries = 0;
         error();
         return data;
       }
@@ -76,6 +86,7 @@ const interval = async (command, launch, end, token, complete, error) => {
     } catch (error_) {
       console.log('Error creating interval', error_);
       clearInterval(checkState);
+      tries = 0;
       error();
       return error_;
     }
