@@ -91,7 +91,6 @@ class App extends Component {
     }
     if (pressedButton) {
       pressedButton.classList.remove('light-up');
-      console.log('Cancelled');
     }
     return this.setState({
       sure: false,

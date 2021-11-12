@@ -12,6 +12,7 @@ const sayYes = (submitFunction, token, selectedBranch, toggleSure) => {
 
 const sayNo = (toggleSure) => {
   toggleSure();
+  console.log('Cancelled');
 };
 
 const Sure = ({ submitFunction, token, selectedBranch, toggleSure }) => (
