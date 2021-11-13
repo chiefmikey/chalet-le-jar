@@ -23,7 +23,7 @@ const changeState = (data, interval, command, end, token, complete) => {
     if (command === 'STOP' && data[index].CurrentState.Name === 'stopped') {
       ready[data[index].InstanceId] = true;
     }
-    if (ready[parameters.InstanceIds[0]] && tries === 1) {
+    if (index === 0 && ready[parameters.InstanceIds[0]] && tries === 1) {
       console.log('Server already started');
       runEnd = true;
     }
