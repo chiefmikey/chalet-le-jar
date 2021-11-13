@@ -74,7 +74,7 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
     } catch (error_) {
       console.log('Error checking command status', error_);
       clearInterval(interval);
-      end(command, token);
+      error();
       return error_;
     }
   }, 5000);
