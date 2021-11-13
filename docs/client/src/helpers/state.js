@@ -23,7 +23,11 @@ const changeState = (data, interval, command, end, token, complete) => {
     if (command === 'STOP' && data[index].CurrentState.Name === 'stopped') {
       ready[data[index].InstanceId] = true;
     }
-    if (index === 0 && ready[parameters.InstanceIds[0]] && tries === 1) {
+    if (
+      data[index].InstanceId === parameters.InstanceIds[0] &&
+      ready[parameters.InstanceIds[0]] &&
+      tries === 1
+    ) {
       console.log('Server already started');
       runEnd = true;
     }
@@ -90,7 +94,7 @@ const interval = async (command, launch, end, token, complete, error) => {
       error();
       return error_;
     }
-  }, 5000);
+  }, 10_000);
 };
 
 const state = async (command, token, end, complete, error) => {

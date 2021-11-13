@@ -129,6 +129,7 @@ const sendCommand = async (
     }
     const data = await launch.send(new SendCommandCommand(parameters));
     if (data) {
+      clearInterval(checkInterval);
       return checkStatus(
         launch,
         data.Command.CommandId,
