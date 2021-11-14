@@ -53,7 +53,7 @@ class App extends Component {
     }
   };
 
-  toggleModal = async (token, event_) => {
+  toggleModal = async (token, event_, clear) => {
     const { modal } = this.state;
     try {
       if (!modal) {
@@ -68,7 +68,10 @@ class App extends Component {
       if (event_.target.id === 'close-button') {
         document.querySelector('#button-rewind').classList.remove('light-up');
       }
-      return this.setState({ modal: false, selectedBranch: undefined });
+      if (clear) {
+        return this.setState({ modal: false, selectedBranch: undefined });
+      }
+      return this.setState({ modal: false });
     } catch (error) {
       console.log('Error getting branches', error);
       return error;

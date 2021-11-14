@@ -5,9 +5,6 @@ import propTypes from 'prop-types';
 const sayYes = (submitFunction, token, selectedBranch, toggleSure) => {
   toggleSure();
   submitFunction(token, selectedBranch);
-  if (selectedBranch) {
-    console.log(selectedBranch);
-  }
 };
 
 const sayNo = (toggleSure) => {
@@ -15,6 +12,7 @@ const sayNo = (toggleSure) => {
   console.log('Cancelled');
 };
 
+// eslint-disable-next-line react/function-component-definition
 const Sure = ({ submitFunction, token, selectedBranch, toggleSure }) => (
   <div id="sure">
     <div id="sure-header">

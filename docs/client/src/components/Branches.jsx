@@ -7,16 +7,17 @@ import { submitRewind } from './buttons/Rewind.jsx';
 const sendBranch = (token, selectedBranch, toggleModal, event_, toggleSure) => {
   if (selectedBranch) {
     toggleSure(submitRewind);
-    toggleModal(token, event_);
+    toggleModal(token, event_, false);
     console.log('Rewinding...');
   }
 };
 
 const closeButton = (toggleModal, token, event_) => {
   console.log('Cancelled');
-  toggleModal(token, event_);
+  toggleModal(token, event_, true);
 };
 
+// eslint-disable-next-line react/function-component-definition
 const Branches = ({
   submitBranch,
   allBranches,

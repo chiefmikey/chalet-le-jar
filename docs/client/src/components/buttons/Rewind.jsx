@@ -38,6 +38,7 @@ export const submitRewind = (token, branch) => {
   }
 };
 
+// eslint-disable-next-line react/function-component-definition
 export const Rewind = ({ lightUp, lightOff, token, toggleModal }) => (
   <button
     type="button"

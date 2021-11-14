@@ -22,10 +22,12 @@ const setScript = (
     return 'sudo /home/ubuntu/scripts/server-save.sh';
   }
   if (command === 'REWIND') {
-    return `branch=${selectedBranch}; sudo /home/ubuntu/scripts/server-rewind.sh`;
+    console.log(`Loading save ${selectedBranch}`);
+    return `branch=${selectedBranch} /home/ubuntu/scripts/server-rewind.sh`;
   }
   if (command === 'START') {
-    return `latest=${latestBranch}; sudo /home/ubuntu/scripts/server-start.sh`;
+    console.log(`Loading save ${latestBranch}`);
+    return `latest=${latestBranch} /home/ubuntu/scripts/server-start.sh`;
   }
   console.log('Invalid command');
   return end(command, token);
@@ -90,10 +92,20 @@ const checkSend = (
   end,
   token,
   selectedBranch,
+  latestBranch,
 ) => {
   checkInterval = setInterval(async () => {
-    sendCommand(command, launch, complete, error, end, token, selectedBranch);
-  }, 10_000);
+    sendCommand(
+      command,
+      launch,
+      complete,
+      error,
+      end,
+      token,
+      selectedBranch,
+      latestBranch,
+    );
+  }, 5000);
 };
 
 let trySend = 0;
@@ -123,9 +135,6 @@ const sendCommand = async (
     };
     if (trySend === 0) {
       console.log(`${command} command sent`);
-      if (command === 'START') {
-        console.log(`Loading save ${latestBranch}`);
-      }
     }
     const data = await launch.send(new SendCommandCommand(parameters));
     if (data) {
@@ -153,7 +162,16 @@ const sendCommand = async (
     }
     if (trySend === 0) {
       console.log('First attempt failed', 'Retrying...');
-      checkSend(command, launch, complete, error, end, token, selectedBranch);
+      checkSend(
+        command,
+        launch,
+        complete,
+        error,
+        end,
+        token,
+        selectedBranch,
+        latestBranch,
+      );
     } else {
       console.log('Retrying...');
     }
