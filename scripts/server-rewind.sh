@@ -4,7 +4,8 @@ cd /home/ubuntu
 screen -S bedrock -X stuff "save hold\n"
 sleep 10
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
-git add worlds log
+mv /home/ubuntu/worlds /home/ubuntu/world
+git add world log
 git stash push
 git checkout -b $currentDate
 git stash pop
@@ -16,6 +17,7 @@ screen -S bedrock -X stuff "save resume\n"
 screen -S bedrock -X stuff "stop\n"
 git fetch --all
 git reset --hard origin/main
-rm -R worlds
-git checkout origin/$branch worlds
+rm -R world
+git checkout origin/$branch world
+mv /home/ubuntu/world /home/ubuntu/worlds
 LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
