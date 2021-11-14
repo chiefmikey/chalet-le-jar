@@ -46,11 +46,11 @@ touch /home/ec2-user/$INSTANCE_ALREADY_STARTED
       }" \
     >> /home/ec2-user/coredns/Corefile
     chmod +x /home/ec2-user/coredns/coredns
-    su -s /bin/bash -c 'screen -S coredns -dm sudo /home/ec2-user/coredns/coredns' root
+    su -s /bin/bash -c 'screen -S coredns -dm /home/ec2-user/coredns/coredns' root
 else
   cd /home/ec2-user
   echo "-- Not first instance startup --"
     yum update -y
-    su -s /bin/bash -c 'screen -S coredns -dm sudo /home/ec2-user/coredns/coredns' root
+    su -s /bin/bash -c 'screen -S coredns -dm /home/ec2-user/coredns/coredns' root
 fi
 --//--
