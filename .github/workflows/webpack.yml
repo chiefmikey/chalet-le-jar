@@ -43,6 +43,6 @@ jobs:
         pathspec_error_handling: exitImmediately
         pull: 'NO-PULL'
         push: origin client --set-upstream --force
-        remove: '-r whitelist.json webpack.config.js server.properties README.md permissions.json package.json package-lock.json .gitignore .deepsource.toml worlds scripts log docs/client/app.js docs/client/src dns .github'
+        remove: '-r whitelist.json webpack.config.js server.properties README.md permissions.json package.json package-lock.json .gitignore .deepsource.toml scripts log docs/client/app.js docs/client/src dns .github'
         signoff: false
         # tag: 'v1.0.0 --force'
