@@ -20,7 +20,7 @@ git reset --hard origin/main
 chmod +x /home/ubuntu/scripts/server-save.sh /home/ubuntu/scripts/server-stop.sh /home/ubuntu/scripts/server-refresh.sh /home/ubuntu/scripts/server-rewind.sh
 chown -R ubuntu:root /home/ubuntu
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
-echo $currentDate >> /home/ubuntu/log/init-log.txt
+echo "Init: $currentDate" >> /home/ubuntu/log/init-log.txt
 git commit -am "Server initialized"
 git push origin main
 LD_LIBRARY_PATH=/home/ubuntu sudo su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root

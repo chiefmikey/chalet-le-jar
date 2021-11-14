@@ -11,6 +11,6 @@ git checkout main
 git fetch --all
 git reset --hard origin/main
 git checkout origin/$latest worlds log
-echo $currentDate >> /home/ubuntu/log/startup-log.txt
+echo "Start: $currentDate" >> /home/ubuntu/log/startup-log.txt
 git add worlds log
 LD_LIBRARY_PATH=/home/ubuntu sudo su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root

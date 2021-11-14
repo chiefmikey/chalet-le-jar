@@ -8,7 +8,8 @@ git add worlds log
 git stash push
 git checkout -b $currentDate
 git stash pop
-echo $currentDate >> /home/ubuntu/log/rewind-log.txt
+echo "Current: $currentDate" >> /home/ubuntu/log/rewind-log.txt
+echo "Backup: $branch" >> /home/ubuntu/log/rewind-log.txt
 git commit -am $currentDate
 git push origin $currentDate
 screen -S bedrock -X stuff "save resume\n"

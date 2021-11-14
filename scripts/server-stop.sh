@@ -8,7 +8,7 @@ git add worlds log
 git stash push
 git checkout -b $currentDate
 git stash pop
-echo $currentDate >> /home/ubuntu/log/shutdown-log.txt
+echo "Shutdown: $currentDate" >> /home/ubuntu/log/shutdown-log.txt
 git commit -am $currentDate
 git push origin $currentDate
 screen -S bedrock -X stuff "save resume\n"
