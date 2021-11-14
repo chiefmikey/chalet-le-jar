@@ -1,6 +1,7 @@
 #!/bin/sh
 
 cd /home/ubuntu
+screen -S watch -X quit
 screen -S bedrock -X stuff "save hold\n"
 sleep 10
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
@@ -24,3 +25,4 @@ rm -R worlds
 unzip worlds.zip
 rm worlds.zip
 LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
+su -s /bin/bash -c 'screen -S watch -dm watch -n 300 /home/ubuntu/scripts/server-save.sh' root

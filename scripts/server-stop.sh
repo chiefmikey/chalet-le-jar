@@ -1,6 +1,7 @@
 #!/bin/sh
 
 cd /home/ubuntu
+screen -S watch -X quit
 screen -S bedrock -X stuff "save hold\n"
 sleep 10
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
