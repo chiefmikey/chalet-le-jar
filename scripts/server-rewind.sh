@@ -15,6 +15,6 @@ git push origin $currentDate
 screen -S bedrock -X stuff "save resume\n"
 screen -S bedrock -X stuff "stop\n"
 git fetch --all
+rm -R worlds
 git checkout origin/$branch worlds
-git add worlds
 LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
