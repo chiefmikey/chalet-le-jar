@@ -23,4 +23,4 @@ currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
 echo "Init: $currentDate" >> /home/ubuntu/log/init-log.txt
 git commit -am "Server initialized"
 git push origin main
-LD_LIBRARY_PATH=/home/ubuntu sudo su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
+LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root

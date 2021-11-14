@@ -13,4 +13,4 @@ git reset --hard origin/main
 git checkout origin/$latest worlds log
 echo "Latest: $latest" >> /home/ubuntu/log/startup-log.txt
 git add worlds log
-LD_LIBRARY_PATH=/home/ubuntu sudo su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
+LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
