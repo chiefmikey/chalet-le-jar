@@ -7,7 +7,7 @@ wget -O /home/ubuntu/bedrock-server.zip https://minecraft.azureedge.net/bin-linu
 unzip /home/ubuntu/bedrock-server.zip
 rm /home/ubuntu/bedrock-server.zip
 pw=$(aws secretsmanager --region us-east-2 get-secret-value --secret-id repo | jq -r ".SecretString" | jq -r ".repo")
-sleep 5
+sleep 10
 git init
 git config user.name chalet-le-jar
 git config user.email chaletlejar@gmail.com

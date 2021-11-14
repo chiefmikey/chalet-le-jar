@@ -2,7 +2,7 @@
 
 cd /home/ubuntu
 screen -S bedrock -X stuff "save hold\n"
-sleep 5
+sleep 10
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
 git add worlds log
 git stash push
