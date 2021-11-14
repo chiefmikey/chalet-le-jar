@@ -24,4 +24,4 @@ git checkout origin/$currentDate worlds.zip log
 unzip worlds.zip
 rm worlds.zip
 LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
-su -s /bin/bash -c 'screen -S watch -dm watch -n 300 /home/ubuntu/scripts/server-save.sh' root
+su -s /bin/bash -c 'screen -S watch -dm watch -n 300 /home/ubuntu/scripts/server-autosave.sh' root
