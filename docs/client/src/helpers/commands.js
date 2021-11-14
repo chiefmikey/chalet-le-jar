@@ -22,10 +22,10 @@ const setScript = (
     return 'sudo /home/ubuntu/scripts/server-save.sh';
   }
   if (command === 'REWIND') {
-    return `branch=${selectedBranch} sudo /home/ubuntu/scripts/server-rewind.sh`;
+    return `branch=${selectedBranch}; sudo /home/ubuntu/scripts/server-rewind.sh`;
   }
   if (command === 'START') {
-    return `latest=${latestBranch} sudo /home/ubuntu/scripts/server-start.sh`;
+    return `latest=${latestBranch}; sudo /home/ubuntu/scripts/server-start.sh`;
   }
   console.log('Invalid command');
   return end(command, token);
