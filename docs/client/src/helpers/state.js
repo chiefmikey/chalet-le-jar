@@ -5,7 +5,7 @@ import {
 import ec2 from '../libs/ec2Client.js';
 
 const parameters = {
-  InstanceIds: ['i-0c35872f8d010202c', 'i-0ef0bbe85a330f180'],
+  InstanceIds: ['i-0c35872f8d010202c', 'i-047a916c90d7d076e'],
 };
 let ready = {};
 let tries = 0;
