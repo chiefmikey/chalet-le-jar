@@ -9,12 +9,12 @@ zip -r worlds.zip worlds
 git add worlds.zip log
 git restore --staged worlds
 git stash push
-git checkout -b $currentDate
+git checkout -b rewind-$currentDate
 git stash pop
 echo "Current: $currentDate" >> log/rewind-log.txt
 echo "Backup: $branch" >> log/rewind-log.txt
-git commit -am $currentDate
-git push origin $currentDate
+git commit -am rewind-$currentDate
+git push origin rewind-$currentDate
 rm worlds.zip
 screen -S bedrock -X stuff "save resume\n"
 screen -S bedrock -X stuff "stop\n"
