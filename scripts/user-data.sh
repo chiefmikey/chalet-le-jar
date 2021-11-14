@@ -2,7 +2,7 @@
 cd /home/ubuntu
 apt update -y
 apt upgrade -y
-apt install -y wget unzip git jq awscli curl
+apt install -y wget zip unzip git jq awscli curl
 wget -O /home/ubuntu/bedrock-server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.41.01.zip
 unzip /home/ubuntu/bedrock-server.zip
 rm /home/ubuntu/bedrock-server.zip
