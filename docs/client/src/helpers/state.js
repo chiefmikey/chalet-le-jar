@@ -5,11 +5,28 @@ import {
 import ec2 from '../libs/ec2Client.js';
 
 const parameters = {
-  InstanceIds: ['i-0c35872f8d010202c', 'i-076f072b3e0baa3a2'],
+  InstanceIds: ['i-0c35872f8d010202c', 'i-0ef0bbe85a330f180'],
 };
 let ready = {};
 let tries = 0;
 let runEnd = false;
+
+const isStarted = (command, data, index) => {
+  if (command === 'START' && data[index].CurrentState.Name === 'running') {
+    ready[data[index].InstanceId] = true;
+  }
+  if (command === 'STOP' && data[index].CurrentState.Name === 'stopped') {
+    ready[data[index].InstanceId] = true;
+  }
+  if (
+    data[index].InstanceId === parameters.InstanceIds[0] &&
+    ready[parameters.InstanceIds[0]] &&
+    tries === 1
+  ) {
+    console.log('Server already started');
+    runEnd = true;
+  }
+};
 
 const changeState = (data, interval, command, end, token, complete) => {
   tries += 1;
@@ -17,20 +34,7 @@ const changeState = (data, interval, command, end, token, complete) => {
     console.log(
       `${data[index].InstanceId} Current State: ${data[index].CurrentState.Name}`,
     );
-    if (command === 'START' && data[index].CurrentState.Name === 'running') {
-      ready[data[index].InstanceId] = true;
-    }
-    if (command === 'STOP' && data[index].CurrentState.Name === 'stopped') {
-      ready[data[index].InstanceId] = true;
-    }
-    if (
-      data[index].InstanceId === parameters.InstanceIds[0] &&
-      ready[parameters.InstanceIds[0]] &&
-      tries === 1
-    ) {
-      console.log('Server already started');
-      runEnd = true;
-    }
+    isStarted(command, data, index);
     if (Object.keys(ready).length === data.length) {
       console.log('All instances updated');
       clearInterval(interval);
