@@ -21,6 +21,6 @@ git fetch --all
 git reset --hard origin/main
 git checkout origin/$branch worlds.zip
 rm -R /home/ubuntu/worlds
-unzip /home/ubuntu/worlds.zip
+unzip worlds.zip
 rm /home/ubuntu/worlds.zip
 LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root

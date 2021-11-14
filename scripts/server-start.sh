@@ -12,7 +12,7 @@ git fetch --all
 git reset --hard origin/main
 rm -R /home/ubuntu/worlds /home/ubuntu/log
 git checkout origin/$latest worlds.zip log
-unzip /home/ubuntu/worlds.zip
+unzip worlds.zip
 rm /home/ubuntu/worlds.zip
 echo "Latest: $latest" >> /home/ubuntu/log/startup-log.txt
 LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
