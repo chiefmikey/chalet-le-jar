@@ -10,8 +10,8 @@ git remote add origin https://chalet-le-jar:${pw}@github.com/chiefmikey/chalet-l
 git checkout main
 git fetch --all
 git reset --hard origin/main
-rm -R worlds/level.dat worlds/level.dat_old worlds/levelname.txt log
 git checkout origin/$latest worlds/data.zip log
+rm -R worlds/level.dat worlds/level.dat_old worlds/levelname.txt log
 unzip worlds/data.zip -d worlds
 rm worlds/data.zip
 echo "Latest: $latest" >> log/startup-log.txt
