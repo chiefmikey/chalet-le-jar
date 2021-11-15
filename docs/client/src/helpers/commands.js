@@ -105,7 +105,7 @@ const checkSend = (
       selectedBranch,
       latestBranch,
     );
-  }, 5000);
+  }, 10_000);
 };
 
 let trySend = 0;
