@@ -16,4 +16,4 @@ git commit -am save-$currentDate
 git push origin save-$currentDate
 rm worlds.zip
 screen -S bedrock -X stuff "save resume\n"
-su -s /bin/bash -c 'screen -S watch -dm watch -n 300 /home/ubuntu/scripts/server-autosave.sh' root
+su -s /bin/bash -c 'screen -S watch -dm watch /home/ubuntu/scripts/server-autosave.sh' root
