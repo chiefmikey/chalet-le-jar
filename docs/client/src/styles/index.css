@@ -220,7 +220,6 @@ button {
 
 #dev-switch {
   position: absolute;
-  top: calc(1vmin + 1vh);
   left: calc(1vmin + 1vh);
   font-size: calc(0.6vmin + 0.6vw);
   font-weight: 200;
@@ -234,7 +233,6 @@ button {
 
 #sign-out {
   position: absolute;
-  top: calc(1vmin + 1vh);
   right: calc(1vmin + 1vh);
   font-size: calc(0.6vmin + 0.6vw);
   font-weight: 200;
