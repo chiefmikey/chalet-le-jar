@@ -21,7 +21,7 @@ git fetch --all
 git reset --hard origin/main
 rm -R worlds/clj/level.dat worlds/clj/level.dat_old worlds/clj/levelname.txt log
 git checkout origin/$currentDate-refresh worlds/clj/data.zip log
-unzip worlds/clj/data.zip -d worlds/clj
+unzip worlds/clj/data.zip
 rm worlds/clj/data.zip
 LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
 su -s /bin/bash -c 'screen -S watch -dm watch /home/ubuntu/scripts/server-autosave.sh' root
