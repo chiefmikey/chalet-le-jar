@@ -9,11 +9,11 @@ zip -r worlds.zip worlds
 git add worlds.zip log
 git restore --staged worlds
 git stash push
-git checkout -b save-$currentDate
+git checkout -b$currentDate-save
 git stash pop
 echo "Save: $currentDate" >> log/save-log.txt
-git commit -am save-$currentDate
-git push origin save-$currentDate
+git commit -am $currentDate-save
+git push origin $currentDate-save
 rm worlds.zip
 screen -S bedrock -X stuff "save resume\n"
 su -s /bin/bash -c 'screen -S watch -dm watch /home/ubuntu/scripts/server-autosave.sh' root

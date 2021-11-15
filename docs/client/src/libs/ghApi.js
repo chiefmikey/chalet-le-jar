@@ -18,7 +18,7 @@ const getBranches = async (token) => {
           per_page: 100,
           page: resultsPage,
         });
-        console.log(response.data);
+        console.log(response_.data);
         for (let index_ = 0; index_ < response_.data.length; index_ += 1) {
           if (response_.data[index_].name.length > 16) {
             branches.push(response_.data[index_].name);
