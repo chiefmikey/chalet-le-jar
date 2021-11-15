@@ -25,4 +25,4 @@ rm -R worlds
 unzip worlds.zip
 rm worlds.zip
 LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
-su -s /bin/bash -c 'screen -S watch -dm sleep 60; watch -n 300 /home/ubuntu/scripts/server-autosave.sh' root
+su -s /bin/bash -c 'screen -S watch -dm watch -n 150 /home/ubuntu/scripts/server-autosave.sh' root

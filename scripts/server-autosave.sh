@@ -1,5 +1,6 @@
 #!/bin/sh
 
+sleep 60
 cd /home/ubuntu
 screen -S bedrock -X stuff "save hold\n"
 sleep 10
