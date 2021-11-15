@@ -5,9 +5,9 @@ screen -S watch -X quit
 screen -S bedrock -X stuff "save hold\n"
 sleep 10
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
-zip -r worlds/data.zip worlds/level.dat worlds/level.dat_old worlds/levelname.txt
+zip -r worlds/clj/data.zip worlds/clj/level.dat worlds/clj/level.dat_old worlds/clj/levelname.txt
 git add log worlds
-git restore --staged worlds/level.dat worlds/level.dat_old worlds/levelname.txt
+git restore --staged worlds/clj/level.dat worlds/clj/level.dat_old worlds/clj/levelname.txt
 git stash push
 git checkout -b $currentDate-refresh
 git stash pop
@@ -16,12 +16,12 @@ git commit -am $currentDate-refresh
 git push origin $currentDate-refresh
 screen -S bedrock -X stuff "save resume\n"
 screen -S bedrock -X stuff "stop\n"
-rm worlds/data.zip
+rm worlds/clj/data.zip
 git fetch --all
 git reset --hard origin/main
-rm -R worlds/level.dat worlds/level.dat_old worlds/levelname.txt log
-git checkout origin/$currentDate-refresh worlds/data.zip log
-unzip worlds/data.zip -d worlds
-rm worlds/data.zip
+rm -R worlds/clj/level.dat worlds/clj/level.dat_old worlds/clj/levelname.txt log
+git checkout origin/$currentDate-refresh worlds/clj/data.zip log
+unzip worlds/clj/data.zip -d worlds/clj
+rm worlds/clj/data.zip
 LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
 su -s /bin/bash -c 'screen -S watch -dm watch /home/ubuntu/scripts/server-autosave.sh' root
