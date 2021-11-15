@@ -1,22 +1,22 @@
 html,
 body,
 #app {
+  display: flex;
   width: 100%;
   height: 100%;
-  display: flex;
-  overflow: hidden;
-  flex-direction: column;
-  align-items: stretch;
-  text-align: center;
   padding: 0;
   margin: 0;
-  background: #292c2e;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
   color: #fafafa;
+  text-align: center;
+  flex-direction: column;
+  user-select: none;
+  background: #292c2e;
+  align-items: stretch;
   -webkit-font-smoothing: antialiased;
   touch-action: none;
-  user-select: none;
 }
 
 * {
@@ -30,47 +30,47 @@ ul {
 }
 
 h1 {
+  margin-bottom: calc(0.5vmin + 0.5vh);
   font-size: calc(2vmin + 2vw);
   font-weight: 100;
   letter-spacing: 5px;
-  margin-bottom: calc(0.5vmin + 0.5vh);
 }
 
 h5 {
   font-size: calc(2.2vmin + 2.2vh);
-  user-select: none;
-  touch-action: none;
-  text-align: left;
   line-height: 100%;
+  text-align: left;
+  user-select: none;
   transform: rotate(-60deg);
+  touch-action: none;
 }
 
 h6 {
   font-size: calc(2vmin + 2vw);
-  text-align: left;
-  line-height: 80%;
   font-weight: 400;
+  line-height: 80%;
+  text-align: left;
 }
 
 button {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  border: none;
-  background: none;
-  color: #fafafa;
-  font-weight: 600;
-  opacity: 69%;
-  user-select: none;
-  touch-action: none;
+  display: flex;
   margin: calc(0.5vmin + 0.5vh);
   overflow: hidden;
-  text-align: center;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: calc(3.2vmin + 3.2vw);
-  display: flex;
+  font-weight: 600;
+  color: #fafafa;
+  text-align: center;
+  cursor: pointer;
   flex-direction: column;
+  user-select: none;
+  background: none;
+  border: none;
+  outline: none;
+  opacity: 69%;
+  touch-action: none;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  outline: none;
 }
 
 .light-up {
@@ -78,30 +78,30 @@ button {
 }
 
 #main {
+  display: flex;
   width: 100vw;
-  height: 100vh;
   min-width: 355px;
+  height: 100vh;
   min-height: 355px;
   padding: calc(1vmin + 1vh);
-  display: flex;
   flex-direction: column;
-  align-items: center;
   transform-origin: center;
+  align-items: center;
 }
 
 #lock-screen,
 #branches,
 #sure,
 #lock-screen-clear {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
   width: 100%;
   height: 100%;
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: fixed;
-  left: 0;
-  top: 0;
 }
 
 #lock-screen-clear {
@@ -114,57 +114,61 @@ button {
 }
 
 #sure {
-  padding-top: calc(3.5vmin + 3.5vh);
-  background-color: #292c2e;
   z-index: 50;
-  overflow: hidden;
-  justify-content: space-evenly;
   height: 100%;
+  padding-top: calc(3.5vmin + 3.5vh);
+  overflow: hidden;
+  background-color: #292c2e;
+  justify-content: space-evenly;
 }
 
 #branches {
-  padding-top: calc(3.5vmin + 3.5vh);
-  background-color: #292c2e;
-  overflow: scroll;
-  justify-content: flex-start;
   height: 100%;
+  padding-top: calc(3.5vmin + 3.5vh);
+  overflow: scroll;
+  background-color: #292c2e;
+  justify-content: flex-start;
 }
 
 #branches-content {
+  display: flex;
   width: 100%;
   height: 77%;
   overflow: scroll;
+  flex-direction: column;
+  align-items: center;
 }
 
 .branch {
+  width: 50%;
+  white-space: pre;
   list-style-type: none;
   user-select: none;
 }
 
 .selected-branch {
-  background-color: #fafafa;
   color: #292c2e;
+  background-color: #fafafa;
 }
 
 .branch-button {
-  text-decoration: none;
-  font-weight: 400;
-  touch-action: auto;
-  margin: 0;
   padding: calc(1vmin + 1vh);
-  width: 100%;
+  margin: 0;
+  font-weight: 400;
+  text-decoration: none;
+  touch-action: auto;
 }
 
 #modal-button {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
   width: 100%;
   height: 21%;
   padding: calc(1.4vmin + 1.4vw);
   margin: 0;
   background: #9f621d;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  z-index: 99;
 }
 
 .sure-button {
@@ -186,25 +190,25 @@ button {
 
 #modal-header,
 #sure-header {
-  padding-top: calc(1vmin + 1vh);
-  background-color: #292c2e;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
   z-index: 11;
+  width: 100%;
+  padding-top: calc(1vmin + 1vh);
+  background-color: #292c2e;
 }
 
 #close-button {
   position: fixed;
   top: calc(1vmin + 1vh);
   right: calc(1.1vmin + 1.1vh);
-  font-size: calc(1.6vmin + 1.6vw);
-  cursor: pointer;
-  margin: 0;
-  line-height: 1;
-  font-weight: 200;
   z-index: 20;
+  margin: 0;
+  font-size: calc(1.6vmin + 1.6vw);
+  font-weight: 200;
+  line-height: 1;
+  cursor: pointer;
 }
 
 #header {
@@ -216,12 +220,12 @@ button {
 
 #dev-switch {
   position: absolute;
-  left: calc(1vmin + 1vh);
   top: calc(1vmin + 1vh);
+  left: calc(1vmin + 1vh);
   font-size: calc(0.6vmin + 0.6vw);
-  text-decoration: none;
-  color: #fafafa;
   font-weight: 200;
+  color: #fafafa;
+  text-decoration: none;
 }
 
 .dev-on {
@@ -230,99 +234,99 @@ button {
 
 #sign-out {
   position: absolute;
-  right: calc(1vmin + 1vh);
   top: calc(1vmin + 1vh);
+  right: calc(1vmin + 1vh);
   font-size: calc(0.6vmin + 0.6vw);
-  text-decoration: none;
-  color: #fafafa;
   font-weight: 200;
+  color: #fafafa;
+  text-decoration: none;
 }
 
 #all-buttons {
+  display: flex;
   width: 100%;
   height: 65%;
-  display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 #top-buttons {
   display: flex;
-  flex-direction: row;
   width: 100%;
   height: 100%;
+  flex-direction: row;
   justify-content: center;
 }
 
 #bottom-buttons {
   display: flex;
-  flex-direction: row;
   width: 100%;
   height: 100%;
+  flex-direction: row;
   justify-content: center;
 }
 
 .button-text {
   display: flex;
+  pointer-events: none;
   flex-direction: column;
   align-items: left;
-  pointer-events: none;
 }
 
 #button-on {
   width: 100%;
-  background-color: #0c6235;
   margin-left: 0;
+  background-color: #0c6235;
 }
 
 #button-off {
-  background-color: #671518;
   width: 100%;
   margin-right: 0;
+  background-color: #671518;
 }
 
 #button-save {
-  background-color: #0b61b0;
   width: 100%;
+  background-color: #0b61b0;
 }
 
 #button-refresh {
-  background-color: #6c3371;
   width: 100%;
   margin-left: 0;
+  background-color: #6c3371;
 }
 
 #button-rewind {
-  background-color: #9f621d;
   width: 100%;
   margin-right: 0;
+  background-color: #9f621d;
 }
 
 #console {
-  margin-top: calc(0.5vmin + 0.5vh);
-  border: calc(1vmin + 1vh) solid transparent;
-  background-color: #454a4d;
+  z-index: 1;
   width: 100%;
   height: 40%;
+  margin-top: calc(0.5vmin + 0.5vh);
   overflow: scroll;
-  z-index: 1;
+  background-color: #454a4d;
+  border: calc(1vmin + 1vh) solid transparent;
 }
 
 #prod-console,
 #dev-console {
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  font-family: monospace;
   font-size: calc(1.5vmin + 1.5vw);
   color: #fafafa9b;
-  font-family: monospace;
   text-align: left;
   word-break: break-word;
   white-space: pre-wrap;
-  overflow: scroll;
+  user-select: text;
   overflow-anchor: none;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  width: 100%;
-  height: 100%;
-  user-select: text;
 }
 
 #prod-console::-webkit-scrollbar,
