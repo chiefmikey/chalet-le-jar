@@ -2,7 +2,7 @@
 
 cd /home/ubuntu
 screen -S watch -X quit
-screen -S bedrock -X stuff "save hold\n"
+screen -S bedrock -X stuff "stop\n"
 sleep 10
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
 zip -r worlds/clj/data.zip worlds/clj/level.dat worlds/clj/level.dat_old worlds/clj/levelname.txt
@@ -15,8 +15,6 @@ echo "Current: $currentDate" >> log/rewind-log.txt
 echo "Backup: $branch" >> log/rewind-log.txt
 git commit -am $currentDate-rewind
 git push origin $currentDate-rewind
-screen -S bedrock -X stuff "save resume\n"
-screen -S bedrock -X stuff "stop\n"
 rm worlds/clj/data.zip
 git fetch --all
 git reset --hard origin/main
