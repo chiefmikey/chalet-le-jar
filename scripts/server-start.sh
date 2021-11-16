@@ -12,7 +12,6 @@ git fetch --all
 git reset --hard origin/main
 rm -r worlds log
 git checkout origin/$latest worlds log
-rm -R worlds/clj/level.dat worlds/clj/level.dat_old worlds/clj/levelname.txt
 unzip worlds/clj/data.zip
 rm worlds/clj/data.zip
 echo "Latest: $latest" >> log/startup-log.txt
