@@ -19,6 +19,7 @@ screen -S bedrock -X stuff "stop\n"
 rm worlds/clj/data.zip
 git fetch --all
 git reset --hard origin/main
+rm -r worlds log
 git checkout origin/$currentDate-refresh worlds log
 rm -R worlds/clj/level.dat worlds/clj/level.dat_old worlds/clj/levelname.txt log
 unzip worlds/clj/data.zip
