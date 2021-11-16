@@ -42,6 +42,10 @@ touch /home/ec2-user/$INSTANCE_ALREADY_STARTED
     echo \
       ".:53 {
         rewrite name exact mco.lbsg.net ip.chaletlejar.com
+        rewrite name exact hivebedrock.network ip.chaletlejar.com
+        rewrite name exact mco.mineplex.com ip.chaletlejar.com
+        rewrite name exact mco.cubecraft.net ip.chaletlejar.com
+        rewrite name exact play.inpvp.net ip.chaletlejar.com
         forward . 8.8.8.8:53
       }" \
     >> /home/ec2-user/coredns/Corefile
