@@ -42,7 +42,7 @@ touch /home/ec2-user/$INSTANCE_ALREADY_STARTED
     echo \
       ".:53 {
         rewrite name exact mco.lbsg.net ip.chaletlejar.com
-        forward . 1.1.1.1:53
+        forward . 8.8.8.8:53
       }" \
     >> /home/ec2-user/coredns/Corefile
     chmod +x /home/ec2-user/coredns/coredns

@@ -20,7 +20,7 @@ screen -S bedrock -X stuff "stop\n"
 rm worlds/clj/data.zip
 git fetch --all
 git reset --hard origin/main
-git checkout origin/$branch worlds/clj/data.zip
+git checkout origin/$branch worlds
 rm worlds/clj/level.dat worlds/clj/level.dat_old worlds/clj/levelname.txt
 unzip worlds/clj/data.zip
 rm worlds/clj/data.zip
