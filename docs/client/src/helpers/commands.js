@@ -3,6 +3,7 @@ import {
   ListCommandInvocationsCommand,
 } from '@aws-sdk/client-ssm';
 import ssm from '../libs/ssmClient.js';
+import environment from '../../../environment.js';
 
 const setScript = (
   command,
@@ -48,7 +49,7 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
     try {
       const input = {
         CommandId: id,
-        InstanceId: 'i-0c35872f8d010202c',
+        InstanceId: environment.serverInstanceId,
         Details: true,
       };
       const data = await launch.send(new ListCommandInvocationsCommand(input));
@@ -123,7 +124,7 @@ const sendCommand = async (
   try {
     const parameters = {
       DocumentName: 'AWS-RunShellScript',
-      InstanceIds: ['i-0c35872f8d010202c'],
+      InstanceIds: [environment.serverInstanceId],
       Comment: 'Sending shell script...',
       Parameters: {
         commands: [

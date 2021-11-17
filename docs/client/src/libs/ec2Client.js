@@ -1,8 +1,9 @@
 import { EC2Client } from '@aws-sdk/client-ec2';
 import { fromCognitoIdentityPool } from '@aws-sdk/credential-providers';
+import environment from '../../../environment.js';
 
-const REGION = 'us-east-2';
-const IDENTITY_POOL_ID = 'us-east-2:9de629c9-c774-42ef-b641-d06eb430f8d8';
+const REGION = environment.region;
+const IDENTITY_POOL_ID = environment.identityPoolId;
 
 const ec2 = async (ID_TOKEN) => {
   try {

@@ -3,9 +3,10 @@ import {
   StopInstancesCommand,
 } from '@aws-sdk/client-ec2';
 import ec2 from '../libs/ec2Client.js';
+import environment from '../../../environment.js';
 
 const parameters = {
-  InstanceIds: ['i-0c35872f8d010202c', 'i-047a916c90d7d076e'],
+  InstanceIds: [environment.serverInstanceId, environment.dnsInstanceId],
 };
 let ready = {};
 let tries = 0;
