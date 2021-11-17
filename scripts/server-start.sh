@@ -10,7 +10,7 @@ apt upgrade -y
 git fetch --all
 git reset --hard origin/main
 rm -r worlds log
-git checkout origin/$latest worlds log
+git checkout origin/21-11-16-16-00-20-shutdown worlds log
 unzip worlds/clj/data.zip
 rm worlds/clj/data.zip
 LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
