@@ -7,9 +7,9 @@ pw=$(aws secretsmanager --region us-east-2 get-secret-value --secret-id repo | j
 sleep 10
 git remote remove origin
 git remote add origin https://chalet-le-jar:${pw}@github.com/chiefmikey/chalet-le-jar.git
-git remote update
 git fetch --all
 git checkout main
+git pull origin main
 git reset --hard origin/main
 rm -r worlds log
 git checkout origin/$latest worlds log
