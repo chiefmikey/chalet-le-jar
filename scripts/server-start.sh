@@ -10,7 +10,7 @@ git remote add origin https://chalet-le-jar:${pw}@github.com/chiefmikey/chalet-l
 git fetch --all
 git reset --hard origin/main
 git checkout origin/$latest worlds log
-unzip worlds/clj/data.zip
+unzip -o worlds/clj/data.zip
 rm worlds/clj/data.zip
 echo "Latest: $latest" >> log/startup-log.txt
 killall screen
