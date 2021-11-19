@@ -2,6 +2,7 @@
 
 cd /home/ubuntu
 screen -S watch -X quit
+screen -S bedrock -X stuff "say Save in progress...\n"
 screen -S bedrock -X stuff "save hold\n"
 sleep 10
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
@@ -15,5 +16,6 @@ echo "Save: $currentDate" >> log/save-log.txt
 git commit -am $currentDate-save
 git push origin $currentDate-save
 screen -S bedrock -X stuff "save resume\n"
+screen -S bedrock -X stuff "say Save complete\n"
 rm worlds/clj/data.zip
 su -s /bin/bash -c 'screen -S watch -dm watch /home/ubuntu/scripts/server-autosave.sh' root

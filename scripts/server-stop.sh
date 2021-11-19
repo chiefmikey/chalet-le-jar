@@ -2,6 +2,8 @@
 
 cd /home/ubuntu
 screen -S watch -X quit
+screen -S bedrock -X stuff "say Stopping in 10...9...8...\n"
+sleep 10
 screen -S bedrock -X stuff "stop\n"
 sleep 10
 killall screen

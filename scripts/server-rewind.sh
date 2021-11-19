@@ -2,6 +2,7 @@
 
 cd /home/ubuntu
 screen -S watch -X quit
+screen -S bedrock -X stuff "say Rewind in progress...\n"
 screen -S bedrock -X stuff "stop\n"
 sleep 10
 killall screen
