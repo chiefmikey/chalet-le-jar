@@ -7,7 +7,7 @@ sleep 10
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
 zip -r worlds/clj/data.zip worlds/clj/level.dat worlds/clj/level.dat_old worlds/clj/levelname.txt
 git add log worlds
-git restore --staged worlds/clj/level.dat worlds/clj/level.dat_old worlds/clj/levelname.txt
+git restore --staged worlds/clj/level.dat worlds/clj/level.dat_old worlds/clj/levelname.txt worlds/clj/db/lost
 git stash push
 git checkout -b $currentDate-save
 git stash pop
