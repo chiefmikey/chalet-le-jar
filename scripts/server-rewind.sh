@@ -19,7 +19,6 @@ git push origin $currentDate-rewind
 rm worlds/clj/data.zip
 git fetch --all
 git reset --hard origin/main
-rm -r worlds
 git checkout origin/$branch worlds
 unzip worlds/clj/data.zip
 rm worlds/clj/data.zip

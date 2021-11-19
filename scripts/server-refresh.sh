@@ -18,7 +18,6 @@ git push origin $currentDate-refresh
 rm worlds/clj/data.zip
 git fetch --all
 git reset --hard origin/main
-rm -r worlds log
 git checkout origin/$currentDate-refresh worlds log
 unzip worlds/clj/data.zip
 rm worlds/clj/data.zip
