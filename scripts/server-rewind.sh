@@ -2,7 +2,13 @@
 
 cd /home/ubuntu
 screen -S watch -X quit
-screen -S bedrock -X stuff "say Rewind in progress...\n"
+screen -S bedrock -X stuff "say Rewinding in 10...9...8...\n"
+screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
+sleep 1
+screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
+sleep 1
+screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
+sleep 8
 screen -S bedrock -X stuff "stop\n"
 sleep 10
 killall screen
