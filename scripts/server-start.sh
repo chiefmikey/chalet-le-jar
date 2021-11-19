@@ -8,6 +8,7 @@ sleep 10
 git remote remove origin
 git remote add origin https://chalet-le-jar:${pw}@github.com/chiefmikey/chalet-le-jar.git
 git fetch --all
+git checkout main
 git reset --hard origin/main
 git checkout origin/$latest worlds log
 unzip -o worlds/clj/data.zip

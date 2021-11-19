@@ -15,4 +15,3 @@ git stash pop
 echo "Shutdown: $currentDate" >> log/shutdown-log.txt
 git commit -am $currentDate-shutdown
 git push origin $currentDate-shutdown
-rm worlds/clj/data.zip

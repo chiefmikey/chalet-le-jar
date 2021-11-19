@@ -13,12 +13,12 @@ git config user.name chalet-le-jar
 git config user.email chaletlejar@gmail.com
 git remote add origin https://chalet-le-jar:${pw}@github.com/chiefmikey/chalet-le-jar.git
 git fetch --all
+git add permissions.json server.properties whitelist.json
 git checkout main
 git reset --hard origin/main
 chmod +x scripts/server-save.sh scripts/server-stop.sh scripts/server-refresh.sh scripts/server-rewind.sh
 chown -R ubuntu:root /home/ubuntu
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
 echo "Init: $currentDate" >> log/init-log.txt
-git add permissions.json server.properties whitelist.json log
 git commit -am "Server initialized"
 git push origin main

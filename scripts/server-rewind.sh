@@ -18,6 +18,7 @@ git commit -am $currentDate-rewind
 git push origin $currentDate-rewind
 rm worlds/clj/data.zip
 git fetch --all
+git checkout main
 git reset --hard origin/main
 git checkout origin/$branch worlds
 unzip -o worlds/clj/data.zip
