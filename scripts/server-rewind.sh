@@ -4,6 +4,7 @@ cd /home/ubuntu
 screen -S watch -X quit
 screen -S bedrock -X stuff "stop\n"
 sleep 10
+killall screen
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
 zip -r worlds/clj/data.zip worlds/clj/level.dat worlds/clj/level.dat_old worlds/clj/levelname.txt
 git add log worlds
