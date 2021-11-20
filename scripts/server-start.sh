@@ -10,9 +10,7 @@ git remote add origin https://chalet-le-jar:${pw}@github.com/chiefmikey/chalet-l
 git fetch --all
 git checkout main
 git reset --hard origin/main
-git checkout origin/$latest worlds log
-unzip -o worlds/clj/data.zip
-rm worlds/clj/data.zip
+unzip -o backups/$latest.zip -d /home/ubuntu
 echo "Latest: $latest" >> log/startup-log.txt
 killall screen
 LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
