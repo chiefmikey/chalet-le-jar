@@ -16,7 +16,7 @@ git checkout -b $currentDate-autosave
 git stash pop
 echo "Autosave: $currentDate" >> log/autosave-log.txt
 git commit -am $currentDate-autosave
-git push origin $currentDate-autosave
 screen -S bedrock -X stuff "save resume\n"
+git push origin $currentDate-autosave
 screen -S bedrock -X stuff "say autosave complete\n"
 rm worlds/clj/data.zip

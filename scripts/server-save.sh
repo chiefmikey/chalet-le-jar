@@ -16,9 +16,8 @@ git checkout -b $currentDate-save
 git stash pop
 echo "Save: $currentDate" >> log/save-log.txt
 git commit -am $currentDate-save
-git push origin $currentDate-save
 screen -S bedrock -X stuff "save resume\n"
+git push origin $currentDate-save
 screen -S bedrock -X stuff "say Save complete\n"
-screen -S bedrock -X stuff "playsound beacon.deactivate @a\n"
 rm worlds/clj/data.zip
 su -s /bin/bash -c 'screen -S watch -dm watch /home/ubuntu/scripts/server-autosave.sh' root

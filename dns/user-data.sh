@@ -31,6 +31,11 @@ touch /home/ec2-user/$INSTANCE_ALREADY_STARTED
         rewrite name exact play.galaxite.net ip.chaletlejar.com
         rewrite name exact play.pixelparadise.gg ip.chaletlejar.com
         forward . 8.8.8.8:53
+        bufsize 1232
+        errors
+        health {
+          lameduck 20s
+        }
       }" \
     >> /home/ec2-user/coredns/Corefile
     chmod +x /home/ec2-user/coredns/coredns

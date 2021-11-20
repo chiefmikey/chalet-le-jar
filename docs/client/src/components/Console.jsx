@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 import { useEffect } from 'preact/hooks';
 import { console } from 'console-events';
 
-const Console = ({ statement }) => {
+const Console = function ({ statement }) {
   useEffect(() => {
     console.addEventListener('log', (error) => {
       if (error.arguments.length > 0) {
