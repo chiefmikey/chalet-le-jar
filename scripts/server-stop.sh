@@ -1,6 +1,7 @@
 #!/bin/sh
 
 cd /home/ubuntu
+currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
 screen -S watch -X quit
 screen -S bedrock -X stuff "playsound beacon.activate @a\n"
 sleep 1
@@ -29,13 +30,12 @@ sleep 1
 screen -S bedrock -X stuff "stop\n"
 sleep 10
 killall screen
-currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
-zip -r worlds/clj/data.zip worlds/clj/level.dat worlds/clj/level.dat_old worlds/clj/levelname.txt
-git add worlds log
-git restore --staged worlds/clj/level.dat worlds/clj/level.dat_old worlds/clj/levelname.txt worlds/clj/db/lost
-git stash push
+zip -r backups/$currentDate.zip worlds
+git restore --staged .
 git checkout -b $currentDate-shutdown
-git stash pop
 echo "Shutdown: $currentDate" >> log/shutdown-log.txt
+git add log
 git commit -am $currentDate-shutdown
 git push origin $currentDate-shutdown
+cd /home/ubuntu/backups
+ls -1t | tail -n +11 | xargs -d '\n' rm -f
