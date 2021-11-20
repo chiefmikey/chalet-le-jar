@@ -24,8 +24,6 @@ screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
 sleep 1
 screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
 sleep 1
-screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
-sleep 1
 screen -S bedrock -X stuff "playsound beacon.deactivate @a\n"
 sleep 1
 screen -S bedrock -X stuff "stop\n"
