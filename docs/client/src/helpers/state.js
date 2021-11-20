@@ -59,7 +59,7 @@ const interval = async (command, launch, end, token, complete, error) => {
         SendCommand = StartInstancesCommand;
       }
       if (command === 'STOP') {
-        SendCommand = StopInstancesCommand;
+        SendCommand = StopInstancesCommand({ Hibernate: true });
       }
       const data = await launch.send(new SendCommand(parameters));
       if (data) {
