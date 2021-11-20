@@ -2,13 +2,32 @@
 
 cd /home/ubuntu
 screen -S watch -X quit
-screen -S bedrock -X stuff "say Refreshing in 10...9...8...\n"
+screen -S bedrock -X stuff "playsound beacon.activate @a\n"
+sleep 2
+screen -S bedrock -X stuff "say refreshing in 10...9...8...7...6...5...4...3...2...1...\n"
+sleep 2
 screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
-sleep 1
+sleep 2
 screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
-sleep 1
+sleep 2
 screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
-sleep 8
+sleep 2
+screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
+sleep 2
+screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
+sleep 2
+screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
+sleep 2
+screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
+sleep 2
+screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
+sleep 2
+screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
+sleep 2
+screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
+sleep 2
+screen -S bedrock -X stuff "playsound beacon.deactivate @a\n"
+sleep 2
 screen -S bedrock -X stuff "stop\n"
 sleep 10
 killall screen

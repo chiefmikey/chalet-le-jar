@@ -2,8 +2,9 @@
 
 cd /home/ubuntu
 screen -S watch -X quit
-screen -S bedrock -X stuff "say Save in progress...\n"
 screen -S bedrock -X stuff "playsound beacon.activate @a\n"
+sleep 2
+screen -S bedrock -X stuff "say save in progress...\n"
 screen -S bedrock -X stuff "save hold\n"
 sleep 10
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
