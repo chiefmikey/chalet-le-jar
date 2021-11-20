@@ -38,4 +38,4 @@ git add log
 git commit -am $currentDate-shutdown
 git push origin $currentDate-shutdown
 cd /home/ubuntu/backups
-ls -1t | tail -n +11 | xargs -d '\n' rm -f
+ls -1t | tail -n +11 | xargs -d "\n" rm -f

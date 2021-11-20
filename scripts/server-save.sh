@@ -17,6 +17,6 @@ git add log
 git commit -am $currentDate-save
 git push origin $currentDate-save
 cd /home/ubuntu/backups
-ls -1t | tail -n +11 | xargs -d '\n' rm -f
+ls -1t | tail -n +11 | xargs -d "\n" rm -f
 screen -S bedrock -X stuff "say Save complete\n"
 su -s /bin/bash -c 'screen -S watch -dm watch /home/ubuntu/scripts/server-autosave.sh' root
