@@ -31,7 +31,7 @@ sleep 1
 screen -S bedrock -X stuff "stop\n"
 sleep 10
 killall screen
-git fetch --all
+git fetch origin main
 git checkout main
 git reset --hard origin/main
 LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root

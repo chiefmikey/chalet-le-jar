@@ -12,7 +12,7 @@ git init
 git config user.name chalet-le-jar
 git config user.email chaletlejar@gmail.com
 git remote add origin https://chalet-le-jar:${pw}@github.com/chiefmikey/chalet-le-jar.git
-git fetch --all
+git fetch origin main
 git add permissions.json server.properties whitelist.json
 git checkout main
 git reset --hard origin/main
