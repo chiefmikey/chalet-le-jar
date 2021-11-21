@@ -16,7 +16,7 @@ git fetch --all
 git add permissions.json server.properties whitelist.json
 git checkout main
 git reset --hard origin/main
-chmod +x scripts/server-save.sh scripts/server-stop.sh scripts/server-refresh.sh scripts/server-rewind.sh
+chmod +x scripts/server-save.sh scripts/server-stop.sh scripts/server-refresh.sh scripts/server-rewind.sh scripts/server-push.sh
 chown -R ubuntu:root /home/ubuntu
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
 echo "Init: $currentDate" >> log/init-log.txt
