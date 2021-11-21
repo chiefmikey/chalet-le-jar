@@ -6,7 +6,11 @@ import ec2 from '../libs/ec2Client.js';
 import environment from '../../../environment.js';
 
 const parameters = {
-  InstanceIds: [environment.serverInstanceId, environment.dnsInstanceId],
+  InstanceIds: [environment.serverInstanceId],
+};
+const parameters2 = {
+  InstanceIds: [environment.dnsInstanceId],
+  Hibernate: true,
 };
 let ready = {};
 let tries = 0;
@@ -59,9 +63,10 @@ const interval = async (command, launch, end, token, complete, error) => {
         SendCommand = StartInstancesCommand;
       }
       if (command === 'STOP') {
-        SendCommand = StopInstancesCommand({ Hibernate: true });
+        SendCommand = StopInstancesCommand;
       }
       const data = await launch.send(new SendCommand(parameters));
+      await launch.send(new SendCommand(parameters2));
       if (data) {
         if (data.StartingInstances) {
           return changeState(
