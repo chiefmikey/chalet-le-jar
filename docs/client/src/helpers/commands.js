@@ -80,7 +80,7 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
       error();
       return error_;
     }
-  }, 5000);
+  }, 10_000);
 };
 
 let checkInterval;
@@ -106,7 +106,7 @@ const checkSend = (
       selectedBranch,
       latestBranch,
     );
-  }, 10_000);
+  }, 15_000);
 };
 
 let trySend = 0;

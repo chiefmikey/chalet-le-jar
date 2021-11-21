@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sleep 600
+sleep 360
 cd /home/ubuntu
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
 screen -S bedrock -X stuff "playsound beacon.activate @a\n"
