@@ -61,7 +61,7 @@ class App extends Component {
         const allBranches = Array.isArray(get) ? get : [];
         return this.setState({
           modal: true,
-          allBranches: allBranches.reverse(),
+          allBranches: allBranches.reverse().splice(0, 10),
         });
       }
       document.querySelector('#modal-button').classList.remove('light-up');
