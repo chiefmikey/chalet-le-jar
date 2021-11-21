@@ -140,7 +140,6 @@ button {
 }
 
 .branch {
-  width: 50%;
   white-space: pre;
   list-style-type: none;
   user-select: none;
@@ -152,11 +151,15 @@ button {
 }
 
 .branch-button {
+  display: flex;
+  width: 100%;
   padding: calc(1vmin + 1vh);
   margin: 0;
   font-weight: 400;
   text-decoration: none;
+  flex-direction: row;
   touch-action: auto;
+  justify-content: flex-start;
 }
 
 #modal-button {

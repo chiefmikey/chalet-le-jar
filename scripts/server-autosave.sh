@@ -3,9 +3,6 @@
 sleep 360
 cd /home/ubuntu
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
-screen -S bedrock -X stuff "playsound beacon.activate @a\n"
-sleep 2
-screen -S bedrock -X stuff "say autosave in progress...\n"
 screen -S bedrock -X stuff "save hold\n"
 sleep 10
 cp -r worlds/clj backups/$currentDate-autosave
@@ -18,4 +15,3 @@ git commit -am $currentDate-autosave
 git push origin $currentDate-autosave
 cd /home/ubuntu/backups
 ls -1t | tail -n +11 | xargs -d "\n" rm -rf
-screen -S bedrock -X stuff "say autosave complete\n"
