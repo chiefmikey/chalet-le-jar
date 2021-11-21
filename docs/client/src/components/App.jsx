@@ -60,9 +60,24 @@ class App extends Component {
       if (!modal) {
         const get = await getBranches(token);
         const allBranches = Array.isArray(get) ? get : [];
+        const reverseOrder = allBranches.reverse();
+        const saveBranches = reverseOrder.filter(
+          (branch) => branch.includes('save/') && !branch.includes('autosave/'),
+        );
+        const spliceSave = saveBranches.splice(
+          0,
+          saveBranches.length < 6 ? saveBranches.length - 1 : 5,
+        );
+        const autosaveBranches = reverseOrder.filter((branch) =>
+          branch.includes('autosave/'),
+        );
+        const spliceAutosave = autosaveBranches.splice(
+          0,
+          autosaveBranches.length < 11 ? autosaveBranches.length - 1 : 10,
+        );
         return this.setState({
           modal: true,
-          allBranches: allBranches.reverse().splice(0, 10),
+          allBranches: [...spliceAutosave, ...spliceSave],
         });
       }
       document.querySelector('#modal-button').classList.remove('light-up');
