@@ -22,3 +22,4 @@ currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
 echo "Init: $currentDate" >> log/init-log.txt
 git commit -am "Server initialized"
 git push origin main
+mkdir /home/ubuntu/backups

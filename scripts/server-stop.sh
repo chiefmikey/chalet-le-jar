@@ -30,7 +30,7 @@ sleep 1
 screen -S bedrock -X stuff "stop\n"
 sleep 10
 killall screen
-zip -r backups/$currentDate.zip worlds
+cp -r worlds/clj backups/$currentDate
 git restore --staged .
 git checkout -b $currentDate-shutdown
 echo "Shutdown: $currentDate" >> log/shutdown-log.txt
@@ -38,4 +38,4 @@ git add log
 git commit -am $currentDate-shutdown
 git push origin $currentDate-shutdown
 cd /home/ubuntu/backups
-ls -1t | tail -n +11 | xargs -d "\n" rm -f
+ls -1t | tail -n +11 | xargs -d "\n" rm -rf

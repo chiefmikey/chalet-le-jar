@@ -31,11 +31,8 @@ sleep 1
 screen -S bedrock -X stuff "stop\n"
 sleep 10
 killall screen
-zip -r backups/$currentDate.zip worlds
 git fetch --all
 git checkout main
 git reset --hard origin/main
-unzip -o backups/$currentDate.zip -d /home/ubuntu
-rm backups/$currentDate.zip
 LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
 su -s /bin/bash -c 'screen -S watch -dm watch /home/ubuntu/scripts/server-autosave.sh' root
