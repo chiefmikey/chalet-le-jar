@@ -27,7 +27,8 @@ class App extends Component {
   };
 
   onLogout = () => {
-    this.setState({ loggedIn: false });
+    console.log('User signed out');
+    this.setState({ loggedIn: false, token: undefined });
   };
 
   onSignIn = (googleUser) => {
