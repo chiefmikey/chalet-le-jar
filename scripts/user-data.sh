@@ -20,7 +20,6 @@ chmod +x scripts/server-save.sh scripts/server-stop.sh scripts/server-refresh.sh
 mkdir /home/ubuntu/backups
 mkdir /home/ubuntu/backups/save
 mkdir /home/ubuntu/backups/autosave
-mkdir /home/ubuntu/backups/shutdown
 mkdir /home/ubuntu/backups/start
 chown -R ubuntu:root /home/ubuntu
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
