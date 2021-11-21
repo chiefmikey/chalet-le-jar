@@ -15,4 +15,13 @@ cp -r worlds/clj backups/$currentDate-start
 killall screen
 LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
 su -s /bin/bash -c 'screen -S watch -dm watch /home/ubuntu/scripts/server-autosave.sh' root
-currentDate=$currentDate su -s /bin/bash -c 'screen -S push -dm currentDate=$currentDate /home/ubuntu/scripts/server-push.sh' root
+git add log scripts
+cd /home/ubuntu/backups
+git add $currentDate-start
+git stash push
+git checkout -b $currentDate-start
+git stash pop
+echo "Start: $currentDate" >> log/startup-log.txt
+git commit -am $currentDate-start
+currentDate=$currentDate su -s /bin/bash -c 'screen -S push -dm /home/ubuntu/scripts/server-push.sh' root
+
