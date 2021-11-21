@@ -5,13 +5,13 @@ cd /home/ubuntu
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
 screen -S bedrock -X stuff "save hold\n"
 sleep 10
-cp -r worlds/clj backups/$currentDate-autosave
+cp -r worlds/clj backups/autosave/$currentDate
 screen -S bedrock -X stuff "save resume\n"
 git restore --staged .
-git checkout -b $currentDate-autosave
+git checkout -b "autosave/$currentDate"
 echo "Autosave: $currentDate" >> log/autosave-log.txt
 git add log
-git commit -am $currentDate-autosave
-git push origin $currentDate-autosave
-cd /home/ubuntu/backups
+git commit -am "autosave/$currentDate"
+git push origin "autosave/$currentDate"
+cd /home/ubuntu/backups/autosave
 ls -1t | tail -n +11 | xargs -d "\n" rm -rf

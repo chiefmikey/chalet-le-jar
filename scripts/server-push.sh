@@ -1,7 +1,7 @@
 #!/bin/sh
 
 cd /home/ubuntu
-git push origin $currentDate-start
+git push origin "start/$currentDate"
 git checkout main
-rm -r backups/$currentDate-start
+rm -r backups/start/$currentDate
 git restore --staged .

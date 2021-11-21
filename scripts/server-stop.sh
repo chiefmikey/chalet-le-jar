@@ -30,12 +30,12 @@ sleep 1
 screen -S bedrock -X stuff "stop\n"
 sleep 10
 killall screen
-cp -r worlds/clj backups/$currentDate-shutdown
+cp -r worlds/clj backups/autosave/$currentDate
 git restore --staged .
-git checkout -b $currentDate-shutdown
+git checkout -b "autosave/$currentDate"
 echo "Shutdown: $currentDate" >> log/shutdown-log.txt
 git add log
-git commit -am $currentDate-shutdown
-git push origin $currentDate-shutdown
-cd /home/ubuntu/backups
+git commit -am "autosave/$currentDate"
+git push origin "autosave/$currentDate"
+cd /home/ubuntu/backups/autosave
 ls -1t | tail -n +11 | xargs -d "\n" rm -rf
