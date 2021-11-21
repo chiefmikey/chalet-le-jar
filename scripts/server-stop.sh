@@ -30,7 +30,7 @@ sleep 1
 screen -S bedrock -X stuff "stop\n"
 sleep 10
 killall screen
-cp -r worlds/clj backups/$currentDate
+cp -r worlds/clj backups/$currentDate-shutdown
 git restore --staged .
 git checkout -b $currentDate-shutdown
 echo "Shutdown: $currentDate" >> log/shutdown-log.txt

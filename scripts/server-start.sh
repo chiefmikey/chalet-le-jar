@@ -11,17 +11,17 @@ git remote add origin https://chalet-le-jar:${pw}@github.com/chiefmikey/chalet-l
 git fetch --all
 git checkout main
 git reset --hard origin/main
-cp -r worlds/clj backups/$currentDate
+cp -r worlds/clj backups/$currentDate-start
 killall screen
 LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
 su -s /bin/bash -c 'screen -S watch -dm watch /home/ubuntu/scripts/server-autosave.sh' root
-git add backups/$currentDate log
+git add backups/$currentDate-start log
 git stash push
 git checkout -b $currentDate-start
 git stash pop
 echo "Start: $currentDate" >> log/startup-log.txt
-git commit backups/$currentDate log -m $currentDate-start
+git commit backups/$currentDate-start log -m $currentDate-start
 git push origin $currentDate-start
 git checkout main
-rm -r backups/$currentDate
+rm -r backups/$currentDate-start
 git restore --staged .

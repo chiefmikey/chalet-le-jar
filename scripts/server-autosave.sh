@@ -8,7 +8,7 @@ sleep 2
 screen -S bedrock -X stuff "say autosave in progress...\n"
 screen -S bedrock -X stuff "save hold\n"
 sleep 10
-cp -r worlds/clj backups/$currentDate
+cp -r worlds/clj backups/$currentDate-autosave
 screen -S bedrock -X stuff "save resume\n"
 git restore --staged .
 git checkout -b $currentDate-autosave
