@@ -4,7 +4,7 @@ apt update -y
 apt upgrade -y
 apt install -y wget zip unzip git jq awscli curl
 wget -O bedrock-server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.41.01.zip
-unzip bedrock-server.zip
+unzip -o bedrock-server.zip
 rm bedrock-server.zip
 pw=$(aws secretsmanager --region us-east-2 get-secret-value --secret-id repo | jq -r ".SecretString" | jq -r ".repo")
 sleep 10
