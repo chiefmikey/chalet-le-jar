@@ -64,20 +64,14 @@ class App extends Component {
         const saveBranches = reverseOrder.filter(
           (branch) => branch.includes('save/') && !branch.includes('autosave/'),
         );
-        const spliceSave = saveBranches.splice(
-          0,
-          saveBranches.length < 6 ? saveBranches.length - 1 : 5,
-        );
+        const sliceSave = saveBranches.slice(0, 5);
         const autosaveBranches = reverseOrder.filter((branch) =>
           branch.includes('autosave/'),
         );
-        const spliceAutosave = autosaveBranches.splice(
-          0,
-          autosaveBranches.length < 11 ? autosaveBranches.length - 1 : 10,
-        );
+        const sliceAutosave = autosaveBranches.slice(0, 9);
         return this.setState({
           modal: true,
-          allBranches: [...spliceAutosave, ...spliceSave],
+          allBranches: [...sliceSave, ...sliceAutosave],
         });
       }
       document.querySelector('#modal-button').classList.remove('light-up');
