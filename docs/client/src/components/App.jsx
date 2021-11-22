@@ -34,7 +34,11 @@ class App extends Component {
   onSignIn = (googleUser) => {
     const { id_token } = googleUser.getAuthResponse();
     const email = googleUser.getBasicProfile().getEmail();
-    if (email === 'wolfemikl@gmail.com') {
+    if (
+      email === 'wolfemikl@gmail.com' ||
+      email === 'willfinn33@gmail.com' ||
+      email === 'brianna@viviani.net'
+    ) {
       document.querySelector('#lock-screen').remove();
       this.onLogin(id_token);
     }
