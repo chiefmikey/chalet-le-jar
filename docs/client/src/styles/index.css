@@ -159,7 +159,7 @@ button {
   text-decoration: none;
   flex-direction: row;
   touch-action: auto;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 #modal-button {
