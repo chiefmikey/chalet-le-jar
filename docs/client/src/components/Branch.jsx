@@ -8,7 +8,7 @@ const Branch = ({ branches, submitBranch }) =>
         type="button"
         className="branch-button"
         onClick={submitBranch}
-      >{`${branch.slice(0, -9).replace('/', ':')}@${branch.slice(
+      >{`${branch.slice(0, -9).replace('/', ' : ')} : ${branch.slice(
         -8,
         -3,
       )}`}</button>
