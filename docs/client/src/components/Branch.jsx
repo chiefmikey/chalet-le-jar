@@ -8,7 +8,7 @@ const Branch = ({ branches, submitBranch }) =>
         type="button"
         className="branch-button"
         onClick={submitBranch}
-      >{`${branch}`}</button>
+      >{`${branch.slice(0, -3)}`}</button>
     </li>
   ));
 
