@@ -1,9 +1,9 @@
 import {
-  SendCommandCommand,
   ListCommandInvocationsCommand,
+  SendCommandCommand,
 } from '@aws-sdk/client-ssm';
-import ssm from '../libs/ssmClient.js';
 import environment from '../../../environment.js';
+import ssm from '../libs/ssmClient.js';
 
 const setScript = (
   command,

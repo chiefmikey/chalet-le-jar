@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import { h, Component } from 'preact';
+import { Component, h } from 'preact';
 import Buttons from './Buttons.jsx';
 import Console from './Console.jsx';
 import SignIn from './SignIn.jsx';
