@@ -1,5 +1,6 @@
 import { SSMClient } from '@aws-sdk/client-ssm';
 import { fromCognitoIdentityPool } from '@aws-sdk/credential-providers';
+
 import environment from '../../../environment.js';
 
 const REGION = environment.region;

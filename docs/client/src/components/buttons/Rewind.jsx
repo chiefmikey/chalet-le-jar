@@ -1,6 +1,6 @@
-// eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
 import propTypes from 'prop-types';
+
 import commands from '../../helpers/commands.js';
 
 let event;
@@ -38,7 +38,6 @@ export const submitRewind = (token, branch) => {
   }
 };
 
-// eslint-disable-next-line react/function-component-definition
 export const Rewind = ({ lightUp, lightOff, token, toggleModal }) => (
   <button
     type="button"

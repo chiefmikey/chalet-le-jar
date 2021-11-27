@@ -3,6 +3,7 @@ import {
   GetSecretValueCommand,
 } from '@aws-sdk/client-secrets-manager';
 import { fromCognitoIdentityPool } from '@aws-sdk/credential-providers';
+
 import environment from '../../../environment.js';
 
 const REGION = environment.region;

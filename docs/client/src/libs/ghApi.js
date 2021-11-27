@@ -1,4 +1,5 @@
 import { request } from '@octokit/request';
+
 import getToken from './ghToken.js';
 
 const getBranches = async (token) => {

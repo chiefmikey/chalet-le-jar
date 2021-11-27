@@ -2,8 +2,9 @@ import {
   StartInstancesCommand,
   StopInstancesCommand,
 } from '@aws-sdk/client-ec2';
-import ec2 from '../libs/ec2Client.js';
+
 import environment from '../../../environment.js';
+import ec2 from '../libs/ec2Client.js';
 
 const parameters = {
   InstanceIds: [environment.serverInstanceId],

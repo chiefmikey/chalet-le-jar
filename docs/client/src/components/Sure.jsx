@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
 import propTypes from 'prop-types';
 
@@ -12,7 +11,6 @@ const sayNo = (toggleSure) => {
   console.log('Cancelled');
 };
 
-// eslint-disable-next-line react/function-component-definition
 const Sure = ({ submitFunction, token, selectedBranch, toggleSure }) => (
   <div id="sure">
     <div id="sure-header">

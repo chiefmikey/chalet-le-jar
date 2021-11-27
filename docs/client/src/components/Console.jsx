@@ -1,10 +1,9 @@
-// eslint-disable-next-line no-unused-vars
-import { h } from 'preact';
-import propTypes from 'prop-types';
-import { useEffect } from 'preact/hooks';
 import { console } from 'console-events';
+import { h } from 'preact';
+import { useEffect } from 'preact/hooks';
+import propTypes from 'prop-types';
 
-const Console = function ({ statement }) {
+const Console = ({ statement }) => {
   useEffect(() => {
     console.addEventListener('log', (error) => {
       if (error.arguments.length > 0) {

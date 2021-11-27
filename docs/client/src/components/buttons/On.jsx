@@ -1,8 +1,8 @@
-// eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
 import propTypes from 'prop-types';
-import state from '../../helpers/state.js';
+
 import commands from '../../helpers/commands.js';
+import state from '../../helpers/state.js';
 import getBranches from '../../libs/ghApi.js';
 
 let event;

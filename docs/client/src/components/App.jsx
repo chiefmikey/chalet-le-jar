@@ -1,11 +1,12 @@
-// eslint-disable-next-line no-unused-vars
 import { Component, h } from 'preact';
+
+import getBranches from '../libs/ghApi.js';
+
+import Branches from './Branches.jsx';
 import Buttons from './Buttons.jsx';
 import Console from './Console.jsx';
 import SignIn from './SignIn.jsx';
 import SignOut from './SignOut.jsx';
-import Branches from './Branches.jsx';
-import getBranches from '../libs/ghApi.js';
 import Sure from './Sure.jsx';
 
 class App extends Component {

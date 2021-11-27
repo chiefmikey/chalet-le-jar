@@ -1,6 +1,6 @@
-// eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
 import propTypes from 'prop-types';
+
 import Branch from './Branch.jsx';
 import { submitRewind } from './buttons/Rewind.jsx';
 
@@ -17,7 +17,6 @@ const closeButton = (toggleModal, token, event_) => {
   toggleModal(token, event_, true);
 };
 
-// eslint-disable-next-line react/function-component-definition
 const Branches = ({
   submitBranch,
   allBranches,

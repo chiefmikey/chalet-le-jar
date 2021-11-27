@@ -1,11 +1,11 @@
-// eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
 import propTypes from 'prop-types';
-import On from './buttons/On.jsx';
+
 import Off from './buttons/Off.jsx';
+import On from './buttons/On.jsx';
 import Refresh from './buttons/Refresh.jsx';
-import Save from './buttons/Save.jsx';
 import { Rewind } from './buttons/Rewind.jsx';
+import Save from './buttons/Save.jsx';
 
 const lightUp = (event_) => {
   event_.target.classList.add('light-up');

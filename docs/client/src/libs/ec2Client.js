@@ -1,5 +1,6 @@
 import { EC2Client } from '@aws-sdk/client-ec2';
 import { fromCognitoIdentityPool } from '@aws-sdk/credential-providers';
+
 import environment from '../../../environment.js';
 
 const REGION = environment.region;
