@@ -27,6 +27,7 @@ Secondary IPv4 DNS
 
 - Start the game
 - Go to featured servers and behold
+  - Joining any featured server will forward to the Chalet
 
 ## PC or Elsewhere
 
