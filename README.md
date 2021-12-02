@@ -32,6 +32,8 @@ Secondary IPv4 DNS
 
 - Add a custom server with address `ip.chaletlejar.com`
 
+<br/>
+
 <div align="center">
 
 # 🦄 When You're Done Having Fun 🦄
