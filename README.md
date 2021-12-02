@@ -6,7 +6,7 @@
 
 ## Start the Servers
 
-- Go to [chaletlejar.com](chaletlejar.com)
+- Go to [chaletlejar.com](https://chaletlejar.com)
 - Sign in with the google
 - Press the `ON` button and wait for success
 
