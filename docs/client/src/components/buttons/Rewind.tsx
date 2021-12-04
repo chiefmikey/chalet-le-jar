@@ -1,7 +1,7 @@
 import { h } from 'preact';
 import propTypes from 'prop-types';
 
-import commands from '../../helpers/commands.js';
+import commands from '../../helpers/commands';
 
 let event;
 let offLight;

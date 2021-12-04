@@ -1,9 +1,9 @@
 import { h } from 'preact';
 import propTypes from 'prop-types';
 
-import commands from '../../helpers/commands.js';
-import state from '../../helpers/state.js';
-import getBranches from '../../libs/ghApi.js';
+import commands from '../../helpers/commands';
+import state from '../../helpers/state';
+import getBranches from '../../libs/ghApi';
 
 let event;
 let offLight;
@@ -29,7 +29,7 @@ const end = async (command, token) => {
     const get = await getBranches(token);
     const allBranches = Array.isArray(get) ? get : [];
     [latest] = allBranches.reverse();
-    return commands(
+    return await commands(
       command,
       token,
       complete,
@@ -49,7 +49,7 @@ const submitOn = async (token) => {
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen-clear');
     document.querySelector('#app').append(lockScreen);
-    return state('START', token, end, complete, error);
+    return await state('START', token, end, complete, error);
   } catch (error_) {
     console.log('Error creating START state', error_);
     error();

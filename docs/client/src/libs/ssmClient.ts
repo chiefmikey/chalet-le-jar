@@ -1,14 +1,14 @@
 import { SSMClient } from '@aws-sdk/client-ssm';
 import { fromCognitoIdentityPool } from '@aws-sdk/credential-providers';
 
-import environment from '../../../environment.js';
+import environment from '../environment';
 
 const REGION = environment.region;
 const IDENTITY_POOL_ID = environment.identityPoolId;
 
 const ssm = async (ID_TOKEN) => {
   try {
-    return await new SSMClient({
+    return new SSMClient({
       region: REGION,
       credentials: fromCognitoIdentityPool({
         clientConfig: { region: REGION },

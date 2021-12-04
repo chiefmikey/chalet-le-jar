@@ -31,10 +31,10 @@ jobs:
     - name: Add and Commit
       uses: EndBug/add-and-commit@v7
       with:
-        add: 'docs/client/public/dist --force'
+        add: './docs/client/public/dist --force'
         # author_name: Mikl Wolfe
         # author_email: wolfemikl@gmail.com
-        branch: client
+        # branch: client
         # committer_name: GitHub Actions
         # committer_email: actions@github.com
         cwd: '.'
@@ -42,7 +42,7 @@ jobs:
         message: 'Update production bundle'
         pathspec_error_handling: exitImmediately
         pull: 'NO-PULL'
-        push: origin client --set-upstream --force
-        remove: '-r whitelist.json webpack.config.js server.properties README.md permissions.json package.json package-lock.json .gitignore .deepsource.toml scripts log docs/client/app.js docs/client/src dns .github'
+        push: origin HEAD:client --force
+        remove: '-r whitelist.json webpack.config.js server.properties README.md permissions.json package.json package-lock.json .gitignore .deepsource.toml scripts log docs/client/app.js docs/client/src dns .github tsconfig.json'
         signoff: false
         # tag: 'v1.0.0 --force'

@@ -1,8 +1,8 @@
 import { h } from 'preact';
 import propTypes from 'prop-types';
 
-import Branch from './Branch.jsx';
-import { submitRewind } from './buttons/Rewind.jsx';
+import Branch from './Branch';
+import { submitRewind } from './buttons/Rewind';
 
 const sendBranch = (token, selectedBranch, toggleModal, event_, toggleSure) => {
   if (selectedBranch) {

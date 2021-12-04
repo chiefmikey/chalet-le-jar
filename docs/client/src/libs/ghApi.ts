@@ -1,11 +1,13 @@
 import { request } from '@octokit/request';
 
-import getToken from './ghToken.js';
+import getToken from './ghToken';
 
-const getBranches = async (token) => {
+type Branches = (argument: string) => Promise<string[]>;
+
+const getBranches: Branches = async (token) => {
   try {
-    const branches = [];
-    const ghToken = await getToken(token);
+    const branches: string[] = [];
+    const ghToken: string = await getToken(token);
     let index = 1;
     const response = async (resultsPage) => {
       try {

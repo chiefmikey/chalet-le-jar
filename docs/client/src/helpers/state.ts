@@ -3,8 +3,8 @@ import {
   StopInstancesCommand,
 } from '@aws-sdk/client-ec2';
 
-import environment from '../../../environment.js';
-import ec2 from '../libs/ec2Client.js';
+import environment from '../environment';
+import ec2 from '../libs/ec2Client';
 
 const parameters = {
   InstanceIds: [environment.serverInstanceId],

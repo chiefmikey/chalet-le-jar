@@ -1,7 +1,8 @@
 import { h } from 'preact';
 import propTypes from 'prop-types';
 
-import commands from '../../helpers/commands.js';
+import commands from '../../helpers/commands';
+import state from '../../helpers/state';
 
 let event;
 let offLight;
@@ -12,60 +13,60 @@ const allClear = () => {
 };
 
 const complete = () => {
-  console.log('Refresh complete');
+  console.log('Shut down complete');
   allClear();
 };
 
 const error = () => {
-  console.log('Refresh was interrupted');
+  console.log('Shut down was interrupted');
   allClear();
 };
 
-const end = () => {
-  complete();
+const end = (command, token) => {
+  state(command, token, undefined, complete, error);
 };
 
-const submitRefresh = (token) => {
+const submitOff = (token) => {
   try {
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen-clear');
     document.querySelector('#app').append(lockScreen);
-    return commands('REFRESH', token, complete, error, end);
+    return commands('STOP', token, complete, error, end);
   } catch (error_) {
-    console.log('Error creating REFRESH state', error_);
+    console.log('Error creating STOP state', error_);
     error();
     return error_;
   }
 };
 
-const Refresh = ({ lightUp, lightOff, toggleSure }) => (
+const Off = ({ lightUp, lightOff, toggleSure }) => (
   <button
     type="button"
-    id="button-refresh"
+    id="button-off"
     onClick={(event_) => {
       event_.preventDefault();
-      console.log('Refreshing...');
+      console.log('Shutting down...');
       event = event_;
       offLight = lightOff;
       lightUp(event_);
-      toggleSure(submitRefresh, event_);
+      toggleSure(submitOff, event_);
     }}
   >
     <div className="button-text">
-      <h5>REFRESH</h5>
+      <h5>OFF</h5>
     </div>
   </button>
 );
 
-export default Refresh;
+export default Off;
 
-Refresh.defaultProps = {
+Off.defaultProps = {
   lightUp: () => {},
   lightOff: () => {},
   toggleSure: () => {},
 };
 
-Refresh.propTypes = {
+Off.propTypes = {
   lightUp: propTypes.func,
   lightOff: propTypes.func,
   toggleSure: propTypes.func,

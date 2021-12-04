@@ -3,8 +3,8 @@ import {
   SendCommandCommand,
 } from '@aws-sdk/client-ssm';
 
-import environment from '../../../environment.js';
-import ssm from '../libs/ssmClient.js';
+import environment from '../environment';
+import ssm from '../libs/ssmClient';
 
 const setScript = (
   command,
@@ -54,7 +54,7 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
         Details: true,
       };
       const data = await launch.send(new ListCommandInvocationsCommand(input));
-      console.log(`Checking command status...`);
+      console.log('Checking command status...');
       if (data) {
         console.log(`Status: ${data.CommandInvocations[0].Status}`);
         if (data.CommandInvocations[0].Status === 'Failed') {
@@ -197,7 +197,7 @@ const commands = async (
     }
     const launch = await ssm(token);
     if (launch) {
-      return sendCommand(
+      return await sendCommand(
         command,
         launch,
         complete,

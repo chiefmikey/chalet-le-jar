@@ -10,7 +10,7 @@ const css = ['style-loader', 'css-loader'];
 const scss = ['style-loader', 'css-loader', 'sass-loader'];
 
 export default {
-  entry: `${SRC_DIR}/index.jsx`,
+  entry: `${SRC_DIR}/index.tsx`,
   output: {
     filename: 'bundle.js',
     path: DIST_DIR,
@@ -18,7 +18,7 @@ export default {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: [
           {
@@ -33,6 +33,8 @@ export default {
                     },
                   },
                 ],
+                '@babel/preset-react',
+                ['@babel/preset-typescript', { jsxPragma: 'h' }],
               ],
               plugins: [
                 [
@@ -62,7 +64,7 @@ export default {
     ],
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx', '.vue', '.json', '...'],
+    extensions: ['*', '.ts', '.tsx', '.js', '.jsx', '.vue', '.json', '...'],
     alias: {
       react: 'preact/compat',
       'react-dom/test-utils': 'preact/test-utils',

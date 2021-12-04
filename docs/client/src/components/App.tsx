@@ -1,13 +1,38 @@
 import { Component, h } from 'preact';
 
-import getBranches from '../libs/ghApi.js';
+import getBranches from '../libs/ghApi';
 
-import Branches from './Branches.jsx';
-import Buttons from './Buttons.jsx';
-import Console from './Console.jsx';
-import SignIn from './SignIn.jsx';
-import SignOut from './SignOut.jsx';
-import Sure from './Sure.jsx';
+import Branches from './Branches';
+import Buttons from './Buttons';
+import Console from './Console';
+import SignIn from './SignIn';
+import SignOut from './SignOut';
+import Sure from './Sure';
+
+interface GoogleUser {
+  getAuthResponse: () => {
+    id_token: string;
+  };
+  getBasicProfile: () => {
+    getEmail: () => string;
+  };
+}
+
+interface HTMLElement {
+  target: {
+    classList: {
+      includes: (argument: string) => boolean;
+      add: (argument: string) => void;
+      remove: (argument: string) => void;
+    };
+  };
+}
+
+interface PreviousElement {
+  classList: {
+    remove: (argument: string) => void;
+  };
+}
 
 class App extends Component {
   state = {
@@ -23,7 +48,7 @@ class App extends Component {
     pressedButton: undefined,
   };
 
-  onLogin = (token) => {
+  onLogin = (token: string) => {
     this.setState({ loggedIn: true, token });
   };
 
@@ -32,7 +57,7 @@ class App extends Component {
     this.setState({ loggedIn: false, token: undefined });
   };
 
-  onSignIn = (googleUser) => {
+  onSignIn = (googleUser: GoogleUser) => {
     const { id_token } = googleUser.getAuthResponse();
     const email = googleUser.getBasicProfile().getEmail();
     if (
@@ -41,12 +66,14 @@ class App extends Component {
       email === 'michael@viviani.net' ||
       email === 'brianna@viviani.net'
     ) {
-      document.querySelector('#lock-screen').remove();
+      if (typeof document.querySelector('#lock-screen') !== null) {
+        document.querySelector('#lock-screen').remove();
+      }
       this.onLogin(id_token);
     }
   };
 
-  toggleDev = (event_) => {
+  toggleDev = (event_: HTMLElement) => {
     const { statement } = this.state;
     if ([...event_.target.classList].includes('dev-on')) {
       event_.target.classList.remove('dev-on');
@@ -60,18 +87,19 @@ class App extends Component {
     }
   };
 
-  toggleModal = async (token, event_, clear) => {
+  toggleModal = async (token: string, event_: HTMLElement, clear) => {
     const { modal } = this.state;
     try {
       if (!modal) {
-        const get = await getBranches(token);
-        const allBranches = Array.isArray(get) ? get : [];
-        const reverseOrder = allBranches.reverse();
-        const saveBranches = reverseOrder.filter(
-          (branch) => branch.includes('save/') && !branch.includes('autosave/'),
+        const get: string[] = await getBranches(token);
+        const allBranches: string[] = Array.isArray(get) ? get : [];
+        const reverseOrder: string[] = allBranches.reverse();
+        const saveBranches: string[] = reverseOrder.filter(
+          (branch: string) =>
+            branch.includes('save/') && !branch.includes('autosave/'),
         );
-        const sliceSave = saveBranches.slice(0, 5);
-        const autosaveBranches = reverseOrder.filter((branch) =>
+        const sliceSave: string[] = saveBranches.slice(0, 5);
+        const autosaveBranches = reverseOrder.filter((branch: string) =>
           branch.includes('autosave/'),
         );
         const sliceAutosave = autosaveBranches.slice(0, 9);
@@ -118,7 +146,7 @@ class App extends Component {
     });
   };
 
-  submitBranch = (event_) => {
+  submitBranch = (event_: HTMLElement) => {
     const { previousSelection } = this.state;
     if (previousSelection) {
       previousSelection.classList.remove('selected-branch');
