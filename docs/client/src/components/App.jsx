@@ -38,6 +38,7 @@ class App extends Component {
     if (
       email === 'wolfemikl@gmail.com' ||
       email === 'willfinn33@gmail.com' ||
+      email === 'michael@viviani.net' ||
       email === 'brianna@viviani.net'
     ) {
       document.querySelector('#lock-screen').remove();
