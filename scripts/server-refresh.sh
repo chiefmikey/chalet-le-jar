@@ -34,7 +34,7 @@ killall screen
 git fetch origin main
 git checkout main
 git reset --hard origin/main
-if [ "$(cat /home/ec2-user/upgrade.txt)" = upgrade ]; then
+if [ "$(cat /home/ubuntu/upgrade.txt)" = upgrade ]; then
   /home/ubuntu/scripts/server-upgrade.sh
 else
   LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
