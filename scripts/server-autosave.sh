@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 sleep 360
 cd /home/ubuntu
