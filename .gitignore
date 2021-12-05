@@ -1,0 +1,55 @@
+# DS_Store files
+.DS_Store
+
+# VS Code directory
+.vscode
+
+# dotenv environment variables file
+.env
+.env.test
+
+#Dropbox Ignore file
+.dropboxignore
+
+#VS Code Counter directory
+.VSCodeCounter
+
+# Bundler
+build.js
+build.js.map
+
+# Token
+token.js
+
+# Dist
+dist
+
+# Node modules
+node_modules
+
+# MC
+.bash_history
+.bash_logout
+.bashrc
+.cache/
+.profile
+.ssh/
+.sudo_as_admin_successful
+.wget-hsts
+Dedicated_Server.txt
+bedrock_server
+bedrock_server_how_to.html
+bedrock_server_symbols.debug
+behavior_packs/
+definitions/
+release-notes.txt
+resource_packs/
+structures/
+valid_known_packs.json
+.config/
+.local/
+Downloads/
+aws/
+.git-credentials
+.gitconfig
+worlds/
