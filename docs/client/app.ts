@@ -12,10 +12,10 @@ app
   .use(
     cors({
       origin: 'https://chaletlejar.com',
-      methods: 'GET',
+      allowMethods: ['GET'],
     }),
   )
-  .use(bodyParser())
+  .use(bodyParser({}))
   .use(serve(path.join(path.resolve(), 'docs')))
   .listen(port, () =>
     console.log(`Koa is listening at http://localhost:${port}`),

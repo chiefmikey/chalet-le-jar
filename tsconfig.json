@@ -4,8 +4,10 @@
 
   "compilerOptions": {
     "lib": ["es2021"],
-    "module": "commonjs",
+    "moduleResolution": "node",
+    "module": "esnext",
     "target": "es2021",
+    "sourceMap": true,
 
     "strict": true,
     "esModuleInterop": true,
@@ -19,6 +21,6 @@
       "./*.ts": ["./*"]
     }
   },
-  "include": ["docs/client/src/**/**/*"],
+  "include": ["docs/client/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }

@@ -9,7 +9,7 @@ const getBranches: Branches = async (token) => {
     const branches: string[] = [];
     const ghToken: string = await getToken(token);
     let index = 1;
-    const response = async (resultsPage) => {
+    const response = async (resultsPage: number) => {
       try {
         const response_ = await request('GET /repos/{owner}/{repo}/branches', {
           headers: {
@@ -30,13 +30,13 @@ const getBranches: Branches = async (token) => {
           return branches;
         }
         index += 1;
-        return await response(index);
+        return response(index);
       } catch (error) {
         console.log('Error getting branch list', error);
         return error;
       }
     };
-    return await response(1);
+    return response(1);
   } catch (error) {
     console.log('Error getting token', error);
     return error;

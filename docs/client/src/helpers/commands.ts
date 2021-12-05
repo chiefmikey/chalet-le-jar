@@ -7,12 +7,12 @@ import environment from '../environment';
 import ssm from '../libs/ssmClient';
 
 const setScript = (
-  command,
+  command: string,
   error,
   end,
-  token,
-  selectedBranch,
-  latestBranch,
+  token: string,
+  selectedBranch: string,
+  latestBranch: string,
 ) => {
   if (command === 'STOP') {
     return 'sudo /home/ubuntu/scripts/server-stop.sh';
@@ -35,7 +35,7 @@ const setScript = (
   return end(command, token);
 };
 
-const finish = (command, token, end, complete) => {
+const finish = (command: string, token: string, end, complete) => {
   console.log('Commands executed successfully');
   if (!end) {
     return complete();

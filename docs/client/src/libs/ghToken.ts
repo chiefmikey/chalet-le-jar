@@ -10,7 +10,7 @@ const REGION = environment.region;
 const IDENTITY_POOL_ID = environment.identityPoolId;
 const { secretName } = environment;
 
-const client = (ID_TOKEN) => {
+const client = (ID_TOKEN: string) => {
   try {
     return new SecretsManagerClient({
       region: REGION,
@@ -28,7 +28,7 @@ const client = (ID_TOKEN) => {
   }
 };
 
-const data = async (ID_TOKEN) => {
+const data = async (ID_TOKEN: string) => {
   try {
     const secure = await client(ID_TOKEN);
     const getData: object = await secure.send(

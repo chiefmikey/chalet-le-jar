@@ -6,7 +6,7 @@ import environment from '../environment';
 const REGION = environment.region;
 const IDENTITY_POOL_ID = environment.identityPoolId;
 
-const ssm = async (ID_TOKEN) => {
+const ssm = (ID_TOKEN: string) => {
   try {
     return new SSMClient({
       region: REGION,

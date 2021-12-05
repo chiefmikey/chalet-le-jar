@@ -6,7 +6,7 @@ import environment from '../environment';
 const REGION = environment.region;
 const IDENTITY_POOL_ID = environment.identityPoolId;
 
-const ec2 = (ID_TOKEN) => {
+const ec2 = (ID_TOKEN: string) => {
   try {
     return new EC2Client({
       region: REGION,

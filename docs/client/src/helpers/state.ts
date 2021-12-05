@@ -114,7 +114,7 @@ const state = async (command, token, end, complete, error) => {
     }
     const launch = await ec2(token);
     if (launch) {
-      return interval(command, launch, end, token, complete, error);
+      return await interval(command, launch, end, token, complete, error);
     }
     console.log('Error in state', launch);
     error();
