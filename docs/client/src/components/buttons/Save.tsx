@@ -1,14 +1,13 @@
 import { h } from 'preact';
-import propTypes from 'prop-types';
 
 import commands from '../../helpers/commands';
 
-let event;
-let offLight;
+let event: MouseEvent;
+let offLight: LightOff;
 
 const allClear = () => {
   offLight(event);
-  document.querySelector('#lock-screen-clear').remove();
+  document.querySelector('#lock-screen-clear')?.remove();
 };
 
 const complete = () => {
@@ -25,30 +24,37 @@ const end = () => {
   complete();
 };
 
-const submitSave = (token) => {
+const submitSave = async (token: string) => {
   try {
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen-clear');
-    document.querySelector('#app').append(lockScreen);
-    return commands('SAVE', token, complete, error, end);
+    document.querySelector('#app')?.append(lockScreen);
+    await commands('SAVE', token, complete, error, end);
   } catch (error_) {
     console.log('Error creating SAVE state', error_);
     error();
-    return error_;
   }
 };
 
-const Save = ({ lightUp, lightOff, token }) => (
+const Save = ({
+  lightUp,
+  lightOff,
+  token,
+}: {
+  lightUp: LightUp;
+  lightOff: LightOff;
+  token: string;
+}) => (
   <button
     type="button"
     id="button-save"
-    onClick={(event_) => {
+    onClick={async (event_) => {
       event_.preventDefault();
       console.log('Saving...');
       event = event_;
       offLight = lightOff;
       lightUp(event_);
-      submitSave(token);
+      await submitSave(token);
     }}
   >
     <div className="button-text">
@@ -58,15 +64,3 @@ const Save = ({ lightUp, lightOff, token }) => (
 );
 
 export default Save;
-
-Save.defaultProps = {
-  lightUp: () => {},
-  lightOff: () => {},
-  token: '',
-};
-
-Save.propTypes = {
-  lightUp: propTypes.func,
-  lightOff: propTypes.func,
-  token: propTypes.string,
-};

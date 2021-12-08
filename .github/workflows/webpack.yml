@@ -42,7 +42,7 @@ jobs:
         message: 'Update production bundle'
         pathspec_error_handling: exitImmediately
         pull: 'NO-PULL'
-        push: origin HEAD:client --force
+        push: origin HEAD:test --force
         remove: '-r whitelist.json webpack.config.js server.properties README.md permissions.json package.json package-lock.json .gitignore .deepsource.toml scripts log docs/client/app.ts docs/client/src dns .github tsconfig.json nodemon.json'
         signoff: false
         # tag: 'v1.0.0 --force'

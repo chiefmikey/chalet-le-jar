@@ -1,7 +1,13 @@
 import { h } from 'preact';
 
-const Branch = ({ branches, submitBranch }) =>
-  branches.map((branch) => (
+const Branch = ({
+  allBranches,
+  submitBranch,
+}: {
+  allBranches: string[];
+  submitBranch: (event_: MouseEvent) => void;
+}) =>
+  allBranches.map((branch) => (
     <li key={branch} className="branch">
       <button
         type="button"

@@ -9,7 +9,7 @@ import ssm from '../libs/ssmClient';
 const setScript = (
   command: string,
   error,
-  end,
+  end: boolean,
   token: string,
   selectedBranch: string,
   latestBranch: string,
@@ -46,7 +46,9 @@ const finish = (command: string, token: string, end, complete) => {
 let tries = 0;
 
 const checkStatus = (launch, id, complete, error, end, command, token) => {
-  const interval = setInterval(async () => {
+  const interval = (
+    setInterval as (callback: () => Promise<void>, ms: number) => void
+  )(async (): Promise<void> => {
     try {
       const input = {
         CommandId: id,
@@ -64,27 +66,25 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
             clearInterval(interval);
             tries = 0;
             if (!end) {
-              return error();
+              error();
             }
-            return end(command, token);
+            await end(command, token);
           }
         }
         if (data.CommandInvocations[0].Status === 'Success') {
           clearInterval(interval);
-          return finish(command, token, end, complete);
+          finish(command, token, end, complete);
         }
       }
-      return data;
     } catch (error_) {
       console.log('Error checking command status', error_);
       clearInterval(interval);
       error();
-      return error_;
     }
   }, 10_000);
 };
 
-let checkInterval;
+let checkInterval: NodeJS.Timer;
 
 const checkSend = (
   command,
@@ -97,7 +97,7 @@ const checkSend = (
   latestBranch,
 ) => {
   checkInterval = setInterval(async () => {
-    sendCommand(
+    await sendCommand(
       command,
       launch,
       complete,
@@ -141,7 +141,7 @@ const sendCommand = async (
     const data = await launch.send(new SendCommandCommand(parameters));
     if (data) {
       clearInterval(checkInterval);
-      return checkStatus(
+      checkStatus(
         launch,
         data.Command.CommandId,
         complete,
@@ -153,14 +153,12 @@ const sendCommand = async (
     }
     console.log('Error sending launch command', data);
     error(command, token);
-    return data;
   } catch (error_) {
     if (trySend === 3) {
       trySend = 0;
       console.log('Error in send command', error_);
       clearInterval(checkInterval);
       error(command, token);
-      return error_;
     }
     if (trySend === 0) {
       console.log('First attempt failed', 'Retrying...');
@@ -182,22 +180,22 @@ const sendCommand = async (
 };
 
 const commands = async (
-  command,
-  token,
-  complete,
-  error,
-  end,
-  selectedBranch,
-  latestBranch,
+  command: string,
+  token: string,
+  complete: () => void,
+  error: (command?: string, token?: string) => void,
+  end?: EndType,
+  selectedBranch?: string,
+  latestBranch?: string,
 ) => {
   try {
     if (!token && process.env.NODE_ENV === 'production') {
       console.log('Token missing, please sign in');
-      return error(command, token);
+      error(command, token);
     }
     const launch = await ssm(token);
     if (launch) {
-      return await sendCommand(
+      await sendCommand(
         command,
         launch,
         complete,
@@ -210,11 +208,9 @@ const commands = async (
     }
     console.log('Error in state', launch);
     error(command, token);
-    return launch;
   } catch (error_) {
     console.log('Error in ssm', error_);
     error(command, token);
-    return error_;
   }
 };
 

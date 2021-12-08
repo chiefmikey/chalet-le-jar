@@ -10,7 +10,7 @@ const css = ['style-loader', 'css-loader'];
 const scss = ['style-loader', 'css-loader', 'sass-loader'];
 
 export default {
-  entry: `${SRC_DIR}/index.tsx`,
+  entry: `${SRC_DIR}/index.ts`,
   output: {
     filename: 'bundle.js',
     path: DIST_DIR,

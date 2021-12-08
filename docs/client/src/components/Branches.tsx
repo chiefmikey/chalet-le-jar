@@ -1,20 +1,29 @@
 import { h } from 'preact';
-import propTypes from 'prop-types';
 
 import Branch from './Branch';
 import { submitRewind } from './buttons/Rewind';
 
-const sendBranch = (token, selectedBranch, toggleModal, event_, toggleSure) => {
+const sendBranch = async (
+  token: string,
+  selectedBranch: PreviousElement | undefined,
+  toggleModal: ToggleModal,
+  event_: MouseEvent,
+  toggleSure: ToggleSure,
+) => {
   if (selectedBranch) {
     toggleSure(submitRewind);
-    toggleModal(token, event_, false);
+    await toggleModal(token, event_, false);
     console.log('Rewinding...');
   }
 };
 
-const closeButton = (toggleModal, token, event_) => {
+const closeButton = async (
+  toggleModal: ToggleModal,
+  token: string,
+  event_: MouseEvent,
+) => {
   console.log('Cancelled');
-  toggleModal(token, event_, true);
+  await toggleModal(token, event_, true);
 };
 
 const Branches = ({
@@ -24,6 +33,13 @@ const Branches = ({
   token,
   selectedBranch,
   toggleSure,
+}: {
+  submitBranch: (event_: MouseEvent) => void;
+  allBranches: string[];
+  toggleModal: ToggleModal;
+  token: string;
+  selectedBranch: PreviousElement | undefined;
+  toggleSure: ToggleSure;
 }) => {
   return (
     <div id="branches">
@@ -33,7 +49,7 @@ const Branches = ({
             <h1>CHOOSE LE DATE</h1>
           </div>
           <ul>
-            <Branch branches={allBranches} submitBranch={submitBranch} />
+            <Branch allBranches={allBranches} submitBranch={submitBranch} />
           </ul>
           <button
             id="modal-button"
@@ -62,21 +78,3 @@ const Branches = ({
 };
 
 export default Branches;
-
-Branches.defaultProps = {
-  submitBranch: () => {},
-  allBranches: [],
-  toggleModal: () => {},
-  token: '',
-  selectedBranch: '',
-  toggleSure: () => {},
-};
-
-Branches.propTypes = {
-  submitBranch: propTypes.func,
-  allBranches: propTypes.oneOfType([propTypes.array]),
-  toggleModal: propTypes.func,
-  token: propTypes.string,
-  selectedBranch: propTypes.string,
-  toggleSure: propTypes.func,
-};

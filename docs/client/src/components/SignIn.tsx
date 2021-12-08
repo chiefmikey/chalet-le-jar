@@ -1,8 +1,7 @@
-// eslint-disable-next-line no-unused-vars
 import { h } from 'preact';
 import { useEffect } from 'preact/hooks';
 
-const signInButton = (onSignIn) =>
+const signInButton = (onSignIn: (argument: GoogleUser) => void) =>
   window.gapi.signin2.render('lock-screen', {
     scope: 'email openid',
     width: 400,
@@ -12,12 +11,16 @@ const signInButton = (onSignIn) =>
     onsuccess: onSignIn,
   });
 
-const SignIn = ({ onSignIn }) => {
+const SignIn = ({
+  onSignIn,
+}: {
+  onSignIn: (googleUser: GoogleUser) => void;
+}) => {
   useEffect(() => {
-    const appendSignIn = async () => {
+    const appendSignIn = () => {
       const lockScreen = document.createElement('div');
       lockScreen.setAttribute('id', 'lock-screen');
-      document.querySelector('#app').append(lockScreen);
+      document.querySelector('#app')?.append(lockScreen);
       if (window.gapi) {
         signInButton(onSignIn);
       } else {
@@ -31,6 +34,7 @@ const SignIn = ({ onSignIn }) => {
     };
     appendSignIn();
   });
+  return <div id="lock" />;
 };
 
 export default SignIn;

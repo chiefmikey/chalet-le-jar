@@ -1,14 +1,13 @@
 import { h } from 'preact';
-import propTypes from 'prop-types';
 
 import commands from '../../helpers/commands';
 
-let event;
-let offLight;
+let event: MouseEvent;
+let offLight: LightOff;
 
 const allClear = () => {
   offLight(event);
-  document.querySelector('#lock-screen-clear').remove();
+  document.querySelector('#lock-screen-clear')?.remove();
 };
 
 const complete = () => {
@@ -25,20 +24,27 @@ const end = () => {
   complete();
 };
 
-const submitRefresh = (token) => {
+const submitRefresh = async (token: string) => {
   try {
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen-clear');
-    document.querySelector('#app').append(lockScreen);
-    return commands('REFRESH', token, complete, error, end);
+    document.querySelector('#app')?.append(lockScreen);
+    await commands('REFRESH', token, complete, error, end);
   } catch (error_) {
     console.log('Error creating REFRESH state', error_);
     error();
-    return error_;
   }
 };
 
-const Refresh = ({ lightUp, lightOff, toggleSure }) => (
+const Refresh = ({
+  lightUp,
+  lightOff,
+  toggleSure,
+}: {
+  lightUp: LightUp;
+  lightOff: LightOff;
+  toggleSure: ToggleSure;
+}) => (
   <button
     type="button"
     id="button-refresh"
@@ -48,7 +54,7 @@ const Refresh = ({ lightUp, lightOff, toggleSure }) => (
       event = event_;
       offLight = lightOff;
       lightUp(event_);
-      toggleSure(submitRefresh, event_);
+      toggleSure(submitRefresh, event_, false);
     }}
   >
     <div className="button-text">
@@ -58,15 +64,3 @@ const Refresh = ({ lightUp, lightOff, toggleSure }) => (
 );
 
 export default Refresh;
-
-Refresh.defaultProps = {
-  lightUp: () => {},
-  lightOff: () => {},
-  toggleSure: () => {},
-};
-
-Refresh.propTypes = {
-  lightUp: propTypes.func,
-  lightOff: propTypes.func,
-  toggleSure: propTypes.func,
-};

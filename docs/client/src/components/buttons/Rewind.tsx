@@ -1,14 +1,13 @@
 import { h } from 'preact';
-import propTypes from 'prop-types';
 
 import commands from '../../helpers/commands';
 
-let event;
-let offLight;
+let event: MouseEvent;
+let offLight: LightOff;
 
 const allClear = () => {
   offLight(event);
-  document.querySelector('#lock-screen-clear').remove();
+  document.querySelector('#lock-screen-clear')?.remove();
 };
 
 const complete = () => {
@@ -21,34 +20,47 @@ const error = () => {
   allClear();
 };
 
-const end = () => {
+const end: EndType = () => {
   complete();
 };
 
-export const submitRewind = (token, branch) => {
+export const submitRewind = async (token: string, branch: string) => {
   try {
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen-clear');
-    document.querySelector('#app').append(lockScreen);
-    return commands('REWIND', token, complete, error, end, branch);
+    document.querySelector('#app')?.append(lockScreen);
+    await commands('REWIND', token, complete, error, end, branch);
   } catch (error_) {
     console.log('Error creating REWIND state', error_);
     error();
-    return error_;
   }
 };
 
-export const Rewind = ({ lightUp, lightOff, token, toggleModal }) => (
+export const Rewind = ({
+  lightUp,
+  lightOff,
+  token,
+  toggleModal,
+}: {
+  lightUp: LightUp;
+  lightOff: LightOff;
+  token: string;
+  toggleModal: (
+    token: string,
+    event_: MouseEvent,
+    clear: boolean,
+  ) => Promise<void>;
+}) => (
   <button
     type="button"
     id="button-rewind"
-    onClick={(event_) => {
+    onClick={async (event_) => {
       event_.preventDefault();
       console.log('Loading backups...');
       event = event_;
       offLight = lightOff;
       lightUp(event_);
-      toggleModal(token, event_);
+      await toggleModal(token, event_, false);
     }}
   >
     <div className="button-text">
@@ -56,17 +68,3 @@ export const Rewind = ({ lightUp, lightOff, token, toggleModal }) => (
     </div>
   </button>
 );
-
-Rewind.defaultProps = {
-  lightUp: () => {},
-  lightOff: () => {},
-  token: '',
-  toggleModal: () => {},
-};
-
-Rewind.propTypes = {
-  lightUp: propTypes.func,
-  lightOff: propTypes.func,
-  token: propTypes.string,
-  toggleModal: propTypes.func,
-};
