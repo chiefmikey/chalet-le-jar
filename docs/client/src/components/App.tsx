@@ -83,15 +83,18 @@ class App extends Component {
           modal: true,
           allBranches: [...sliceSave, ...sliceAutosave],
         });
+      } else {
+        document.querySelector('#modal-button')?.classList.remove('light-up');
+        if ((event_.target as Element).id === 'close-button') {
+          document
+            .querySelector('#button-rewind')
+            ?.classList.remove('light-up');
+        }
+        if (clear) {
+          this.setState({ modal: false, selectedBranch: undefined });
+        }
+        this.setState({ modal: false });
       }
-      document.querySelector('#modal-button')?.classList.remove('light-up');
-      if ((event_.target as Element).id === 'close-button') {
-        document.querySelector('#button-rewind')?.classList.remove('light-up');
-      }
-      if (clear) {
-        this.setState({ modal: false, selectedBranch: undefined });
-      }
-      this.setState({ modal: false });
     } catch (error) {
       console.log('Error getting branches', error);
     }

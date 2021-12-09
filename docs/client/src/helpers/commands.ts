@@ -32,15 +32,16 @@ const setScript = (
     return `latest=${latestBranch} /home/ubuntu/scripts/server-start.sh`;
   }
   console.log('Invalid command');
-  return end(command, token);
+  end(command, token);
 };
 
 const finish = (command: string, token: string, end, complete) => {
   console.log('Commands executed successfully');
   if (!end) {
-    return complete();
+    complete();
+  } else {
+    end(command, token);
   }
-  return end(command, token);
 };
 
 let tries = 0;
@@ -48,7 +49,7 @@ let tries = 0;
 const checkStatus = (launch, id, complete, error, end, command, token) => {
   const interval = (
     setInterval as (callback: () => Promise<void>, ms: number) => void
-  )(async (): Promise<void> => {
+  )(async () => {
     try {
       const input = {
         CommandId: id,
@@ -150,16 +151,11 @@ const sendCommand = async (
         command,
         token,
       );
-    }
-    console.log('Error sending launch command', data);
-    error(command, token);
-  } catch (error_) {
-    if (trySend === 3) {
-      trySend = 0;
-      console.log('Error in send command', error_);
-      clearInterval(checkInterval);
+    } else {
+      console.log('Error sending launch command', data);
       error(command, token);
     }
+  } catch (error_) {
     if (trySend === 0) {
       console.log('First attempt failed', 'Retrying...');
       checkSend(
@@ -172,10 +168,16 @@ const sendCommand = async (
         selectedBranch,
         latestBranch,
       );
+      trySend += 1;
+    } else if (trySend === 3) {
+      trySend = 0;
+      console.log('Error in send command', error_);
+      clearInterval(checkInterval);
+      error(command, token);
     } else {
       console.log('Retrying...');
+      trySend += 1;
     }
-    return (trySend += 1);
   }
 };
 
@@ -205,11 +207,12 @@ const commands = async (
         selectedBranch,
         latestBranch,
       );
+    } else {
+      console.log('Error in command launch', launch);
+      error(command, token);
     }
-    console.log('Error in state', launch);
-    error(command, token);
   } catch (error_) {
-    console.log('Error in ssm', error_);
+    console.log('Error catch in command launch', error_);
     error(command, token);
   }
 };
