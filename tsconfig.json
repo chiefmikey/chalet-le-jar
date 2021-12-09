@@ -1,28 +1,38 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "Node 16",
-
   "compilerOptions": {
     "lib": ["es2021", "dom", "dom.iterable"],
     "moduleResolution": "node",
     "module": "esnext",
-    "target": "es2021",
+    "target": "es5",
     "sourceMap": true,
-    "jsx": "preserve",
+    "allowJs": true,
+    "jsx": "react",
     "jsxFactory": "h",
     "jsxFragmentFactory": "Fragment",
 
     "strict": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
 
+    "noEmit": true,
     "noImplicitAny": true,
     "removeComments": true,
-    "preserveConstEnums": true,
-    "paths": {
-      "./*.ts": ["./*"]
-    }
+    "preserveConstEnums": true
   },
+
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs",
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true
+    },
+  },
+
+  "paths": {
+    "./*.ts": ["./*"]
+  },
+
   "exclude": ["node_modules", "**/*.spec.ts"]
 }
