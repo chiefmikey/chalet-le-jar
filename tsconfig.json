@@ -3,7 +3,7 @@
     "lib": ["es2021", "dom", "dom.iterable"],
     "moduleResolution": "node",
     "module": "esnext",
-    "target": "es5",
+    "target": "es6",
     "sourceMap": true,
     "allowJs": true,
     "jsx": "react",
@@ -25,8 +25,6 @@
   "ts-node": {
     "compilerOptions": {
       "module": "commonjs",
-      "esModuleInterop": true,
-      "allowSyntheticDefaultImports": true
     },
   },
 

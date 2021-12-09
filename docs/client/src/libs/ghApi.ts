@@ -2,7 +2,7 @@ import { request } from '@octokit/request';
 
 import getToken from './ghToken';
 
-type Branches = (argument: string) => Promise<string[]>;
+type Branches = (token: string) => Promise<string[]>;
 
 const getBranches: Branches = async (token) => {
   try {
@@ -33,7 +33,6 @@ const getBranches: Branches = async (token) => {
         return response(index);
       } catch (error) {
         console.log('Error getting branch list', error);
-        return error;
       }
     };
     return response(1);

@@ -36,6 +36,9 @@ const isStarted = (command, data, index) => {
 
 const changeState = (data, interval, command, end, token, complete) => {
   tries += 1;
+  if (tries === 1) {
+    console.log('State change in progress...');
+  }
   for (let index = 0; index < data.length; index += 1) {
     console.log(`Current State: ${data[index].CurrentState.Name}`);
     isStarted(command, data, index);
@@ -52,7 +55,6 @@ const changeState = (data, interval, command, end, token, complete) => {
       }
     }
   }
-  return console.log('State change in progress...');
 };
 
 const interval = async (command, launch, end, token, complete, error) => {
