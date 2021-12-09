@@ -110,15 +110,14 @@ class App extends Component {
         submitFunction,
         pressedButton: buttonCopy,
       });
+    } else if ((pressedButton && no) || submitFunction === undefined) {
+      pressedButton?.classList.remove('light-up');
+      this.setState({
+        sure: false,
+        submitFunction,
+        pressedButton: event_,
+      });
     }
-    if (pressedButton && no) {
-      pressedButton.classList.remove('light-up');
-    }
-    this.setState({
-      sure: false,
-      submitFunction,
-      pressedButton: event_,
-    });
   };
 
   submitBranch = (event_: MouseEvent) => {
