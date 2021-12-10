@@ -6,7 +6,7 @@
   "scripts": {
     "build": "NODE_ENV=development NODE_OPTIONS=--loader=ts-node/esm webpack --mode development",
     "dev": "NODE_ENV=development NODE_OPTIONS=--loader=ts-node/esm webpack --mode development -w",
-    "prod": "NODE_ENV=production webpack --mode production",
+    "prod": "NODE_ENV=production NODE_OPTIONS=--loader=ts-node/esm webpack --mode production",
     "start": "node --loader ts-node/esm docs/client/app.ts",
     "test": "nodemon docs/client/app.ts"
   },
