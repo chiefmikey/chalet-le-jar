@@ -68,14 +68,13 @@ class App extends Component {
     try {
       if (!modal) {
         const get: string[] = await getBranches(token);
-        const allBranches: string[] = Array.isArray(get) ? get : [];
-        const reverseOrder: string[] = allBranches.reverse();
-        const saveBranches: string[] = reverseOrder.filter(
+        const allBranches = Array.isArray(get) ? get : [];
+        const saveBranches = allBranches.filter(
           (branch: string) =>
             branch.includes('save/') && !branch.includes('autosave/'),
         );
         const sliceSave: string[] = saveBranches.slice(0, 5);
-        const autosaveBranches = reverseOrder.filter((branch: string) =>
+        const autosaveBranches = allBranches.filter((branch: string) =>
           branch.includes('autosave/'),
         );
         const sliceAutosave = autosaveBranches.slice(0, 9);

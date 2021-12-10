@@ -6,6 +6,9 @@ import {
 import environment from '../environment';
 import ssm from '../libs/ssmClient';
 
+let tries = 0;
+let trySend = 0;
+
 const setScript = (
   command: string,
   error,
@@ -24,11 +27,15 @@ const setScript = (
     return 'sudo /home/ubuntu/scripts/server-save.sh';
   }
   if (command === 'REWIND') {
-    console.log(`Loading save ${selectedBranch}`);
+    if (trySend === 0) {
+      console.log(`Loading save ${selectedBranch}`);
+    }
     return `branch=${selectedBranch} /home/ubuntu/scripts/server-rewind.sh`;
   }
   if (command === 'START') {
-    console.log(`Loading save ${latestBranch}`);
+    if (trySend === 0) {
+      console.log(`Loading save ${latestBranch}`);
+    }
     return `latest=${latestBranch} /home/ubuntu/scripts/server-start.sh`;
   }
   console.log('Invalid command');
@@ -44,8 +51,6 @@ const finish = (command: string, token: string, end, complete) => {
   }
 };
 
-let tries = 0;
-
 const checkStatus = (launch, id, complete, error, end, command, token) => {
   const interval = (
     setInterval as (callback: () => Promise<void>, ms: number) => void
@@ -57,7 +62,6 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
         Details: true,
       };
       const data = await launch.send(new ListCommandInvocationsCommand(input));
-      console.log('Checking command status...');
       if (data) {
         console.log(`Status: ${data.CommandInvocations[0].Status}`);
         if (data.CommandInvocations[0].Status === 'Failed') {
@@ -110,8 +114,6 @@ const checkSend = (
     );
   }, 15_000);
 };
-
-let trySend = 0;
 
 const sendCommand = async (
   command,

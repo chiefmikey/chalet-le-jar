@@ -22,20 +22,32 @@ const getBranches: Branches = async (token) => {
           page: resultsPage,
         });
         for (let index_ = 0; index_ < response_.data.length; index_ += 1) {
-          if (response_.data[index_].name.length > 16) {
+          if (
+            response_.data[index_].name.includes('save') ||
+            response_.data[index_].name.includes('autosave')
+          ) {
             branches.push(response_.data[index_].name);
           }
         }
         if (response_.data.length < 100) {
+          const formatDate = (date: string) => {
+            const [year, month, day, hour, minute, second] = date.split('-');
+            return `20${year}-${month}-${day}T${hour}:${minute}:${second}`;
+          };
+          branches.sort((a, b) => {
+            const a_ = Date.parse(formatDate(a.split('/')[1]));
+            const b_ = Date.parse(formatDate(b.split('/')[1]));
+            return b_ - a_;
+          });
           return branches;
         }
         index += 1;
-        return response(index);
+        return await response(index);
       } catch (error) {
         console.log('Error getting branch list', error);
       }
     };
-    return response(1);
+    return await response(index);
   } catch (error) {
     console.log('Error getting token', error);
     return error;
