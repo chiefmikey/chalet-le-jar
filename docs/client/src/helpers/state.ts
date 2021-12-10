@@ -36,6 +36,9 @@ const isStarted = (command, data, index) => {
 
 const changeState = (data, interval, command, end, token, complete) => {
   tries += 1;
+  if (tries === 1) {
+    console.log('State change in progress...');
+  }
   for (let index = 0; index < data.length; index += 1) {
     console.log(`Current State: ${data[index].CurrentState.Name}`);
     isStarted(command, data, index);
@@ -46,16 +49,18 @@ const changeState = (data, interval, command, end, token, complete) => {
       ready = {};
       if (!end || runEnd) {
         runEnd = false;
-        return complete();
+        complete();
+      } else {
+        end(command, token);
       }
-      return end(command, token);
     }
   }
-  return console.log('State change in progress...');
 };
 
 const interval = async (command, launch, end, token, complete, error) => {
-  const checkState = setInterval(async () => {
+  const checkState = (
+    setInterval as (callback: () => Promise<void>, ms: number) => void
+  )(async () => {
     try {
       let SendCommand;
       if (command === 'START') {
@@ -68,7 +73,7 @@ const interval = async (command, launch, end, token, complete, error) => {
       await launch.send(new SendCommand(parameters2));
       if (data) {
         if (data.StartingInstances) {
-          return changeState(
+          changeState(
             data.StartingInstances,
             checkState,
             command,
@@ -78,7 +83,7 @@ const interval = async (command, launch, end, token, complete, error) => {
           );
         }
         if (data.StoppingInstances) {
-          return changeState(
+          changeState(
             data.StoppingInstances,
             checkState,
             command,
@@ -92,16 +97,16 @@ const interval = async (command, launch, end, token, complete, error) => {
         clearInterval(checkState);
         tries = 0;
         error();
-        return data;
       }
-      console.log('Invalid command');
-      return error();
+      if (!command) {
+        console.log('Invalid command');
+        error();
+      }
     } catch (error_) {
       console.log('Error creating interval', error_);
       clearInterval(checkState);
       tries = 0;
       error();
-      return error_;
     }
   }, 10_000);
 };
@@ -110,19 +115,19 @@ const state = async (command, token, end, complete, error) => {
   try {
     if (!token && process.env.NODE_ENV === 'production') {
       console.log('Token missing, please sign in');
-      return error();
+      error();
+    } else {
+      const launch = ec2(token);
+      if (launch) {
+        await interval(command, launch, end, token, complete, error);
+      } else {
+        console.log('Error in state', launch);
+        error();
+      }
     }
-    const launch = await ec2(token);
-    if (launch) {
-      return await interval(command, launch, end, token, complete, error);
-    }
-    console.log('Error in state', launch);
-    error();
-    return launch;
   } catch (error_) {
     console.log('Error in state', error_);
     error();
-    return error_;
   }
 };
 

@@ -68,14 +68,13 @@ class App extends Component {
     try {
       if (!modal) {
         const get: string[] = await getBranches(token);
-        const allBranches: string[] = Array.isArray(get) ? get : [];
-        const reverseOrder: string[] = allBranches.reverse();
-        const saveBranches: string[] = reverseOrder.filter(
+        const allBranches = Array.isArray(get) ? get : [];
+        const saveBranches = allBranches.filter(
           (branch: string) =>
             branch.includes('save/') && !branch.includes('autosave/'),
         );
         const sliceSave: string[] = saveBranches.slice(0, 5);
-        const autosaveBranches = reverseOrder.filter((branch: string) =>
+        const autosaveBranches = allBranches.filter((branch: string) =>
           branch.includes('autosave/'),
         );
         const sliceAutosave = autosaveBranches.slice(0, 9);
@@ -83,15 +82,18 @@ class App extends Component {
           modal: true,
           allBranches: [...sliceSave, ...sliceAutosave],
         });
+      } else {
+        document.querySelector('#modal-button')?.classList.remove('light-up');
+        if ((event_.target as Element).id === 'close-button') {
+          document
+            .querySelector('#button-rewind')
+            ?.classList.remove('light-up');
+        }
+        if (clear) {
+          this.setState({ modal: false, selectedBranch: undefined });
+        }
+        this.setState({ modal: false });
       }
-      document.querySelector('#modal-button')?.classList.remove('light-up');
-      if ((event_.target as Element).id === 'close-button') {
-        document.querySelector('#button-rewind')?.classList.remove('light-up');
-      }
-      if (clear) {
-        this.setState({ modal: false, selectedBranch: undefined });
-      }
-      this.setState({ modal: false });
     } catch (error) {
       console.log('Error getting branches', error);
     }
@@ -110,15 +112,14 @@ class App extends Component {
         submitFunction,
         pressedButton: buttonCopy,
       });
+    } else if ((pressedButton && no) || submitFunction === undefined) {
+      pressedButton?.classList.remove('light-up');
+      this.setState({
+        sure: false,
+        submitFunction,
+        pressedButton: event_,
+      });
     }
-    if (pressedButton && no) {
-      pressedButton.classList.remove('light-up');
-    }
-    this.setState({
-      sure: false,
-      submitFunction,
-      pressedButton: event_,
-    });
   };
 
   submitBranch = (event_: MouseEvent) => {

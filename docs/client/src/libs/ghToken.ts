@@ -10,7 +10,7 @@ const REGION = environment.region;
 const IDENTITY_POOL_ID = environment.identityPoolId;
 const { secretName } = environment;
 
-const client = (ID_TOKEN: string) => {
+const client = (ID_TOKEN: string): SecretsManagerClient | undefined => {
   try {
     return new SecretsManagerClient({
       region: REGION,
@@ -24,33 +24,35 @@ const client = (ID_TOKEN: string) => {
     });
   } catch (error) {
     console.log('Launch secrets client error', error);
-    return error;
+    return undefined;
   }
 };
 
-const data = async (ID_TOKEN: string) => {
+const data = async (ID_TOKEN: string): Promise<string | undefined> => {
   try {
-    const secure = await client(ID_TOKEN);
-    const getData: object = await secure.send(
+    const secure = client(ID_TOKEN);
+    const getData = await secure?.send(
       new GetSecretValueCommand({ SecretId: secretName }),
     );
     if (getData && getData.SecretString) {
       return getData.SecretString;
     }
-    return getData;
+    return undefined;
   } catch (error) {
     console.log('Error sending secret value command', error);
-    return error;
+    return undefined;
   }
 };
 
 const getToken = async (ID_TOKEN: string) => {
   try {
-    const secret: string = await data(ID_TOKEN);
-    return JSON.parse(secret).repo;
+    const secret = await data(ID_TOKEN);
+    return (
+      JSON.parse as (secret: string | undefined) => { repo: string } | undefined
+    )(secret)?.repo;
   } catch (error) {
     console.log('Error getting token data', error);
-    return error;
+    return '';
   }
 };
 

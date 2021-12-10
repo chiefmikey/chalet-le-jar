@@ -27,7 +27,7 @@ const end = async (command: string, token: string) => {
   try {
     const get = await getBranches(token);
     const allBranches = Array.isArray(get) ? get : [];
-    [latest] = allBranches.reverse();
+    [latest] = allBranches;
     await commands(
       command,
       token,

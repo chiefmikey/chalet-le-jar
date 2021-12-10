@@ -1,7 +1,5 @@
-import { createRequire } from 'node:module';
 import path from 'node:path';
-
-const require = createRequire(import.meta.url);
+import { Configuration } from 'webpack';
 
 const SRC_DIR = path.join(path.resolve(), '/docs/client/src');
 const DIST_DIR = path.join(path.resolve(), '/docs/client/public/dist');
@@ -9,7 +7,7 @@ const DIST_DIR = path.join(path.resolve(), '/docs/client/public/dist');
 const css = ['style-loader', 'css-loader'];
 const scss = ['style-loader', 'css-loader', 'sass-loader'];
 
-export default {
+const config: Configuration = {
   entry: `${SRC_DIR}/index.ts`,
   output: {
     filename: 'bundle.js',
@@ -71,17 +69,10 @@ export default {
       'react-dom': 'preact/compat',
       'react/jsx-runtime': 'preact/jsx-runtime',
     },
-    fallback: {
-      fs: false,
-      url: require.resolve('url'),
-      http: require.resolve('stream-http'),
-      crypto: require.resolve('crypto-browserify'),
-      path: require.resolve('path-browserify'),
-      stream: require.resolve('stream-browserify'),
-      os: require.resolve('os-browserify/browser'),
-    },
   },
   experiments: {
     topLevelAwait: true,
   },
 };
+
+export default config;
