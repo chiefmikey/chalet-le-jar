@@ -45,5 +45,6 @@
 *.so            binary
 *.war           binary
 
+docs/**         linguist-documentation
 *.ts            linguist-detectable
 *.tsx           linguist-detectable
