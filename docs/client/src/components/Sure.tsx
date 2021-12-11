@@ -1,17 +1,31 @@
 import { h } from 'preact';
-import propTypes from 'prop-types';
 
-const sayYes = (submitFunction, token, selectedBranch, toggleSure) => {
+const sayYes = async (
+  submitFunction: SubmitFunction,
+  token: string,
+  selectedBranch: PreviousElement | undefined,
+  toggleSure: ToggleSure,
+) => {
   toggleSure();
-  submitFunction(token, selectedBranch);
+  await submitFunction(token, selectedBranch);
 };
 
-const sayNo = (toggleSure) => {
+const sayNo = (toggleSure: ToggleSure) => {
   toggleSure(undefined, undefined, true);
   console.log('Cancelled');
 };
 
-const Sure = ({ submitFunction, token, selectedBranch, toggleSure }) => (
+const Sure = ({
+  submitFunction,
+  token,
+  selectedBranch,
+  toggleSure,
+}: {
+  submitFunction: SubmitFunction;
+  token: string;
+  selectedBranch: PreviousElement | undefined;
+  toggleSure: ToggleSure;
+}) => (
   <div id="sure">
     <div id="sure-header">
       <h1>ARE YOU SURE</h1>
@@ -19,7 +33,9 @@ const Sure = ({ submitFunction, token, selectedBranch, toggleSure }) => (
     <button
       type="button"
       className="sure-button yes"
-      onClick={() => sayYes(submitFunction, token, selectedBranch, toggleSure)}
+      onClick={async () => {
+        await sayYes(submitFunction, token, selectedBranch, toggleSure);
+      }}
     >
       YES
     </button>
@@ -34,17 +50,3 @@ const Sure = ({ submitFunction, token, selectedBranch, toggleSure }) => (
 );
 
 export default Sure;
-
-Sure.defaultProps = {
-  submitFunction: () => {},
-  token: '',
-  selectedBranch: '',
-  toggleSure: () => {},
-};
-
-Sure.propTypes = {
-  submitFunction: propTypes.func,
-  token: propTypes.string,
-  selectedBranch: propTypes.string,
-  toggleSure: propTypes.func,
-};

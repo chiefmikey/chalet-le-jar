@@ -1,15 +1,14 @@
 import { h } from 'preact';
-import propTypes from 'prop-types';
 
 import commands from '../../helpers/commands';
 import state from '../../helpers/state';
 
-let event;
-let offLight;
+let event: MouseEvent;
+let offLight: LightOff;
 
 const allClear = () => {
   offLight(event);
-  document.querySelector('#lock-screen-clear').remove();
+  document.querySelector('#lock-screen-clear')?.remove();
 };
 
 const complete = () => {
@@ -22,24 +21,31 @@ const error = () => {
   allClear();
 };
 
-const end = (command, token) => {
-  state(command, token, undefined, complete, error);
+const end = async (command?: string, token?: string) => {
+  await state(command, token, undefined, complete, error);
 };
 
-const submitOff = (token) => {
+const submitOff = async (token: string) => {
   try {
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen-clear');
-    document.querySelector('#app').append(lockScreen);
-    return commands('STOP', token, complete, error, end);
+    document.querySelector('#app')?.append(lockScreen);
+    await commands('STOP', token, complete, error, end);
   } catch (error_) {
     console.log('Error creating STOP state', error_);
     error();
-    return error_;
   }
 };
 
-const Off = ({ lightUp, lightOff, toggleSure }) => (
+const Off = ({
+  lightUp,
+  lightOff,
+  toggleSure,
+}: {
+  lightUp: LightUp;
+  lightOff: LightOff;
+  toggleSure: ToggleSure;
+}) => (
   <button
     type="button"
     id="button-off"
@@ -49,7 +55,7 @@ const Off = ({ lightUp, lightOff, toggleSure }) => (
       event = event_;
       offLight = lightOff;
       lightUp(event_);
-      toggleSure(submitOff, event_);
+      toggleSure(submitOff, event_, false);
     }}
   >
     <div className="button-text">
@@ -59,15 +65,3 @@ const Off = ({ lightUp, lightOff, toggleSure }) => (
 );
 
 export default Off;
-
-Off.defaultProps = {
-  lightUp: () => {},
-  lightOff: () => {},
-  toggleSure: () => {},
-};
-
-Off.propTypes = {
-  lightUp: propTypes.func,
-  lightOff: propTypes.func,
-  toggleSure: propTypes.func,
-};

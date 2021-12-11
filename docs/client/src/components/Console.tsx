@@ -1,11 +1,14 @@
 import { console } from 'console-events';
 import { h } from 'preact';
 import { useEffect } from 'preact/hooks';
-import propTypes from 'prop-types';
 
-const Console = ({ statement }) => {
+interface ErrorType {
+  arguments: string[];
+}
+
+const Console = ({ statement }: { statement: string }) => {
   useEffect(() => {
-    console.addEventListener('log', (error) => {
+    console.addEventListener('log', (error: ErrorType) => {
       if (error.arguments.length > 0) {
         const developmentConsoleWindow = document.querySelector('#dev-console');
         const productionConsoleWindow = document.querySelector('#prod-console');
@@ -38,11 +41,11 @@ const Console = ({ statement }) => {
   useEffect(() => {
     const developmentConsoleWindow = document.querySelector('#dev-console');
     const productionConsoleWindow = document.querySelector('#prod-console');
-    developmentConsoleWindow.scroll({
+    developmentConsoleWindow?.scroll({
       top: developmentConsoleWindow.scrollHeight,
       behavior: 'smooth',
     });
-    productionConsoleWindow.scroll({
+    productionConsoleWindow?.scroll({
       top: productionConsoleWindow.scrollHeight,
       behavior: 'smooth',
     });
@@ -52,22 +55,14 @@ const Console = ({ statement }) => {
     <div id="console">
       <div
         id="prod-console"
-        style={statement !== 'prod' && { display: 'none' }}
+        style={statement !== 'prod' ? 'display: none' : ''}
       />
       <div
         id="dev-console"
-        style={statement !== 'dev' && { display: 'none' }}
+        style={statement !== 'dev' ? 'display: none' : ''}
       />
     </div>
   );
 };
 
 export default Console;
-
-Console.defaultProps = {
-  statement: '',
-};
-
-Console.propTypes = {
-  statement: propTypes.string,
-};

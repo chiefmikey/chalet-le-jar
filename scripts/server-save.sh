@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 cd /home/ubuntu
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)

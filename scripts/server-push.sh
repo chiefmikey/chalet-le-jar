@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 cd /home/ubuntu
 git push origin "start/$currentDate"

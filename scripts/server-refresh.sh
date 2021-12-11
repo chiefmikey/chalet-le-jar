@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 cd /home/ubuntu
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
@@ -34,5 +34,9 @@ killall screen
 git fetch origin main
 git checkout main
 git reset --hard origin/main
-LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
-su -s /bin/bash -c 'screen -S watch -dm watch /home/ubuntu/scripts/server-autosave.sh' root
+if [ "$(cat /home/ubuntu/upgrade.txt)" = upgrade ]; then
+  su -s /bin/bash -c '/home/ubuntu/scripts/server-upgrade.sh' root
+else
+  LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
+  su -s /bin/bash -c 'screen -S watch -dm watch /home/ubuntu/scripts/server-autosave.sh' root
+fi

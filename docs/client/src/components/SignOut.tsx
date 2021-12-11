@@ -1,26 +1,40 @@
+/* eslint-disable github/no-then */
 import { h } from 'preact';
-import propTypes from 'prop-types';
 
-const signOutUser = (onLogout) => {
-  window.gapi.load('auth2', async () => {
-    try {
-      await window.gapi.auth2.init();
-      const auth2 = await window.gapi.auth2.getAuthInstance();
-      await auth2.signOut();
-      onLogout();
-    } catch (error) {
-      console.log('Sign out user error', error);
-    }
-  });
+const signOutUser = (onLogout: () => void) => {
+  (
+    window.gapi.load as (service: string, callback: () => Promise<void>) => void
+  )('auth2', () =>
+    (
+      (
+        window.gapi.auth2 as {
+          init: (parameters: gapi.auth2.ClientConfig) => gapi.auth2.GoogleAuth;
+        }
+      ).init({}) as {
+        then: (inputAction: () => gapi.auth2.GoogleAuth) => {
+          then: (
+            inputAction: (response: {
+              signOut: () => gapi.auth2.GoogleAuth;
+            }) => gapi.auth2.GoogleAuth,
+          ) => {
+            then: (inputAction: () => void) => Promise<void>;
+          };
+        };
+      }
+    )
+      .then(() => window.gapi.auth2.getAuthInstance())
+      .then((response) => response.signOut())
+      .then(() => onLogout()),
+  );
 };
 
-const SignOut = ({ onLogout }) => (
+const SignOut = ({ onLogout }: { onLogout: () => void }) => (
   <button
     type="button"
     id="sign-out"
-    onClick={async (event_) => {
+    onClick={(event_) => {
       event_.preventDefault();
-      await signOutUser(onLogout);
+      signOutUser(onLogout);
     }}
   >
     SIGN OUT
@@ -28,11 +42,3 @@ const SignOut = ({ onLogout }) => (
 );
 
 export default SignOut;
-
-SignOut.propTypes = {
-  onLogout: propTypes.func,
-};
-
-SignOut.defaultProps = {
-  onLogout: () => {},
-};

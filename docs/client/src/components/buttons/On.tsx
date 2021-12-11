@@ -1,17 +1,16 @@
 import { h } from 'preact';
-import propTypes from 'prop-types';
 
 import commands from '../../helpers/commands';
 import state from '../../helpers/state';
 import getBranches from '../../libs/ghApi';
 
-let event;
-let offLight;
+let event: MouseEvent;
+let offLight: LightOff;
 let latest;
 
 const allClear = () => {
   offLight(event);
-  document.querySelector('#lock-screen-clear').remove();
+  document.querySelector('#lock-screen-clear')?.remove();
 };
 
 const complete = () => {
@@ -24,12 +23,12 @@ const error = () => {
   allClear();
 };
 
-const end = async (command, token) => {
+const end = async (command: string, token: string) => {
   try {
     const get = await getBranches(token);
     const allBranches = Array.isArray(get) ? get : [];
-    [latest] = allBranches.reverse();
-    return await commands(
+    [latest] = allBranches;
+    await commands(
       command,
       token,
       complete,
@@ -40,34 +39,40 @@ const end = async (command, token) => {
     );
   } catch (error_) {
     console.log('Error getting most recent save', error_);
-    return error_;
   }
 };
 
-const submitOn = async (token) => {
+const submitOn = async (token: string) => {
   try {
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen-clear');
-    document.querySelector('#app').append(lockScreen);
-    return await state('START', token, end, complete, error);
+    document.querySelector('#app')?.append(lockScreen);
+    await state('START', token, end, complete, error);
   } catch (error_) {
     console.log('Error creating START state', error_);
     error();
-    return error_;
   }
 };
 
-const On = ({ lightUp, lightOff, token }) => (
+const On = ({
+  lightUp,
+  lightOff,
+  token,
+}: {
+  lightUp: LightUp;
+  lightOff: LightOff;
+  token: string;
+}) => (
   <button
     type="button"
     id="button-on"
-    onClick={(event_) => {
+    onClick={async (event_) => {
       event_.preventDefault();
       console.log('Starting up...');
       event = event_;
       offLight = lightOff;
       lightUp(event_);
-      submitOn(token);
+      await submitOn(token);
     }}
   >
     <div className="button-text">
@@ -77,15 +82,3 @@ const On = ({ lightUp, lightOff, token }) => (
 );
 
 export default On;
-
-On.defaultProps = {
-  lightUp: () => {},
-  lightOff: () => {},
-  token: '',
-};
-
-On.propTypes = {
-  lightUp: propTypes.func,
-  lightOff: propTypes.func,
-  token: propTypes.string,
-};
