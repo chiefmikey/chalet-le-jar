@@ -48,5 +48,5 @@
 docs            linguist-documentation
 docs/*          linguist-documentation
 docs/**         linguist-documentation
-*.ts            linguist-detectable
-*.tsx           linguist-detectable
+*.ts            linguist-detectable=true
+*.tsx           linguist-detectable=true
