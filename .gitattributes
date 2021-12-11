@@ -45,4 +45,4 @@
 *.so            binary
 *.war           binary
 
-docs/** linguist-documentation
+docs/** linguist-detectable
