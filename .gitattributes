@@ -45,5 +45,4 @@
 *.so            binary
 *.war           binary
 
-*.ts            linguist-detectable=true
-*.tsx           linguist-detectable=true
+docs/**         linguist-documentation=false
