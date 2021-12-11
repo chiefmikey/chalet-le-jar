@@ -19,7 +19,11 @@
     "noEmit": true,
     "noImplicitAny": true,
     "removeComments": true,
-    "preserveConstEnums": true
+    "preserveConstEnums": true,
+
+    "paths": {
+      "./*.ts": ["./*"]
+    },
   },
 
   "ts-node": {
@@ -28,9 +32,6 @@
     },
   },
 
-  "paths": {
-    "./*.ts": ["./*"]
-  },
 
   "exclude": ["node_modules", "**/*.spec.ts"]
 }
