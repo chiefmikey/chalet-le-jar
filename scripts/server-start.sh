@@ -16,8 +16,7 @@ killall screen
 LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
 su -s /bin/bash -c 'screen -S watch -dm watch /home/ubuntu/scripts/server-autosave.sh' root
 git add log scripts
-cd /home/ubuntu/backups
-git add "start/$currentDate"
+git add "backups/start/$currentDate"
 git stash push
 git checkout -b "start/$currentDate"
 git stash pop

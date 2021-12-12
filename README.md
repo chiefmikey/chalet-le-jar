@@ -8,7 +8,7 @@
 
 - Go to [chaletlejar.com](https://chaletlejar.com)
 - Sign in with the google
-- Press the `ON` button and wait for success
+- Press the `ON` button and wait for "Start up complete"
 
 ## Xbox or Switch
 
@@ -39,6 +39,6 @@ Secondary IPv4 DNS
 
 # 🦄 When You're Done Having Fun 🦄
 
-Press the `OFF` button
+Press the `OFF` button and wait for "Shut down complete"
 
 </div>
