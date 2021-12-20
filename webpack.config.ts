@@ -73,6 +73,7 @@ const config: Configuration = {
   experiments: {
     topLevelAwait: true,
   },
+  devtool: 'inline-source-map',
 };
 
 export default config;
