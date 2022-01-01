@@ -47,9 +47,9 @@ const data = async (ID_TOKEN: string): Promise<string | undefined> => {
 const getToken = async (ID_TOKEN: string) => {
   try {
     const secret = await data(ID_TOKEN);
-    return (
-      JSON.parse as (secret: string | undefined) => { repo: string } | undefined
-    )(secret)?.repo;
+    return (JSON.parse as (secret: string) => { repo: string })(
+      secret as string,
+    )?.repo;
   } catch (error) {
     console.log('Error getting token data', error);
     return '';
