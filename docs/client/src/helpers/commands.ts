@@ -159,7 +159,7 @@ const sendCommand = async (
     }
   } catch (error_) {
     if (trySend === 0) {
-      console.log('First attempt failed', 'Retrying...');
+      console.log('Instance is initializing...');
       checkSend(
         command,
         launch,
