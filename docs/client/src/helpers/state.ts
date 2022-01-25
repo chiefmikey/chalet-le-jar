@@ -65,10 +65,10 @@ const interval = async (command, launch, end, token, complete, error) => {
       let SendCommand;
       if (command === 'START') {
         SendCommand = StartInstancesCommand;
+        await launch.send(new SendCommand(parameters));
       }
       if (command === 'STOP') {
         SendCommand = StopInstancesCommand;
-        await launch.send(new SendCommand(parameters));
       }
       const data =
         launch.send && SendCommand
