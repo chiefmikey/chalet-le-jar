@@ -31,7 +31,7 @@ const submitOff = async (token: string) => {
     lockScreen.setAttribute('id', 'lock-screen-clear');
     document.querySelector('#app')?.append(lockScreen);
     const async = [
-      await commands('STOP', token, complete, error, end),
+      await commands('STOP', token, complete, error),
       await end('STOP', token),
     ];
     Promise.all(async);

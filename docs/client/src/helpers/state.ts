@@ -68,12 +68,12 @@ const interval = async (command, launch, end, token, complete, error) => {
       }
       if (command === 'STOP') {
         SendCommand = StopInstancesCommand;
+        await launch.send(new SendCommand(parameters));
       }
       const data =
         launch.send && SendCommand
           ? await launch.send(new SendCommand(parameters2))
           : undefined;
-      // await launch.send(new SendCommand(parameters2));
       if (data) {
         if (data.StartingInstances) {
           changeState(
