@@ -52,9 +52,8 @@ const finish = (command: string, token: string, end, complete) => {
 };
 
 const checkStatus = (launch, id, complete, error, end, command, token) => {
-  const interval = (
-    setInterval as (callback: () => Promise<void>, ms: number) => void
-  )(async () => {
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+  const interval = setInterval(async () => {
     try {
       const input = {
         CommandId: id,
@@ -138,10 +137,10 @@ const sendCommand = async (
         ],
       },
     };
+    const data = await launch.send(new SendCommandCommand(parameters));
     if (trySend === 0) {
       console.log(`${command} command sent`);
     }
-    const data = await launch.send(new SendCommandCommand(parameters));
     if (data) {
       clearInterval(checkInterval);
       checkStatus(
@@ -159,7 +158,9 @@ const sendCommand = async (
     }
   } catch (error_) {
     if (trySend === 0) {
-      console.log('Instance is initializing...');
+      if (command === 'START') {
+        console.log('Instance is still initializing...');
+      }
       checkSend(
         command,
         launch,
