@@ -22,7 +22,8 @@ const error = () => {
 };
 
 const end = async (command?: string, token?: string) => {
-  await state(command, token, undefined, complete, error);
+  complete();
+  // await state(command, token, undefined, complete, error);
 };
 
 const submitOff = async (token: string) => {

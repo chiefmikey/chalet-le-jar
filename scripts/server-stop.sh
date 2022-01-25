@@ -39,3 +39,4 @@ git commit -am "autosave/$currentDate"
 git push origin "autosave/$currentDate"
 cd /home/ubuntu/backups/autosave
 ls -1t | tail -n +11 | xargs -d "\n" rm -rf
+shutdown -h now
