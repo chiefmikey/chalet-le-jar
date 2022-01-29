@@ -31,11 +31,7 @@ const submitOff = async (token: string) => {
     const lockScreen = document.createElement('div');
     lockScreen.setAttribute('id', 'lock-screen-clear');
     document.querySelector('#app')?.append(lockScreen);
-    const async = [
-      await commands('STOP', token, complete, error),
-      await end('STOP', token),
-    ];
-    Promise.all(async);
+    await commands('STOP', token, complete, error, end);
   } catch (error_) {
     console.log('Error creating STOP state', error_);
     error();
@@ -59,7 +55,7 @@ const Off = ({
       console.log('Shutting down...');
       event = event_;
       offLight = lightOff;
-      lightUp(event);
+      lightUp(event_);
       toggleSure(submitOff, event_, false);
     }}
   >

@@ -43,7 +43,6 @@ const setScript = (
 };
 
 const finish = (command: string, token: string, end, complete) => {
-  console.log('Commands executed successfully');
   if (!end) {
     complete();
   } else {
@@ -62,7 +61,6 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
       };
       const data = await launch.send(new ListCommandInvocationsCommand(input));
       if (data) {
-        console.log(`Status: ${data.CommandInvocations[0].Status}`);
         if (data.CommandInvocations[0].Status === 'Failed') {
           tries += 1;
           if (tries === 3) {
@@ -79,12 +77,12 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
           clearInterval(interval);
           finish(command, token, end, complete);
         }
-        if (
-          data.CommandInvocations[0].Status === 'InProgress' &&
-          command === 'STOP'
-        ) {
-          clearInterval(interval);
-          finish(command, token, end, complete);
+        if (data.CommandInvocations[0].Status === 'InProgress') {
+          console.log('Status: In Progress...');
+          if (command === 'STOP') {
+            clearInterval(interval);
+            finish(command, token, end, complete);
+          }
         }
       }
     } catch (error_) {
