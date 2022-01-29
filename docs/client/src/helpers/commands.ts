@@ -177,7 +177,15 @@ const sendCommand = async (
       trySend += 1;
     } else if (trySend === 3) {
       trySend = 0;
-      console.log('Error in send command', error_);
+      console.log('Error sending command');
+      if (error_.includes('not in a valid state')) {
+        if (command === 'START') {
+          console.log('Server is already started');
+        }
+        if (command === 'STOP') {
+          console.log('Server is already stopped');
+        }
+      }
       clearInterval(checkInterval);
       error(command, token);
     } else {
