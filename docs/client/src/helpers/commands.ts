@@ -159,6 +159,7 @@ const sendCommand = async (
       error(command, token);
     }
   } catch (error_) {
+    console.log('eeeeee', error_);
     if (trySend === 0) {
       if (command === 'START') {
         console.log('Instance is still initializing...');
@@ -177,14 +178,15 @@ const sendCommand = async (
     } else if (trySend === 3) {
       trySend = 0;
       console.log('Error sending command');
-      if (error_.includes('not in a valid state')) {
-        if (command === 'START') {
-          console.log('Server is already started');
-        }
-        if (command === 'STOP') {
-          console.log('Server is already stopped');
-        }
-      }
+      console.log('bbbbbb', error_);
+      // if (error_.includes('not in a valid state')) {
+      //   if (command === 'START') {
+      //     console.log('Server is already started');
+      //   }
+      //   if (command === 'STOP') {
+      //     console.log('Server is already stopped');
+      //   }
+      // }
       clearInterval(checkInterval);
       error(command, token);
     } else {
