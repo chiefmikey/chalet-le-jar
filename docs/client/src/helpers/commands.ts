@@ -79,6 +79,13 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
           clearInterval(interval);
           finish(command, token, end, complete);
         }
+        if (
+          data.CommandInvocations[0].Status === 'InProgress' &&
+          command === 'STOP'
+        ) {
+          clearInterval(interval);
+          finish(command, token, end, complete);
+        }
       }
     } catch (error_) {
       console.log('Error checking command status', error_);
