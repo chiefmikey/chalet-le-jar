@@ -45,7 +45,7 @@ const isStarted = (command, data, index) => {
 const changeState = (data, interval, command, end, token, complete) => {
   tries += 1;
   for (let index = 0; index < data.length; index += 1) {
-    console.log(`Current State: ${data[index].CurrentState.Name}`);
+    console.log(`Status: ${data[index].CurrentState.Name}`);
     isStarted(command, data, index);
     if (Object.keys(ready).length === data.length) {
       clearInterval(interval);

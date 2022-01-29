@@ -78,7 +78,7 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
           finish(command, token, end, complete);
         }
         if (data.CommandInvocations[0].Status === 'InProgress') {
-          console.log('Status: In Progress...');
+          console.log('Status: pending');
           if (command === 'STOP') {
             clearInterval(interval);
             finish(command, token, end, complete);
