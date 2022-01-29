@@ -16,7 +16,10 @@ const complete = () => {
   allClear();
 };
 
-const error = () => {
+const error = (error_) => {
+  if (error_.name === 'InvalidInstanceId') {
+    console.log('Server is already stopped');
+  }
   console.log('Shut down was interrupted');
   allClear();
 };
