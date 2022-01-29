@@ -80,6 +80,7 @@ const checkStatus = (launch, id, complete, error, end, command, token) => {
         if (data.CommandInvocations[0].Status === 'InProgress') {
           console.log('Status: In Progress...');
           if (command === 'STOP') {
+            console.log('Status: Success');
             clearInterval(interval);
             finish(command, token, end, complete);
           }
@@ -143,9 +144,6 @@ const sendCommand = async (
       },
     };
     const data = await launch.send(new SendCommandCommand(parameters));
-    if (trySend === 0) {
-      console.log(`${command} command sent`);
-    }
     if (data) {
       clearInterval(checkInterval);
       checkStatus(
