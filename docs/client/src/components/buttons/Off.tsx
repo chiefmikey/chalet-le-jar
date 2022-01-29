@@ -7,6 +7,7 @@ let event: MouseEvent;
 let offLight: LightOff;
 
 const allClear = () => {
+  console.log('allClear STOP');
   offLight(event);
   document.querySelector('#lock-screen-clear')?.remove();
 };
