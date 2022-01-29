@@ -32,6 +32,14 @@ const isStarted = (command, data, index) => {
     console.log('Server already started');
     runEnd = true;
   }
+  if (
+    data[index].InstanceId === parameters2.InstanceIds[0] &&
+    ready[parameters2.InstanceIds[0]] &&
+    tries === 1
+  ) {
+    console.log('Server already stopped');
+    runEnd = true;
+  }
 };
 
 const changeState = (data, interval, command, end, token, complete) => {
@@ -43,7 +51,6 @@ const changeState = (data, interval, command, end, token, complete) => {
     console.log(`Current State: ${data[index].CurrentState.Name}`);
     isStarted(command, data, index);
     if (Object.keys(ready).length === data.length) {
-      console.log('All instances updated');
       clearInterval(interval);
       tries = 0;
       ready = {};
