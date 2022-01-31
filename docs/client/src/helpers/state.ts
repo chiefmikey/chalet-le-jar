@@ -25,8 +25,8 @@ const isStarted = (command, data, index) => {
     ready[data[index].InstanceId] = true;
   }
   if (
-    data[index].InstanceId === parameters.InstanceIds[0] &&
-    ready[parameters.InstanceIds[0]] &&
+    data[index].InstanceId === parameters2.InstanceIds[0] &&
+    ready[parameters2.InstanceIds[0]] &&
     tries === 1
   ) {
     if (command === 'START') {
