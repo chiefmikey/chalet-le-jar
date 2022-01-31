@@ -24,19 +24,19 @@ const isStarted = (command, data, index) => {
   if (command === 'STOP' && data[index].CurrentState.Name === 'stopped') {
     ready[data[index].InstanceId] = true;
   }
-  if (
-    data[index].InstanceId === parameters2.InstanceIds[0] &&
-    ready[parameters2.InstanceIds[0]] &&
-    tries === 1
-  ) {
-    if (command === 'START') {
-      console.log('Server already started');
-    }
-    if (command === 'STOP') {
-      console.log('Server already stopped');
-    }
-    runEnd = true;
-  }
+  // if (
+  //   data[index].InstanceId === parameters2.InstanceIds[0] &&
+  //   ready[parameters2.InstanceIds[0]] &&
+  //   tries === 1
+  // ) {
+  //   if (command === 'START') {
+  //     console.log('Server already started');
+  //   }
+  //   if (command === 'STOP') {
+  //     console.log('Server already stopped');
+  //   }
+  //   runEnd = true;
+  // }
 };
 
 const changeState = (data, interval, command, end, token, complete) => {

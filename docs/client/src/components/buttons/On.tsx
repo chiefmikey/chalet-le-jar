@@ -21,6 +21,8 @@ const complete = () => {
 const error = (error_) => {
   if (error_.name === 'InvalidInstanceId') {
     console.log('Server is already running');
+  } else {
+    console.log('Start up was interrupted');
   }
   allClear();
 };
