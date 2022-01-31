@@ -29,15 +29,12 @@ const isStarted = (command, data, index) => {
     ready[parameters.InstanceIds[0]] &&
     tries === 1
   ) {
-    console.log('Server already started');
-    runEnd = true;
-  }
-  if (
-    data[index].InstanceId === parameters2.InstanceIds[0] &&
-    ready[parameters2.InstanceIds[0]] &&
-    tries === 1
-  ) {
-    console.log('Server already stopped');
+    if (command === 'START') {
+      console.log('Server already started');
+    }
+    if (command === 'STOP') {
+      console.log('Server already stopped');
+    }
     runEnd = true;
   }
 };
