@@ -73,11 +73,11 @@ class App extends Component {
           (branch: string) =>
             branch.includes('save/') && !branch.includes('autosave/'),
         );
-        const sliceSave: string[] = saveBranches.slice(0, 5);
+        const sliceSave: string[] = saveBranches.slice(0, 1);
         const autosaveBranches = allBranches.filter((branch: string) =>
           branch.includes('autosave/'),
         );
-        const sliceAutosave = autosaveBranches.slice(0, 9);
+        const sliceAutosave = autosaveBranches.slice(0, 4);
         this.setState({
           modal: true,
           allBranches: [...sliceSave, ...sliceAutosave],
