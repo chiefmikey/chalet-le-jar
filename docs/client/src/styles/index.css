@@ -8,7 +8,7 @@ body,
   margin: 0;
   overflow: hidden;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 400;
+  font-weight: $font-weight-normal;
   color: #fafafa;
   text-align: center;
   flex-direction: column;
@@ -47,7 +47,7 @@ h5 {
 
 h6 {
   font-size: calc(2vmin + 2vw);
-  font-weight: 400;
+  font-weight: $font-weight-normal;
   line-height: 80%;
   text-align: left;
 }
@@ -58,7 +58,7 @@ button {
   overflow: hidden;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: calc(3.2vmin + 3.2vw);
-  font-weight: 600;
+  font-weight: $font-weight-bold;
   color: #fafafa;
   text-align: center;
   cursor: pointer;
@@ -67,7 +67,7 @@ button {
   background: none;
   border: none;
   outline: none;
-  opacity: 69%;
+  opacity: 0.69;
   touch-action: none;
   align-items: center;
   justify-content: center;
@@ -105,7 +105,7 @@ button {
 }
 
 #lock-screen-clear {
-  opacity: 0%;
+  opacity: 0;
 }
 
 .g-signin2,
@@ -155,7 +155,7 @@ button {
   width: 100%;
   padding: calc(1vmin + 1vh);
   margin: 0;
-  font-weight: 400;
+  font-weight: $font-weight-normal;
   text-decoration: none;
   flex-direction: row;
   touch-action: auto;
@@ -307,10 +307,14 @@ button {
   z-index: 1;
   width: 100%;
   height: 40%;
+  padding: calc(1.5vmin + 1.5vh);
   margin-top: calc(0.5vmin + 0.5vh);
   overflow: scroll;
   background-color: #454a4d;
-  border: calc(1vmin + 1vh) solid transparent;
+  border: calc(1vmin + 1vh) $border-style transparent;
+  overflow-anchor: none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 #prod-console,
@@ -330,6 +334,7 @@ button {
   -ms-overflow-style: none;
 }
 
+#console::-webkit-scrollbar,
 #prod-console::-webkit-scrollbar,
 #dev-console::-webkit-scrollbar {
   display: none;
