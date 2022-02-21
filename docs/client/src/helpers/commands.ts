@@ -33,9 +33,9 @@ const setScript = (
     return `branch=${selectedBranch} /home/ubuntu/scripts/server-rewind.sh`;
   }
   if (command === 'START') {
-    if (trySend === 0) {
-      console.log(`Loading save ${latestBranch}`);
-    }
+    // if (trySend === 0) {
+    //   console.log(`Loading save ${latestBranch}`);
+    // }
     return `latest=${latestBranch} /home/ubuntu/scripts/server-start.sh`;
   }
   console.log('Invalid command');
