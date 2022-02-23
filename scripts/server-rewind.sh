@@ -2,8 +2,6 @@
 
 cd /home/ubuntu
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
-echo "Current: $currentDate" >> log/rewind-log.txt
-echo "Rewind: $branch" >> log/rewind-log.txt
 screen -S watch -X quit
 screen -S bedrock -X stuff "playsound beacon.activate @a\n"
 sleep 1

@@ -1,8 +1,6 @@
 #!/bin/bash
 
 cd /home/ubuntu
-currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
-echo "Refresh: $currentDate" >> log/refresh-log.txt
 screen -S watch -X quit
 screen -S bedrock -X stuff "playsound beacon.activate @a\n"
 sleep 1

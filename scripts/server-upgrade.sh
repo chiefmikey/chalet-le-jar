@@ -11,4 +11,3 @@ git checkout main
 git reset --hard origin/main
 LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
 su -s /bin/bash -c 'screen -S watch -dm watch /home/ubuntu/scripts/server-autosave.sh' root
-echo "Upgrade: $currentDate" >> log/upgrade-log.txt

@@ -14,10 +14,4 @@ git reset --hard origin/main
 killall screen
 LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
 su -s /bin/bash -c 'screen -S watch -dm watch /home/ubuntu/scripts/server-autosave.sh' root
-git stash push
-git checkout -b "start/$currentDate"
-git stash pop
 echo "Start: $currentDate" >> log/startup-log.txt
-git commit -am "start/$currentDate"
-git push origin "start/$currentDate"
-

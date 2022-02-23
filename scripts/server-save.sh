@@ -12,8 +12,6 @@ cp -r worlds/clj backups/save/$currentDate
 screen -S bedrock -X stuff "save resume\n"
 git restore --staged .
 git checkout -b "save/$currentDate"
-echo "Save: $currentDate" >> log/save-log.txt
-git add log
 git commit -am "save/$currentDate"
 git push origin "save/$currentDate"
 cd /home/ubuntu/backups/save

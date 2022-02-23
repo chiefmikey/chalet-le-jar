@@ -7,6 +7,5 @@ git add "backups/backup/$currentDate"
 git stash push
 git checkout -b "backup/$currentDate"
 git stash pop
-echo "Backup: $currentDate" >> log/backup-log.txt
 git commit -am "backup/$currentDate"
 currentDate=$currentDate su -s /bin/bash -p -c 'screen -S push -dm /home/ubuntu/scripts/server-push.sh' root

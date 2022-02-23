@@ -33,8 +33,6 @@ killall screen
 cp -r worlds/clj backups/autosave/$currentDate
 git restore --staged .
 git checkout -b "autosave/$currentDate"
-echo "Shutdown: $currentDate" >> log/shutdown-log.txt
-git add log
 git commit -am "autosave/$currentDate"
 git push origin "autosave/$currentDate"
 cd /home/ubuntu/backups/autosave
