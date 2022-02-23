@@ -6,6 +6,7 @@ apt install -y wget zip unzip git jq awscli curl
 wget -O bedrock-server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.18.12.01.zip
 unzip -o bedrock-server.zip
 rm bedrock-server.zip
+sleep 20
 pw=$(aws secretsmanager --region us-east-2 get-secret-value --secret-id repo | jq -r ".SecretString" | jq -r ".repo")
 sleep 10
 git init
@@ -19,7 +20,7 @@ chmod +x scripts/server-save.sh scripts/server-stop.sh scripts/server-refresh.sh
 mkdir /home/ubuntu/backups
 mkdir /home/ubuntu/backups/save
 mkdir /home/ubuntu/backups/autosave
-mkdir /home/ubuntu/backups/start
+mkdir /home/ubuntu/backups/backup
 chown -R ubuntu:root /home/ubuntu
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
 echo "Init: $currentDate" >> log/init-log.txt
