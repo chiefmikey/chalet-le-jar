@@ -13,8 +13,8 @@ git config user.name chalet-le-jar
 git config user.email chaletlejar@gmail.com
 git remote add origin https://chalet-le-jar:${pw}@github.com/chiefmikey/chalet-le-jar.git
 git fetch origin main
-git reset --hard origin/main
 git checkout main
+git reset --hard origin/main
 chmod +x scripts/server-save.sh scripts/server-stop.sh scripts/server-refresh.sh scripts/server-rewind.sh scripts/server-push.sh scripts/server-upgrade.sh
 mkdir /home/ubuntu/backups
 mkdir /home/ubuntu/backups/save
