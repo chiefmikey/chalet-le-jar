@@ -3,7 +3,7 @@ cd /home/ubuntu
 apt update -y
 apt upgrade -y
 apt install -y wget zip unzip git jq awscli curl
-wget -O bedrock-server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.18.0.02.zip
+wget -O bedrock-server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.18.12.01.zip
 unzip -o bedrock-server.zip
 rm bedrock-server.zip
 pw=$(aws secretsmanager --region us-east-2 get-secret-value --secret-id repo | jq -r ".SecretString" | jq -r ".repo")
@@ -13,9 +13,8 @@ git config user.name chalet-le-jar
 git config user.email chaletlejar@gmail.com
 git remote add origin https://chalet-le-jar:${pw}@github.com/chiefmikey/chalet-le-jar.git
 git fetch origin main
-git add permissions.json server.properties whitelist.json
-git checkout main
 git reset --hard origin/main
+git checkout main
 chmod +x scripts/server-save.sh scripts/server-stop.sh scripts/server-refresh.sh scripts/server-rewind.sh scripts/server-push.sh scripts/server-upgrade.sh
 mkdir /home/ubuntu/backups
 mkdir /home/ubuntu/backups/save
