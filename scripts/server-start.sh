@@ -22,5 +22,5 @@ git checkout -b "start/$currentDate"
 git stash pop
 echo "Start: $currentDate" >> log/startup-log.txt
 git commit -am "start/$currentDate"
-su -s /bin/bash -c 'screen -S push -dm /home/ubuntu/scripts/server-push.sh' root
+su -s -p /bin/bash -c 'screen -S push -dm /home/ubuntu/scripts/server-push.sh' root
 
