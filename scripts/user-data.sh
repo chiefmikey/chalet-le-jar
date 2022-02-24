@@ -23,7 +23,7 @@ mkdir /home/ubuntu/backups/autosave
 mkdir /home/ubuntu/backups/backup
 chown -R ubuntu:root /home/ubuntu
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
-echo "Init: $currentDate" >> log/init-log.txt
+echo "Init: $currentDate" >> logs/init-log.txt
 git add logs
 git commit -am "Server initialized"
 git push origin main
