@@ -10,8 +10,7 @@ git init
 git config user.name chalet-le-jar
 git config user.email chaletlejar@gmail.com
 export pw=$(sudo aws secretsmanager --region us-east-2 get-secret-value --secret-id repo | jq -r ".SecretString" | jq -r ".repo")
-wait 10
-echo "password: $pw"
+sleep 10
 git remote add origin https://chalet-le-jar:${pw}@github.com/chiefmikey/chalet-le-jar.git
 git fetch origin main
 git checkout main

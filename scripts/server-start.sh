@@ -3,9 +3,9 @@
 cd /home/ubuntu
 apt update -y
 apt upgrade -y
-pw=$(aws secretsmanager --region us-east-2 get-secret-value --secret-id repo | jq -r ".SecretString" | jq -r ".repo")
-sleep 10
 git remote remove origin
+export pw=$(aws secretsmanager --region us-east-2 get-secret-value --secret-id repo | jq -r ".SecretString" | jq -r ".repo")
+sleep 10
 git remote add origin https://chalet-le-jar:${pw}@github.com/chiefmikey/chalet-le-jar.git
 git fetch origin main
 git checkout main
