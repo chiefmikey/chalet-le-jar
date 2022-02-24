@@ -9,7 +9,9 @@ rm bedrock-server.zip
 git init
 git config user.name chalet-le-jar
 git config user.email chaletlejar@gmail.com
-pw=$(aws secretsmanager --region us-east-2 get-secret-value --secret-id repo | jq -r ".SecretString" | jq -r ".repo") &&
+export pw=$(sudo aws secretsmanager --region us-east-2 get-secret-value --secret-id repo | jq -r ".SecretString" | jq -r ".repo")
+wait 10
+echo "password: $pw"
 git remote add origin https://chalet-le-jar:${pw}@github.com/chiefmikey/chalet-le-jar.git
 git fetch origin main
 git checkout main
@@ -20,5 +22,8 @@ mkdir /home/ubuntu/backups/save
 mkdir /home/ubuntu/backups/autosave
 mkdir /home/ubuntu/backups/backup
 chown -R ubuntu:root /home/ubuntu
+currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
+echo "Init: $currentDate" >> log/init-log.txt
+git add logs
 git commit -am "Server initialized"
 git push origin main
