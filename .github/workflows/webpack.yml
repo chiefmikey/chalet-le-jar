@@ -43,6 +43,6 @@ jobs:
         pathspec_error_handling: exitImmediately
         pull: 'NO-PULL'
         push: origin HEAD:client --force
-        remove: '-r whitelist.json webpack.config.ts server.properties README.md permissions.json package.json package-lock.json .gitignore .deepsource.toml scripts docs/client/app.ts docs/client/src logs dns .github tsconfig.json nodemon.json upgrade.txt'
+        remove: '-r whitelist.json webpack.config.ts server.properties README.md permissions.json package.json package-lock.json .gitignore .deepsource.toml scripts docs/client/app.ts docs/client/src logs dns .github tsconfig.json upgrade.txt'
         signoff: false
         # tag: 'v1.0.0 --force'
