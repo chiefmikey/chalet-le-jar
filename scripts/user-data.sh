@@ -6,12 +6,18 @@ apt install -y wget zip unzip git jq awscli curl
 wget -O bedrock-server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.18.12.01.zip
 unzip -o bedrock-server.zip
 rm bedrock-server.zip
-git init
-git config user.name chalet-le-jar
-git config user.email chaletlejar@gmail.com
-export pw=$(sudo aws secretsmanager --region us-east-2 get-secret-value --secret-id repo | jq -r ".SecretString" | jq -r ".repo")
+export user="chalet-le-jar"
+export email="chaletlejar@gmail.com"
+export repo="chalet-le-jar"
+export owner="chiefmikey"
+export awsRegion="us-east-2"
+export awsSecretId="repo"
+export pw=$(sudo aws secretsmanager --region ${awsRegion} get-secret-value --secret-id ${awsSecretId} | jq -r ".SecretString" | jq -r ".${awsSecretId}")
 sleep 10
-git remote add origin https://chalet-le-jar:${pw}@github.com/chiefmikey/chalet-le-jar.git
+git init
+git config user.name ${user}
+git config user.email ${email}
+git remote add origin https://${user}:${pw}@github.com/${owner}/${repo}.git
 git fetch origin main
 git checkout main
 git reset --hard origin/main
