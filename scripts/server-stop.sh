@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /home/ubuntu
+cd /home/chalet-le-jar
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
 screen -S watch -X quit
 screen -S bedrock -X stuff "playsound beacon.activate @a\n"
@@ -35,6 +35,6 @@ git restore --staged .
 git checkout -b "autosave/$currentDate"
 git commit -am "autosave/$currentDate"
 git push origin "autosave/$currentDate"
-cd /home/ubuntu/backups/autosave
+cd /home/chalet-le-jar/backups/autosave
 ls -1t | tail -n +11 | xargs -d "\n" rm -rf
 shutdown -h now

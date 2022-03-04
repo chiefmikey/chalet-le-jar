@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /home/ubuntu
+cd /home/chalet-le-jar
 git push origin "backup/$currentDate"
 git checkout main
 rm -r backups/backup/$currentDate

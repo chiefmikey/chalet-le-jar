@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /home/ubuntu
+cd /home/chalet-le-jar
 apt update -y
 apt upgrade -y
 git remote remove origin
@@ -11,5 +11,5 @@ git fetch origin main
 git checkout main
 git reset --hard origin/main
 killall screen
-LD_LIBRARY_PATH=/home/ubuntu su -s /bin/bash -c 'screen -S bedrock -dm /home/ubuntu/bedrock_server' root
-su -s /bin/bash -c 'screen -S watch -dm watch /home/ubuntu/scripts/server-autosave.sh' root
+LD_LIBRARY_PATH=/home/chalet-le-jar su -s /bin/bash -c 'screen -S bedrock -dm /home/chalet-le-jar/bedrock_server' root
+su -s /bin/bash -c 'screen -S watch -dm watch /home/chalet-le-jar/scripts/server-autosave.sh' root
