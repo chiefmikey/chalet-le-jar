@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd /home/chalet-le-jar
-currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
+export currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
 cp -r worlds/clj backups/backup/$currentDate
 git add "backups/backup/$currentDate"
 git stash push

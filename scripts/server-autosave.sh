@@ -2,7 +2,7 @@
 
 sleep 300
 cd /home/chalet-le-jar
-currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
+export currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
 screen -S bedrock -X stuff "save hold\n"
 sleep 10
 cp -r worlds/clj backups/autosave/$currentDate
