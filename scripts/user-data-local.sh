@@ -23,7 +23,6 @@ sudo git reset --hard origin/main
 sudo git checkout main
 sudo chmod +x scripts/server-save.sh scripts/server-stop.sh scripts/server-refresh.sh scripts/server-rewind.sh scripts/server-push.sh scripts/server-upgrade.sh
 sudo mkdir /home/chalet-le-jar/backups
-sudo mkdir /home/chalet-le-jar/backups/save
 sudo mkdir /home/chalet-le-jar/backups/autosave
 sudo mkdir /home/chalet-le-jar/backups/backup
 sudo mkdir /home/chalet-le-jar/worlds

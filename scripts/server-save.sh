@@ -8,13 +8,15 @@ sleep 2
 screen -S bedrock -X stuff "say save in progress...\n"
 screen -S bedrock -X stuff "save hold\n"
 sleep 10
-cp -r worlds/clj backups/save/$currentDate
+cp -r worlds/clj backups/autosave/$currentDate
 screen -S bedrock -X stuff "save resume\n"
 git restore --staged .
-git checkout -b "save/$currentDate"
-git commit -am "save/$currentDate"
-git push origin "save/$currentDate"
-cd /home/chalet-le-jar/backups/save
-ls -1t | tail -n +3 | xargs -d "\n" rm -rf
+git checkout -b "autosave/$currentDate"
+git commit -am "autosave/$currentDate"
+git push origin "autosave/$currentDate"
 screen -S bedrock -X stuff "say save complete\n"
+git fetch --prune
+git branch -r --sort=committerdate | head -n 1 | sed 's/  origin\///' | xargs git push origin --delete
+cd /home/chalet-le-jar/backups/autosave
+ls -1t | tail -n +73 | xargs -d "\n" rm -rf
 su -s /bin/bash -c 'screen -S watch -dm watch /home/chalet-le-jar/scripts/server-autosave.sh' root
