@@ -37,3 +37,4 @@ git commit -am "autosave/$currentDate"
 git push origin "autosave/$currentDate"
 cd /home/chalet-le-jar/backups/autosave
 ls -1t | tail -n +73 | xargs -d "\n" rm -rf
+shutdown -h now
