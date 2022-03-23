@@ -1,7 +1,6 @@
 #!/bin/bash
 
 cd /home/chalet-le-jar
-export currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
 screen -S watch -X quit
 screen -S bedrock -X stuff "playsound beacon.activate @a\n"
 sleep 1
