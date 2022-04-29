@@ -2,7 +2,7 @@
 
 cd /home/chalet-le-jar
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
-wget -O bedrock-server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.18.30.04.zip
+wget -O bedrock-server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.18.31.04.zip
 unzip -o bedrock-server.zip
 rm bedrock-server.zip
 git fetch origin main
