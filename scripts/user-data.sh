@@ -3,7 +3,7 @@ cd /home/ubuntu
 apt update -y
 apt upgrade -y
 apt install -y wget zip unzip git jq awscli curl
-wget -O bedrock-server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.18.12.01.zip
+wget -O bedrock-server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.18.33.02.zip
 unzip -o bedrock-server.zip
 rm bedrock-server.zip
 export user="chalet-le-jar"
