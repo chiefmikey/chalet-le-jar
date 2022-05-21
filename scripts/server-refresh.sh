@@ -35,6 +35,6 @@ git reset --hard origin/main
 if [ "$(cat /home/chalet-le-jar/upgrade.txt)" = upgrade ]; then
   su -s /bin/bash -c '/home/chalet-le-jar/scripts/server-upgrade.sh' root
 else
-  LD_LIBRARY_PATH=/home/chalet-le-jar su -s /bin/bash -c 'screen -S bedrock -dm /home/chalet-le-jar/bedrock_server' root
-  su -s /bin/bash -c 'screen -S watch -dm watch /home/chalet-le-jar/scripts/server-autosave.sh' root
+  LD_LIBRARY_PATH=/home/chalet-le-jar su -s /bin/bash -c 'screen -dmS bedrock /home/chalet-le-jar/bedrock_server' root
+  su -s /bin/bash -c 'screen -dmS watch /home/chalet-le-jar/scripts/server-autosave.sh' root
 fi

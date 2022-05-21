@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 cd /home/ec2-user
 yum update -y
 yum install -y wget unzip git
 rm -rf /usr/local/go
-wget -O /home/ec2-user/go.tar.gz https://golang.org/dl/go1.17.3.linux-amd64.tar.gz
+wget -O /home/ec2-user/go.tar.gz https://go.dev/dl/go1.18.1.src.tar.gz
 tar -C /usr/local -xzf /home/ec2-user/go.tar.gz
 rm /home/ec2-user/go.tar.gz
 mkdir /home/ec2-user/go
@@ -35,4 +35,4 @@ echo \
   }" \
 >> /home/ec2-user/coredns/Corefile
 chmod +x /home/ec2-user/coredns/coredns
-su -s /bin/bash -c 'screen -S coredns -dm /home/ec2-user/coredns/coredns' root
+su -s /bin/bash -c 'screen -dmS coredns /home/ec2-user/coredns/coredns' root

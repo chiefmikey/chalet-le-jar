@@ -8,4 +8,4 @@ git stash push
 git checkout -b "backup/$currentDate"
 git stash pop
 git commit -am "backup/$currentDate"
-currentDate=$currentDate su -s /bin/bash -p -c 'screen -S push -dm /home/chalet-le-jar/scripts/server-push.sh' root
+currentDate=$currentDate su -s /bin/bash -p -c 'screen -dmS push /home/chalet-le-jar/scripts/server-push.sh' root
