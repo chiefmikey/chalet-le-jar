@@ -11,7 +11,7 @@
     "test": "nodemon docs/client/app.ts"
   },
   "dependencies": {
-    "@aws-sdk/client-ec2": "^3.95.0",
+    "@aws-sdk/client-ec2": "^3.98.0",
     "@aws-sdk/client-secrets-manager": "^3.95.0",
     "@aws-sdk/client-ssm": "^3.95.0",
     "@aws-sdk/credential-providers": "^3.95.0",
@@ -30,13 +30,13 @@
     "process": "^0.11.10",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
-    "the-new-css-reset": "^1.6.0",
+    "the-new-css-reset": "^1.6.1",
     "url": "^0.11.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.0",
+    "@babel/core": "^7.18.2",
     "@babel/plugin-transform-react-jsx": "^7.17.12",
-    "@babel/preset-env": "^7.18.0",
+    "@babel/preset-env": "^7.18.2",
     "@babel/preset-react": "^7.17.12",
     "@babel/preset-typescript": "^7.17.12",
     "@mikey-pro/style-guide": "^4.11.2",
@@ -55,9 +55,9 @@
     "source-map-js": "^1.0.2",
     "source-map-loader": "^3.0.1",
     "style-loader": "^3.3.1",
-    "stylelint": "^14.8.4",
+    "stylelint": "^14.8.5",
     "ts-node": "^10.8.0",
-    "typescript": "^4.6.4",
+    "typescript": "^4.7.2",
     "url-loader": "^4.1.1",
     "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2"
