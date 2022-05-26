@@ -11,10 +11,10 @@
     "test": "nodemon docs/client/app.ts"
   },
   "dependencies": {
-    "@aws-sdk/client-ec2": "^3.98.0",
-    "@aws-sdk/client-secrets-manager": "^3.95.0",
-    "@aws-sdk/client-ssm": "^3.95.0",
-    "@aws-sdk/credential-providers": "^3.95.0",
+    "@aws-sdk/client-ec2": "^3.99.0",
+    "@aws-sdk/client-secrets-manager": "^3.99.0",
+    "@aws-sdk/client-ssm": "^3.99.0",
+    "@aws-sdk/credential-providers": "^3.99.0",
     "@octokit/request": "^5.6.3",
     "airbnb-browser-shims": "^3.3.0",
     "aws-crt": "^1.12.2",
