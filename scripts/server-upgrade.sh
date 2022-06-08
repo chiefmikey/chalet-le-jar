@@ -8,5 +8,3 @@ rm bedrock-server.zip
 git fetch origin main
 git checkout main
 git reset --hard origin/main
-LD_LIBRARY_PATH=/home/chalet-le-jar su -s /bin/bash -c 'screen -dmS bedrock /home/chalet-le-jar/bedrock_server' root
-su -s /bin/bash -c 'screen -dmS watch /home/chalet-le-jar/scripts/server-autosave.sh' root
