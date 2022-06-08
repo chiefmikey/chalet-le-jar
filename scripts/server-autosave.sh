@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -v
 
 sleep 300
 cd /home/chalet-le-jar

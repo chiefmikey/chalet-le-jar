@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -v
 
 cd /home/chalet-le-jar
 git push origin "backup/$currentDate"

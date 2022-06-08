@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -v
 
 killall screen
 cd /home/chalet-le-jar

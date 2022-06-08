@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -v
 cd /home/ubuntu
 apt update -y
 apt upgrade -y

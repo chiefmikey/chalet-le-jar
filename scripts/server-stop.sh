@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -v
 
 cd /home/chalet-le-jar
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
