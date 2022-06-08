@@ -20,4 +20,4 @@ git fetch --prune
 git branch -r --sort=committerdate | head -n 1 | sed 's/  origin\///' | xargs git push origin --delete
 cd /home/chalet-le-jar/backups/autosave
 ls -1t | tail -n +73 | xargs -d "\n" rm -rf
-su -s /bin/bash -c 'screen -dmS watch /home/chalet-le-jar/scripts/server-autosave.sh' root
+su -s /bin/bash -c 'screen watch -dmS autosave /home/chalet-le-jar/scripts/server-autosave.sh' root
