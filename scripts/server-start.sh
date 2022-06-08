@@ -5,6 +5,7 @@ killall screen
 cd /home/chalet-le-jar
 apt update -y
 apt upgrade -y
+apt autoremove -y
 git remote remove origin
 export pw=$(aws secretsmanager --region us-east-2 get-secret-value --secret-id repo | jq -r ".SecretString" | jq -r ".repo")
 sleep 10
