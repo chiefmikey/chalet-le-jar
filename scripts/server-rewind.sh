@@ -32,5 +32,5 @@ sleep 10
 killall screen
 rm -R worlds/clj
 cp -r backups/$branch worlds/clj
-LD_LIBRARY_PATH=/home/chalet-le-jar su -s /bin/bash -c 'screen -dmS bedrock /home/chalet-le-jar/bedrock_server' root
-su -s /bin/bash -c 'screen watch -dmS autosave /home/chalet-le-jar/scripts/server-autosave.sh' root
+LD_LIBRARY_PATH=/home/chalet-le-jar su -s /bin/bash -c 'screen -S bedrock -dm /home/chalet-le-jar/bedrock_server' root
+su -s /bin/bash -c 'screen -S autosave -dm watch /home/chalet-le-jar/scripts/server-autosave.sh' root
