@@ -1,4 +1,6 @@
 #!/bin/bash -v
+
+set -x
 cd /home/ec2-user
 yum update -y
 yum install -y wget unzip git

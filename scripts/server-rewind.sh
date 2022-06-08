@@ -1,5 +1,6 @@
 #!/bin/bash -v
 
+set -x
 cd /home/chalet-le-jar
 screen -S watch -X quit
 screen -S bedrock -X stuff "playsound beacon.activate @a\n"

@@ -1,4 +1,6 @@
 #!/bin/bash -v
+
+set -x
 sudo cd /home/chalet-le-jar
 sudo apt update -y
 sudo apt upgrade -y

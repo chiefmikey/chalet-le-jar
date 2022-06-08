@@ -1,5 +1,6 @@
 #!/bin/bash -v
 
+set -x
 cd /home/chalet-le-jar
 currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
 screen -S watch -X quit

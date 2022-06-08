@@ -1,5 +1,6 @@
 #!/bin/bash -v
 
+set -x
 killall screen
 cd /home/chalet-le-jar
 apt update -y

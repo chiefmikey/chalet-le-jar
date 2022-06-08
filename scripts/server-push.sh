@@ -1,5 +1,6 @@
 #!/bin/bash -v
 
+set -x
 cd /home/chalet-le-jar
 git push origin "backup/$currentDate"
 git checkout main
