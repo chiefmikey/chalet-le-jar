@@ -1,36 +1,39 @@
 #!/bin/bash -v
 
 set -x
-sudo cd /home/chalet-le-jar
-sudo apt update -y
-sudo apt upgrade -y
-sudo apt install -y wget zip unzip git jq awscli curl
-sudo wget -O bedrock-server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.18.12.01.zip
-sudo unzip -o bedrock-server.zip
-sudo rm bedrock-server.zip
+cd /home/chalet-le-jar
+export currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
+apt update -y
+apt upgrade -y
+apt install -y wget zip unzip git jq awscli curl
+wget -O bedrock-server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.18.12.01.zip
+unzip -o bedrock-server.zip
+rm bedrock-server.zip
 export user="chalet-le-jar"
 export email="chaletlejar@gmail.com"
 export repo="chalet-le-jar"
 export owner="chiefmikey"
 export awsRegion="us-east-2"
 export awsSecretId="repo"
-export pw=$(sudo aws secretsmanager --region ${awsRegion} get-secret-value --secret-id ${awsSecretId} | jq -r ".SecretString" | jq -r ".${awsSecretId}")
-sudo sleep 10
-sudo git init
-sudo git config user.name ${user}
-sudo git config user.email ${email}
-sudo git remote add origin https://${user}:${pw}@github.com/${owner}/${repo}.git
-sudo git fetch origin main
-sudo git checkout main
-sudo git reset --hard origin/main
-sudo chmod +x scripts/server-save.sh scripts/server-stop.sh scripts/server-refresh.sh scripts/server-rewind.sh scripts/server-push.sh scripts/server-upgrade.sh
-sudo mkdir /home/chalet-le-jar/backups
-sudo mkdir /home/chalet-le-jar/backups/autosave
-sudo mkdir /home/chalet-le-jar/backups/backup
-sudo mkdir /home/chalet-le-jar/worlds
-sudo chown -R chalet-le-jar:root /home/chalet-le-jar
-export currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
-sudo echo "Init: $currentDate" >> logs/init-log.txt
-sudo git add logs
-sudo git commit -am "Server initialized"
-sudo git push origin main
+export pw=$(aws secretsmanager --region ${awsRegion} get-secret-value --secret-id ${awsSecretId} | jq -r ".SecretString" | jq -r ".${awsSecretId}")
+sleep 10
+git init
+git config user.name ${user}
+git config user.email ${email}
+git remote add origin https://${user}:${pw}@github.com/${owner}/${repo}.git
+git fetch --prune
+git checkout main
+git reset --hard origin/main
+chmod +x scripts/server-save.sh scripts/server-stop.sh scripts/server-refresh.sh scripts/server-rewind.sh scripts/server-push.sh scripts/server-upgrade.sh
+mkdir /home/chalet-le-jar/backups
+mkdir /home/chalet-le-jar/backups/autosave
+mkdir /home/chalet-le-jar/backups/backup
+mkdir /home/chalet-le-jar/worlds
+chown -R chalet-le-jar:root /home/chalet-le-jar
+git commit -am "Server initialized: $currentDate"
+git push origin main
+git pull origin log
+echo + Init: $currentDate >> history/log.txt
+echo + $currentDate >> log/init-log.txt
+git commit -am "init/$currentDate"
+git push origin main:log

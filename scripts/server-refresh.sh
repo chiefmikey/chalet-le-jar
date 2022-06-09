@@ -2,6 +2,7 @@
 
 set -x
 cd /home/chalet-le-jar
+export currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
 screen -S watch -X quit
 screen -S bedrock -X stuff "playsound beacon.activate @a\n"
 sleep 1
@@ -30,9 +31,14 @@ sleep 1
 screen -S bedrock -X stuff "stop\n"
 sleep 10
 killall screen
-git fetch origin main
+git fetch --prune
 git checkout main
 git reset --hard origin/main
+git pull origin log
+echo + Refresh: $currentDate >> history/log.txt
+echo + $currentDate >> log/refresh-log.txt
+git commit -am "refresh/$currentDate"
+git push origin main:log
 if [ "$(cat /home/chalet-le-jar/upgrade.txt)" = upgrade ]; then
   su -s /bin/bash -c '/home/chalet-le-jar/scripts/server-upgrade.sh' root
 else

@@ -2,6 +2,7 @@
 
 set -x
 killall screen
+export currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
 cd /home/chalet-le-jar
 apt update -y
 apt upgrade -y
@@ -10,9 +11,14 @@ git remote remove origin
 export pw=$(aws secretsmanager --region us-east-2 get-secret-value --secret-id repo | jq -r ".SecretString" | jq -r ".repo")
 sleep 10
 git remote add origin https://chalet-le-jar:${pw}@github.com/chiefmikey/chalet-le-jar.git
-git fetch origin main
+git fetch --prune
 git checkout main
 git reset --hard origin/main
+git pull origin log
+echo + Start: $currentDate >> history/log.txt
+echo + $currentDate >> log/start-log.txt
+git commit -am "start/$currentDate"
+git push origin main:log
 if [ "$(cat /home/chalet-le-jar/upgrade.txt)" = upgrade ]; then
   su -s /bin/bash -c '/home/chalet-le-jar/scripts/server-upgrade.sh' root
 else
