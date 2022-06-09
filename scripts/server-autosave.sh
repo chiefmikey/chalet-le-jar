@@ -1,6 +1,5 @@
 #!/bin/bash
 
-set -x
 sleep 300
 cd /home/chalet-le-jar
 export currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
