@@ -1,4 +1,4 @@
-#!/bin/bash -v
+#!/bin/bash
 
 set -x
 sleep 300
