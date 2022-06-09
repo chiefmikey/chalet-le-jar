@@ -3,7 +3,7 @@
 set -x
 cd /home/chalet-le-jar
 export currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
-screen -S watch -X quit
+screen -S autosave -X quit
 screen -S bedrock -X stuff "playsound beacon.activate @a\n"
 sleep 1
 screen -S bedrock -X stuff "say stopping in 10...9...8...7...6...5...4...3...2...1...\n"
