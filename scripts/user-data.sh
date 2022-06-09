@@ -2,7 +2,7 @@
 
 set -x
 cd /home/ubuntu
-export currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
+export CURRENT_DATE=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
 apt update -y
 apt upgrade -y
 apt install -y wget zip unzip git jq awscli curl
@@ -29,10 +29,7 @@ mkdir /home/ubuntu/backups
 mkdir /home/ubuntu/backups/autosave
 mkdir /home/ubuntu/backups/backup
 chown -R ubuntu:root /home/ubuntu
-git commit -am "Server initialized: $currentDate"
+git commit -am "Server initialized: $CURRENT_DATE"
 git push origin main
-git pull --no-edit origin log
-echo + Init: $currentDate >> log/history.txt
-echo + $currentDate >> log/init-log.txt
-git commit -am "init/$currentDate"
-git push origin main:log
+CURRENT_DATE=$CURRENT_DATE ACTION=init \
+  /home/chalet-le-jar/scripts/server-log.sh

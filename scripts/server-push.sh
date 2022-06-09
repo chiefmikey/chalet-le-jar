@@ -2,12 +2,9 @@
 
 set -x
 cd /home/chalet-le-jar
-git push origin backup/$currentDate
+git push origin backup/$CURRENT_DATE
 git checkout main
-rm -r backups/backup/$currentDate
-git restore --staged .
-git pull --no-edit origin log
-echo + Backup: $currentDate >> log/history.txt
-echo + $currentDate >> log/backup-log.txt
-git commit -am "backup/$currentDate"
+rm -r backups/backup/$CURRENT_DATE
+CURRENT_DATE=$CURRENT_DATE ACTION=backup \
+  /home/chalet-le-jar/scripts/server-log.sh
 git push origin main:log

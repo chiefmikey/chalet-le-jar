@@ -4,17 +4,13 @@ set -x
 while true; do
   sleep 300
   cd /home/chalet-le-jar
-  export currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
+  export CURRENT_DATE=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
   screen -S bedrock -X stuff "save hold\n"
   sleep 10
-  cp -r worlds/clj backups/autosave/$currentDate
+  cp -r worlds/clj backups/autosave/$CURRENT_DATE
   screen -S bedrock -X stuff "save resume\n"
-  git restore --staged .
-  git pull --no-edit origin log
-  echo + Autosave: $currentDate >> log/history.txt
-  echo + $currentDate >> log/autosave-log.txt
-  git commit -am "autosave/$currentDate"
-  git push origin main:log
+  CURRENT_DATE=$CURRENT_DATE ACTION=autosave \
+    /home/chalet-le-jar/scripts/server-log.sh
   cd /home/chalet-le-jar/backups/autosave
   ls -1t | tail -n +73 | xargs -d "\n" rm -rf
 done

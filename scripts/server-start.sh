@@ -2,7 +2,7 @@
 
 set -x
 killall screen
-export currentDate=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
+export CURRENT_DATE=$(TZ=":US/Mountain" date +%y-%m-%d-%H-%M-%S)
 cd /home/chalet-le-jar
 apt update -y
 apt upgrade -y
@@ -14,11 +14,8 @@ git remote add origin https://chalet-le-jar:${pw}@github.com/chiefmikey/chalet-l
 git fetch --prune
 git checkout main
 git reset --hard origin/main
-git pull --no-edit origin log
-echo + Start: $currentDate >> log/history.txt
-echo + $currentDate >> log/start-log.txt
-git commit -am "start/$currentDate"
-git push origin main:log
+CURRENT_DATE=$CURRENT_DATE ACTION=start \
+  /home/chalet-le-jar/scripts/server-log.sh
 if [ "$(cat /home/chalet-le-jar/upgrade.txt)" = upgrade ]; then
   /home/chalet-le-jar/scripts/server-upgrade.sh
 else
