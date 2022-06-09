@@ -37,4 +37,4 @@ echo \
   }" \
 >> /home/ec2-user/coredns/Corefile
 chmod +x /home/ec2-user/coredns/coredns
-su -s /bin/bash -c 'screen -dmS coredns /home/ec2-user/coredns/coredns' root
+su -s /bin/bash -c 'screen -S coredns -dm /home/ec2-user/coredns/coredns' root
