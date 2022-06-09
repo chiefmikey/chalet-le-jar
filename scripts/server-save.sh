@@ -20,5 +20,5 @@ git push origin main:log
 screen -S bedrock -X stuff "say save complete\n"
 cd /home/chalet-le-jar/backups/autosave
 ls -1t | tail -n +73 | xargs -d "\n" rm -rf
-screen -S autosave -dm watch /home/chalet-le-jar/scripts/server-autosave.sh
+watch screen -S autosave -dm /home/chalet-le-jar/scripts/server-autosave.sh
 echo $currentDate >> log/save-log.txt

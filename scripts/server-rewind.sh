@@ -39,4 +39,4 @@ echo + $currentDate >> log/rewind-log.txt
 git commit -am "rewind/$currentDate"
 git push origin main:log
 LD_LIBRARY_PATH=/home/chalet-le-jar screen -S bedrock -dm /home/chalet-le-jar/bedrock_server
-screen -S autosave -dm watch /home/chalet-le-jar/scripts/server-autosave.sh
+watch screen -S autosave -dm /home/chalet-le-jar/scripts/server-autosave.sh
