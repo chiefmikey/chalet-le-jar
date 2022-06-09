@@ -33,7 +33,7 @@ sleep 10
 killall screen
 cp -r worlds/clj backups/autosave/$currentDate
 git restore --staged .
-git pull origin log
+git pull --no-edit origin log
 echo + Reboot: $currentDate >> log/history.txt
 echo + $currentDate >> log/reboot-log.txt
 git commit -am "reboot/$currentDate"

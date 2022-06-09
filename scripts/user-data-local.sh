@@ -32,7 +32,7 @@ mkdir /home/chalet-le-jar/worlds
 chown -R chalet-le-jar:root /home/chalet-le-jar
 git commit -am "Server initialized: $currentDate"
 git push origin main
-git pull origin log
+git pull --no-edit origin log
 echo + Init: $currentDate >> log/history.txt
 echo + $currentDate >> log/init-log.txt
 git commit -am "init/$currentDate"

@@ -12,7 +12,7 @@ sleep 10
 cp -r worlds/clj backups/autosave/$currentDate
 screen -S bedrock -X stuff "save resume\n"
 git restore --staged .
-git pull origin log
+git pull --no-edit origin log
 echo + Save: $currentDate >> log/history.txt
 echo + $currentDate >> log/save-log.txt
 git commit -am "save/$currentDate"

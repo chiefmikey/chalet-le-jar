@@ -6,7 +6,7 @@ git push origin backup/$currentDate
 git checkout main
 rm -r backups/backup/$currentDate
 git restore --staged .
-git pull origin log
+git pull --no-edit origin log
 echo + Backup: $currentDate >> log/history.txt
 echo + $currentDate >> log/backup-log.txt
 git commit -am "backup/$currentDate"

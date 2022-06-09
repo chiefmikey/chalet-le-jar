@@ -34,7 +34,7 @@ killall screen
 git fetch --prune
 git checkout main
 git reset --hard origin/main
-git pull origin log
+git pull --no-edit origin log
 echo + Refresh: $currentDate >> log/history.txt
 echo + $currentDate >> log/refresh-log.txt
 git commit -am "refresh/$currentDate"

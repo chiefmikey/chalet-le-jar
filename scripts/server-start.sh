@@ -14,7 +14,7 @@ git remote add origin https://chalet-le-jar:${pw}@github.com/chiefmikey/chalet-l
 git fetch --prune
 git checkout main
 git reset --hard origin/main
-git pull origin log
+git pull --no-edit origin log
 echo + Start: $currentDate >> log/history.txt
 echo + $currentDate >> log/start-log.txt
 git commit -am "start/$currentDate"

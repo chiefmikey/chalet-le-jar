@@ -9,7 +9,7 @@ rm bedrock-server.zip
 git fetch --prune
 git checkout main
 git reset --hard origin/main
-git pull origin log
+git pull --no-edit origin log
 echo + Upgrade: $currentDate >> log/history.txt
 echo + $currentDate >> log/upgrade-log.txt
 git commit -am "upgrade/$currentDate"
