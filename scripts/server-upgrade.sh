@@ -15,4 +15,4 @@ echo + $currentDate >> log/upgrade-log.txt
 git commit -am "upgrade/$currentDate"
 git push origin main:log
 LD_LIBRARY_PATH=/home/chalet-le-jar screen -S bedrock -dm /home/chalet-le-jar/bedrock_server
-watch screen -S autosave -dm /home/chalet-le-jar/scripts/server-autosave.sh
+screen -S autosave -dm /home/chalet-le-jar/scripts/server-autosave.sh
