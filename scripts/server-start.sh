@@ -15,7 +15,7 @@ git fetch --prune
 git checkout main
 git reset --hard origin/main
 git pull origin log
-echo + Start: $currentDate >> history/log.txt
+echo + Start: $currentDate >> log/history.txt
 echo + $currentDate >> log/start-log.txt
 git commit -am "start/$currentDate"
 git push origin main:log

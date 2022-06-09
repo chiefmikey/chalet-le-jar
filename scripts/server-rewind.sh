@@ -34,7 +34,7 @@ killall screen
 rm -R worlds/clj
 cp -r backups/$branch worlds/clj
 git pull origin log
-echo + Rewind: $currentDate >> history/log.txt
+echo + Rewind: $currentDate >> log/history.txt
 echo + $currentDate >> log/rewind-log.txt
 git commit -am "rewind/$currentDate"
 git push origin main:log

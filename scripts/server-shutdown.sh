@@ -34,7 +34,7 @@ killall screen
 cp -r worlds/clj backups/autosave/$currentDate
 git restore --staged .
 git pull origin log
-echo + Shutdown: $currentDate >> history/log.txt
+echo + Shutdown: $currentDate >> log/history.txt
 echo + $currentDate >> log/shutdown-log.txt
 git commit -am "shutdown/$currentDate"
 git push origin main:log
