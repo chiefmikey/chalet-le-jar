@@ -24,7 +24,7 @@ git remote add origin https://${user}:${pw}@github.com/${owner}/${repo}.git
 git fetch --prune
 git checkout main
 git reset --hard origin/main
-chmod +x scripts/server-save.sh scripts/server-stop.sh scripts/server-refresh.sh scripts/server-rewind.sh scripts/server-push.sh scripts/server-upgrade.sh scripts/server-shutdown.sh
+chmod +x scripts/server-save.sh scripts/server-stop.sh scripts/server-refresh.sh scripts/server-rewind.sh scripts/server-push.sh scripts/server-upgrade.sh scripts/server-shutdown.sh scripts/server-log.sh
 mkdir /home/ubuntu/backups
 mkdir /home/ubuntu/backups/autosave
 mkdir /home/ubuntu/backups/backup
