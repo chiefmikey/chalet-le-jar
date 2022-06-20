@@ -39,7 +39,7 @@
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-react": "^7.17.12",
     "@babel/preset-typescript": "^7.17.12",
-    "@mikey-pro/style-guide": "^4.15.1",
+    "@mikey-pro/style-guide": "^4.138.0",
     "@types/gapi": "^0.0.42",
     "@types/gapi.auth2": "^0.0.56",
     "@types/koa": "^2.13.4",
