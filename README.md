@@ -4,12 +4,6 @@
 
 </div>
 
-## Start the Servers
-
-- Go to [chaletlejar.com](https://chaletlejar.com)
-- Sign in with the google
-- Press the `ON` button and wait for "Start up complete"
-
 ## Xbox or Switch
 
 - Fully quit the game
