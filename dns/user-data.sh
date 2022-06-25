@@ -5,7 +5,7 @@ cd /home/ec2-user
 yum update -y
 yum install -y wget unzip git
 rm -rf /usr/local/go
-wget -O /home/ec2-user/go.tar.gz https://go.dev/dl/go1.18.1.src.tar.gz
+wget -O /home/ec2-user/go.tar.gz https://go.dev/dl/go1.18.3.src.tar.gz
 tar -C /usr/local -xzf /home/ec2-user/go.tar.gz
 rm /home/ec2-user/go.tar.gz
 mkdir /home/ec2-user/go
