@@ -1,6 +1,7 @@
 #!/bin/bash -v
 
 set -x
+cd /home/ec2-user
 yum update -y && yum upgrade -y
 yum install -y wget unzip git
 rm -rf /usr/local/go
