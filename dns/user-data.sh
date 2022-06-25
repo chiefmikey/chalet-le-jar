@@ -8,7 +8,7 @@ wget -O /home/ec2-user/go.tar.gz https://go.dev/dl/go1.18.3.linux-amd64.tar.gz
 tar -C /usr/local -xzf /home/ec2-user/go.tar.gz
 rm /home/ec2-user/go.tar.gz
 echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
-exec bash
+source /etc/profile
 git clone https://github.com/coredns/coredns
 chown -R ec2-user:root /home/ec2-user/coredns
 cd /home/ec2-user/coredns
