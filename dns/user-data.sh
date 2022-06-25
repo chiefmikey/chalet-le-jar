@@ -1,19 +1,14 @@
 #!/bin/bash -v
 
 set -x
-cd /home/ec2-user
-yum update -y
+yum update -y && yum upgrade -y
 yum install -y wget unzip git
 rm -rf /usr/local/go
-wget -O /home/ec2-user/go.tar.gz https://go.dev/dl/go1.18.3.src.tar.gz
+wget -O /home/ec2-user/go.tar.gz https://go.dev/dl/go1.18.3.linux-amd64.tar.gz
 tar -C /usr/local -xzf /home/ec2-user/go.tar.gz
 rm /home/ec2-user/go.tar.gz
-mkdir /home/ec2-user/go
-chown -R ec2-user:root /home/ec2-user/go
-echo "export GOPATH=/home/ec2-user/go" >> /home/ec2-user/.bashrc
-echo "export PATH=$PATH:$GOPATH/bin" >> /home/ec2-user/.bashrc
 echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
-source /etc/profile
+exec bash
 git clone https://github.com/coredns/coredns
 chown -R ec2-user:root /home/ec2-user/coredns
 cd /home/ec2-user/coredns
