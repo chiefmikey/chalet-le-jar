@@ -26,13 +26,3 @@ Secondary IPv4 DNS
 ## PC or Elsewhere
 
 - Add a custom server with address `ip.chaletlejar.com`
-
-<br/>
-
-<div align="center">
-
-# 🦄 When You're Done Having Fun 🦄
-
-Press the `OFF` button and wait for "Shut down complete"
-
-</div>
