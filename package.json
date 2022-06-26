@@ -76,8 +76,9 @@
     "chalet-le-jar",
     "chaletlejar",
     "chalet",
-    "le",
-    "jar"
+    "bedrock-server",
+    "bedrock",
+    "minecraft"
   ],
   "contributors": [
     "Mikl Wolfe <wolfe@mikl.io> (https://mikl.io)"
