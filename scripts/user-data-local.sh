@@ -9,18 +9,18 @@ apt install -y wget zip unzip git jq awscli curl
 wget -O bedrock-server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.18.12.01.zip
 unzip -o bedrock-server.zip
 rm bedrock-server.zip
-export user="chalet-le-jar"
-export email="chaletlejar@gmail.com"
-export repo="chalet-le-jar"
-export owner="chiefmikey"
-export awsRegion="us-east-2"
-export awsSecretId="repo"
-export pw=$(aws secretsmanager --region ${awsRegion} get-secret-value --secret-id ${awsSecretId} | jq -r ".SecretString" | jq -r ".${awsSecretId}")
+export USER="chalet-le-jar"
+export EMAIL="chaletlejar@gmail.com"
+export REPO="chalet-le-jar"
+export GH_USER="chiefmikey"
+export AWS_REGION="us-east-2"
+export AWS_SECRET_ID="repo"
+export GH_PASSWORD=$(aws secretsmanager --region ${AWS_REGION} get-secret-value --secret-id ${AWS_SECRET_ID} | jq -r ".SecretString" | jq -r ".${AWS_SECRET_ID}")
 sleep 10
 git init
-git config user.name ${user}
-git config user.email ${email}
-git remote add origin https://${user}:${pw}@github.com/${owner}/${repo}.git
+git config user.name ${USER}
+git config user.email ${EMAIL}
+git remote add origin https://${USER}:${GH_PASSWORD}@github.com/${GH_USER}/${REPO}.git
 git fetch --prune
 git checkout main
 git reset --hard origin/main
@@ -30,7 +30,7 @@ mkdir /home/chalet-le-jar/backups/autosave
 mkdir /home/chalet-le-jar/backups/backup
 mkdir /home/chalet-le-jar/worlds
 chown -R chalet-le-jar:root /home/chalet-le-jar
-git commit -am "Server initialized: $CURRENT_DATE"
+git commit -am "Server initialized: ${CURRENT_DATE}"
 git push origin main
-CURRENT_DATE=$CURRENT_DATE ACTION=init \
+CURRENT_DATE=${CURRENT_DATE} ACTION=init \
   /home/chalet-le-jar/scripts/server-log.sh

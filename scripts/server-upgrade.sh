@@ -9,5 +9,5 @@ rm bedrock-server.zip
 git fetch --prune
 git checkout main
 git reset --hard origin/main
-CURRENT_DATE=$CURRENT_DATE ACTION=upgrade \
+CURRENT_DATE=${CURRENT_DATE} ACTION=upgrade \
   /home/chalet-le-jar/scripts/server-log.sh

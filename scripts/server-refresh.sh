@@ -34,7 +34,7 @@ killall screen
 git fetch --prune
 git checkout main
 git reset --hard origin/main
-CURRENT_DATE=$CURRENT_DATE ACTION=refresh \
+CURRENT_DATE=${CURRENT_DATE} ACTION=refresh \
   /home/chalet-le-jar/scripts/server-log.sh
 if [ "$(cat /home/chalet-le-jar/upgrade.txt)" = upgrade ]; then
   /home/chalet-le-jar/scripts/server-upgrade.sh

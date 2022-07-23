@@ -30,7 +30,7 @@ const setScript = (
     if (trySend === 0) {
       console.log(`Loading save ${selectedBranch}`);
     }
-    return `branch=${selectedBranch} /home/ubuntu/scripts/server-rewind.sh`;
+    return `BRANCH=${selectedBranch} /home/ubuntu/scripts/server-rewind.sh`;
   }
   if (command === 'START') {
     // if (trySend === 0) {
