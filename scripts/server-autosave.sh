@@ -1,4 +1,4 @@
-#!/bin/bash -v
+#!/bin/sh
 
 set -x
 while true; do

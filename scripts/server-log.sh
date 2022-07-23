@@ -1,4 +1,4 @@
-#!/bin/bash -v
+#!/bin/sh
 
 set -x
 git restore --staged .

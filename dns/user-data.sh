@@ -1,4 +1,4 @@
-#!/bin/bash -v
+#!/bin/sh
 
 set -x
 cd /home/ec2-user
@@ -13,7 +13,7 @@ source /etc/profile
 git clone https://github.com/coredns/coredns
 chown -R ec2-user:root /home/ec2-user/coredns
 cd /home/ec2-user/coredns
-su -s /bin/bash -c 'make' ec2-user
+su -s /bin/sh -c 'make' ec2-user
 echo \
   ".:53 {
     bufsize 1232
