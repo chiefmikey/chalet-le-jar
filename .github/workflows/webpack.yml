@@ -21,7 +21,23 @@ jobs:
         npm install
         NODE_ENV=production NODE_OPTIONS=--loader=ts-node/esm webpack --mode production
         git config advice.addIgnoredFile false
-        rm -r allowlist.json webpack.config.ts server.properties README.md permissions.json package.json package-lock.json .gitignore .deepsource.toml scripts client log dns .github tsconfig.json upgrade.txt
+        rm -r \
+          .github \
+          client \
+          dns \
+          log \
+          scripts \
+          .deepsource.toml \
+          .gitattributes \
+          .gitignore \
+          allowlist.json \
+          package.json \
+          package-lock.json \
+          permissions.json \
+          server.properties \
+          tsconfig.json \
+          upgrade.txt \
+          webpack.config.ts
         git config --global user.email "wolfemikl@gmail.com"
         git config --global user.name "Mikl Wolfe"
         git add docs
