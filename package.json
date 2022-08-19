@@ -26,7 +26,7 @@
     "koa-static": "^5.0.0",
     "os-browserify": "^0.3.0",
     "path-browserify": "^1.0.1",
-    "preact": "^10.10.3",
+    "preact": "^10.10.4",
     "process": "^0.11.10",
     "ssh2": "^1.11.0",
     "stream-browserify": "^3.0.0",
