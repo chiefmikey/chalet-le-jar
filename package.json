@@ -13,7 +13,7 @@
   "dependencies": {
     "@aws-sdk/client-ec2": "^3.153.0",
     "@aws-sdk/client-secrets-manager": "^3.152.0",
-    "@aws-sdk/client-ssm": "^3.150.0",
+    "@aws-sdk/client-ssm": "^3.154.0",
     "@aws-sdk/credential-providers": "^3.150.0",
     "@octokit/request": "^6.2.1",
     "airbnb-browser-shims": "^3.3.0",
