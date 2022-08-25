@@ -14,7 +14,7 @@
     "@aws-sdk/client-ec2": "^3.155.0",
     "@aws-sdk/client-secrets-manager": "^3.154.0",
     "@aws-sdk/client-ssm": "^3.154.0",
-    "@aws-sdk/credential-providers": "^3.154.0",
+    "@aws-sdk/credential-providers": "^3.157.0",
     "@octokit/request": "^6.2.1",
     "airbnb-browser-shims": "^3.3.0",
     "aws-crt": "^1.14.1",
