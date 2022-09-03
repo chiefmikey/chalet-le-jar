@@ -11,3 +11,5 @@ git checkout main
 git reset --hard origin/main
 CURRENT_DATE=${CURRENT_DATE} ACTION=upgrade \
   /home/chalet-le-jar/scripts/server-log.sh
+LD_LIBRARY_PATH=/home/chalet-le-jar screen -S bedrock -dm /home/chalet-le-jar/bedrock_server
+screen -S autosave -dm /home/chalet-le-jar/scripts/server-autosave.sh
