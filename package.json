@@ -17,7 +17,7 @@
     "@aws-sdk/credential-providers": "^3.181.0",
     "@octokit/request": "^6.2.1",
     "airbnb-browser-shims": "^3.3.0",
-    "aws-crt": "^1.14.4",
+    "aws-crt": "^1.14.5",
     "axios": "^0.27.2",
     "console-events": "^0.2.0",
     "crypto-browserify": "^3.12.0",
