@@ -14,7 +14,7 @@ export EMAIL="chaletlejar@gmail.com"
 export REPO="chalet-le-jar"
 export GH_USER="chiefmikey"
 export AWS_REGION="us-east-2"
-export AWS_SECRET_ID="repo"
+export AWS_SECRET_ID="chalet-auth"
 export GH_PASSWORD=$(aws secretsmanager --region ${AWS_REGION} get-secret-value --secret-id ${AWS_SECRET_ID} | jq -r ".SecretString" | jq -r ".${AWS_SECRET_ID}")
 sleep 10
 git init
