@@ -9,7 +9,7 @@ sleep 2
 screen -S bedrock -X stuff "say save in progress...\n"
 screen -S bedrock -X stuff "save hold\n"
 sleep 10
-cp -r 'worlds/Chalet le Jar' backups/autosave/${CURRENT_DATE}
+cp -r worlds/clj backups/autosave/${CURRENT_DATE}
 screen -S bedrock -X stuff "save resume\n"
 CURRENT_DATE=${CURRENT_DATE} ACTION=save \
   /home/chalet-le-jar/scripts/server-log.sh

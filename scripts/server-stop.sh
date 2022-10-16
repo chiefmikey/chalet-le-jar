@@ -31,7 +31,7 @@ sleep 1
 screen -S bedrock -X stuff "stop\n"
 sleep 10
 killall screen
-cp -r 'worlds/Chalet le Jar' backups/autosave/${CURRENT_DATE}
+cp -r worlds/clj backups/autosave/${CURRENT_DATE}
 CURRENT_DATE=${CURRENT_DATE} ACTION=stop \
   /home/chalet-le-jar/scripts/server-log.sh
 cd /home/chalet-le-jar/backups/autosave
