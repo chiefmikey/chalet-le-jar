@@ -2,7 +2,7 @@
 
 set -x
 cd /home/ubuntu
-export CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y:%H-%M-%S)
+export CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
 apt update -y
 apt upgrade -y
 apt install -y wget zip unzip git jq awscli curl

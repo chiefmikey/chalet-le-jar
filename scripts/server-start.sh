@@ -2,7 +2,7 @@
 
 set -x
 killall screen
-export CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y:%H-%M-%S)
+export CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
 cd /home/chalet-le-jar
 apt update -y
 apt upgrade -y
