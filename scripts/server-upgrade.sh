@@ -2,7 +2,7 @@
 
 set -x
 cd /home/chalet-le-jar
-export CURRENT_DATE=$(TZ=":US/Mountain" date +%y-%m-%d_%H-%M-%S)
+export CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y:%H-%M-%S)
 wget -O bedrock-server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.19.31.01.zip
 unzip -o bedrock-server.zip
 rm bedrock-server.zip
