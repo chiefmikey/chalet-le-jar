@@ -5,4 +5,5 @@ apt update -y &&
 apt upgrade -y &&
 apt full-upgrade -y &&
 apt autoremove -y &&
-apt autoclean -y
+apt autoclean -y &&
+sudo do-release-upgrade
