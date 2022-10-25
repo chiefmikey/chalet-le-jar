@@ -24,7 +24,7 @@ git remote add origin https://${USER}:${GH_PASSWORD}@github.com/${GH_USER}/${REP
 git fetch --prune
 git checkout main
 git reset --hard origin/main
-chmod +x scripts/server-save.sh scripts/server-stop.sh scripts/server-refresh.sh scripts/server-rewind.sh scripts/server-push.sh scripts/server-upgrade.sh scripts/server-shutdown.sh scripts/server-log.sh
+chmod +x scripts/server-save.sh scripts/server-stop.sh scripts/server-refresh.sh scripts/server-rewind.sh scripts/server-push.sh scripts/server-upgrade.sh scripts/server-shutdown.sh scripts/server-log.sh scripts/server-system.sh scripts/server-autosave.sh scripts/server-start.sh
 mkdir /home/chalet-le-jar/backups
 mkdir /home/chalet-le-jar/backups/autosave
 mkdir /home/chalet-le-jar/backups/backup
