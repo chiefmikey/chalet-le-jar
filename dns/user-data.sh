@@ -5,7 +5,7 @@ cd /home/ec2-user
 yum update -y && yum upgrade -y
 yum install -y wget unzip git
 rm -rf /usr/local/go
-wget -O /home/ec2-user/go.tar.gz https://go.dev/dl/go1.18.3.linux-amd64.tar.gz
+wget -O /home/ec2-user/go.tar.gz https://go.dev/dl/go1.19.3.linux-amd64.tar.gz
 tar -C /usr/local -xzf /home/ec2-user/go.tar.gz
 rm /home/ec2-user/go.tar.gz
 echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
@@ -17,6 +17,7 @@ su -s /bin/sh -c 'make' ec2-user
 echo \
   ".:53 {
     bufsize 1232
+    log
     errors
     health {
       lameduck 20s
