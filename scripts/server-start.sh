@@ -4,7 +4,7 @@ set -x
 killall screen
 export CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
 cd /home/chalet-le-jar
-scripts/server-system.sh
+/home/chalet-le-jar/scripts/server-system.sh
 git remote remove origin
 export USER="chalet-le-jar"
 export EMAIL="chaletlejar@gmail.com"
