@@ -30,7 +30,6 @@ node_modules
 # MC
 .bash_history
 .bash_logout
-.bashrc
 .cache/
 .profile
 .ssh/
