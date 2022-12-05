@@ -115,19 +115,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-alias upgrade="sudo /home/chalet-le-jar/scripts/server-stop.sh && sudo /home/chalet-le-jar/scripts/server-start.sh"
-alias rboot="sudo /home/chalet-le-jar/scripts/server-stop.sh && sudo /home/chalet-le-jar/scripts/server-system.sh && sudo reboot"
-alias rewind="sudo /home/chalet-le-jar/scripts/server-cli-rewind.sh"
-alias hc="sudo /home/chalet-le-jar/scripts/server-health-check.sh"
-alias cscreen="sudo screen -ls"
-alias bscreen="sudo screen -r bedrock"
-alias ascreen="sudo screen -r autosave"
-alias motd="sudo run-parts /etc/update-motd.d"
-alias mem="free -h"
-alias smem="htop"
-alias start="sudo /home/chalet-le-jar/scripts/server-start.sh"
-alias stop="sudo /home/chalet-le-jar/scripts/server-stop.sh"
-alias refresh="sudo /home/chalet-le-jar/scripts/server-refresh.sh"
-alias rewind="sudo /home/chalet-le-jar/scripts/server-rewind.sh"
-alias moo="echo moo; echo 0 ${0}; echo 1 ${1}; echo ? ${?};"
