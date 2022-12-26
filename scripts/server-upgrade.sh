@@ -1,9 +1,10 @@
 #!/bin/sh
 
 set -x
-cd /home/chalet-le-jar
-export CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
-wget -O bedrock-server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.19.50.02.zip
+cd /home/chalet-le-jar || exit
+CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
+export CURRENT_DATE
+wget -O bedrock-server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.19.51.01.zip
 unzip -o bedrock-server.zip
 rm bedrock-server.zip
 git fetch --prune
