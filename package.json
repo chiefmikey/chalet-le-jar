@@ -8,6 +8,7 @@
     "dev": "NODE_ENV=development webpack --mode development -w",
     "prod": "NODE_ENV=production webpack --mode production",
     "start": "ts-node docs/client/app.ts",
+    "sync": "git pullm origin main && ncu -u && npm i",
     "test": "nodemon docs/client/app.ts"
   },
   "dependencies": {
@@ -61,16 +62,15 @@
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1"
   },
-  "license": "MIT",
+  "homepage": "https://github.com/chiefmikey/chalet-le-jar#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chiefmikey/chalet-le-jar.git"
   },
-  "homepage": "https://github.com/chiefmikey/chalet-le-jar#readme",
-  "author": "Mikl Wolfe <wolfe@mikl.io> (https://mikl.io)",
   "bugs": {
     "url": "https://github.com/chiefmikey/chalet-le-jar/issues"
   },
+  "license": "MIT",
   "keywords": [
     "chalet-le-jar",
     "chaletlejar",
@@ -79,6 +79,7 @@
     "bedrock",
     "minecraft"
   ],
+  "author": "Mikl Wolfe <wolfe@mikl.io> (https://mikl.io)",
   "prettier": "@mikey-pro/prettier-config",
   "eslintConfig": {
     "extends": "@mikey-pro/eslint-config"
