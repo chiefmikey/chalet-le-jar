@@ -1,13 +1,9 @@
-# This workflow was added by CodeSee. Learn more at https://codesee.io/
 on:
   push:
     branches:
       - main
   pull_request_target:
-    types:
-      - opened
-      - synchronize
-      - reopened
+    types: [opened, synchronize, reopened]
 
 name: CodeSee
 
@@ -17,7 +13,7 @@ jobs:
   codesee:
     runs-on: ubuntu-latest
     continue-on-error: true
-    name: Analyze the repo with CodeSee
+    name: Analyse the repo with CodeSee
     steps:
       - uses: Codesee-io/codesee-action@v2
         with:
