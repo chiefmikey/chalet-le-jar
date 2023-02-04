@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["es2021", "dom", "dom.iterable"],
+    "lib": [
+      "es2021",
+      "dom",
+      "dom.iterable"
+    ],
     "moduleResolution": "node",
     "module": "esnext",
     "target": "es6",
@@ -9,29 +13,28 @@
     "jsx": "react",
     "jsxFactory": "h",
     "jsxFragmentFactory": "Fragment",
-
     "strict": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-
     "noEmit": true,
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
-
     "paths": {
-      "./*.ts": ["./*"]
-    },
+      "./*.ts": [
+        "./*"
+      ]
+    }
   },
-
   "ts-node": {
     "compilerOptions": {
-      "module": "commonjs",
-    },
+      "module": "commonjs"
+    }
   },
-
-
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
 }
