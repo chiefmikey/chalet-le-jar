@@ -51,7 +51,7 @@
     "babel-loader": "^9.1.2",
     "css-loader": "^6.7.3",
     "mikey-pro": "^6.4.11",
-    "nodemon": "^2.0.20",
+    "nodemon": "^2.0.21",
     "sass-loader": "^13.2.0",
     "source-map-js": "^1.0.2",
     "source-map-loader": "^4.0.1",
