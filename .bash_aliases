@@ -5,6 +5,7 @@ export SCRIPTS="${HOME}/scripts"
 # Server
 alias start="sudo ${SCRIPTS}/server-start.sh"
 alias stop="sudo ${SCRIPTS}/server-stop.sh"
+alias system="sudo ${SCRIPTS}/server-system.sh"
 alias refresh="sudo ${SCRIPTS}/server-refresh.sh"
 alias rewind="sudo ${SCRIPTS}/server-rewind.sh"
 alias upgrade="sudo ${SCRIPTS}/server-stop.sh && sudo ${SCRIPTS}/server-start.sh"
