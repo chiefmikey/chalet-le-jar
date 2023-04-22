@@ -9,7 +9,7 @@ alias system="sudo ${SCRIPTS}/server-system.sh"
 alias refresh="sudo ${SCRIPTS}/server-refresh.sh"
 alias rewind="sudo ${SCRIPTS}/server-rewind.sh"
 alias upgrade="sudo ${SCRIPTS}/server-stop.sh && sudo ${SCRIPTS}/server-start.sh"
-alias rboot="sudo ${SCRIPTS}/server-stop.sh && sudo ${SCRIPTS}/server-system.sh && sudo ${SCRIPTS}/server-reboot.sh"
+alias rboot="sudo ${SCRIPTS}/server-stop.sh && sudo ${SCRIPTS}/server-reboot.sh"
 
 # Screen
 alias cscreen="sudo screen -ls"
