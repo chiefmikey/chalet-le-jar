@@ -6,6 +6,7 @@
   "scripts": {
     "build": "NODE_ENV=development webpack --mode development",
     "dev": "NODE_ENV=development webpack --mode development -w",
+    "fix": "eslint --fix '**/*'",
     "prod": "NODE_ENV=production webpack --mode production",
     "start": "ts-node docs/client/app.ts",
     "sync": "git pullm origin main && ncu -u && npm i",
