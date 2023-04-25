@@ -43,10 +43,10 @@ const setScript = (
 };
 
 const finish = (command: string, token: string, end, complete) => {
-  if (!end) {
-    complete();
-  } else {
+  if (end) {
     end(command, token);
+  } else {
+    complete();
   }
 };
 

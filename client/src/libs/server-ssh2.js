@@ -33,11 +33,12 @@ new Server(
           allowed = false;
 
         switch (context.method) {
-          case 'password':
+          case 'password': {
             if (!checkValue(Buffer.from(context.password), allowedPassword))
               return context.reject();
             break;
-          case 'publickey':
+          }
+          case 'publickey': {
             if (
               context.key.algo !== allowedPubKey.type ||
               !checkValue(context.key.data, allowedPubKey.getPublicSSH()) ||
@@ -47,8 +48,10 @@ new Server(
               return context.reject();
             }
             break;
-          default:
+          }
+          default: {
             return context.reject();
+          }
         }
 
         if (allowed) context.accept();

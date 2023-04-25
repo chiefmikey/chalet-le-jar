@@ -55,11 +55,11 @@ const Console = ({ statement }: { statement: string }) => {
     <div id="console">
       <div
         id="prod-console"
-        style={statement !== 'prod' ? 'display: none' : ''}
+        style={statement === 'prod' ? '' : 'display: none'}
       />
       <div
         id="dev-console"
-        style={statement !== 'dev' ? 'display: none' : ''}
+        style={statement === 'dev' ? '' : 'display: none'}
       />
     </div>
   );
