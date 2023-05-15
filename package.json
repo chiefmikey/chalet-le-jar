@@ -29,7 +29,7 @@
     "path-browserify": "^1.0.1",
     "preact": "^10.13.2",
     "process": "^0.11.10",
-    "ssh2": "^1.12.0",
+    "ssh2": "^1.13.0",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
     "the-new-css-reset": "^1.8.4",
