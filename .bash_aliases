@@ -1,6 +1,6 @@
 # Directories
-export HOME="/home/chalet-le-jar"
-export SCRIPTS="${HOME}/scripts"
+export USER="/home/chalet-le-jar"
+export SCRIPTS="${USER}/scripts"
 
 # Server
 alias start="sudo ${SCRIPTS}/server-start.sh"
