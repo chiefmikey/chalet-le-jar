@@ -52,7 +52,7 @@
     "css-loader": "^6.7.3",
     "mikey-pro": "^6.4.18",
     "nodemon": "^2.0.22",
-    "sass-loader": "^13.2.2",
+    "sass-loader": "^13.3.0",
     "source-map-js": "^1.0.2",
     "source-map-loader": "^4.0.1",
     "style-loader": "^3.3.2",
