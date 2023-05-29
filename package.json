@@ -49,7 +49,7 @@
     "@types/ssh2": "^1.11.11",
     "@types/webpack": "^5.28.1",
     "babel-loader": "^9.1.2",
-    "css-loader": "^6.7.3",
+    "css-loader": "^6.8.1",
     "mikey-pro": "^6.4.18",
     "nodemon": "^2.0.22",
     "sass-loader": "^13.2.2",
