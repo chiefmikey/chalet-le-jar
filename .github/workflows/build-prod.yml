@@ -3,7 +3,7 @@ name: Build Production
 on:
   push:
     branches:
-      - main
+      - disabled-this-must-be-fixed-to-run-again
 
 jobs:
   build:
@@ -23,10 +23,10 @@ jobs:
       with:
         token: ${{ secrets.DISPATCH_WORKFLOW }}
 
-    - name: Webpack
-      run: |
-        npm install
-        NODE_ENV=production webpack --mode production
+    # - name: Webpack
+    #   run: |
+    #     npm install
+    #     NODE_ENV=production webpack --mode production
 
     - name: Prune Files
       run : |
@@ -45,10 +45,10 @@ jobs:
         export -f prune
         find . -maxdepth 1 | while read file; do prune ${file}; done
 
-    - name: Push Client
-      run: |
-        git config user.name "chiefmikey"
-        git config user.email "wolfemikl@gmail.com"
-        git add .
-        git commit -am 'Update production build'
-        git push -fu origin HEAD:client
+    # - name: Push Client
+    #   run: |
+    #     git config user.name "chiefmikey"
+    #     git config user.email "wolfemikl@gmail.com"
+    #     git add .
+    #     git commit -am 'Update production build'
+    #     git push -fu origin HEAD:client
