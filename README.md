@@ -1,6 +1,6 @@
 <div align="center">
 
-![Chalet le Jar](docs/public/assets/social.png)
+![Chalet le Jar](client/public/assets/social.png)
 
 </div>
 
