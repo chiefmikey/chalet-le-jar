@@ -1,0 +1,39 @@
+{
+  "name": "chalet-le-jar",
+  "version": "0.0.0",
+  "description": "Welcome friends and friendly people.",
+  "devDependencies": {
+    "mikey-pro": "^6.4.18"
+  },
+  "homepage": "https://github.com/chiefmikey/chalet-le-jar#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chiefmikey/chalet-le-jar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chiefmikey/chalet-le-jar/issues"
+  },
+  "license": "MIT",
+  "keywords": [
+    "chalet le jar",
+    "minecraft",
+    "bedrock",
+    "local",
+    "aws",
+    "server",
+    "gui",
+    "interface",
+    "rewind",
+    "backup",
+    "restore",
+    "custom commands"
+  ],
+  "author": "Mikl Wolfe <wolfe@mikl.io> (https://mikl.io)",
+  "prettier": "@mikey-pro/prettier-config",
+  "eslintConfig": {
+    "extends": "@mikey-pro/eslint-config"
+  },
+  "stylelint": {
+    "extends": "@mikey-pro/stylelint-config"
+  }
+}
