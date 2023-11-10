@@ -34,7 +34,7 @@ sleep 10
 killall screen
 # make temp save backup in case of corruption
 rm -R worlds/clj
-cp -r backups/"${BRANCH}" worlds/clj
+cp -r backups/"${1}" worlds/clj
 CURRENT_DATE=${CURRENT_DATE} ACTION=rewind \
   /home/chalet-le-jar/scripts/server-log.sh
 LD_LIBRARY_PATH=/home/chalet-le-jar screen -S bedrock -dm /home/chalet-le-jar/bedrock_server
