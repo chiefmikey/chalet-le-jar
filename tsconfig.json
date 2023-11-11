@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "lib": [
-      "es2021",
+      "esnext",
       "dom",
       "dom.iterable"
     ],
@@ -11,8 +11,6 @@
     "sourceMap": true,
     "allowJs": true,
     "jsx": "react",
-    "jsxFactory": "h",
-    "jsxFragmentFactory": "Fragment",
     "strict": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -34,7 +32,6 @@
     }
   },
   "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
+    "node_modules"
   ]
 }
