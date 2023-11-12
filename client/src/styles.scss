@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:wght@500&family=Roboto+Serif&display=swap');
 
-$gray: #202020;
-$darkGray: #181818;
+$gray: #101010;
+$darkGray: #101010;
 $pink: #b392bd;
 $title-1: 15px;
 $title-2: 60px;
 $title-3: 100px;
+$tab-label: 20px;
 $icon: 90px;
 $made-by: 16px;
 
@@ -40,7 +41,8 @@ a {
 .background {
   background-color: $darkGray;
   overflow: visible;
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,20 +72,20 @@ a {
 .title-1 {
   font-size: $title-1;
   margin-bottom: 25px;
-  animation: 4s 1 normal ease-in forwards .5s fade;
+  animation: 0s 1 normal ease-in forwards 0s fade;
   opacity: 0;
 }
 
 .title-2 {
   font-size: $title-2;
   margin-bottom: 10px;
-  animation: 6s 1 normal ease-in forwards 1s fade;
+  animation: 0s 1 normal ease-in forwards 0s fade;
   opacity: 0;
 }
 
 .title-3 {
   font-size: $title-3;
-  animation: 8s 1 normal ease-in forwards 2s fade;
+  animation: 0s 1 normal ease-in forwards 0s fade;
   opacity: 0;
 }
 
@@ -94,23 +96,26 @@ a {
   justify-content: center;
   align-items: center;
   margin-bottom: 40px;
-  animation: 2s 1 normal ease-in forwards 4s fade;
+  animation: 2s 1 normal ease-in forwards 0s fade;
   opacity: 0;
 }
 
 .content {
+  background-color: $pink;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: $pink;
+  color: $darkGray;
   margin-bottom: 140px;
+  width: 50%;
+  height: 50%;
 }
 
 .content-title {
   font-size: $title-1;
   margin-bottom: 64px;
   font-style: italic;
-  animation: 2s 1 normal ease-in forwards 4.5s fade;
+  animation: 0s 1 normal ease-in forwards 0s fade;
   opacity: 0;
 }
 
@@ -119,7 +124,7 @@ a {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  animation: 2s 1 normal ease-in forwards 5s fade-in;
+  animation: 0s 1 normal ease-in forwards 0s fade-in;
   opacity: 0;
 }
 
@@ -131,7 +136,7 @@ a {
   background-color: $gray;
   padding: 20px;
   align-items: center;
-  animation: .001s 20 normal ease-in 15s shake;
+  animation: .001s 20 normal ease-in 0s shake;
 }
 
 .chrome-icon {
@@ -142,14 +147,14 @@ a {
   font-size: $icon;
   margin-bottom: 10px;
   color: $pink;
-  animation: .001s 20 normal ease-in 25s shake;
+  animation: .001s 20 normal ease-in 0s shake;
 }
 
 .content-text {
   font-size: $title-1;
   padding: 10px;
   color: $pink;
-  animation: .001s 20 normal ease-in 40s shake;
+  animation: .001s 20 normal ease-in 0s shake;
 }
 
 .made-by {
@@ -157,7 +162,7 @@ a {
   font-size: $made-by;
   font-weight: 100;
   color: $pink;
-  animation: 2s 1 normal ease-in forwards 5.5s fade;
+  animation: 0s 1 normal ease-in forwards 0s fade;
   opacity: 0;
 }
 

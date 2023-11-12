@@ -1,18 +1,21 @@
 import path from 'node:path';
 
-import { Configuration } from 'webpack';
-
-const SRC_DIR = path.join(path.resolve(), '/client/src');
-const DIST_DIR = path.join(path.resolve(), '/docs/public/dist');
+const SRC_DIR = path.join(path.resolve(), '/src');
+const DIST_DIR = path.join(path.resolve(), '/public/dist');
 
 const css = ['style-loader', 'css-loader'];
 const scss = ['style-loader', 'css-loader', 'sass-loader'];
 
-const config: Configuration = {
+const config = {
   entry: `${SRC_DIR}/index.tsx`,
   output: {
     filename: 'bundle.js',
     path: DIST_DIR,
+  },
+  devServer: {
+    contentBase: './public/dist',
+    hot: true,
+    open: true,
   },
   module: {
     rules: [
@@ -59,7 +62,7 @@ const config: Configuration = {
   experiments: {
     topLevelAwait: true,
   },
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
 };
 
 export default config;

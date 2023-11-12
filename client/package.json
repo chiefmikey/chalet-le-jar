@@ -3,11 +3,16 @@
   "version": "0.0.0",
   "description": "Welcome friends and friendly people.",
   "scripts": {
-    "build": "tsc",
-    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
-    "start": "node ./dist/index.js"
+    "build:dev": "NODE_ENV=development webpack --mode development -w",
+    "build:prod": "NODE_ENV=production webpack --mode production",
+    "start:dev": "nodemon --watch src --ext tsx,scss --exec 'ts-node' app.ts",
+    "start:prod": "ts-node app.ts"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.17",
+    "axios": "^1.6.1",
     "koa": "^2.14.2",
     "koa-static": "^5.0.0",
     "react": "^18.2.0",

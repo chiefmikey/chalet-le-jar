@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Content from './Content';
+
 const App = () => {
   const test = '';
 
@@ -7,23 +9,16 @@ const App = () => {
     <div className="background">
       <div className="app">
         <div className="title">
-          <span className="title-1">Tomorrow</span>
-          <span className="title-2">Night</span>
-          <span className="title-3">Darkly</span>
+          <span className="title-1">Chalet le Jar</span>
         </div>
-        <div className="content">
-          <span className="content-title">
-            A <span className="simply-dark">Simply Dark</span> Theme
-          </span>
-          <div className="content-selection"></div>
-        </div>
+        <Content />
         <span className="made-by">
           <a
-            href="https://github.com/chiefmikey"
+            href="https://github.com/chiefmikey/chalet-le-jar"
             target="_blank"
             rel="noreferrer"
           >
-            Made by Chief Mikey
+            github
           </a>
         </span>
       </div>
