@@ -1,7 +1,8 @@
 import { List, ListItem, ListItemText } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 
-import { fetchSaveData, fetchAutosaveData } from '../helpers/saveDataHelper';
+import { sendRequest } from '../helpers/apiHelper';
+import { fetchSaveData, fetchAutosaveData } from '../helpers/fetchDataHelper';
 
 const Rewind = () => {
   const resultsCap = { autosave: 72, save: 72 };
@@ -20,6 +21,10 @@ const Rewind = () => {
     };
     fetchData();
   }, []);
+
+  const sendRewind = async (rawDate) => {
+    const response = await sendRequest;
+  };
 
   return (
     <div className="rewind">
