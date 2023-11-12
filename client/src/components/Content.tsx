@@ -1,7 +1,7 @@
 import { AppBar, Toolbar, Tabs, Tab } from '@mui/material';
 import React, { useState } from 'react';
 
-import Rewind from './Rewind';
+import Rewind from './features/Rewind';
 
 const Content = () => {
   const [value, setValue] = useState(0);
