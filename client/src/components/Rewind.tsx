@@ -21,11 +21,12 @@ const Rewind = () => {
       <span className="rewind-title">Rewind</span>
       <div className="rewind-selection">
         <List component="nav" aria-label="main mailbox folders">
-          {autosaveList.map((item, index) => (
-            <ListItem onClick={(event) => setSelectedItem(event)} key={item}>
-              <ListItemText primary={item} />
-            </ListItem>
-          ))}
+          {autosaveList.length > 0 &&
+            autosaveList.map((item, index) => (
+              <ListItem onClick={(event) => setSelectedItem(event)} key={item}>
+                <ListItemText primary={item} />
+              </ListItem>
+            ))}
         </List>
         {selectedItem !== null && (
           <div>Selected item: {autosaveList[selectedItem]}</div>
