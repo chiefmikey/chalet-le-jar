@@ -6,7 +6,9 @@ import { fetchAutosave } from './helpers/autosaveHelper';
 const Rewind = () => {
   const index = 30;
   const [selectedItem, setSelectedItem] = useState(0);
-  const [autosaveList, setAutosaveList] = useState([] as string[]);
+  const [autosaveList, setAutosaveList] = useState([
+    { raw: '', localDate: '' },
+  ]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,13 +25,16 @@ const Rewind = () => {
         <List component="nav" aria-label="main mailbox folders">
           {autosaveList.length > 0 &&
             autosaveList.map((item, index) => (
-              <ListItem onClick={(event) => setSelectedItem(event)} key={item}>
-                <ListItemText primary={item} />
+              <ListItem
+                onClick={(event) => setSelectedItem(index)}
+                key={item.raw}
+              >
+                <ListItemText primary={item.localDate} />
               </ListItem>
             ))}
         </List>
         {selectedItem !== null && (
-          <div>Selected item: {autosaveList[selectedItem]}</div>
+          <div>Selected item: {autosaveList[selectedItem].localDate}</div>
         )}
       </div>
     </div>
