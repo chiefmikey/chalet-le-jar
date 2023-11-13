@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Tabs, Tab } from '@mui/material';
+import { AppBar, Tabs, Tab } from '@mui/material';
 import React, { useState } from 'react';
 
 import Rewind from './features/Rewind';
@@ -12,30 +12,46 @@ const Content = () => {
 
   return (
     <div className="content">
-      <span className="content-title">A Simply Dark Theme</span>
-      <div className="content-selection">
-        <AppBar position="static">
-          <Toolbar
+      <AppBar position="static">
+        <Tabs
+          TabIndicatorProps={{
+            sx: { display: 'none' },
+          }}
+          value={value}
+          onChange={handleChange}
+          variant="fullWidth"
+          sx={{
+            backgroundColor: '#437420',
+            borderRadius: '0',
+            border: 'none',
+            '.Mui-selected': {
+              backgroundColor: '#8fcb5c',
+            },
+          }}
+          classes={{
+            root: 'tab-label',
+          }}
+        >
+          <Tab
+            className="tab-label"
+            label="Rewind"
             sx={{
-              backgroundColor: 'lightgray',
-              borderRadius: '8px',
-              display: 'flex',
-              justifyContent: 'space-between',
+              height: '100%',
             }}
-          >
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              sx={{ backgroundColor: 'lightgray', borderRadius: '8px' }}
-            >
-              <Tab className="tab-label" label="Rewind" />
-              <Tab className="tab-label" label="SFX" />
-            </Tabs>
-          </Toolbar>
-        </AppBar>
+          />
+          <Tab
+            className="tab-label"
+            label="SFX"
+            sx={{
+              height: '100%',
+            }}
+          />
+        </Tabs>
+      </AppBar>
+      <div className="content-selection">
+        {value === 0 && <Rewind />}
+        {value === 1 && <div>Content for Option 2</div>}
       </div>
-      {value === 0 && <Rewind />}
-      {value === 1 && <div>Content for Option 2</div>}
     </div>
   );
 };
