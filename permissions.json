@@ -24,11 +24,15 @@
     "xuid": "2535435379890067"
   },
   {
-    "permission": "member",
-    "xuid": "2533274847632136"
+    "permission": "operator",
+    "xuid": "2535428853366389"
   },
   {
     "permission": "operator",
-    "xuid": "2535428853366389"
+    "xuid": "2533274804177994"
+  },
+  {
+    "permission": "member",
+    "xuid": "2533274847632136"
   }
 ]
