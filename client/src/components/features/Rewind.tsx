@@ -3,9 +3,13 @@ import { AxiosResponse } from 'axios';
 import React, { useEffect, useState } from 'react';
 
 import { sendRequest } from '../helpers/apiHelper';
-import { fetchSaveData, fetchAutosaveData } from '../helpers/fetchDataHelper';
+import {
+  fetchSaveData,
+  fetchAutosaveData,
+  fetchRewindData,
+} from '../helpers/fetchDataHelper';
 
-const Rewind = () => {
+const Rewind = ({ subValue }) => {
   const resultsCap = { autosave: 72, save: 72, rewind: 1 };
   const [selectedItem, setSelectedItem] = useState(
     undefined as undefined | number,
@@ -20,7 +24,7 @@ const Rewind = () => {
   const fetchData = async () => {
     const fetchSaveList = await fetchSaveData(resultsCap.save);
     const fetchAutosaveList = await fetchAutosaveData(resultsCap.autosave);
-    const fetchRewindList = await fetchAutosaveData(resultsCap.rewind);
+    const fetchRewindList = await fetchRewindData(resultsCap.rewind);
     setSaveList(fetchSaveList);
     setAutosaveList(fetchAutosaveList);
     setRewindList(fetchRewindList);
@@ -40,15 +44,15 @@ const Rewind = () => {
     }
   };
 
-  const displayLists = [saveList, autosaveList];
-  const displayListsKeys = ['saveList', 'autosaveList'];
+  const useList = subValue === 0 ? autosaveList : saveList;
+  const displayListKey = subValue === 0 ? 'autosaveList' : 'saveList';
 
-  const displayedLists = displayLists.map((list, index) => {
+  const buildList = (list: { raw: string; localDate: string }[]) => {
     if (list.length > 0) {
       return (
         <List
           component="nav"
-          key={displayListsKeys[index]}
+          key={displayListKey}
           aria-label="main mailbox folders"
           style={{
             width: '100%',
@@ -57,33 +61,39 @@ const Rewind = () => {
             padding: '0',
           }}
         >
-          {list.map((item, index) => (
-            <ListItemButton
-              onClick={(event) => setSelectedItem(index)}
-              key={item.raw}
-              selected={selectedItem === index}
-              style={{
-                textAlign: 'center',
-                padding: '15px',
-                backgroundColor: index % 2 === 0 ? '#9b6237' : '#5e361d',
-              }}
-            >
-              <ListItemText
-                primary={item.localDate}
-                classes={{
-                  primary: 'rewind-list-item-text',
+          {list.map((item, index) => {
+            const colorAlt = index % 2 === 0 ? '#9b6237' : '#5e361d';
+            return (
+              <ListItemButton
+                onClick={(event) => setSelectedItem(index)}
+                key={item.raw}
+                selected={selectedItem === index}
+                style={{
+                  textAlign: 'center',
+                  padding: '15px',
+                  backgroundColor:
+                    selectedItem === index ? '#2ac9b9' : colorAlt,
                 }}
-              />
-            </ListItemButton>
-          ))}
+              >
+                <ListItemText
+                  primary={item.localDate}
+                  classes={{
+                    primary: 'rewind-list-item-text',
+                  }}
+                />
+              </ListItemButton>
+            );
+          })}
         </List>
       );
     }
-  });
+  };
+
+  const displayedList = buildList(useList);
 
   return (
     <div className="rewind">
-      <div className="rewind-selection">{displayedLists}</div>
+      <div className="rewind-selection">{displayedList}</div>
 
       <div className="rewind-button">
         <Button
@@ -93,24 +103,22 @@ const Rewind = () => {
           disabled={!selectedItem}
           style={{
             width: '100%',
-            height: '10vh',
+            height: '12vh',
             fontSize: '2rem',
             backgroundColor: selectedItem ? '#c94712' : '#565352',
             fontWeight: 'bold',
             color: '#ffffff',
             borderRadius: '0',
-            border: selectedItem ? '10px solid #565352' : '10px solid #c94712',
+            backgroundImage: '../../../public/assets/lava.gif',
           }}
         >
           {selectedItem ? 'Rewind' : 'Select Date'}
         </Button>
       </div>
 
-      {message && (
-        <div className="message">
-          <span>{message}</span>
-        </div>
-      )}
+      <div className="message">
+        <span>{`Recent: ${rewindList[0].localDate}`}</span>
+      </div>
     </div>
   );
 };
