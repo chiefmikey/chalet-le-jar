@@ -12,8 +12,6 @@ const handleSave = async () => {
 
 const Save = () => {
   const resultsCap = { save: 72 };
-  const [selectedItem, setSelectedItem] = useState(0);
-  const [wasSelected, setWasSelected] = useState(false);
   const [saveList, setSaveList] = useState([{ raw: '', localDate: '' }]);
 
   const fetchData = async () => {
@@ -24,11 +22,6 @@ const Save = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
-  const handleListSelect = (index: number) => {
-    setSelectedItem(index);
-    setWasSelected(true);
-  };
 
   const buildList = (list: { raw: string; localDate: string }[]) => {
     if (list.length > 0) {
@@ -79,14 +72,13 @@ const Save = () => {
           variant="contained"
           color="primary"
           onClick={handleSave}
-          disabled={!selectedItem}
           style={{
             width: '100%',
             height: '12vh',
             fontSize: '4rem',
-            backgroundColor: wasSelected ? '#c94712' : 'gray',
+            backgroundColor: '#c94712',
             fontWeight: 'bold',
-            color: wasSelected ? '#ffffff' : 'lightgrey',
+            color: '#ffffff',
             borderRadius: '0',
             backgroundImage: '../../../public/assets/lava.gif',
           }}
@@ -96,7 +88,7 @@ const Save = () => {
       </div>
 
       <div className="message">
-        <span>{'PRESS SAVE TO SAVE OK'}</span>
+        <span>{'PRESS SAVE'}</span>
       </div>
     </div>
   );
