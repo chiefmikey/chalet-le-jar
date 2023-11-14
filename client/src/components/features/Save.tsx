@@ -1,1 +1,1 @@
-ok
+// static list of saves. bottom button saves at current time. timeout to recheck log every x seconds to confirm save. could apply to all lists maybe a slower schedule
