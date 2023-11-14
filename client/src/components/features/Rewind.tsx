@@ -1,58 +1,58 @@
 import { Button, List, ListItemButton, ListItemText } from '@mui/material';
-import { AxiosResponse } from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { sendRequest } from '../helpers/apiHelper';
+import { sendRewind } from '../helpers/apiHelper';
 import {
   fetchSaveData,
   fetchAutosaveData,
   fetchRewindData,
 } from '../helpers/fetchDataHelper';
 
-const Rewind = ({ subValue }) => {
+const Rewind = ({ subValue }: { subValue: number }) => {
   const resultsCap = { autosave: 72, save: 72, rewind: 1 };
-  const [selectedItem, setSelectedItem] = useState(
-    undefined as undefined | number,
-  );
+  const [selectedItem, setSelectedItem] = useState(0);
+  const [wasSelected, setWasSelected] = useState(false);
   const [saveList, setSaveList] = useState([{ raw: '', localDate: '' }]);
-  const [message, setMessage] = useState('');
   const [autosaveList, setAutosaveList] = useState([
     { raw: '', localDate: 'Loading...' },
   ]);
   const [rewindList, setRewindList] = useState([{ raw: '', localDate: '' }]);
 
-  const fetchData = async () => {
-    const fetchSaveList = await fetchSaveData(resultsCap.save);
-    const fetchAutosaveList = await fetchAutosaveData(resultsCap.autosave);
+  const isAutosave = subValue === 0;
+  const useList = isAutosave ? autosaveList : saveList;
+  const saveType = isAutosave ? 'autosave' : 'save';
+
+  const fetchData = async (isAutosave: boolean) => {
     const fetchRewindList = await fetchRewindData(resultsCap.rewind);
-    setSaveList(fetchSaveList);
-    setAutosaveList(fetchAutosaveList);
     setRewindList(fetchRewindList);
-  };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const sendRewind = async () => {
-    const response = (await sendRequest({
-      type: 'rewind',
-      data: selectedItem,
-    })) as AxiosResponse;
-    if (response.status === 200) {
-      setMessage('Rewind Successful');
+    if (isAutosave) {
+      const fetchAutosaveList = await fetchAutosaveData(resultsCap.autosave);
+      setAutosaveList(fetchAutosaveList);
+    } else {
+      const fetchSaveList = await fetchSaveData(resultsCap.save);
+      setSaveList(fetchSaveList);
     }
   };
 
-  const useList = subValue === 0 ? autosaveList : saveList;
-  const displayListKey = subValue === 0 ? 'autosaveList' : 'saveList';
+  useEffect(() => {
+    fetchData(isAutosave);
+  }, []);
+
+  const handleListSelect = (index: number) => {
+    setSelectedItem(index);
+    setWasSelected(true);
+  };
+
+  const handleRewind = async () => {
+    await sendRewind(`${saveType}/${useList[selectedItem].raw}`);
+  };
 
   const buildList = (list: { raw: string; localDate: string }[]) => {
     if (list.length > 0) {
       return (
         <List
           component="nav"
-          key={displayListKey}
           aria-label="main mailbox folders"
           style={{
             width: '100%',
@@ -62,17 +62,17 @@ const Rewind = ({ subValue }) => {
           }}
         >
           {list.map((item, index) => {
+            const listSelected = wasSelected && selectedItem === index;
             const colorAlt = index % 2 === 0 ? '#9b6237' : '#5e361d';
             return (
               <ListItemButton
-                onClick={(event) => setSelectedItem(index)}
+                onClick={(event) => handleListSelect(index)}
                 key={item.raw}
-                selected={selectedItem === index}
+                selected={listSelected}
                 style={{
                   textAlign: 'center',
                   padding: '15px',
-                  backgroundColor:
-                    selectedItem === index ? '#2ac9b9' : colorAlt,
+                  backgroundColor: listSelected ? '#2ac9b9' : colorAlt,
                 }}
               >
                 <ListItemText
@@ -90,7 +90,6 @@ const Rewind = ({ subValue }) => {
   };
 
   const displayedList = buildList(useList);
-  const isSelected = selectedItem !== undefined;
 
   return (
     <div className="rewind">
@@ -100,15 +99,15 @@ const Rewind = ({ subValue }) => {
         <Button
           variant="contained"
           color="primary"
-          onClick={sendRewind}
+          onClick={handleRewind}
           disabled={!selectedItem}
           style={{
             width: '100%',
             height: '12vh',
-            fontSize: '2rem',
-            backgroundColor: isSelected ? '#c94712' : 'gray',
+            fontSize: '4rem',
+            backgroundColor: wasSelected ? '#c94712' : 'gray',
             fontWeight: 'bold',
-            color: isSelected ? '#ffffff' : 'lightgrey',
+            color: wasSelected ? '#ffffff' : 'lightgrey',
             borderRadius: '0',
             backgroundImage: '../../../public/assets/lava.gif',
           }}
