@@ -9,6 +9,7 @@ import {
 import React, { useState, SyntheticEvent } from 'react';
 
 import Rewind from './features/Rewind';
+import Save from './features/Save';
 
 const Content = () => {
   const [value, setValue] = useState(0);
@@ -72,6 +73,7 @@ const Content = () => {
           <MenuItem
             value={0}
             style={{
+              backgroundColor: value === 0 ? '#437420' : '#5e853d',
               fontWeight: '600',
               fontSize: '3rem',
               height: '12vh',
@@ -82,11 +84,10 @@ const Content = () => {
           <MenuItem
             value={1}
             style={{
+              backgroundColor: value === 1 ? '#437420' : '#5e853d',
               fontWeight: '600',
               fontSize: '3rem',
               height: '12vh',
-              textAlign: 'center',
-              width: '100%',
             }}
           >
             SAVE
@@ -94,6 +95,7 @@ const Content = () => {
           <MenuItem
             value={2}
             style={{
+              backgroundColor: value === 2 ? '#437420' : '#5e853d',
               fontWeight: '600',
               fontSize: '3rem',
               height: '12vh',
@@ -116,14 +118,16 @@ const Content = () => {
               borderRadius: '0',
               border: 'none',
               textAlign: 'center',
+              height: '6vh',
             }}
           >
             <Tab
               value={0}
               sx={{
                 maxWidth: 'none',
-                backgroundColor: subValue === 0 ? '#7db04f' : '#437420',
+                backgroundColor: subValue === 0 ? '#5e853d' : '#437420',
                 flex: 1,
+                height: '6vh',
               }}
               classes={{
                 root: 'tab-menu',
@@ -134,7 +138,8 @@ const Content = () => {
               value={1}
               sx={{
                 maxWidth: 'none',
-                backgroundColor: subValue === 1 ? '#7db04f' : '#437420',
+                backgroundColor: subValue === 1 ? '#5e853d' : '#437420',
+                height: '6vh',
               }}
               classes={{
                 root: 'tab-menu',
@@ -146,7 +151,7 @@ const Content = () => {
       </AppBar>
       <div className="content-selection">
         {value === 0 && <Rewind subValue={subValue} />}
-        {value === 1 && <div>SAVE</div>}
+        {value === 1 && <Save />}
         {value === 2 && <div>SFX</div>}
       </div>
     </div>
