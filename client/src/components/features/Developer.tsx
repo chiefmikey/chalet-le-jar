@@ -1,0 +1,1 @@
+// list select and execute like all others. list provides dev options for start stop refresh upgrade, maybe with input for manual version change. 
