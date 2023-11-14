@@ -77,7 +77,7 @@ const Content = () => {
               height: '12vh',
             }}
           >
-            Rewind
+            REWIND
           </MenuItem>
           <MenuItem
             value={1}
@@ -89,7 +89,7 @@ const Content = () => {
               width: '100%',
             }}
           >
-            Save
+            SAVE
           </MenuItem>
           <MenuItem
             value={2}
@@ -146,7 +146,7 @@ const Content = () => {
       </AppBar>
       <div className="content-selection">
         {value === 0 && <Rewind subValue={subValue} />}
-        {value === 1 && <div>Save</div>}
+        {value === 1 && <div>SAVE</div>}
         {value === 2 && <div>SFX</div>}
       </div>
     </div>

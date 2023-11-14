@@ -90,6 +90,7 @@ const Rewind = ({ subValue }) => {
   };
 
   const displayedList = buildList(useList);
+  const isSelected = selectedItem !== undefined;
 
   return (
     <div className="rewind">
@@ -105,14 +106,14 @@ const Rewind = ({ subValue }) => {
             width: '100%',
             height: '12vh',
             fontSize: '2rem',
-            backgroundColor: selectedItem ? '#c94712' : '#565352',
+            backgroundColor: isSelected ? '#c94712' : 'gray',
             fontWeight: 'bold',
-            color: '#ffffff',
+            color: isSelected ? '#ffffff' : 'lightgrey',
             borderRadius: '0',
             backgroundImage: '../../../public/assets/lava.gif',
           }}
         >
-          {selectedItem ? 'Rewind' : 'Select Date'}
+          Rewind
         </Button>
       </div>
 
