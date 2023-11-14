@@ -1,18 +1,27 @@
 import axios from 'axios';
 
-export const sendRequest = async (data) => {
+const address = 'http://localhost:3000';
+
+export const sendRewind = async (data: string) => {
   try {
-    const response = await axios.post('http://localhost:3000', { data });
-    return response.data;
+    return await axios.post(`${address}/rewind`, { data });
   } catch (error) {
     console.error(error);
   }
 };
 
-// post rewind with save/autosave and date
+export const sendSave = async () => {
+  try {
+    return await axios.post(`${address}/save`);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-// post save no data needed
-
-// post sfx with raw name string
-
-// dev
+export const sendSfx = async (data: string) => {
+  try {
+    return await axios.post(`${address}/sfx`, { data });
+  } catch (error) {
+    console.error(error);
+  }
+};
