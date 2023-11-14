@@ -11,4 +11,5 @@ cat log/temp-history.txt >> log/history.txt
 cat log/temp-"${ACTION}"-log.txt >> log/"${ACTION}"-log.txt
 rm log/temp-history.txt log/temp-"${ACTION}"-log.txt
 git commit -am "${ACTION}/${CURRENT_DATE}"
-git push origin main:log
+git push -f origin main:log
+git reset --hard origin/main
