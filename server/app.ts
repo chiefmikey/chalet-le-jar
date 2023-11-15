@@ -1,16 +1,55 @@
+import cors from '@koa/cors';
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import Router from 'koa-router';
 
+import { messageHelper, rewindHelper, saveHelper, sfxHelper } from './helpers';
+
 const app = new Koa();
 const router = new Router();
 
-router.post('/rewind', async (context) => {
-  const { data } = context.request.body;
-  // Process the data here
+router.post('/rewind', (context) => {
+  const { data } = context.request.body as { data: string };
+  rewindHelper(data);
   context.body = { status: 'success' };
+  return context;
 });
 
+router.post('/save', (context) => {
+  saveHelper();
+  context.body = { status: 'success' };
+  return context;
+});
+
+router.post('/sfx', (context) => {
+  const { data } = context.request.body as { data: string };
+  sfxHelper(data);
+  context.body = { status: 'success' };
+  return context;
+});
+
+router.post('/message', (context) => {
+  const { data } = context.request.body as { data: string };
+  messageHelper(data);
+  context.body = { status: 'success' };
+  return context;
+});
+
+app.use(
+  cors({
+    origin: (context) => {
+      if (context.request.ip === '3.136.147.58') {
+        return '*';
+      }
+      return false;
+    },
+    exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
+    maxAge: 5,
+    credentials: true,
+    allowMethods: ['POST'],
+    allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
+  }),
+);
 app.use(bodyParser());
 app.use(router.routes());
 app.use(router.allowedMethods());
