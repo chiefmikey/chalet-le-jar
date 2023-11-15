@@ -152,7 +152,7 @@ const Content = () => {
       <div className="content-selection">
         {value === 0 && <Rewind subValue={subValue} />}
         {value === 1 && <Save />}
-        {value === 2 && <div>SFX</div>}
+        {/* {value === 2 && <div>SFX</div>} */}
       </div>
     </div>
   );
