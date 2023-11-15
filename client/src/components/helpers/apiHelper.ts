@@ -25,3 +25,11 @@ export const sendSfx = async (data: string) => {
     console.error(error);
   }
 };
+
+export const sendMessage = async (data: string) => {
+  try {
+    return await axios.post(`${address}/message`, { data });
+  } catch (error) {
+    console.error(error);
+  }
+};
