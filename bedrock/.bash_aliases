@@ -1,6 +1,5 @@
 USER="/home/chalet-le-jar"
 SCRIPTS="${USER}/scripts"
-TS="${USER}/server"
 
 # server
 alias start="sudo ${SCRIPTS}/server-start.sh"
