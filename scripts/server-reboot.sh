@@ -1,8 +1,7 @@
 #!/bin/sh
 
-# Directories
-export USER="/home/chalet-le-jar"
-export SCRIPTS="${USER}/scripts"
+USER="/home/chalet-le-jar"
+SCRIPTS="${USER}/scripts"
 
 set -x
 "${SCRIPTS}"/server-system.sh

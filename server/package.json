@@ -1,0 +1,41 @@
+{
+  "name": "server-le-jar",
+  "version": "0.0.1",
+  "description": "Welcome friends and friendly people.",
+  "scripts": {
+    "start:dev": "nodemon --watch src --ext tsx,scss --exec 'ts-node' app.ts",
+    "start:prod": "ts-node app.ts"
+  },
+  "dependencies": {
+    "@koa/cors": "^4.0.0",
+    "koa": "^2.14.2",
+    "koa-bodyparser": "^4.4.1",
+    "koa-router": "^12.0.1"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.13.11",
+    "@types/koa-bodyparser": "^4.3.12",
+    "@types/koa-router": "^7.4.7",
+    "@types/koa__cors": "^4.0.3",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "homepage": "https://github.com/chiefmikey/chalet-le-jar#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chiefmikey/chalet-le-jar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chiefmikey/chalet-le-jar/issues"
+  },
+  "license": "MIT",
+  "keywords": [
+    "minecraft",
+    "bedrock",
+    "server",
+    "aws",
+    "local"
+  ],
+  "author": "Mikl Wolfe <wolfe@mikl.io> (https://mikl.io)"
+}

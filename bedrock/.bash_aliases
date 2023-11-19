@@ -1,8 +1,8 @@
-# Directories
-export USER="/home/chalet-le-jar"
-export SCRIPTS="${USER}/scripts"
+USER="/home/chalet-le-jar"
+SCRIPTS="${USER}/scripts"
+TS="${USER}/server"
 
-# Server
+# server
 alias start="sudo ${SCRIPTS}/server-start.sh"
 alias stop="sudo ${SCRIPTS}/server-stop.sh"
 alias save="sudo ${SCRIPTS}/server-save.sh"
@@ -15,15 +15,19 @@ alias upgrade="sudo ${SCRIPTS}/server-stop.sh && sudo ${SCRIPTS}/server-start.sh
 alias rboot="sudo ${SCRIPTS}/server-stop.sh && sudo ${SCRIPTS}/server-reboot.sh"
 alias rb="sudo ${SCRIPTS}/server-reboot.sh"
 
-# Screen
+# screen
 alias cscreen="sudo screen -ls"
 alias bscreen="sudo screen -r bedrock"
 alias ascreen="sudo screen -r autosave"
 
-# System
+# system
 alias mem="free -h"
 alias smem="htop"
 alias motd="sudo run-parts /etc/update-motd.d"
+
+# ts server
+alias ts-init="sudo ${SCRIPTS}/server-ts.sh"
+alias ts-upgrade="sudo ${SCRIPTS}/server-ts-upgrade.sh"
 
 # TBD
 alias rewindcli="sudo ${SCRIPTS}/server-cli-rewind.sh"

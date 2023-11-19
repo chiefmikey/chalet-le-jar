@@ -1,7 +1,7 @@
 import path from 'node:path';
 
-const SRC_DIR = path.join(path.resolve(), '/client/src');
-const DIST_DIR = path.join(path.resolve(), '/client/public/dist');
+const SRC_DIR = path.join(path.resolve(), '/src');
+const DIST_DIR = path.join(path.resolve(), '/public/dist');
 
 const css = ['style-loader', 'css-loader'];
 const scss = ['style-loader', 'css-loader', 'sass-loader'];

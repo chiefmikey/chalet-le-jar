@@ -3,18 +3,16 @@
 set -x
 killall screen
 CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
-export CURRENT_DATE
 cd /home/chalet-le-jar || exit
 /home/chalet-le-jar/scripts/server-system.sh
 git remote remove origin
-export USER="chalet-le-jar"
-export EMAIL="chaletlejar@gmail.com"
-export REPO="chalet-le-jar"
-export GH_USER="chiefmikey"
-export AWS_REGION="us-east-2"
-export AWS_SECRET_ID="chalet-auth"
+USER="chalet-le-jar"
+EMAIL="chaletlejar@gmail.com"
+REPO="chalet-le-jar"
+GH_USER="chiefmikey"
+AWS_REGION="us-east-2"
+AWS_SECRET_ID="chalet-auth"
 GH_PASSWORD="$(aws secretsmanager --region "${AWS_REGION}" get-secret-value --secret-id "${AWS_SECRET_ID}" | jq -r ".SecretString" | jq -r .\""${AWS_SECRET_ID}"\")"
-export GH_PASSWORD
 sleep 10
 git init
 git config user.name ${USER}

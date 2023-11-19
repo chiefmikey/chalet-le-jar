@@ -41,7 +41,7 @@ app.use(
       if (context.request.ip === '3.136.147.58') {
         return '*';
       }
-      return false;
+      return '';
     },
     exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
     maxAge: 5,

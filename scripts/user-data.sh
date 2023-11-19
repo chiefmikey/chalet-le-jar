@@ -3,21 +3,19 @@
 set -x
 cd /home/ubuntu || exit
 CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
-export CURRENT_DATE
 apt update -y
 apt upgrade -y
 apt install -y wget zip unzip git jq awscli curl
 wget -O bedrock-server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.19.1.01.zip
 unzip -o bedrock-server.zip
 rm bedrock-server.zip
-export USER="chalet-le-jar"
-export EMAIL="chaletlejar@gmail.com"
-export REPO="chalet-le-jar"
-export GH_USER="chiefmikey"
-export AWS_REGION="us-east-2"
-export AWS_SECRET_ID="chalet-auth"
+USER="chalet-le-jar"
+EMAIL="chaletlejar@gmail.com"
+REPO="chalet-le-jar"
+GH_USER="chiefmikey"
+AWS_REGION="us-east-2"
+AWS_SECRET_ID="chalet-auth"
 GH_PASSWORD="$(aws secretsmanager --region "${AWS_REGION}" get-secret-value --secret-id "${AWS_SECRET_ID}" | jq -r ".SecretString" | jq -r .\""${AWS_SECRET_ID}"\")"
-export GH_PASSWORD
 sleep 10
 git init
 git config user.name ${USER}
