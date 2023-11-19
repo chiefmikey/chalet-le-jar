@@ -11,12 +11,15 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@logto/react": "^2.1.2",
     "@mui/material": "^5.14.18",
     "axios": "^1.6.2",
     "koa": "^2.14.2",
+    "koa-send": "^5.0.1",
     "koa-static": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.19.0",
     "sass": "^1.69.5"
   },
   "devDependencies": {

@@ -6,23 +6,57 @@ import {
   MenuItem,
   SelectChangeEvent,
 } from '@mui/material';
-import React, { useState, SyntheticEvent } from 'react';
+import React, { useState, SyntheticEvent, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import Rewind from './features/Rewind';
 import Save from './features/Save';
 
 const Content = () => {
-  const [value, setValue] = useState(0);
+  const navigate = useNavigate();
+  const location = useLocation();
   const [subValue, setSubValue] = useState(0);
-  const [isOpen, setIsOpen] = useState(false);
+  const [route, setRoute] = useState(0);
+
+  useEffect(() => {
+    switch (location.pathname) {
+      case '/home': {
+        setRoute(0);
+        break;
+      }
+      case '/save': {
+        setRoute(1);
+        break;
+      }
+      case '/sfx': {
+        setRoute(2);
+        break;
+      }
+      default: {
+        setRoute(0);
+        break;
+      }
+    }
+  }, [location]);
 
   const handleChange = (event: SelectChangeEvent<number>) => {
-    setValue(event.target.value as number);
-    setIsOpen(false);
-  };
-
-  const handleOpen = () => {
-    setIsOpen(true);
+    switch (event.target.value as number) {
+      case 0: {
+        navigate('/home');
+        break;
+      }
+      case 1: {
+        navigate('/save');
+        break;
+      }
+      case 2: {
+        navigate('/sfx');
+        break;
+      }
+      default: {
+        break;
+      }
+    }
   };
 
   const handleSubChange = (
@@ -41,9 +75,8 @@ const Content = () => {
         }}
       >
         <Select
-          value={value}
+          value={route}
           onChange={handleChange}
-          onOpen={handleOpen}
           variant="standard"
           disableUnderline
           SelectDisplayProps={{
@@ -73,7 +106,7 @@ const Content = () => {
           <MenuItem
             value={0}
             style={{
-              backgroundColor: value === 0 ? '#437420' : '#5e853d',
+              backgroundColor: route === 0 ? '#437420' : '#5e853d',
               fontWeight: '600',
               fontSize: '3rem',
               height: '12vh',
@@ -84,7 +117,7 @@ const Content = () => {
           <MenuItem
             value={1}
             style={{
-              backgroundColor: value === 1 ? '#437420' : '#5e853d',
+              backgroundColor: route === 1 ? '#437420' : '#5e853d',
               fontWeight: '600',
               fontSize: '3rem',
               height: '12vh',
@@ -95,7 +128,7 @@ const Content = () => {
           <MenuItem
             value={2}
             style={{
-              backgroundColor: value === 2 ? '#437420' : '#5e853d',
+              backgroundColor: route === 2 ? '#437420' : '#5e853d',
               fontWeight: '600',
               fontSize: '3rem',
               height: '12vh',
@@ -104,7 +137,7 @@ const Content = () => {
             SFX
           </MenuItem>
         </Select>
-        {value === 0 && (
+        {route === 0 && (
           <Tabs
             value={subValue}
             TabIndicatorProps={{
@@ -150,8 +183,8 @@ const Content = () => {
         )}
       </AppBar>
       <div className="content-selection">
-        {value === 0 && <Rewind subValue={subValue} />}
-        {value === 1 && <Save />}
+        {route === 0 && <Rewind subValue={subValue} />}
+        {route === 1 && <Save />}
         {/* {value === 2 && <div>SFX</div>} */}
       </div>
     </div>
