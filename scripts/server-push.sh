@@ -1,10 +1,10 @@
 #!/bin/sh
 
 set -x
-cd /home/chalet-le-jar || exit
+cd "${USER}" || exit
 git push origin backup/"${CURRENT_DATE}"
 git checkout main
-rm -r backups/backup/"${CURRENT_DATE}"
+rm -r "${BACKUPS}"/backup/"${CURRENT_DATE}"
 CURRENT_DATE=${CURRENT_DATE} ACTION=backup \
-  /home/chalet-le-jar/scripts/server-log.sh
+  "${SCRIPTS}"/server-log.sh
 git push origin main:log

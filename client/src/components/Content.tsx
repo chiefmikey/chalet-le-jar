@@ -1,3 +1,4 @@
+import { UserInfoResponse } from '@logto/react';
 import {
   AppBar,
   Tabs,
@@ -9,14 +10,42 @@ import {
 import React, { useState, SyntheticEvent, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+import Home from './features/Home';
 import Rewind from './features/Rewind';
 import Save from './features/Save';
+import Teleport from './features/Teleport';
 
-const Content = () => {
+const Content = ({ user }: { user: UserInfoResponse | undefined }) => {
   const navigate = useNavigate();
+  const username = user?.username ? user.username.replaceAll('_', ' ') : '';
   const location = useLocation();
   const [subValue, setSubValue] = useState(0);
   const [route, setRoute] = useState(0);
+  const users = [
+    'rotttttt',
+    'AverageThyme486',
+    'MortalCaribou91',
+    'HUNGLIKE12',
+    'gajdra',
+    'L0ST UN1C0RN',
+    'Minty Fresh1515',
+    'Dark Zelda92',
+  ];
+  const values = {
+    1: 'REWIND',
+    2: 'TELEPORT',
+    3: 'SFX',
+    4: 'MESSAGE',
+    5: 'SAVE',
+  } as {
+    [key: number]: string;
+  };
+
+  useEffect(() => {
+    if (route === 2) {
+      setSubValue(users.indexOf(username));
+    }
+  }, []);
 
   useEffect(() => {
     switch (location.pathname) {
@@ -24,12 +53,24 @@ const Content = () => {
         setRoute(0);
         break;
       }
-      case '/save': {
+      case '/rewind': {
         setRoute(1);
         break;
       }
-      case '/sfx': {
+      case '/teleport': {
         setRoute(2);
+        break;
+      }
+      case '/sfx': {
+        setRoute(3);
+        break;
+      }
+      case '/message': {
+        setRoute(4);
+        break;
+      }
+      case '/save': {
+        setRoute(5);
         break;
       }
       default: {
@@ -46,11 +87,23 @@ const Content = () => {
         break;
       }
       case 1: {
-        navigate('/save');
+        navigate('/rewind');
         break;
       }
       case 2: {
+        navigate('/teleport');
+        break;
+      }
+      case 3: {
         navigate('/sfx');
+        break;
+      }
+      case 4: {
+        navigate('/message');
+        break;
+      }
+      case 5: {
+        navigate('/save');
         break;
       }
       default: {
@@ -66,126 +119,190 @@ const Content = () => {
     setSubValue(value);
   };
 
-  return (
-    <div className="content">
-      <AppBar
-        position="static"
+  const handleUserChange = (event: SelectChangeEvent<string>) => {
+    setSubValue(Number(event.target.value));
+  };
+
+  const menuItems = [];
+  for (const value of Object.keys(values)) {
+    const numberValue = Number(value);
+    const label = values[numberValue];
+
+    menuItems.push(
+      <MenuItem
+        value={numberValue}
+        key={numberValue}
         style={{
-          alignItems: 'center',
+          backgroundColor: route === numberValue ? '#437420' : '#5e853d',
+          fontWeight: '600',
+          fontSize: '3rem',
+          height: '12vh',
         }}
       >
-        <Select
-          value={route}
-          onChange={handleChange}
-          variant="standard"
-          disableUnderline
-          SelectDisplayProps={{
-            style: {
-              borderRadius: '0',
-              border: 'none',
-              textAlign: 'center',
-              width: '100vw',
-              left: '0',
-            },
-          }}
-          sx={{
-            backgroundColor: '#7db04f',
-            borderRadius: '0',
-            border: 'none',
-            textAlign: 'center',
-            width: '100%',
-            height: '8vh',
-            display: 'flex',
+        {label}
+      </MenuItem>,
+    );
+  }
+
+  const userItems = [];
+  for (const user of Object.keys(users)) {
+    const userValue = Number(user);
+    const label = users[userValue];
+
+    userItems.push(
+      <MenuItem
+        value={userValue}
+        key={userValue}
+        style={{
+          backgroundColor: subValue === userValue ? '#437420' : '#5e853d',
+          fontWeight: '600',
+          fontSize: '3rem',
+          height: '12vh',
+        }}
+      >
+        {label}
+      </MenuItem>,
+    );
+  }
+
+  return (
+    <div className="app">
+      <div className="title">
+        <img className="logo" src={'/assets/social.png'} alt="logo" />
+      </div>
+      <div className="nav">
+        <AppBar
+          position="static"
+          style={{
             alignItems: 'center',
           }}
-          classes={{
-            root: 'select-menu',
-            icon: 'white-icon',
-          }}
         >
-          <MenuItem
-            value={0}
-            style={{
-              backgroundColor: route === 0 ? '#437420' : '#5e853d',
-              fontWeight: '600',
-              fontSize: '3rem',
-              height: '12vh',
+          <Select
+            value={route}
+            onChange={handleChange}
+            displayEmpty
+            renderValue={() => {
+              if (route === 0) {
+                return '⇩';
+              }
+              return values[route];
             }}
-          >
-            REWIND
-          </MenuItem>
-          <MenuItem
-            value={1}
-            style={{
-              backgroundColor: route === 1 ? '#437420' : '#5e853d',
-              fontWeight: '600',
-              fontSize: '3rem',
-              height: '12vh',
-            }}
-          >
-            SAVE
-          </MenuItem>
-          <MenuItem
-            value={2}
-            style={{
-              backgroundColor: route === 2 ? '#437420' : '#5e853d',
-              fontWeight: '600',
-              fontSize: '3rem',
-              height: '12vh',
-            }}
-          >
-            SFX
-          </MenuItem>
-        </Select>
-        {route === 0 && (
-          <Tabs
-            value={subValue}
-            TabIndicatorProps={{
+            variant="standard"
+            disableUnderline
+            SelectDisplayProps={{
               style: {
-                display: 'none',
+                borderRadius: '0',
+                border: 'none',
+                textAlign: 'center',
+                width: '100vw',
+                left: '0',
               },
             }}
-            onChange={handleSubChange}
-            variant="standard"
             sx={{
+              backgroundColor: '#7db04f',
               borderRadius: '0',
               border: 'none',
               textAlign: 'center',
-              height: '6vh',
+              width: '100%',
+              height: '8vh',
+              display: 'flex',
+              alignItems: 'center',
+            }}
+            classes={{
+              root: 'select-menu',
+              icon: 'white-icon',
             }}
           >
-            <Tab
-              value={0}
+            {menuItems}
+          </Select>
+          {route === 1 && (
+            <Tabs
+              value={subValue}
+              TabIndicatorProps={{
+                style: {
+                  display: 'none',
+                },
+              }}
+              onChange={handleSubChange}
+              variant="standard"
               sx={{
-                maxWidth: 'none',
-                backgroundColor: subValue === 0 ? '#5e853d' : '#437420',
-                flex: 1,
+                borderRadius: '0',
+                border: 'none',
+                textAlign: 'center',
                 height: '6vh',
               }}
-              classes={{
-                root: 'tab-menu',
+            >
+              <Tab
+                value={0}
+                sx={{
+                  maxWidth: 'none',
+                  backgroundColor: subValue === 0 ? '#5e853d' : '#437420',
+                  flex: 1,
+                  height: '6vh',
+                }}
+                classes={{
+                  root: 'tab-menu',
+                }}
+                label="Autosave"
+              />
+              <Tab
+                value={1}
+                sx={{
+                  maxWidth: 'none',
+                  backgroundColor: subValue === 1 ? '#5e853d' : '#437420',
+                  height: '6vh',
+                }}
+                classes={{
+                  root: 'tab-menu',
+                }}
+                label="Save"
+              />
+            </Tabs>
+          )}
+          {route === 2 && (
+            <Select
+              value={String(subValue)}
+              onChange={handleUserChange}
+              variant="standard"
+              disableUnderline
+              SelectDisplayProps={{
+                style: {
+                  borderRadius: '0',
+                  border: 'none',
+                  textAlign: 'center',
+                  width: '100vw',
+                  left: '0',
+                },
               }}
-              label="Autosave"
-            />
-            <Tab
-              value={1}
               sx={{
-                maxWidth: 'none',
                 backgroundColor: subValue === 1 ? '#5e853d' : '#437420',
-                height: '6vh',
+                borderRadius: '0',
+                border: 'none',
+                textAlign: 'center',
+                width: '100%',
+                height: '8vh',
+                display: 'flex',
+                alignItems: 'center',
               }}
               classes={{
-                root: 'tab-menu',
+                root: 'select-menu',
+                icon: 'white-icon',
               }}
-              label="Save"
-            />
-          </Tabs>
-        )}
-      </AppBar>
-      <div className="content-selection">
-        {route === 0 && <Rewind subValue={subValue} />}
-        {route === 1 && <Save />}
-        {/* {value === 2 && <div>SFX</div>} */}
+            >
+              {userItems}
+            </Select>
+          )}
+        </AppBar>
+      </div>
+      <div className="content">
+        <div className="content-selection">
+          {route === 0 && <Home />}
+          {route === 1 && <Rewind subValue={subValue} />}
+          {route === 2 && <Teleport username={username} />}
+          {/* {route === 3 && <Sfx />} */}
+          {/* {route === 4 && <Message />} */}
+          {route === 5 && <Save />}
+        </div>
       </div>
     </div>
   );

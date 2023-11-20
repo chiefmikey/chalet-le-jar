@@ -1,6 +1,6 @@
 #!/bin/sh
 
 set -x
-cd /home/chalet-le-jar/server || exit
+cd "${SERVER}" || exit
 killall node
-/home/chalet-le-jar/scripts/server-ts.sh
+"${SCRIPTS}"/server-ts.sh

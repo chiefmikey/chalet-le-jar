@@ -1,7 +1,12 @@
 #!/bin/sh
 
+USER="/home/chalet-le-jar"
+SCRIPTS="${USER}/scripts"
+BEDROCK="${USER}/bedrock"
+BACKUPS="${BEDROCK}/backups"
+
 set -x
-cd /home/chalet-le-jar || exit
+cd "${USER}" || exit
 CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
 apt update -y
 apt upgrade -y
@@ -24,13 +29,13 @@ git remote add origin https://${USER}:"${GH_PASSWORD}"@github.com/${GH_USER}/${R
 git fetch --prune
 git checkout main
 git reset --hard origin/main
-chmod -R +x scripts
-mkdir /home/chalet-le-jar/backups
-mkdir /home/chalet-le-jar/backups/autosave
-mkdir /home/chalet-le-jar/backups/backup
-mkdir /home/chalet-le-jar/worlds
-chown -R chalet-le-jar:root /home/chalet-le-jar
+chmod -R +x "${SCRIPTS}"
+mkdir "${BACKUPS}"
+mkdir "${BACKUPS}"/autosave
+mkdir "${BACKUPS}"/backup
+mkdir "${BEDROCK}"/worlds
+chown -R chalet-le-jar:root ${USER}
 git commit -am "Server initialized: ${CURRENT_DATE}"
 git push origin main
 CURRENT_DATE=${CURRENT_DATE} ACTION=init \
-  /home/chalet-le-jar/scripts/server-log.sh
+  "${SCRIPTS}"/server-log.sh

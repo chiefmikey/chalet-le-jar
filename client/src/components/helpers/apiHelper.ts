@@ -33,3 +33,14 @@ export const sendMessage = async (data: string) => {
     console.error(error);
   }
 };
+
+export const sendTeleport = async (data: {
+  username: string;
+  coordinates: string;
+}) => {
+  try {
+    return await axios.post(`${address}/teleport`, { data });
+  } catch (error) {
+    console.error(error);
+  }
+};

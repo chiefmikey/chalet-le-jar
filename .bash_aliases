@@ -1,12 +1,18 @@
-USER="/home/chalet-le-jar"
-SCRIPTS="${USER}/scripts"
+# directory
+export USER="/home/chalet-le-jar"
+export SCRIPTS="${USER}/scripts"
+export SERVER="${USER}/server"
+export BEDROCK="${USER}/bedrock"
+export BACKUPS="${BEDROCK}/backups"
 
 # server
+alias perms="chmod -R +x ${SCRIPTS}"
 alias start="sudo ${SCRIPTS}/server-start.sh"
 alias stop="sudo ${SCRIPTS}/server-stop.sh"
 alias save="sudo ${SCRIPTS}/server-save.sh"
 alias sfx="sudo ${SCRIPTS}/server-sfx.sh"
 alias message="sudo ${SCRIPTS}/server-message.sh"
+alias teleport="sudo ${SCRIPTS}/server-teleport.sh"
 alias system="sudo ${SCRIPTS}/server-system.sh"
 alias refresh="sudo ${SCRIPTS}/server-refresh.sh"
 alias rewind="sudo ${SCRIPTS}/server-rewind.sh"

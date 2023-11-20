@@ -86,7 +86,7 @@ const Save = () => {
       </div>
 
       <div className="message">
-        <span>{'PRESS SAVE'}</span>
+        <span>{'CREATES MANUAL SAVE NOW'}</span>
       </div>
     </div>
   );

@@ -40,3 +40,8 @@ export const messageHelper = (message: string) => {
   const command = `message ${message}`;
   shell(command);
 };
+
+export const teleportHelper = (username: string, coordinates: string) => {
+  const command = `teleport ${username} ${coordinates}`;
+  shell(command);
+};

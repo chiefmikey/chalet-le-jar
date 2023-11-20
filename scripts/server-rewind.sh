@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -x
-cd /home/chalet-le-jar || exit
+cd "${USER}" || exit
 CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
 screen -S autosave -X quit
 screen -S bedrock -X stuff "playsound beacon.activate @a\n"
@@ -35,6 +35,6 @@ killall screen
 rm -R worlds/clj
 cp -r backups/"${1}" worlds/clj
 CURRENT_DATE=${CURRENT_DATE} ACTION=rewind \
-  /home/chalet-le-jar/scripts/server-log.sh
-LD_LIBRARY_PATH=/home/chalet-le-jar screen -S bedrock -dm /home/chalet-le-jar/bedrock_server
-screen -S autosave -dm /home/chalet-le-jar/scripts/server-autosave.sh
+  "${SCRIPTS}"/server-log.sh
+LD_LIBRARY_PATH=${BEDROCK} screen -S bedrock -dm "${BEDROCK}"/bedrock_server
+screen -S autosave -dm "${SCRIPTS}"/server-autosave.sh

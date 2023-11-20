@@ -1,12 +1,12 @@
 #!/bin/sh
 
 set -x
-cd /home/chalet-le-jar || exit
+cd "${USER}" || exit
 CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
-cp -r worlds/clj backups/backup/"${CURRENT_DATE}"
+cp -r "${BEDROCK}"/worlds/clj "${BACKUPS}"/backup/"${CURRENT_DATE}"
 git add "backups/backup/${CURRENT_DATE}"
 git stash push
 git checkout -b "backup/${CURRENT_DATE}"
 git stash pop
 git commit -am "backup/${CURRENT_DATE}"
-CURRENT_DATE=${CURRENT_DATE} screen -S push -dm /home/chalet-le-jar/scripts/server-push.sh
+CURRENT_DATE=${CURRENT_DATE} screen -S push -dm "${SCRIPTS}"/server-push.sh

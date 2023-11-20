@@ -1,5 +1,5 @@
 import { Button, List, ListItemButton, ListItemText } from '@mui/material';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import { sendRewind } from '../helpers/apiHelper';
 import {
@@ -22,22 +22,27 @@ const Rewind = ({ subValue }: { subValue: number }) => {
   const useList = isAutosave ? autosaveList : saveList;
   const saveType = isAutosave ? 'autosave' : 'save';
 
-  const fetchData = async (isAutosave: boolean) => {
-    const fetchRewindList = await fetchRewindData(resultsCap.rewind);
-    setRewindList(fetchRewindList);
+  const fetchData = useCallback(
+    async (isAutosave: boolean) => {
+      const fetchRewindList = await fetchRewindData(resultsCap.rewind);
+      setRewindList(fetchRewindList);
 
-    if (isAutosave) {
-      const fetchAutosaveList = await fetchAutosaveData(resultsCap.autosave);
-      setAutosaveList(fetchAutosaveList);
-    } else {
-      const fetchSaveList = await fetchSaveData(resultsCap.save);
-      setSaveList(fetchSaveList);
-    }
-  };
+      if (isAutosave) {
+        const fetchAutosaveList = await fetchAutosaveData(resultsCap.autosave);
+        setAutosaveList(fetchAutosaveList);
+      } else {
+        const fetchSaveList = await fetchSaveData(resultsCap.save);
+        setSaveList(fetchSaveList);
+      }
+    },
+    [resultsCap.autosave, resultsCap.rewind, resultsCap.save],
+  );
 
   useEffect(() => {
-    fetchData(isAutosave);
-  }, []);
+    fetchData(isAutosave).catch((error: Error) => {
+      console.error('Error fetching data:', error);
+    });
+  }, [fetchData, isAutosave]);
 
   const handleListSelect = (index: number) => {
     setSelectedItem(index);
@@ -99,7 +104,11 @@ const Rewind = ({ subValue }: { subValue: number }) => {
         <Button
           variant="contained"
           color="primary"
-          onClick={handleRewind}
+          onClick={() => {
+            handleRewind().catch((error: Error) => {
+              console.error('Error rewinding:', error);
+            });
+          }}
           disabled={!selectedItem}
           style={{
             width: '100%',

@@ -3,7 +3,13 @@ import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import Router from 'koa-router';
 
-import { messageHelper, rewindHelper, saveHelper, sfxHelper } from './helpers';
+import {
+  messageHelper,
+  rewindHelper,
+  saveHelper,
+  sfxHelper,
+  teleportHelper,
+} from './helpers';
 
 const app = new Koa();
 const router = new Router();
@@ -31,6 +37,16 @@ router.post('/sfx', (context) => {
 router.post('/message', (context) => {
   const { data } = context.request.body as { data: string };
   messageHelper(data);
+  context.body = { status: 'success' };
+  return context;
+});
+
+router.post('/teleport', (context) => {
+  const { data } = context.request.body as {
+    data: { username: string; coordinates: string };
+  };
+  const { username, coordinates } = data;
+  teleportHelper(username, coordinates);
   context.body = { status: 'success' };
   return context;
 });

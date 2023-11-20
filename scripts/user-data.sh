@@ -1,5 +1,10 @@
 #!/bin/sh
 
+USER="/home/ubuntu"
+SCRIPTS="${USER}/scripts"
+BEDROCK="${USER}/bedrock"
+BACKUPS="${BEDROCK}/backups"
+
 set -x
 cd /home/ubuntu || exit
 CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
@@ -25,11 +30,11 @@ git fetch --prune
 git checkout main
 git reset --hard origin/main
 chmod -R +x scripts
-mkdir /home/ubuntu/backups
-mkdir /home/ubuntu/backups/autosave
-mkdir /home/ubuntu/backups/backup
-chown -R ubuntu:root /home/ubuntu
+mkdir ${BACKUPS}
+mkdir ${BACKUPS}/autosave
+mkdir ${BACKUPS}/backup
+chown -R ubuntu:root ${USER}
 git commit -am "Server initialized: ${CURRENT_DATE}"
 git push origin main
 CURRENT_DATE=${CURRENT_DATE} ACTION=init \
-  /home/chalet-le-jar/scripts/server-log.sh
+  ${SCRIPTS}/server-log.sh
