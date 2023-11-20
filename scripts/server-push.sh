@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -x
-set_exports
 cd "${ROOT}" || exit
 git push origin backup/"${CURRENT_DATE}"
 git checkout main

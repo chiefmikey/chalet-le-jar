@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -x
-set_exports
 apt update -y &&
 apt upgrade -y &&
 apt full-upgrade -y &&

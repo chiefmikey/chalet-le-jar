@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -x
-set_exports
 git restore --staged .
 git -C ./log pull --rebase=false --autostash --no-edit origin log
 cat log/history.txt >> log/temp-history.txt
