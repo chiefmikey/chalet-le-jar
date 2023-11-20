@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -x
-cd "${USER}" || exit
+cd "${ROOT}" || exit
 CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
 cp -r "${BEDROCK}"/worlds/clj "${BACKUPS}"/backup/"${CURRENT_DATE}"
 git add "backups/backup/${CURRENT_DATE}"

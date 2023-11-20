@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -x
-cd "${USER}" || exit
+cd "${ROOT}" || exit
 CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
 screen -S autosave -X quit
 screen -S bedrock -X stuff "stop\n"

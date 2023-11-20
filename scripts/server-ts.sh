@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -x
-cd "${USER}" || exit
+cd "${ROOT}" || exit
 apt update -y
 apt upgrade -y
 
@@ -13,7 +13,7 @@ if ! command -v svn > /dev/null 2>&1; then
 fi
 if ! command -v node > /dev/null 2>&1 || ! command -v npm > /dev/null 2>&1; then
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
-  . "${USER}"/.nvm/nvm.sh
+  . "${ROOT}"/.nvm/nvm.sh
   nvm install node
 fi
 

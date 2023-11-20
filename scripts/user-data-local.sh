@@ -1,12 +1,12 @@
 #!/bin/sh
 
-USER="/home/chalet-le-jar"
-SCRIPTS="${USER}/scripts"
-BEDROCK="${USER}/bedrock"
+ROOT="/home/chalet-le-jar"
+SCRIPTS="${ROOT}/scripts"
+BEDROCK="${ROOT}/bedrock"
 BACKUPS="${BEDROCK}/backups"
 
 set -x
-cd "${USER}" || exit
+cd "${ROOT}" || exit
 CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
 apt update -y
 apt upgrade -y
@@ -23,9 +23,9 @@ AWS_SECRET_ID="chalet-auth"
 GH_PASSWORD="$(aws secretsmanager --region "${AWS_REGION}" get-secret-value --secret-id "${AWS_SECRET_ID}" | jq -r ".SecretString" | jq -r .\""${AWS_SECRET_ID}"\")"
 sleep 10
 git init
-git config user.name ${USER}
+git config user.name ${ROOT}
 git config user.email ${EMAIL}
-git remote add origin https://${USER}:"${GH_PASSWORD}"@github.com/${GH_USER}/${REPO}.git
+git remote add origin https://${ROOT}:"${GH_PASSWORD}"@github.com/${GH_USER}/${REPO}.git
 git fetch --prune
 git checkout main
 git reset --hard origin/main
@@ -34,7 +34,7 @@ mkdir "${BACKUPS}"
 mkdir "${BACKUPS}"/autosave
 mkdir "${BACKUPS}"/backup
 mkdir "${BEDROCK}"/worlds
-chown -R chalet-le-jar:root ${USER}
+chown -R chalet-le-jar:root ${ROOT}
 git commit -am "Server initialized: ${CURRENT_DATE}"
 git push origin main
 CURRENT_DATE=${CURRENT_DATE} ACTION=init \

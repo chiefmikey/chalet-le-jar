@@ -3,7 +3,7 @@
 set -x
 while true; do
   sleep 300
-  cd "${USER}" || exit
+  cd "${ROOT}" || exit
   CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
   screen -S bedrock -X stuff "save hold\n"
   sleep 10

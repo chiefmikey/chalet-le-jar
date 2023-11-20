@@ -1,8 +1,8 @@
 # directory
-export USER="/home/chalet-le-jar"
-export SCRIPTS="${USER}/scripts"
-export SERVER="${USER}/server"
-export BEDROCK="${USER}/bedrock"
+export ROOT="/home/chalet-le-jar"
+export SCRIPTS="${ROOT}/scripts"
+export SERVER="${ROOT}/server"
+export BEDROCK="${ROOT}/bedrock"
 export BACKUPS="${BEDROCK}/backups"
 
 # server
@@ -39,4 +39,4 @@ alias rewindcli="sudo ${SCRIPTS}/server-cli-rewind.sh"
 alias hc="sudo ${SCRIPTS}/server-health-check.sh"
 alias moo="echo moo; echo 0 ${0}; echo 1 ${1}; echo ? ${?};"
 
-alias list-alias="cat ${USER}/.bash_aliases"
+alias list-alias="cat ${ROOT}/.bash_aliases"
