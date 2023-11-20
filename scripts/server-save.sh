@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -x
-source /home/chalet-le-jar/.bashrc
+source ~/.bashrc
 cd "${ROOT}" || exit
 CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
 screen -S autosave -X quit

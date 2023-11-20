@@ -1,5 +1,5 @@
 #!/bin/bash
 
 set -x
-source /home/chalet-le-jar/.bashrc
+source ~/.bashrc
 screen -S bedrock -X stuff "${1}\n"

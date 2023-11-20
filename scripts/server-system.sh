@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -x
-source /home/chalet-le-jar/.bashrc
+source ~/.bashrc
 apt update -y &&
 apt upgrade -y &&
 apt full-upgrade -y &&

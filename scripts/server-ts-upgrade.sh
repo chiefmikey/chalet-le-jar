@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -x
-source /home/chalet-le-jar/.bashrc
+source ~/.bashrc
 cd "${SERVER}" || exit
 killall node
 "${SCRIPTS}"/server-ts.sh

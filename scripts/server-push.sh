@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -x
-source /home/chalet-le-jar/.bashrc
+source ~/.bashrc
 cd "${ROOT}" || exit
 git push origin backup/"${CURRENT_DATE}"
 git checkout main
