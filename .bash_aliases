@@ -6,7 +6,7 @@ export BEDROCK="${USER}/bedrock"
 export BACKUPS="${BEDROCK}/backups"
 
 # server
-alias perms="chmod -R +x ${SCRIPTS}"
+alias perms="sudo chmod -R +x ${SCRIPTS}"
 alias start="sudo ${SCRIPTS}/server-start.sh"
 alias stop="sudo ${SCRIPTS}/server-stop.sh"
 alias save="sudo ${SCRIPTS}/server-save.sh"
