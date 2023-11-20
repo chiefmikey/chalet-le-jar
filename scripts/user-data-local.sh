@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ROOT="/home/chalet-le-jar"
 SCRIPTS="${ROOT}/scripts"

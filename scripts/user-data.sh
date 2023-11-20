@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ROOT="/home/ubuntu"
 SCRIPTS="${ROOT}/scripts"
