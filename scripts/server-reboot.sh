@@ -1,6 +1,6 @@
 #!/bin/bash
 
 set -x
-source ../.bashrc
+source /home/chalet-le-jar/.bashrc
 "${SCRIPTS}"/server-system.sh
 reboot

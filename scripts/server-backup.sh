@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -x
-source ../.bashrc
+source /home/chalet-le-jar/.bashrc
 cd "${ROOT}" || exit
 CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
 cp -r "${BEDROCK}"/worlds/clj "${BACKUPS}"/backup/"${CURRENT_DATE}"

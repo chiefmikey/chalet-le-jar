@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -x
-source ../.bashrc
+source /home/chalet-le-jar/.bashrc
 while true; do
   sleep 300
   cd "${ROOT}" || exit
