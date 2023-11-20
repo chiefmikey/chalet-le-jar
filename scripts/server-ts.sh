@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -x
+set_exports
 cd "${ROOT}" || exit
 apt update -y
 apt upgrade -y

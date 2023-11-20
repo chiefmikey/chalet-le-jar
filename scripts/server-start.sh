@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -x
+set_exports
 killall screen
 CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
 cd "${ROOT}" || exit
@@ -9,7 +10,7 @@ git remote remove origin
 GIT_USER="chalet-le-jar"
 GIT_EMAIL="chaletlejar@gmail.com"
 REPO="chalet-le-jar"
-GH_USER="chiefmikey"
+GH_USER="chiefmikey"ec
 AWS_REGION="us-east-2"
 AWS_SECRET_ID="chalet-auth"
 GH_PASSWORD="$(aws secretsmanager --region "${AWS_REGION}" get-secret-value --secret-id "${AWS_SECRET_ID}" | jq -r ".SecretString" | jq -r .\""${AWS_SECRET_ID}"\")"
@@ -17,7 +18,7 @@ sleep 10
 git init
 git config user.name ${GIT_USER}
 git config user.email ${GIT_EMAIL}
-git remote add origin https://"${ROOT}":"${GH_PASSWORD}"@github.com/${GH_USER}/${REPO}.git
+git remote add origin https://"${GIT_USER}":"${GH_PASSWORD}"@github.com/${GH_USER}/${REPO}.git
 git fetch --prune
 git checkout main
 git reset --hard origin/main

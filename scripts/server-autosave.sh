@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -x
+set_exports
 while true; do
   sleep 300
   cd "${ROOT}" || exit

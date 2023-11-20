@@ -1,9 +1,12 @@
-# directory
-export ROOT="/home/chalet-le-jar"
-export SCRIPTS="${ROOT}/scripts"
-export SERVER="${ROOT}/server"
-export BEDROCK="${ROOT}/bedrock"
-export BACKUPS="${BEDROCK}/backups"
+set_exports() {
+  # directory
+  export ROOT="/home/chalet-le-jar"
+  export SCRIPTS="${ROOT}/scripts"
+  export SERVER="${ROOT}/server"
+  export BEDROCK="${ROOT}/bedrock"
+  export BACKUPS="${BEDROCK}/backups"
+}
+export -f set_exports
 
 # server
 alias perms="sudo chmod -R +x ${SCRIPTS}"
