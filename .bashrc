@@ -101,15 +101,11 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-set_exports() {
-  # directory
-  export ROOT="/home/chalet-le-jar"
-  export SCRIPTS="${ROOT}/scripts"
-  export SERVER="${ROOT}/server"
-  export BEDROCK="${ROOT}/bedrock"
-  export BACKUPS="${BEDROCK}/backups"
-}
-export -f set_exports
+export ROOT="/home/chalet-le-jar"
+export SCRIPTS="${ROOT}/scripts"
+export SERVER="${ROOT}/server"
+export BEDROCK="${ROOT}/bedrock"
+export BACKUPS="${BEDROCK}/backups"
 
 if [ -f "${ROOT}"/.bash_aliases ]; then
     . "${ROOT}"/.bash_aliases
