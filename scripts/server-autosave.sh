@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -x
+source ../.bashrc
 while true; do
   sleep 300
   cd "${ROOT}" || exit

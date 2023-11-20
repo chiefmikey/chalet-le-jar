@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -x
+source ../.bashrc
 apt update -y &&
 apt upgrade -y &&
 apt full-upgrade -y &&

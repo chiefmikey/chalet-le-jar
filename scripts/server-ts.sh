@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -x
+source ../.bashrc
 cd "${ROOT}" || exit
 apt update -y
 apt upgrade -y

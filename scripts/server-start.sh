@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -x
+source ../.bashrc
 killall screen
 CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
 cd "${ROOT}" || exit

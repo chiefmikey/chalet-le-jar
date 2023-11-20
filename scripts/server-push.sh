@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -x
+source ../.bashrc
 cd "${ROOT}" || exit
 git push origin backup/"${CURRENT_DATE}"
 git checkout main
