@@ -25,6 +25,7 @@ if ! command -v npm > /dev/null 2>&1; then
   apt install -y npm
 fi
 
+cd "${ROOT}"/api || exit
 svn export https://github.com/chiefmikey/chalet-le-jar/trunk/server --force
 
 screen -S server -dm "${SCRIPTS}"/server-ts-start.sh
