@@ -4,8 +4,6 @@ source /home/chalet-le-jar/.bash_aliases
 set -x
 cd "${ROOT}" || exit
 screen -S server -X quit
-apt update -y
-apt upgrade -y
 
 if ! command -v curl > /dev/null 2>&1; then
   apt install -y curl
