@@ -18,8 +18,8 @@ const app = new Koa();
 const router = new Router();
 
 const options = {
-  key: fs.readFileSync('/ssl/server.pem'),
-  cert: fs.readFileSync('/ssl/server.crt'),
+  key: fs.readFileSync('./ssl/server.pem'),
+  cert: fs.readFileSync('./ssl/server.crt'),
 };
 
 router.post('/rewind', (context) => {
