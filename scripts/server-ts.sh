@@ -3,6 +3,7 @@
 source /home/chalet-le-jar/.bash_aliases
 set -x
 cd "${ROOT}" || exit
+screen -S server -X quit
 apt update -y
 apt upgrade -y
 
@@ -20,6 +21,4 @@ fi
 
 svn export https://github.com/chiefmikey/chalet-le-jar/trunk/server --force
 
-cd "${SERVER}" || exit
-npm i
-npm run start:prod
+screen -S server -dm "${SCRIPTS}"/server-ts-start.sh
