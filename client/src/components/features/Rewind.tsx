@@ -126,7 +126,7 @@ const Rewind = ({ subValue }: { subValue: number }) => {
       </div>
 
       <div className="message">
-        <span>{`Recent: ${rewindList[0].localDate}`}</span>
+        <span>{`Recent: ${rewindList[0]?.localDate || ''}`}</span>
       </div>
     </div>
   );
