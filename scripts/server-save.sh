@@ -10,12 +10,12 @@ sleep 2
 screen -S bedrock -X stuff "say save in progress...\n"
 screen -S bedrock -X stuff "save hold\n"
 sleep 10
-cp -r "${BEDROCK}"/worlds/clj "${BACKUPS}"/save/"${CURRENT_DATE}"
+cp -r "${ROOT}"/worlds/clj "${BACKUPS}"/save/"${CURRENT_DATE}"
 screen -S bedrock -X stuff "save resume\n"
 CURRENT_DATE=${CURRENT_DATE} ACTION=save \
   "${SCRIPTS}"/server-log.sh
 screen -S bedrock -X stuff "say save complete\n"
 cd "${BACKUPS}"/save || exit
 ls -1t | tail -n +73 | xargs -d "\n" rm -rf
-LD_LIBRARY_PATH=${BEDROCK} screen -S bedrock -dm "${BEDROCK}"/bedrock_server
+LD_LIBRARY_PATH=${ROOT} screen -S bedrock -dm "${ROOT}"/bedrock_server
 screen -S autosave -dm "${SCRIPTS}"/server-autosave.sh

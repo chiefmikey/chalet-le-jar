@@ -2,8 +2,7 @@ export ROOT="/home/chalet-le-jar"
 export SCRIPTS="${ROOT}/scripts"
 export SERVER="${ROOT}/server"
 export LOG="${ROOT}/log"
-export BEDROCK="${ROOT}"
-export BACKUPS="${BEDROCK}/backups"
+export BACKUPS="${ROOT}/backups"
 
 # server
 alias perms="sudo chmod -R +x ${SCRIPTS}"
@@ -19,6 +18,7 @@ alias rewind="sudo ${SCRIPTS}/server-rewind.sh"
 alias upgrade="sudo ${SCRIPTS}/server-stop.sh && sudo ${SCRIPTS}/server-start.sh"
 alias rboot="sudo ${SCRIPTS}/server-stop.sh && sudo ${SCRIPTS}/server-reboot.sh"
 alias rb="sudo ${SCRIPTS}/server-reboot.sh"
+alias content="sudo rm -R Content*"
 
 # screen
 alias cscreen="sudo screen -ls"

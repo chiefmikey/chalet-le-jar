@@ -24,9 +24,9 @@ git checkout main
 git reset --hard origin/main
 CURRENT_DATE=${CURRENT_DATE} ACTION=start \
   "${SCRIPTS}"/server-log.sh
-if [ "$(cat "${BEDROCK}"/upgrade.txt)" = "upgrade" ]; then
+if [ "$(cat "${ROOT}"/upgrade.txt)" = "upgrade" ]; then
   START_SCREENS=y "${SCRIPTS}"/server-upgrade.sh
 else
-  LD_LIBRARY_PATH=${BEDROCK} screen -S bedrock -dm "${BEDROCK}"/bedrock_server
+  LD_LIBRARY_PATH=${ROOT} screen -S bedrock -dm "${ROOT}"/bedrock_server
   screen -S autosave -dm "${SCRIPTS}"/server-autosave.sh
 fi

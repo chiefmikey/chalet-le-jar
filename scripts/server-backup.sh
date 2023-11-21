@@ -4,7 +4,7 @@ source /home/chalet-le-jar/.bash_aliases
 set -x
 cd "${ROOT}" || exit
 CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
-cp -r "${BEDROCK}"/worlds/clj "${BACKUPS}"/backup/"${CURRENT_DATE}"
+cp -r "${ROOT}"/worlds/clj "${BACKUPS}"/backup/"${CURRENT_DATE}"
 git add "backups/backup/${CURRENT_DATE}"
 git stash push
 git checkout -b "backup/${CURRENT_DATE}"

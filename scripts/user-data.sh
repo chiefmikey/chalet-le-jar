@@ -2,8 +2,7 @@
 
 ROOT="/home/ubuntu"
 SCRIPTS="${ROOT}/scripts"
-BEDROCK="${ROOT}/bedrock"
-BACKUPS="${BEDROCK}/backups"
+BACKUPS="${ROOT}/backups"
 
 source /home/chalet-le-jar/.bash_aliases
 set -x

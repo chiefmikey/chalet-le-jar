@@ -32,7 +32,7 @@ sleep 1
 screen -S bedrock -X stuff "stop\n"
 sleep 10
 killall screen
-cp -r "${BEDROCK}"/worlds/clj "${BACKUPS}"/autosave/"${CURRENT_DATE}"
+cp -r "${ROOT}"/worlds/clj "${BACKUPS}"/autosave/"${CURRENT_DATE}"
 CURRENT_DATE=${CURRENT_DATE} ACTION=shutdown \
   "${SCRIPTS}"/server-log.sh
 cd "${BACKUPS}"/autosave || exit
