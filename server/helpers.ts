@@ -28,7 +28,7 @@ export const rewindHelper = (date: string) => {
 };
 
 export const saveHelper = () => {
-  const command = `${scripts}/server-save.sh}`;
+  const command = `${scripts}/server-save.sh`;
   shell(command);
 };
 
