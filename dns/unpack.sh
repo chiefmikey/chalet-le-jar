@@ -4,4 +4,5 @@ set -x
 ROOT="/home/ec2-user"
 cd "${ROOT}" || exit
 
-mv "${ROOT}"/dns/* "${ROOT}"/
+shopt -s dotglob
+mv -f "${ROOT}"/dns/* "${ROOT}"/
