@@ -2,11 +2,9 @@ ROOT="/home/ec2-user"
 
 # system
 alias mem="free -h"
-alias smem="htop"
-alias motd="sudo run-parts /etc/update-motd.d"
 
 # ts server
-alias ts-init="sudo ${ROOT}/init.sh"
-alias ts-upgrade="sudo ${ROOT}/upgrade.sh"
+alias client-start="sudo ${ROOT}/init.sh"
+alias refresh="sudo svn export https://github.com/chiefmikey/chalet-le-jar/trunk/dns --force && sudo ${ROOT}/dns/unpack.sh"
 
 alias list-alias="cat ${ROOT}/.bash_aliases"
