@@ -12,10 +12,12 @@ fi
 if ! command -v svn > /dev/null 2>&1; then
   yum install -y subversion
 fi
-if ! command -v node > /dev/null 2>&1 || ! command -v npm > /dev/null 2>&1; then
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
-  . "${ROOT}"/.nvm/nvm.sh
-  nvm install node
+if ! command -v node > /dev/null 2>&1; then
+  curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
+  apt install -y nodejs
+fi
+if ! command -v npm > /dev/null 2>&1; then
+  apt install -y npm
 fi
 
 svn export https://github.com/chiefmikey/chalet-le-jar/trunk/client --force

@@ -14,6 +14,6 @@ app.use(async (context) => {
   });
 });
 
-app.listen(8080, () => {
-  console.log('Running on :8080');
+app.listen(80, () => {
+  console.log('Running on :80');
 });
