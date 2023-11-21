@@ -1,3 +1,6 @@
+import fs from 'node:fs';
+import https from 'node:https';
+
 import cors from '@koa/cors';
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
@@ -13,6 +16,11 @@ import {
 
 const app = new Koa();
 const router = new Router();
+
+const options = {
+  key: fs.readFileSync('ssl/server.key'),
+  cert: fs.readFileSync('ssl/server.crt'),
+};
 
 router.post('/rewind', (context) => {
   const { data } = context.request.body as { data: string };
@@ -71,6 +79,6 @@ app.use(bodyParser());
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-app.listen(3004, () => {
-  console.log('Server is running at http://localhost:3004');
+https.createServer(options, app.callback()).listen(3004, () => {
+  console.log('Serving :3004');
 });
