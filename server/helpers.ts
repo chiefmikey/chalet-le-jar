@@ -1,6 +1,7 @@
 import { exec } from 'node:child_process';
 
 const user = 'chalet-le-jar';
+const scripts = `/home/${user}/scripts`;
 
 const shell = (command: string) => {
   exec(`sudo -u ${user} ${command}`, (error, stdout, stderr) => {
@@ -22,26 +23,40 @@ const shell = (command: string) => {
 };
 
 export const rewindHelper = (date: string) => {
-  const command = `rewind ${date}`;
+  const command = `${scripts}/sever-rewind.sh ${date}`;
   shell(command);
 };
 
 export const saveHelper = () => {
-  const command = 'save';
+  const command = `${scripts}/server-save.sh}`;
   shell(command);
 };
 
 export const sfxHelper = (sfx: string) => {
-  const command = `sfx ${sfx}`;
+  const command = `${scripts}/server-sfx.sh ${sfx}`;
   shell(command);
 };
 
 export const messageHelper = (message: string) => {
-  const command = `message ${message}`;
+  const command = `${scripts}/server-message.sh ${message}`;
   shell(command);
 };
 
-export const teleportHelper = (username: string, coordinates: string) => {
-  const command = `teleport ${username} ${coordinates}`;
+export const teleportHelper = (username: string, coordinate: string) => {
+  const command = `${scripts}/server-teleport.sh ${username} ${coordinate}`;
+  shell(command);
+};
+
+export const tickingHelper = (
+  coordinate: string,
+  radius: string,
+  username: string,
+) => {
+  const command = `${scripts}/server-ticking.sh ${coordinate} ${radius} ${username}`;
+  shell(command);
+};
+
+export const clearTickingHelper = () => {
+  const command = `${scripts}/server-ticking-clear.sh`;
   shell(command);
 };

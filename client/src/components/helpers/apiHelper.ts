@@ -36,10 +36,30 @@ export const sendMessage = async (data: string) => {
 
 export const sendTeleport = async (data: {
   username: string;
-  coordinates: string;
+  coordinate: string;
 }) => {
   try {
     return await axios.post(`${address}/teleport`, { data });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const sendTicking = async (data: {
+  coordinate: string;
+  radius: string;
+  username: string;
+}) => {
+  try {
+    return await axios.post(`${address}/ticking`, { data });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const clearTicking = async () => {
+  try {
+    return await axios.post(`${address}/clearticking`);
   } catch (error) {
     console.error(error);
   }

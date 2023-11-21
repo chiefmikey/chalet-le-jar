@@ -12,14 +12,16 @@ import {
   saveHelper,
   sfxHelper,
   teleportHelper,
+  tickingHelper,
+  clearTickingHelper,
 } from './helpers';
 
 const app = new Koa();
 const router = new Router();
 
 const options = {
-  key: fs.readFileSync('./ssl/server.pem'),
-  cert: fs.readFileSync('./ssl/server.crt'),
+  key: fs.readFileSync('../ssl/server.pem'),
+  cert: fs.readFileSync('../ssl/server.crt'),
 };
 
 router.post('/rewind', (context) => {
@@ -51,10 +53,26 @@ router.post('/message', (context) => {
 
 router.post('/teleport', (context) => {
   const { data } = context.request.body as {
-    data: { username: string; coordinates: string };
+    data: { username: string; coordinate: string };
   };
-  const { username, coordinates } = data;
-  teleportHelper(username, coordinates);
+  const { username, coordinate } = data;
+  teleportHelper(username, coordinate);
+  context.body = { status: 'success' };
+  return context;
+});
+
+router.post('/ticking', (context) => {
+  const { data } = context.request.body as {
+    data: { coordinate: string; radius: string; username: string };
+  };
+  const { coordinate, radius, username } = data;
+  tickingHelper(coordinate, radius, username);
+  context.body = { status: 'success' };
+  return context;
+});
+
+router.post('/clearticking', (context) => {
+  clearTickingHelper();
   context.body = { status: 'success' };
   return context;
 });
