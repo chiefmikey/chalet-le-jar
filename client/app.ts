@@ -14,6 +14,6 @@ app.use(async (context) => {
   });
 });
 
-app.listen(443, () => {
-  console.log('Running on :443');
+app.listen(80, () => {
+  console.log('Running on :80');
 });
