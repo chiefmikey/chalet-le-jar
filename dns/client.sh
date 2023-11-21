@@ -3,6 +3,7 @@
 set -x
 ROOT="/home/ec2-user"
 cd "${ROOT}" || exit
+screen -S client -X quit
 yum update -y
 yum upgrade -y
 
