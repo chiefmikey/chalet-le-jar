@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const address = 'ip.chaletlejar.com:3004';
+const address = 'http://ip.chaletlejar.com:3004';
 
 export const sendRewind = async (data: string) => {
   try {
