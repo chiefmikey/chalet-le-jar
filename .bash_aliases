@@ -24,6 +24,7 @@ alias content="sudo rm -R Content*"
 alias cscreen="sudo screen -ls"
 alias bscreen="sudo screen -r bedrock"
 alias ascreen="sudo screen -r autosave"
+alias sscreen="sudo screen -r server"
 
 # git
 alias fetch="sudo git fetch --prune && sudo git checkout main"
