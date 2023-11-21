@@ -1,7 +1,7 @@
 #!/bin/bash
 
-set -x
 source /home/chalet-le-jar/.bash_aliases
+set -x
 git restore --staged .
 git -C ./log pull --rebase=false --autostash --no-edit origin log
 cat log/history.txt >> log/temp-history.txt

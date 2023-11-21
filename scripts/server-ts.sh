@@ -1,7 +1,7 @@
 #!/bin/bash
 
-set -x
 source /home/chalet-le-jar/.bash_aliases
+set -x
 cd "${ROOT}" || exit
 apt update -y
 apt upgrade -y

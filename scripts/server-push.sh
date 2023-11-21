@@ -1,7 +1,7 @@
 #!/bin/bash
 
-set -x
 source /home/chalet-le-jar/.bash_aliases
+set -x
 cd "${ROOT}" || exit
 git push origin backup/"${CURRENT_DATE}"
 git checkout main
