@@ -26,7 +26,7 @@ CURRENT_DATE=${CURRENT_DATE} ACTION=start \
   "${SCRIPTS}"/server-log.sh
 if [ "$(cat "${BEDROCK}"/upgrade.txt)" = "upgrade" ]; then
   START_SCREENS=y "${SCRIPTS}"/server-upgrade.sh
-elsee
+else
   LD_LIBRARY_PATH=${BEDROCK} screen -S bedrock -dm "${BEDROCK}"/bedrock_server
   screen -S autosave -dm "${SCRIPTS}"/server-autosave.sh
 fi
