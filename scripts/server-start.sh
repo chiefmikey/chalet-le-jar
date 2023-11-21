@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -x
-source ~/.bashrc
+source /home/chalet-le-jar/.bash_aliases
 killall screen
 CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
 cd "${ROOT}" || exit

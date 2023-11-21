@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -x
-source ~/.bashrc
+source /home/chalet-le-jar/.bash_aliases
 while true; do
   sleep 300
   cd "${ROOT}" || exit

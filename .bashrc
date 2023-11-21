@@ -1,4 +1,4 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
+# /home/chalet-le-jar/.bash_aliases: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -100,12 +100,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-export ROOT="/home/chalet-le-jar"
-export SCRIPTS="${ROOT}/scripts"
-export SERVER="${ROOT}/server"
-export BEDROCK="${ROOT}/bedrock"
-export BACKUPS="${BEDROCK}/backups"
 
 if [ -f "${ROOT}"/.bash_aliases ]; then
     . "${ROOT}"/.bash_aliases

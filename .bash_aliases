@@ -1,3 +1,9 @@
+export ROOT="/home/chalet-le-jar"
+export SCRIPTS="${ROOT}/scripts"
+export SERVER="${ROOT}/server"
+export BEDROCK="${ROOT}/bedrock"
+export BACKUPS="${BEDROCK}/backups"
+
 # server
 alias perms="sudo chmod -R +x ${SCRIPTS}"
 alias start="sudo ${SCRIPTS}/server-start.sh"

@@ -6,7 +6,7 @@ BEDROCK="${ROOT}/bedrock"
 BACKUPS="${BEDROCK}/backups"
 
 set -x
-source ~/.bashrc
+source /home/chalet-le-jar/.bash_aliases
 cd "${ROOT}" || exit
 CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
 apt update -y
