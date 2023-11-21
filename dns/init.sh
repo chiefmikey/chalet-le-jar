@@ -20,7 +20,4 @@ fi
 
 svn export https://github.com/chiefmikey/chalet-le-jar/trunk/client --force
 
-cd "${ROOT}"/client || exit
-npm i
-npm run build:prod
-npm run start:prod
+screen -S server -dm ${ROOT}/start.sh

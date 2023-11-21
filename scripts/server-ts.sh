@@ -12,6 +12,7 @@ if ! command -v svn > /dev/null 2>&1; then
   apt install -y subversion
 fi
 if ! command -v node > /dev/null 2>&1; then
+  curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
   apt install -y nodejs
 fi
 if ! command -v npm > /dev/null 2>&1; then
