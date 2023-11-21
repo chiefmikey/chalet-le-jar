@@ -3,14 +3,14 @@
 source /home/chalet-le-jar/.bash_aliases
 set -x
 git restore --staged .
-git -C ./log pull --rebase=false --autostash --no-edit origin log
-cat log/history.txt >> log/temp-history.txt
-cat log/"${ACTION}"-log.txt >> log/temp-"${ACTION}"-log.txt
-echo "${ACTION}": "${CURRENT_DATE}" > log/history.txt
-echo "${CURRENT_DATE}" > log/"${ACTION}"-log.txt
-cat log/temp-history.txt >> log/history.txt
-cat log/temp-"${ACTION}"-log.txt >> log/"${ACTION}"-log.txt
-rm log/temp-history.txt log/temp-"${ACTION}"-log.txt
+git -C "${LOG}" pull --rebase=false --autostash --no-edit origin log
+cat "${LOG}"/history.txt >> "${LOG}"/temp-history.txt
+cat "${LOG}"/"${ACTION}"-log.txt >> "${LOG}"/temp-"${ACTION}"-log.txt
+echo "${ACTION}": "${CURRENT_DATE}" > "${LOG}"/history.txt
+echo "${CURRENT_DATE}" > "${LOG}"/"${ACTION}"-log.txt
+cat "${LOG}"/temp-history.txt >> "${LOG}"/history.txt
+cat "${LOG}"/temp-"${ACTION}"-log.txt >> "${LOG}"/"${ACTION}"-log.txt
+rm "${LOG}"/temp-history.txt "${LOG}"/temp-"${ACTION}"-log.txt
 git commit -am "${ACTION}/${CURRENT_DATE}"
 git push -f origin main:log
 git reset --hard origin/main
