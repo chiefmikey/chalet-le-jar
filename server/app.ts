@@ -18,7 +18,7 @@ const app = new Koa();
 const router = new Router();
 
 const options = {
-  key: fs.readFileSync('./ssl/server.key'),
+  key: fs.readFileSync('./ssl/server.pem'),
   cert: fs.readFileSync('./ssl/server.crt'),
 };
 
