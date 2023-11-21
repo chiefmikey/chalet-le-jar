@@ -7,23 +7,17 @@ yum update -y
 yum upgrade -y
 
 if ! command -v curl > /dev/null 2>&1; then
-  apt install -y curl
+  yum install -y curl
 fi
 if ! command -v svn > /dev/null 2>&1; then
-  apt install -y subversion
+  yum install -y subversion
 fi
 if ! command -v node > /dev/null 2>&1; then
-  apt update
-  apt install -y ca-certificates curl gnupg
-  mkdir -p /etc/apt/keyrings
-  curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-  NODE_MAJOR=20
-  echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
-  apt update
-  apt install nodejs -y
+  yum install https://rpm.nodesource.com/pub_21.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm -y
+  yum install nodejs -y --setopt=nodesource-nodejs.module_hotfixes=1
 fi
 if ! command -v npm > /dev/null 2>&1; then
-  apt install -y npm
+  yum install -y npm
 fi
 
 svn export https://github.com/chiefmikey/chalet-le-jar/trunk/client --force

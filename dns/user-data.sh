@@ -1,19 +1,14 @@
 #!/bin/bash
 
 set -x
-cd /home/ec2-user
+ROOT="/home/ec2-user"
+cd ${ROOT} || exit
 yum update -y && yum upgrade -y
-yum install -y wget unzip git
-rm -rf /usr/local/go
-wget -O /home/ec2-user/go.tar.gz https://go.dev/dl/go1.19.3.linux-amd64.tar.gz
-tar -C /usr/local -xzf /home/ec2-user/go.tar.gz
-rm /home/ec2-user/go.tar.gz
-echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
-source /etc/profile
-git clone https://github.com/coredns/coredns
-chown -R ec2-user:root /home/ec2-user/coredns
-cd /home/ec2-user/coredns
-su -s /bin/sh -c 'make' ec2-user
+yum install -y wget
+wget -O ${ROOT}/coredns.tar.gz https://github.com/coredns/coredns/releases/download/v1.11.1/coredns_1.11.1_linux_amd64.tgz
+mkdir ${ROOT}/coredns
+tar -C ${ROOT}/coredns -xzf ${ROOT}/coredns.tar.gz
+cd ${ROOT}/coredns || exit
 echo \
   ".:53 {
     bufsize 1232
@@ -32,6 +27,14 @@ echo \
     rewrite name exact play.pixelparadise.gg ip.chaletlejar.com
     forward . 8.8.8.8:53
   }" \
->> /home/ec2-user/coredns/Corefile
-chmod +x /home/ec2-user/coredns/coredns
-screen -S coredns -dm /home/ec2-user/coredns/coredns
+>> ${ROOT}/coredns/Corefile
+chmod +x ${ROOT}/coredns/coredns
+screen -S coredns -dm ${ROOT}/coredns/coredns
+
+if ! command -v svn > /dev/null 2>&1; then
+  yum install -y subversion
+fi
+svn export https://github.com/chiefmikey/chalet-le-jar/trunk/dns --force
+chmod -R +x ${ROOT}/dns
+${ROOT}/dns/unpack.sh
+${ROOT}/client.sh
