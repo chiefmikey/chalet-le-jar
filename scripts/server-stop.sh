@@ -2,7 +2,6 @@
 
 source /home/chalet-le-jar/.bash_aliases
 set -x
-set_exports
 cd "${ROOT}" || exit
 CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
 screen -S autosave -X quit
