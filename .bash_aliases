@@ -25,6 +25,10 @@ alias cscreen="sudo screen -ls"
 alias bscreen="sudo screen -r bedrock"
 alias ascreen="sudo screen -r autosave"
 
+# npm
+alias build="sudo npm run build:prod"
+alias start="sudo npm run server:prod"
+
 # git
 alias fetch="sudo git fetch --prune && sudo git checkout main"
 alias reset="sudo git reset --hard origin/main"
