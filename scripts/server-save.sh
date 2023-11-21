@@ -17,5 +17,4 @@ CURRENT_DATE=${CURRENT_DATE} ACTION=save \
 screen -S bedrock -X stuff "say save complete\n"
 cd "${BACKUPS}"/save || exit
 ls -1t | tail -n +73 | xargs -d "\n" rm -rf
-LD_LIBRARY_PATH=${ROOT} screen -S bedrock -dm "${ROOT}"/bedrock_server
 screen -S autosave -dm "${SCRIPTS}"/server-autosave.sh
