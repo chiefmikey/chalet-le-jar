@@ -35,7 +35,7 @@ alias smem="htop"
 alias motd="sudo run-parts /etc/update-motd.d"
 
 # ts server
-alias start="sudo ${SCRIPTS}/server-ts.sh"
+alias server-start="sudo ${SCRIPTS}/server-ts.sh"
 
 # TBD
 alias rewindcli="sudo ${SCRIPTS}/server-cli-rewind.sh"
