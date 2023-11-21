@@ -2,7 +2,7 @@
 
 source /home/chalet-le-jar/.bash_aliases
 set -x
-cd "${ROOT}" || exit
+cd "${BEDROCK}" || exit
 CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
 wget -O bedrock-server.zip "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.20.41.02.zip"
 unzip -o bedrock-server.zip
