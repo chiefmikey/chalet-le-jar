@@ -54,8 +54,9 @@ router.post('/teleport', (context) => {
 app.use(
   cors({
     origin: (context) => {
-      if (context.request.ip === '3.136.147.58') {
-        return '*';
+      const requestOrigin = context.request.header.origin;
+      if (requestOrigin === 'https://chaletlejar.com') {
+        return requestOrigin;
       }
       return '';
     },
