@@ -1,3 +1,4 @@
+import fs from 'node:fs';
 import https from 'node:https';
 import path from 'node:path';
 
