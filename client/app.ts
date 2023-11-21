@@ -21,6 +21,6 @@ app.use(async (context) => {
   });
 });
 
-https.createServer(options, app.callback()).listen(80, () => {
-  console.log('Serving :80');
+https.createServer(options, app.callback()).listen(443, () => {
+  console.log('Serving :443');
 });
