@@ -33,8 +33,8 @@ screen -S bedrock -X stuff "stop\n"
 sleep 10
 killall screen
 # make temp save backup in case of corruption
-rm -R worlds/clj
-cp -r backups/"${1}" worlds/clj
+rm -R "${BEDROCK}"/worlds/clj
+cp -r "${BACKUPS}"/"${1}" "${BEDROCK}"/worlds/clj
 CURRENT_DATE=${CURRENT_DATE} ACTION=rewind \
   "${SCRIPTS}"/server-log.sh
 LD_LIBRARY_PATH=${BEDROCK} screen -S bedrock -dm "${BEDROCK}"/bedrock_server
