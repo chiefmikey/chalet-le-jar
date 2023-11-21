@@ -2,7 +2,7 @@ export ROOT="/home/chalet-le-jar"
 export SCRIPTS="${ROOT}/scripts"
 export SERVER="${ROOT}/server"
 export LOG="${ROOT}/log"
-export BEDROCK="${ROOT}/bedrock"
+export BEDROCK="${ROOT}"
 export BACKUPS="${BEDROCK}/backups"
 
 # server
