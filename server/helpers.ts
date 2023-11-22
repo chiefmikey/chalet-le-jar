@@ -23,7 +23,7 @@ const shell = (command: string) => {
 };
 
 export const rewindHelper = (date: string) => {
-  const command = `${scripts}/sever-rewind.sh "${date}"`;
+  const command = `${scripts}/server-rewind.sh "${date}"`;
   shell(command);
 };
 
