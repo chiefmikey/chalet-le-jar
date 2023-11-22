@@ -9,54 +9,54 @@ sleep 1
 screen -S bedrock -X stuff "say stopping in 10...9...8...7...6...5...4...3...2...1...\n"
 sleep 1
 
-screen -S bedrock -X stuff "playsound mob.cat.straymeow @a ^ ^ ^ 1 0.5\n"
+screen -S bedrock -X stuff "playsound mob.cat.straymeow @a ^ ^ ^3 1 0.1\n"
 sleep .5
 screen -S bedrock -X stuff "stopsound @a mob.cat.straymeow\n"
 sleep .5
 
-screen -S bedrock -X stuff "playsound mob.cat.straymeow @a ^ ^ ^ 1 0.5\n"
-sleep .5
-screen -S bedrock -X stuff "stopsound @a mob.cat.straymeow\n"
-sleep .5
-
-
-screen -S bedrock -X stuff "playsound mob.cat.straymeow @a ^ ^ ^ 1 0.5\n"
+screen -S bedrock -X stuff "playsound mob.cat.straymeow @a ^ ^ ^3 1 0.1\n"
 sleep .5
 screen -S bedrock -X stuff "stopsound @a mob.cat.straymeow\n"
 sleep .5
 
 
-screen -S bedrock -X stuff "playsound mob.cat.straymeow @a ^ ^ ^ 1 0.5\n"
+screen -S bedrock -X stuff "playsound mob.cat.straymeow @a ^ ^ ^3 1 0.1\n"
 sleep .5
 screen -S bedrock -X stuff "stopsound @a mob.cat.straymeow\n"
 sleep .5
 
 
-screen -S bedrock -X stuff "playsound mob.cat.straymeow @a ^ ^ ^ 1 0.5\n"
+screen -S bedrock -X stuff "playsound mob.cat.straymeow @a ^ ^ ^3 1 0.1\n"
 sleep .5
 screen -S bedrock -X stuff "stopsound @a mob.cat.straymeow\n"
 sleep .5
 
 
-screen -S bedrock -X stuff "playsound mob.cat.straymeow @a ^ ^ ^ 1 0.5\n"
+screen -S bedrock -X stuff "playsound mob.cat.straymeow @a ^ ^ ^3 1 0.1\n"
 sleep .5
 screen -S bedrock -X stuff "stopsound @a mob.cat.straymeow\n"
 sleep .5
 
 
-screen -S bedrock -X stuff "playsound mob.cat.straymeow @a ^ ^ ^ 1 0.5\n"
+screen -S bedrock -X stuff "playsound mob.cat.straymeow @a ^ ^ ^3 1 0.1\n"
 sleep .5
 screen -S bedrock -X stuff "stopsound @a mob.cat.straymeow\n"
 sleep .5
 
 
-screen -S bedrock -X stuff "playsound mob.cat.straymeow @a ^ ^ ^ 1 0.5\n"
+screen -S bedrock -X stuff "playsound mob.cat.straymeow @a ^ ^ ^3 1 0.1\n"
 sleep .5
 screen -S bedrock -X stuff "stopsound @a mob.cat.straymeow\n"
 sleep .5
 
 
-screen -S bedrock -X stuff "playsound mob.cat.straymeow @a ^ ^ ^ 1 0.5\n"
+screen -S bedrock -X stuff "playsound mob.cat.straymeow @a ^ ^ ^3 1 0.1\n"
+sleep .5
+screen -S bedrock -X stuff "stopsound @a mob.cat.straymeow\n"
+sleep .5
+
+
+screen -S bedrock -X stuff "playsound mob.cat.straymeow @a ^ ^ ^3 1 0.1\n"
 sleep .5
 screen -S bedrock -X stuff "stopsound @a mob.cat.straymeow\n"
 sleep .5
