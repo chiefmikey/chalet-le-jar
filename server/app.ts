@@ -20,8 +20,10 @@ const app = new Koa();
 const router = new Router();
 
 const options = {
-  key: fs.readFileSync('../ssl/server.pem'),
-  cert: fs.readFileSync('../ssl/server.crt'),
+  key: fs.readFileSync('/etc/letsencrypt/live/ip.chaletlejar.com/privkey.pem'),
+  cert: fs.readFileSync(
+    '/etc/letsencrypt/live/ip.chaletlejar.com/fullchain.pem',
+  ),
 };
 
 router.post('/rewind', (context) => {
