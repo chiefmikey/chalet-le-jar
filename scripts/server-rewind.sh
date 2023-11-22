@@ -31,7 +31,8 @@ screen -S bedrock -X stuff "playsound beacon.deactivate @a\n"
 sleep 1
 screen -S bedrock -X stuff "stop\n"
 sleep 10
-killall screen
+screen -S autosave -X quit
+screen -S bedrock -X quit
 # make temp save backup in case of corruption
 rm -R "${ROOT}"/worlds/clj
 cp -r "${BACKUPS}"/"${1}" "${ROOT}"/worlds/clj

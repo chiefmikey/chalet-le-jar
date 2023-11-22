@@ -31,7 +31,8 @@ screen -S bedrock -X stuff "playsound beacon.deactivate @a\n"
 sleep 1
 screen -S bedrock -X stuff "stop\n"
 sleep 10
-killall screen
+screen -S autosave -X quit
+screen -S bedrock -X quit
 cp -r "${ROOT}"/worlds/clj "${BACKUPS}"/autosave/"${CURRENT_DATE}"
 CURRENT_DATE=${CURRENT_DATE} ACTION=stop \
   "${SCRIPTS}"/server-log.sh

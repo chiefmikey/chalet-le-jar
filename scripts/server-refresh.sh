@@ -7,7 +7,8 @@ CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
 screen -S autosave -X quit
 screen -S bedrock -X stuff "stop\n"
 sleep 10
-killall screen
+screen -S autosave -X quit
+screen -S bedrock -X quit
 git fetch --prune
 git checkout main
 git reset --hard origin/main
