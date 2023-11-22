@@ -15,7 +15,7 @@ GH_USER="chiefmikey"
 AWS_REGION="us-east-2"
 AWS_SECRET_ID="chalet-auth"
 GH_PASSWORD="$(aws secretsmanager --region "${AWS_REGION}" get-secret-value --secret-id "${AWS_SECRET_ID}" | jq -r ".SecretString" | jq -r .\""${AWS_SECRET_ID}"\")"
-sleep 10
+sleep 4
 git init
 git config user.name ${GIT_USER}
 git config user.email ${GIT_EMAIL}
