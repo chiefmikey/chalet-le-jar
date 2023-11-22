@@ -109,7 +109,7 @@ const Rewind = ({ subValue }: { subValue: number }) => {
               console.error('Error rewinding:', error);
             });
           }}
-          disabled={!selectedItem}
+          disabled={selectedItem === undefined}
           style={{
             width: '100%',
             height: '12vh',
