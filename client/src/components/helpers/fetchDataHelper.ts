@@ -1,5 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 
+const sourceRootUrl =
+  'https://raw.githubusercontent.com/chiefmikey/chalet-le-jar/main/client/src';
 const logRootUrl =
   'https://raw.githubusercontent.com/chiefmikey/chalet-le-jar/log/log';
 
@@ -38,4 +40,14 @@ export const fetchAutosaveData = async (resultsCap: number) => {
 export const fetchRewindData = async (resultsCap: number) => {
   const fetch = await axios.get(urls.rewind);
   return formatData(fetch, resultsCap);
+};
+
+export const fetchSfxData = async () => {
+  const fetch = await axios.get(`${sourceRootUrl}/sfx.txt`);
+  const log = fetch.data as string;
+  if (log) {
+    const lines = log.split('\n');
+    return lines;
+  }
+  return [];
 };

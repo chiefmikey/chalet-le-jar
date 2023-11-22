@@ -1,31 +1,3 @@
-Here's how it is written:
-
-/playsound [sound name] [player] [x] [y] [z] [volume] [pitch] [minimum volume]
-
-[sound name] = Insert here a sound from the list
-
-[player] = Write the name of the player that should hear the sound. You can insert selectors as well. @p affects the nearest player, @a affects all the players, @r affects a random player.
-
-[x] [y] [z]  = Specifies the position to play the sounds from. You can use tildes (~ ~ ~) to specify a position relative to the target or carats (^ ^ ^) to specify a position relative to the target's head rotation.
-
-[volume] = Specifies the distance that the sound can be heard. Insert a number between 0.0 and 10.0
-
-[pitch] = This affects how fast or slow the sound will be played. Insert a number between 0.0 and 256.0
-
-[minimum volume] = Specifies the volume for targets outside the sound's normal audible sphere. Insert a number between 0.0 and 1.0
-
-Here's how a playsound command looks like: /playsound mob.chicken.say @p ~ ~ ~ 10 1
-
-For more info visit the official minecraft wiki page.
-
-You can use the /stopsound command to choose which specific sounds should be stopped from playing:
-
-/stopsound [player] [sound]
-
-Here's how a stopsound command looks like: /stopsound @p mob.chicken.say
-
-
-Entities
 damage.fallbig
 damage.fallsmall
 game.player.attack.nodamage
@@ -348,8 +320,6 @@ mob.zombiepig.zpighurt
 mob.zombie_villager.say
 mob.zombie_villager.death
 mob.zombie_villager.hurt
-
-Blocks
 beacon.activate
 beacon.ambient
 beacon.deactivate
@@ -498,8 +468,6 @@ hit.wood
 jump.wood
 land.wood
 step.wood
-
-Items
 bucket.empty_lava
 bucket.empty_water
 bucket.fill_lava
@@ -541,8 +509,6 @@ item.trident.riptide_3
 item.trident.throw
 item.trident.thunder
 item.shield.block
-
-Music
 note.banjo
 note.bass
 note.bassattack
@@ -580,8 +546,6 @@ music.game.end
 music.game.endboss
 music.game.nether
 music.game.credits
-
-Other
 ambient.weather.thunder
 ambient.weather.lightning.impact
 ambient.weather.rain

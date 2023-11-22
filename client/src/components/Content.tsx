@@ -13,6 +13,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Home from './features/Home';
 import Rewind from './features/Rewind';
 import Save from './features/Save';
+import Sfx from './features/Sfx';
 import Teleport from './features/Teleport';
 
 const Content = ({ user }: { user: UserInfoResponse | undefined }) => {
@@ -299,7 +300,7 @@ const Content = ({ user }: { user: UserInfoResponse | undefined }) => {
           {route === 0 && <Home />}
           {route === 1 && <Rewind subValue={subValue} />}
           {route === 2 && <Teleport username={username} />}
-          {/* {route === 3 && <Sfx />} */}
+          {route === 3 && <Sfx />}
           {/* {route === 4 && <Message />} */}
           {route === 5 && <Save />}
         </div>

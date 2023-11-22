@@ -121,7 +121,7 @@ const Rewind = ({ subValue }: { subValue: number }) => {
             backgroundImage: '../../../public/assets/lava.gif',
           }}
         >
-          Rewind
+          REWIND
         </Button>
       </div>
 
