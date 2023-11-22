@@ -23,7 +23,7 @@ const shell = (command: string) => {
 };
 
 export const rewindHelper = (date: string) => {
-  const command = `${scripts}/sever-rewind.sh ${date}`;
+  const command = `${scripts}/sever-rewind.sh "${date}"`;
   shell(command);
 };
 
@@ -33,17 +33,17 @@ export const saveHelper = () => {
 };
 
 export const sfxHelper = (sfx: string) => {
-  const command = `${scripts}/server-sfx.sh ${sfx}`;
+  const command = `${scripts}/server-sfx.sh "${sfx}"`;
   shell(command);
 };
 
 export const messageHelper = (message: string) => {
-  const command = `${scripts}/server-message.sh ${message}`;
+  const command = `${scripts}/server-message.sh "${message}"`;
   shell(command);
 };
 
 export const teleportHelper = (username: string, coordinate: string) => {
-  const command = `${scripts}/server-teleport.sh ${username} ${coordinate}`;
+  const command = `${scripts}/server-teleport.sh "${username}" "${coordinate}"`;
   shell(command);
 };
 
@@ -52,7 +52,7 @@ export const tickingHelper = (
   radius: string,
   username: string,
 ) => {
-  const command = `${scripts}/server-ticking.sh ${coordinate} ${radius} ${username}`;
+  const command = `${scripts}/server-ticking.sh "${coordinate}" "${radius}" "${username}"`;
   shell(command);
 };
 
