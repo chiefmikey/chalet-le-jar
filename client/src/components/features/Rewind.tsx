@@ -42,7 +42,7 @@ const Rewind = ({ subValue }: { subValue: number }) => {
     fetchData(isAutosave).catch((error: Error) => {
       console.error('Error fetching data:', error);
     });
-  }, [fetchData, isAutosave]);
+  }, []);
 
   const handleListSelect = (index: number) => {
     setSelectedItem(index);
