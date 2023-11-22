@@ -10,56 +10,56 @@ screen -S bedrock -X stuff "say stopping in 10...9...8...7...6...5...4...3...2..
 sleep 1
 
 screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
-sleep .2
+sleep .1
 screen -S bedrock -X stuff "stopsound @a mob.cat.straymeow\n"
-sleep .8
+sleep .9
 
 screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
-sleep .2
+sleep .1
 screen -S bedrock -X stuff "stopsound @a mob.cat.straymeow\n"
-sleep .8
-
-
-screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
-sleep .2
-screen -S bedrock -X stuff "stopsound @a mob.cat.straymeow\n"
-sleep .8
+sleep .9
 
 
 screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
-sleep .2
+sleep .1
 screen -S bedrock -X stuff "stopsound @a mob.cat.straymeow\n"
-sleep .8
+sleep .9
 
 
 screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
-sleep .2
+sleep .1
 screen -S bedrock -X stuff "stopsound @a mob.cat.straymeow\n"
-sleep .8
+sleep .9
 
 
 screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
-sleep .2
+sleep .1
 screen -S bedrock -X stuff "stopsound @a mob.cat.straymeow\n"
-sleep .8
+sleep .9
 
 
 screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
-sleep .2
+sleep .1
 screen -S bedrock -X stuff "stopsound @a mob.cat.straymeow\n"
-sleep .8
+sleep .9
 
 
 screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
-sleep .2
+sleep .1
 screen -S bedrock -X stuff "stopsound @a mob.cat.straymeow\n"
-sleep .8
+sleep .9
 
 
 screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
-sleep .2
+sleep .1
 screen -S bedrock -X stuff "stopsound @a mob.cat.straymeow\n"
-sleep .8
+sleep .9
+
+
+screen -S bedrock -X stuff "playsound mob.cat.straymeow @a\n"
+sleep .1
+screen -S bedrock -X stuff "stopsound @a mob.cat.straymeow\n"
+sleep .9
 
 
 screen -S bedrock -X stuff "playsound beacon.deactivate @a\n"
