@@ -10,7 +10,7 @@ const Teleport = ({ username }: { username: string }) => {
       Object.keys(locations).find((key) => locations[Number(key)] === location),
     );
     const coordinate = coordinates[key];
-    if (key) {
+    if (key !== undefined) {
       await sendTicking({
         coordinate,
         radius: radius[key],
