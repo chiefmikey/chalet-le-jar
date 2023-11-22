@@ -45,19 +45,27 @@ export const sendTeleport = async (data: {
   }
 };
 
-export const sendTicking = async (data: {
+export const sendAddTicking = async (data: {
   coordinate: string;
   radius: string;
-  username: string;
+  locationName: string;
 }) => {
   try {
-    return await axios.post(`${address}/ticking`, { data });
+    return await axios.post(`${address}/addticking`, { data });
   } catch (error) {
     console.error(error);
   }
 };
 
-export const clearTicking = async () => {
+export const sendRemoveTicking = async (data: { locationName: string }) => {
+  try {
+    return await axios.post(`${address}/removeticking`, { data });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const sendClearTicking = async () => {
   try {
     return await axios.post(`${address}/clearticking`);
   } catch (error) {

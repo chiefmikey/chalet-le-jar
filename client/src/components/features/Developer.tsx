@@ -3,10 +3,10 @@
 import { useLogto } from '@logto/react';
 import React, { SyntheticEvent } from 'react';
 
-import { clearTicking } from '../helpers/apiHelper';
+import { sendClearTicking } from '../helpers/apiHelper';
 
 const handleClearTicking = async (event: SyntheticEvent<HTMLButtonElement>) => {
-  await clearTicking();
+  await sendClearTicking();
 };
 
 const Developer = ({ username }: { username: string }) => {

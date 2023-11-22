@@ -47,16 +47,26 @@ export const teleportHelper = (username: string, coordinate: string) => {
   shell(command);
 };
 
-export const tickingHelper = (
+export const addTickingHelper = (
   coordinate: string,
   radius: string,
-  username: string,
+  locationName: string,
 ) => {
-  const command = `${scripts}/server-ticking.sh "${coordinate}" "${radius}" "${username}"`;
+  const command = `${scripts}/server-ticking-add.sh "${coordinate}" "${radius}" "${locationName}"`;
+  shell(command);
+};
+
+export const removeTickingHelper = (locationName: string) => {
+  const command = `${scripts}/server-ticking-remove.sh "${locationName}"`;
   shell(command);
 };
 
 export const clearTickingHelper = () => {
   const command = `${scripts}/server-ticking-clear.sh`;
+  shell(command);
+};
+
+export const resetTickingHelper = () => {
+  const command = `${scripts}/server-ticking.sh`;
   shell(command);
 };

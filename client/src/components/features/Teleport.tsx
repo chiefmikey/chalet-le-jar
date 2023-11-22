@@ -1,7 +1,7 @@
 import React, { SyntheticEvent } from 'react';
 
-import { locations, coordinates, radius } from '../../constants';
-import { sendTeleport, sendTicking } from '../helpers/apiHelper';
+import { locations, coordinates } from '../../constants';
+import { sendTeleport } from '../helpers/apiHelper';
 
 const Teleport = ({ username }: { username: string }) => {
   const handleTeleport = async (event: SyntheticEvent<HTMLButtonElement>) => {
@@ -10,12 +10,8 @@ const Teleport = ({ username }: { username: string }) => {
       Object.keys(locations).find((key) => locations[Number(key)] === location),
     );
     const coordinate = coordinates[key];
+
     if (key !== undefined) {
-      await sendTicking({
-        coordinate,
-        radius: radius[key],
-        username,
-      });
       await sendTeleport({ username, coordinate });
     }
   };

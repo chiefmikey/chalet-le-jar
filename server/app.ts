@@ -12,8 +12,9 @@ import {
   saveHelper,
   sfxHelper,
   teleportHelper,
-  tickingHelper,
+  addTickingHelper,
   clearTickingHelper,
+  resetTickingHelper,
 } from './helpers';
 
 const app = new Koa();
@@ -63,18 +64,34 @@ router.post('/teleport', (context) => {
   return context;
 });
 
-router.post('/ticking', (context) => {
+router.post('/addticking', (context) => {
   const { data } = context.request.body as {
     data: { coordinate: string; radius: string; username: string };
   };
   const { coordinate, radius, username } = data;
-  tickingHelper(coordinate, radius, username);
+  addTickingHelper(coordinate, radius, username);
+  context.body = { status: 'success' };
+  return context;
+});
+
+router.post('/removeticking', (context) => {
+  const { data } = context.request.body as {
+    data: { coordinate: string; radius: string; username: string };
+  };
+  const { coordinate, radius, username } = data;
+  addTickingHelper(coordinate, radius, username);
   context.body = { status: 'success' };
   return context;
 });
 
 router.post('/clearticking', (context) => {
   clearTickingHelper();
+  context.body = { status: 'success' };
+  return context;
+});
+
+router.post('/resetticking', (context) => {
+  resetTickingHelper();
   context.body = { status: 'success' };
   return context;
 });
