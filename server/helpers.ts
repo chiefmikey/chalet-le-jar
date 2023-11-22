@@ -1,9 +1,9 @@
 import { exec } from 'node:child_process';
 
-const user = 'chalet-le-jar';
-const scripts = `/home/${user}/scripts`;
+const scripts = '/home/chalet-le-jar/scripts';
 
 const shell = (command: string) => {
+  const user = 'root';
   exec(`sudo -u ${user} ${command}`, (error, stdout, stderr) => {
     let outputError = '';
     if (error) {
