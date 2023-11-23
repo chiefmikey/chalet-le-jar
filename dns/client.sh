@@ -21,6 +21,7 @@ if ! command -v npm > /dev/null 2>&1; then
   yum install -y npm
 fi
 
+rm -R ${ROOT}/client
 svn export https://github.com/chiefmikey/chalet-le-jar/trunk/client --force
 
 screen -S client -dm ${ROOT}/client-start.sh
