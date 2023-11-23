@@ -11,9 +11,10 @@ import React, { useState, SyntheticEvent, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import Home from './features/Home';
+import Message from './features/Message';
 import Rewind from './features/Rewind';
 import Save from './features/Save';
-import Sfx from './features/Sound';
+import Sound from './features/Sound';
 import Teleport from './features/Teleport';
 
 const Content = ({ user }: { user: UserInfoResponse | undefined }) => {
@@ -300,8 +301,8 @@ const Content = ({ user }: { user: UserInfoResponse | undefined }) => {
           {route === 0 && <Home />}
           {route === 1 && <Rewind subValue={subValue} />}
           {route === 2 && <Teleport username={username} />}
-          {route === 3 && <Sfx />}
-          {/* {route === 4 && <Message />} */}
+          {route === 3 && <Sound />}
+          {route === 4 && <Message />}
           {route === 5 && <Save />}
         </div>
       </div>
