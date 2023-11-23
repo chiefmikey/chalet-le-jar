@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { sendSfx } from '../helpers/apiHelper';
 import { fetchSfxData } from '../helpers/fetchDataHelper';
 
-const Sfx = () => {
+const Sound = () => {
   const [selectedItem, setSelectedItem] = useState(0);
   const [wasSelected, setWasSelected] = useState(false);
   const [sfxList, setSfxList] = useState([] as string[]);
@@ -92,7 +92,7 @@ const Sfx = () => {
             fontSize: '4rem',
             backgroundColor: wasSelected ? '#c94712' : 'gray',
             fontWeight: 'bold',
-            color: wasSelected ? '#ffffff' : 'lightgrey',
+            color: wasSelected ? '#fff' : 'lightgrey',
             borderRadius: '0',
             backgroundImage: '../../../public/assets/lava.gif',
           }}
@@ -108,4 +108,4 @@ const Sfx = () => {
   );
 };
 
-export default Sfx;
+export default Sound;

@@ -13,7 +13,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Home from './features/Home';
 import Rewind from './features/Rewind';
 import Save from './features/Save';
-import Sfx from './features/Sfx';
+import Sfx from './features/Sound';
 import Teleport from './features/Teleport';
 
 const Content = ({ user }: { user: UserInfoResponse | undefined }) => {
