@@ -35,7 +35,6 @@ const Message = () => {
       style={{
         width: '100%',
         height: '100%',
-        fontSize: '20rem',
         backgroundColor: '#fff',
         fontWeight: 'bold',
         color: '#000',
@@ -47,6 +46,11 @@ const Message = () => {
         },
       }}
       inputRef={textInputReference}
+      inputProps={{
+        style: {
+          fontSize: '2rem',
+        },
+      }}
     />
   );
 
