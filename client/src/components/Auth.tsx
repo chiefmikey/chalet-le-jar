@@ -6,7 +6,7 @@ const Auth = ({ path, isLogin }: { path: string; isLogin: boolean }) => {
   const navigate = useNavigate();
   const { signOut } = useLogto();
   let domain = window.location.hostname;
-  domain = domain === 'localhost' ? 'localhost:8080' : `${domain}.com`;
+  domain = domain === 'localhost' ? 'localhost' : `${domain}.com`;
 
   const { protocol } = window.location;
   if (!isLogin) {

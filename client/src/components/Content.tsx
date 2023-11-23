@@ -206,7 +206,7 @@ const Content = ({ user }: { user: UserInfoResponse | undefined }) => {
               border: 'none',
               textAlign: 'center',
               width: '100%',
-              height: '8vh',
+              height: '9vh',
               display: 'flex',
               alignItems: 'center',
             }}

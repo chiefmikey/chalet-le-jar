@@ -30,7 +30,8 @@ const Save = () => {
           style={{
             width: '100%',
             maxHeight: '100vh',
-            overflow: 'auto',
+            overflowY: 'scroll',
+            overflowX: 'hidden',
             padding: '0',
           }}
         >

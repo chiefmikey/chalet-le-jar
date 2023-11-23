@@ -1,5 +1,5 @@
 import { Button, TextField } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import { sendMessage } from '../helpers/apiHelper';
 
@@ -9,13 +9,44 @@ const handleMessage = async (text: string) => {
 
 const Message = () => {
   const [inputText, setInputText] = useState('');
+  const textInputReference = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const handleClick = () => {
+      if (textInputReference.current) {
+        textInputReference.current.focus();
+      }
+    };
+
+    document.addEventListener('click', handleClick);
+
+    return () => {
+      document.removeEventListener('click', handleClick);
+    };
+  }, []);
 
   const textInput = (
     <TextField
-      type="text"
+      multiline
+      maxRows={10}
       name="name"
       value={inputText}
       onChange={(event) => setInputText(event.target.value)}
+      style={{
+        width: '100%',
+        height: '100%',
+        fontSize: '20rem',
+        backgroundColor: '#fff',
+        fontWeight: 'bold',
+        color: '#000',
+        border: 'none',
+      }}
+      sx={{
+        '& .MuiOutlinedInput-notchedOutline': {
+          border: 'none',
+        },
+      }}
+      inputRef={textInputReference}
     />
   );
 

@@ -85,6 +85,8 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .select-menu {
@@ -135,7 +137,6 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
-  height: 100%;
   width: 100%;
 
   .home-button {
@@ -146,6 +147,7 @@ body {
     font-size: 4rem;
     font-weight: 600;
     color: $white;
+    height: 15vh;
   }
 
   .home-button-0 {
@@ -167,10 +169,11 @@ body {
 
 .rewind {
   width: 100%;
+  height: 100%;
 }
 
 .rewind-selection {
-  height: 100vh;
+  height: 100%;
 }
 
 .rewind-list-item-text {
@@ -181,7 +184,6 @@ body {
 
 .rewind-button {
   width: 100%;
-  height: 100%;
   position: sticky;
   bottom: 3vh;
   z-index: 1;

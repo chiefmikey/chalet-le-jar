@@ -8,7 +8,7 @@ const Login = ({ updatePath }: { updatePath: (path: string) => void }) => {
   const isLocal = window.location.hostname === 'localhost';
   const [user, setUser] = useState({} as UserInfoResponse | undefined);
   const redirect = isLocal
-    ? 'http://localhost:8080/login'
+    ? 'http://localhost/login'
     : 'https://chaletlejar.com/login';
   const path = window.location.pathname;
   const getUser = async () => {
