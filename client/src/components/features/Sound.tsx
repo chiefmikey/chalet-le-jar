@@ -89,7 +89,7 @@ const Sound = () => {
           disabled={selectedItem === undefined}
           style={{
             width: '100%',
-            height: '12vh',
+            height: '10vh',
             fontSize: '3rem',
             backgroundColor: wasSelected ? '#c94712' : 'gray',
             fontWeight: 'bold',

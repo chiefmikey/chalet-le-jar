@@ -17,6 +17,19 @@ const Message = () => {
     }
   };
 
+  const handleKeyPress = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent the default action to avoid a page refresh
+      handleMessage(inputText)
+        .then(() => {
+          setInputText('');
+        })
+        .catch((error: Error) => {
+          console.error('Error sending message:', error);
+        });
+    }
+  };
+
   const textInput = (
     <TextField
       multiline
@@ -24,13 +37,14 @@ const Message = () => {
       name="name"
       value={inputText}
       onChange={(event) => setInputText(event.target.value)}
+      onKeyDown={handleKeyPress}
       style={{
         width: '100%',
-        height: '100%',
         backgroundColor: '#fff',
         fontWeight: 'bold',
         color: '#000',
         border: 'none',
+        padding: '0 0 20rem 0',
       }}
       sx={{
         '& .MuiOutlinedInput-notchedOutline': {
@@ -40,7 +54,11 @@ const Message = () => {
       inputRef={textInputReference}
       inputProps={{
         style: {
-          fontSize: '2rem',
+          fontSize: '4rem',
+          lineHeight: '8rem',
+          backgroundColor: '#fff',
+          width: '100%',
+          padding: '0 0 20rem 0',
         },
       }}
       onClick={handleClick}
@@ -50,7 +68,6 @@ const Message = () => {
   return (
     <div className="rewind">
       <div className="rewind-selection">{textInput}</div>
-
       <div className="rewind-button">
         <Button
           variant="contained"
@@ -68,7 +85,7 @@ const Message = () => {
           disabled={!inputText}
           style={{
             width: '100%',
-            height: '12vh',
+            height: '10vh',
             fontSize: '3rem',
             backgroundColor: inputText ? '#c94712' : 'gray',
             fontWeight: 'bold',

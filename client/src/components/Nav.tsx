@@ -44,7 +44,7 @@ const Nav = ({
           backgroundColor: route === numberValue ? '#437420' : '#7db04f',
           fontWeight: '600',
           fontSize: '3rem',
-          height: '12vh',
+          height: '10vh',
         }}
       >
         {label}
@@ -66,7 +66,7 @@ const Nav = ({
             teleportUserValue === userValue ? '#437420' : '#7db04f',
           fontWeight: '600',
           fontSize: '3rem',
-          height: '12vh',
+          height: '10vh',
         }}
       >
         {label}
