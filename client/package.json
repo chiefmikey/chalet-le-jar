@@ -1,6 +1,6 @@
 {
   "name": "client-le-jar",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Welcome friends and friendly people.",
   "scripts": {
     "build:dev": "NODE_ENV=development webpack --mode development -w",

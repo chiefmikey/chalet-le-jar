@@ -1,6 +1,7 @@
 import { useLogto } from '@logto/react';
 import React, { SyntheticEvent } from 'react';
 
+import { version } from '../../../package';
 import {
   sendClearTicking,
   sendResetTicking,
@@ -89,7 +90,14 @@ const Settings = ({ username }: { username: string }) => {
     );
   }
 
-  return <div className="home">{buttons}</div>;
+  return (
+    <div className="home">
+      {buttons}
+      <div className="message">
+        <span>{`Client Version ${version}`}</span>
+      </div>
+    </div>
+  );
 };
 
 export default Settings;
