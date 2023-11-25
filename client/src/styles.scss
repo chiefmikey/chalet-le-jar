@@ -59,6 +59,7 @@ body {
 .background-logo {
   position: absolute;
   height: 100vh;
+  animation: leftRight 1s infinite;
   z-index: -1;
 }
 
@@ -209,5 +210,14 @@ body {
   }
   50% {
     transform: translateY(-20%);
+  }
+}
+
+@keyframes leftRight {
+  0%, 100% {
+    transform: translateX(.5%);
+  }
+  50% {
+    transform: translateX(-1%);
   }
 }
