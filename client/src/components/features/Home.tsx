@@ -21,6 +21,9 @@ const Home = () => {
       <button className="home-button" onClick={() => navigate('/save')}>
         <span>SAVE</span>
       </button>
+      <button className="home-button" onClick={() => navigate('/settings')}>
+        <span>SETTINGS</span>
+      </button>
     </div>
   );
 };
