@@ -29,7 +29,7 @@ const Nav = ({
     if (route === 2) {
       setTeleportUserValue(users.indexOf(username));
     }
-  }, []);
+  }, [username, route]);
 
   const menuItems = [];
   for (const value of Object.keys(menuOptions)) {
