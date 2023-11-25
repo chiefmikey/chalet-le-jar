@@ -12,6 +12,15 @@ $tab-label: 20px;
 $icon: 90px;
 $made-by: 16px;
 
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
 a {
   text-decoration: none;
 }
