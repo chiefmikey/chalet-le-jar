@@ -55,8 +55,9 @@ const Message = () => {
         <Button
           variant="contained"
           color="primary"
-          onClick={(event) => {
-            handleMessage(event.currentTarget.value)
+          onClick={() => {
+            console.log('inputText:', inputText);
+            handleMessage(inputText)
               .then(() => {
                 setInputText('');
               })

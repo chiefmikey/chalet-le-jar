@@ -4,7 +4,7 @@ const address = 'https://ip.chaletlejar.com:3004';
 
 export const sendRewind = async (data: string) => {
   try {
-    return await axios.post(`${address}/rewind`, data);
+    return await axios.post(`${address}/rewind`, { data });
   } catch (error) {
     console.error(error);
   }
@@ -20,7 +20,7 @@ export const sendSave = async () => {
 
 export const sendSfx = async (data: string) => {
   try {
-    return await axios.post(`${address}/sfx`, data);
+    return await axios.post(`${address}/sfx`, { data });
   } catch (error) {
     console.error(error);
   }
@@ -28,7 +28,7 @@ export const sendSfx = async (data: string) => {
 
 export const sendMessage = async (data: string) => {
   try {
-    return await axios.post(`${address}/message`, data);
+    return await axios.post(`${address}/message`, { data });
   } catch (error) {
     console.error(error);
   }
@@ -39,7 +39,7 @@ export const sendTeleport = async (data: {
   coordinate: string;
 }) => {
   try {
-    return await axios.post(`${address}/teleport`, { ...data });
+    return await axios.post(`${address}/teleport`, { data });
   } catch (error) {
     console.error(error);
   }
@@ -51,15 +51,15 @@ export const sendAddTicking = async (data: {
   locationName: string;
 }) => {
   try {
-    return await axios.post(`${address}/addticking`, { ...data });
+    return await axios.post(`${address}/addticking`, { data });
   } catch (error) {
     console.error(error);
   }
 };
 
-export const sendRemoveTicking = async (data: string) => {
+export const sendRemoveTicking = async (data: { locationName: string }) => {
   try {
-    return await axios.post(`${address}/removeticking`, data);
+    return await axios.post(`${address}/removeticking`, { data });
   } catch (error) {
     console.error(error);
   }
@@ -89,12 +89,8 @@ export const sendResetServer = async () => {
   }
 };
 
-export const sendResetClient = async () => {
-  try {
-    return await axios.post(`${address}/resetclient`);
-  } catch (error) {
-    console.error(error);
-  }
+export const sendResetClient = () => {
+  restartClientHelper();
 };
 
 export const sendUpgradeServer = async () => {
