@@ -42,7 +42,7 @@ const Rewind = ({ subValue }: { subValue: number }) => {
     fetchData(isAutosave).catch((error: Error) => {
       console.error('Error fetching data:', error);
     });
-  }, []);
+  }, [isAutosave]);
 
   const handleListSelect = (index: number) => {
     setSelectedItem(index);
@@ -114,7 +114,7 @@ const Rewind = ({ subValue }: { subValue: number }) => {
           style={{
             width: '100%',
             height: '12vh',
-            fontSize: '4rem',
+            fontSize: '3rem',
             backgroundColor: wasSelected ? '#c94712' : 'gray',
             fontWeight: 'bold',
             color: wasSelected ? '#ffffff' : 'lightgrey',

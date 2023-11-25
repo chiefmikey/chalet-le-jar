@@ -1,5 +1,5 @@
 import { Button, TextField } from '@mui/material';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 
 import { sendMessage } from '../helpers/apiHelper';
 
@@ -11,19 +11,11 @@ const Message = () => {
   const [inputText, setInputText] = useState('');
   const textInputReference = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    const handleClick = () => {
-      if (textInputReference.current) {
-        textInputReference.current.focus();
-      }
-    };
-
-    document.addEventListener('click', handleClick);
-
-    return () => {
-      document.removeEventListener('click', handleClick);
-    };
-  }, []);
+  const handleClick = () => {
+    if (textInputReference.current) {
+      textInputReference.current.focus();
+    }
+  };
 
   const textInput = (
     <TextField
@@ -51,6 +43,7 @@ const Message = () => {
           fontSize: '2rem',
         },
       }}
+      onClick={handleClick}
     />
   );
 
@@ -71,7 +64,7 @@ const Message = () => {
           style={{
             width: '100%',
             height: '12vh',
-            fontSize: '4rem',
+            fontSize: '3rem',
             backgroundColor: inputText ? '#c94712' : 'gray',
             fontWeight: 'bold',
             color: inputText ? '#ffffff' : 'lightgrey',
@@ -79,12 +72,12 @@ const Message = () => {
             backgroundImage: '../../../public/assets/lava.gif',
           }}
         >
-          PLAY
+          SEND
         </Button>
       </div>
 
       <div className="message">
-        <span>SING MY CHILD</span>
+        <span>DISPLAY A MESSAGE</span>
       </div>
     </div>
   );

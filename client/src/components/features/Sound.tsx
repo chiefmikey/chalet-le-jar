@@ -90,7 +90,7 @@ const Sound = () => {
           style={{
             width: '100%',
             height: '12vh',
-            fontSize: '4rem',
+            fontSize: '3rem',
             backgroundColor: wasSelected ? '#c94712' : 'gray',
             fontWeight: 'bold',
             color: wasSelected ? '#fff' : 'lightgrey',
@@ -103,7 +103,7 @@ const Sound = () => {
       </div>
 
       <div className="message">
-        <span>SING MY CHILD</span>
+        <span>BARK LIKE A DOG</span>
       </div>
     </div>
   );

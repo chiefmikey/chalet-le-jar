@@ -33,7 +33,14 @@ const Teleport = ({ username }: { username: string }) => {
     );
   }
 
-  return <div className="home">{buttons}</div>;
+  return (
+    <div className="home">
+      {buttons}{' '}
+      <div className="message">
+        <span>CHOOSE WISELY</span>
+      </div>
+    </div>
+  );
 };
 
 export default Teleport;

@@ -74,7 +74,7 @@ const Save = () => {
           style={{
             width: '100%',
             height: '12vh',
-            fontSize: '4rem',
+            fontSize: '3rem',
             backgroundColor: '#c94712',
             fontWeight: 'bold',
             color: '#ffffff',

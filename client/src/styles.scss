@@ -6,6 +6,7 @@ $green: #7db04f;
 $darkGreen: #437420;
 $brown: #9b6237;
 $darkBrown: #5e361d;
+$diamond: #2ac9b9;
 $title: 20px;
 $tab-label: 20px;
 $icon: 90px;
@@ -144,26 +145,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 600;
     color: $white;
     height: 15vh;
+    background-color: $darkBrown;
   }
 
-  .home-button-0 {
-    background-color: #0048b4;
+  .home-button:nth-child(odd) {
+    background-color: $brown;
   }
-  .home-button-1 {
-    background-color: #a00209;
-  }
-  .home-button-2 {
-    background-color: #f1d12b;
-  }
-  .home-button-3 {
-    background-color: #21e2e4;
-  }
-  .home-button-4 {
-    background-color: #0dbd3f;
+
+  .home-button:active {
+    background-color: $diamond;
   }
 }
 
