@@ -26,27 +26,29 @@ const Login = ({ updatePath }: { updatePath: (path: string) => void }) => {
   };
 
   useEffect(() => {
-    if (!sessionUser) {
-      if (isAuthenticated) {
-        getUser()
-          .then((user: UserInfoResponse | undefined) => {
-            handleUser(user);
-          })
-          .catch((error) => {
-            console.error('Error fetching user info:', error);
-          });
-      } else {
-        updatePath(path);
-        signIn(redirect).catch((error) => {
-          console.error('Error signing in:', error);
-        });
+    if (sessionUser) {
+      if (user !== sessionUser) {
+        setUser(sessionUser);
       }
+    } else if (isAuthenticated) {
+      getUser()
+        .then((user: UserInfoResponse | undefined) => {
+          handleUser(user);
+        })
+        .catch((error) => {
+          console.error('Error fetching user info:', error);
+        });
+    } else {
+      updatePath(path);
+      signIn(redirect).catch((error) => {
+        console.error('Error signing in:', error);
+      });
     }
-  }, [isAuthenticated, sessionUser]);
+  }, [isAuthenticated, sessionUser, user]);
 
   const setComponent = (hasUser: boolean) => {
     if (hasUser) {
-      return <Content username={user} />;
+      return <Content username={sessionUser} />;
     }
 
     return <></>;
