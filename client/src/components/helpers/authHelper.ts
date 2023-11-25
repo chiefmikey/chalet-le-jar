@@ -7,7 +7,7 @@ export const handleSignOut = (
 ) => {
   const { protocol, hostname } = window.location;
   let domain = hostname;
-  domain = domain === 'localhost' ? 'localhost' : `${domain}.com`;
+  domain = domain === 'localhost' ? 'localhost' : `${domain}`;
 
   sessionStorage.clear();
 
