@@ -15,6 +15,8 @@ import {
   addTickingHelper,
   clearTickingHelper,
   resetTickingHelper,
+  resetServerHelper,
+  upgradeServerHelper,
 } from './helpers';
 
 const app = new Koa();
@@ -92,6 +94,18 @@ router.post('/clearticking', (context) => {
 
 router.post('/resetticking', (context) => {
   resetTickingHelper();
+  context.body = { status: 'success' };
+  return context;
+});
+
+router.post('/resetserver', (context) => {
+  resetServerHelper();
+  context.body = { status: 'success' };
+  return context;
+});
+
+router.post('/upgradeserver', (context) => {
+  upgradeServerHelper();
   context.body = { status: 'success' };
   return context;
 });

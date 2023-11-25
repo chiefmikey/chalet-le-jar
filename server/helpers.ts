@@ -70,3 +70,13 @@ export const resetTickingHelper = () => {
   const command = `${scripts}/server-ticking.sh`;
   shell(command);
 };
+
+export const resetServerHelper = () => {
+  const command = `${scripts}/server-ts.sh`;
+  shell(command);
+};
+
+export const upgradeServerHelper = () => {
+  const command = `${scripts}/server-upgrade.sh`;
+  shell(command);
+};

@@ -1,11 +1,32 @@
 import { useLogto } from '@logto/react';
 import React, { SyntheticEvent } from 'react';
 
-import { sendClearTicking } from '../helpers/apiHelper';
+import {
+  sendClearTicking,
+  sendResetTicking,
+  sendResetClient,
+  sendResetServer,
+  sendUpgradeServer,
+} from '../helpers/apiHelper';
 import { handleSignOut } from '../helpers/authHelper';
 
-const handleClearTicking = async (event: SyntheticEvent<HTMLButtonElement>) => {
+const handleResetTicking = async (event: SyntheticEvent<HTMLButtonElement>) => {
   await sendClearTicking();
+  await sendResetTicking();
+};
+
+const handleResetClient = (event: SyntheticEvent<HTMLButtonElement>) => {
+  sendResetClient();
+};
+
+const handleResetServer = async (event: SyntheticEvent<HTMLButtonElement>) => {
+  await sendResetServer();
+};
+
+const handleUpgradeServer = async (
+  event: SyntheticEvent<HTMLButtonElement>,
+) => {
+  await sendUpgradeServer();
 };
 
 const Settings = ({ username }: { username: string }) => {
@@ -14,7 +35,7 @@ const Settings = ({ username }: { username: string }) => {
   const buttons = [
     <button
       key={'sign-out'}
-      className={`home-button home-button-1`}
+      className={'home-button'}
       onClick={() => handleSignOut(signOut)}
     >
       <span>SIGN OUT</span>
@@ -24,15 +45,46 @@ const Settings = ({ username }: { username: string }) => {
   if (username === 'rotttttt') {
     buttons.push(
       <button
-        key={'clear-ticking'}
-        className={`home-button home-button-0`}
+        key={'reset-ticking'}
+        className={'home-button'}
         onClick={(event) => {
-          handleClearTicking(event).catch((error) => {
-            console.error('Error clearing ticking:', error);
+          handleResetTicking(event).catch((error) => {
+            console.error('Error resetting ticking:', error);
           });
         }}
       >
-        <span>CLEAR TICKING</span>
+        <span>RESET TICKING</span>
+      </button>,
+      <button
+        key={'reset-client'}
+        className={'home-button'}
+        onClick={(event) => {
+          handleResetClient(event);
+        }}
+      >
+        <span>RESET CLIENT</span>
+      </button>,
+      <button
+        key={'reset-server'}
+        className={'home-button'}
+        onClick={(event) => {
+          handleResetServer(event).catch((error) => {
+            console.error('Error resetting server:', error);
+          });
+        }}
+      >
+        <span>RESET SERVER</span>
+      </button>,
+      <button
+        key={'upgrade-server'}
+        className={'home-button'}
+        onClick={(event) => {
+          handleUpgradeServer(event).catch((error) => {
+            console.error('Error upgrading server:', error);
+          });
+        }}
+      >
+        <span>UPGRADE SERVER</span>
       </button>,
     );
   }
