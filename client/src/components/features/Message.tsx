@@ -56,9 +56,13 @@ const Message = () => {
           variant="contained"
           color="primary"
           onClick={(event) => {
-            handleMessage(event.currentTarget.value).catch((error: Error) => {
-              console.error('Error sending message:', error);
-            });
+            handleMessage(event.currentTarget.value)
+              .then(() => {
+                setInputText('');
+              })
+              .catch((error: Error) => {
+                console.error('Error sending message:', error);
+              });
           }}
           disabled={!inputText}
           style={{

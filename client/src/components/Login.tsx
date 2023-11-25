@@ -6,23 +6,23 @@ import Content from './Content';
 const Login = ({ updatePath }: { updatePath: (path: string) => void }) => {
   const { signIn, isAuthenticated, fetchUserInfo } = useLogto();
 
-  const [user, setUser] = useState({} as UserInfoResponse | undefined);
+  const [user, setUser] = useState('');
 
   const isLocal = window.location.hostname === 'localhost';
   const redirect = isLocal
     ? 'http://localhost/login'
     : 'https://chaletlejar.com/login';
   const path = window.location.pathname;
-  const sessionUser = sessionStorage.getItem('user');
+  const sessionUser = sessionStorage.getItem('user') || '';
 
   const getUser = async () => {
     return await fetchUserInfo();
   };
 
   const handleUser = (user: UserInfoResponse | undefined) => {
-    setUser(user);
     const username = user?.username ? user.username.replaceAll('_', ' ') : '';
     sessionStorage.setItem('user', username);
+    setUser(username);
   };
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const Login = ({ updatePath }: { updatePath: (path: string) => void }) => {
 
   const setComponent = (hasUser: boolean) => {
     if (hasUser) {
-      return <Content user={user} />;
+      return <Content username={user} />;
     }
 
     return <></>;

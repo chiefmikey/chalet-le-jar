@@ -10,7 +10,6 @@ export const handleSignOut = (
   domain = domain === 'localhost' ? 'localhost' : `${domain}`;
 
   sessionStorage.clear();
-
   signOut(`${protocol}//${domain}`).catch((error: Error) => {
     console.error('Error signing out:', error);
   });

@@ -1,4 +1,3 @@
-import { UserInfoResponse } from '@logto/react';
 import { SelectChangeEvent } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -12,7 +11,7 @@ import Settings from './features/Settings';
 import Sound from './features/Sound';
 import Teleport from './features/Teleport';
 
-const Content = ({ user }: { user: UserInfoResponse | undefined }) => {
+const Content = ({ username }: { username: string }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -21,7 +20,6 @@ const Content = ({ user }: { user: UserInfoResponse | undefined }) => {
 
   const sessionRoute = sessionStorage.getItem('route');
   const route = sessionRoute ? Number(sessionRoute) : inputRoute;
-  const username = sessionStorage.getItem('user') || '';
 
   const handleRoute = (value: number) => {
     setInputRoute(value);
