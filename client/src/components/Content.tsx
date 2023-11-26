@@ -32,11 +32,11 @@ const Content = ({ username }: { username: string }) => {
         handleRoute(0);
         break;
       }
-      case '/rewind': {
+      case '/teleport': {
         handleRoute(1);
         break;
       }
-      case '/teleport': {
+      case '/rewind': {
         handleRoute(2);
         break;
       }
@@ -70,11 +70,11 @@ const Content = ({ username }: { username: string }) => {
         break;
       }
       case 1: {
-        navigate('/rewind');
+        navigate('/teleport');
         break;
       }
       case 2: {
-        navigate('/teleport');
+        navigate('/rewind');
         break;
       }
       case 3: {
@@ -114,8 +114,8 @@ const Content = ({ username }: { username: string }) => {
       <div className="content">
         <div className="content-selection">
           {route === 0 && <Home />}
-          {route === 1 && <Rewind subValue={rewindTabValue} />}
-          {route === 2 && <Teleport username={username} />}
+          {route === 1 && <Teleport username={username} />}
+          {route === 2 && <Rewind subValue={rewindTabValue} />}
           {route === 3 && <Save />}
           {route === 4 && <Message />}
           {route === 5 && <Sound />}

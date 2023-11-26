@@ -52,8 +52,8 @@ export const users = [
 ];
 
 export const menuOptions = {
-  1: 'REWIND',
-  2: 'TELEPORT',
+  1: 'TELEPORT',
+  2: 'REWIND',
   3: 'SAVE',
   4: 'MESSAGE',
   5: 'SFX',
