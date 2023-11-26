@@ -61,7 +61,7 @@ const Rewind = ({ subValue }: { subValue: number }) => {
           aria-label="main mailbox folders"
           style={{
             width: '100%',
-            maxHeight: '100vh',
+            height: '100%',
             overflowY: 'scroll',
             overflowX: 'hidden',
             padding: '0',

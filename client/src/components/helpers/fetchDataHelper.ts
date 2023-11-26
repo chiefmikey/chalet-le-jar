@@ -18,11 +18,14 @@ const formatData = (fetch: AxiosResponse, resultsCap: number) => {
     const lines = log.split('\n').slice(0, resultsCap);
     const formattedLines = [];
     for (const raw of lines) {
-      const formatted = raw.replace('_', ' ').replace('-', '/');
-      const localDate = format(new Date(formatted), 'Pp');
-      const dateData = { raw, localDate };
-      formattedLines.push(dateData);
+      if (raw) {
+        const formatted = raw.replace('_', ' ').replace('-', '/');
+        const localDate = format(new Date(formatted), 'Pp');
+        const dateData = { raw, localDate };
+        formattedLines.push(dateData);
+      }
     }
+
     return formattedLines;
   }
   return [];
