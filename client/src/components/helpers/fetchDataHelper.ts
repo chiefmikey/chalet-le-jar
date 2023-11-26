@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
+import { format } from 'date-fns';
 
 const sourceRootUrl =
   'https://raw.githubusercontent.com/chiefmikey/chalet-le-jar/main/client/src';
@@ -18,7 +19,7 @@ const formatData = (fetch: AxiosResponse, resultsCap: number) => {
     const formattedLines = [];
     for (const raw of lines) {
       const formatted = raw.replace('_', ' ');
-      const localDate = new Date(formatted).toLocaleString();
+      const localDate = format(new Date(formatted), 'Pp');
       const dateData = { raw, localDate };
       formattedLines.push(dateData);
     }
