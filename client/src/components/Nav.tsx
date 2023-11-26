@@ -6,7 +6,7 @@ import {
   MenuItem,
   SelectChangeEvent,
 } from '@mui/material';
-import React, { useState, SyntheticEvent, useEffect } from 'react';
+import React, { SyntheticEvent, useEffect } from 'react';
 
 import { users, menuOptions } from '../constants';
 
@@ -16,15 +16,17 @@ const Nav = ({
   setRewindTabValue,
   username,
   handleChange,
+  teleportUserValue,
+  setTeleportUserValue,
 }: {
   route: number;
   rewindTabValue: number;
   setRewindTabValue: (value: number) => void;
   username: string;
   handleChange: (event: SelectChangeEvent<string>) => void;
+  teleportUserValue: number;
+  setTeleportUserValue: (value: number) => void;
 }) => {
-  const [teleportUserValue, setTeleportUserValue] = useState(0);
-
   useEffect(() => {
     if (route === 2) {
       setTeleportUserValue(users.indexOf(username));

@@ -2,6 +2,8 @@ import { SelectChangeEvent } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import { users } from '../constants';
+
 import Nav from './Nav';
 import Home from './features/Home';
 import Message from './features/Message';
@@ -17,6 +19,7 @@ const Content = ({ username }: { username: string }) => {
 
   const [rewindTabValue, setRewindTabValue] = useState(0);
   const [inputRoute, setInputRoute] = useState(0);
+  const [teleportUserValue, setTeleportUserValue] = useState(0);
 
   const sessionRoute = sessionStorage.getItem('route');
   const route = sessionRoute ? Number(sessionRoute) : inputRoute;
@@ -110,11 +113,13 @@ const Content = ({ username }: { username: string }) => {
         setRewindTabValue={setRewindTabValue}
         username={username}
         handleChange={handleChange}
+        teleportUserValue={teleportUserValue}
+        setTeleportUserValue={setTeleportUserValue}
       />
       <div className="content">
         <div className="content-selection">
           {route === 0 && <Home />}
-          {route === 1 && <Teleport username={username} />}
+          {route === 1 && <Teleport username={users[teleportUserValue]} />}
           {route === 2 && <Rewind subValue={rewindTabValue} />}
           {route === 3 && <Save />}
           {route === 4 && <Message />}
