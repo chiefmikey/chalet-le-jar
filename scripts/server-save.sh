@@ -9,7 +9,7 @@ screen -S bedrock -X stuff "playsound beacon.activate @a\n"
 sleep 2
 screen -S bedrock -X stuff "say save in progress...\n"
 screen -S bedrock -X stuff "save hold\n"
-sleep 10
+sleep 5
 cp -r "${ROOT}"/worlds/clj "${BACKUPS}"/save/"${CURRENT_DATE}"
 screen -S bedrock -X stuff "save resume\n"
 CURRENT_DATE=${CURRENT_DATE} ACTION=save \
