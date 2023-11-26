@@ -21,12 +21,12 @@ export const pins = {
 const generateNegative = (input: number) => {
   const randomNegative = Math.random() > 0.5 ? 1 : -1;
   return input * randomNegative;
-}
+};
 
 const generateRandomCoordinate = (): [number, number, number] => {
-  const x = Math.random() * 50_000;
-  const y = Math.random() * 200;
-  const z = Math.random() * 50_000;
+  const x = generateNegative(Math.random() * 50_000);
+  const y = generateNegative(Math.random() * 200);
+  const z = generateNegative(Math.random() * 50_000);
 
   return [x, y, z];
 };
