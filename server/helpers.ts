@@ -77,6 +77,6 @@ export const resetServerHelper = () => {
 };
 
 export const upgradeServerHelper = () => {
-  const command = `${scripts}/server-upgrade.sh`;
+  const command = `${scripts}/server-cycle.sh`;
   shell(command);
 };
