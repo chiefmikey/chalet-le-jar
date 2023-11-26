@@ -86,7 +86,7 @@ const Message = () => {
           style={{
             width: '100%',
             height: '10vh',
-            fontSize: '3rem',
+            fontSize: '2rem',
             backgroundColor: inputText ? '#c94712' : 'gray',
             fontWeight: 'bold',
             color: inputText ? '#ffffff' : 'lightgrey',

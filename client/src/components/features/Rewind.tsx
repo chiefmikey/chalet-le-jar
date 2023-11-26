@@ -114,7 +114,7 @@ const Rewind = ({ subValue }: { subValue: number }) => {
           style={{
             width: '100%',
             height: '10vh',
-            fontSize: '3rem',
+            fontSize: '2rem',
             backgroundColor: wasSelected ? '#c94712' : 'gray',
             fontWeight: 'bold',
             color: wasSelected ? '#ffffff' : 'lightgrey',
