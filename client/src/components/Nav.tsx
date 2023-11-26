@@ -132,6 +132,39 @@ const Nav = ({
           {menuItems}
         </Select>
         {route === 1 && (
+          <Select
+            value={String(teleportUserValue)}
+            onChange={handleTeleportUserChange}
+            variant="standard"
+            disableUnderline
+            SelectDisplayProps={{
+              style: {
+                borderRadius: '0',
+                border: 'none',
+                textAlign: 'center',
+                width: '100vw',
+                left: '0',
+              },
+            }}
+            sx={{
+              backgroundColor: '#437420',
+              borderRadius: '0',
+              border: 'none',
+              textAlign: 'center',
+              width: '100%',
+              height: '8vh',
+              display: 'flex',
+              alignItems: 'center',
+            }}
+            classes={{
+              root: 'select-menu',
+              icon: 'white-icon',
+            }}
+          >
+            {userItems}
+          </Select>
+        )}
+        {route === 2 && (
           <Tabs
             value={rewindTabValue}
             TabIndicatorProps={{
@@ -174,39 +207,6 @@ const Nav = ({
               label="Save"
             />
           </Tabs>
-        )}
-        {route === 2 && (
-          <Select
-            value={String(teleportUserValue)}
-            onChange={handleTeleportUserChange}
-            variant="standard"
-            disableUnderline
-            SelectDisplayProps={{
-              style: {
-                borderRadius: '0',
-                border: 'none',
-                textAlign: 'center',
-                width: '100vw',
-                left: '0',
-              },
-            }}
-            sx={{
-              backgroundColor: '#437420',
-              borderRadius: '0',
-              border: 'none',
-              textAlign: 'center',
-              width: '100%',
-              height: '8vh',
-              display: 'flex',
-              alignItems: 'center',
-            }}
-            classes={{
-              root: 'select-menu',
-              icon: 'white-icon',
-            }}
-          >
-            {userItems}
-          </Select>
         )}
       </AppBar>
     </div>
