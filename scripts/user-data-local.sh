@@ -4,7 +4,6 @@ ROOT="/home/chalet-le-jar"
 SCRIPTS="${ROOT}/scripts"
 BACKUPS="${ROOT}/backups"
 
-source /home/chalet-le-jar/.bash_aliases
 set -x
 cd "${ROOT}" || exit
 CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
