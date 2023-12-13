@@ -11,7 +11,7 @@ while true; do
   FILE_LIST=$(awk '/Data saved. Files are now ready to be copied./{flag=1;next}flag' screenlog.0)
   if [[ $FILE_LIST != "" ]]; then
     rm screenlog.0
-    FILE_LIST=$(echo "$FILE_LIST" | sed 's/, /\n/g' | awk '/\r$/{exit}1' | tr -d '\r')
+    FILE_LIST=$(echo "$FILE_LIST" | sed 's/, /\n/g' | awk '{if(/\r$/) {print; exit} else print}' | tr -d '\r')
     break
   fi
   sleep 5
