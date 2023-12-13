@@ -27,7 +27,10 @@ for line in $FILE_LIST; do
   length=$(echo "$line" | cut -d':' -f2)
   directory=$(dirname "${BACKUPS}/${1}/${2}/$file")
   mkdir -p "$directory"
-  dd if="${ROOT}/worlds/$file" of="${BACKUPS}/${1}/${2}/$file" bs=1 count="$length"
+  dd if="${ROOT}/worlds/$file" of="${BACKUPS}/${1}/${2}/$file" bs=1 count="$length" &
 done
+
+# Wait for all background jobs to finish
+wait
 
 screen -L -S bedrock -X stuff "save resume\n"
