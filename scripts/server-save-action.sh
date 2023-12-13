@@ -18,6 +18,7 @@ while true; do
 done
 
 IFS=$'\n'
+counter=0
 for line in $FILE_LIST; do
   if [[ ! $line =~ ^clj ]]; then
     echo "$line"
@@ -28,9 +29,12 @@ for line in $FILE_LIST; do
   directory=$(dirname "${BACKUPS}/${1}/${2}/$file")
   mkdir -p "$directory"
   dd if="${ROOT}/worlds/$file" of="${BACKUPS}/${1}/${2}/$file" bs=1 count="$length" &
+  counter=$((counter+1))
+  if (( counter % 20 == 0 )); then
+    wait
+  fi
 done
 
-# Wait for all background jobs to finish
 wait
 
 screen -L -S bedrock -X stuff "save resume\n"
