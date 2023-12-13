@@ -5,7 +5,8 @@ export LOG="${ROOT}/log"
 export BACKUPS="${ROOT}/backups"
 
 # server
-alias perms="sudo chown -R chalet-le-jar:root ${ROOT} && sudo chmod -R +x ${SCRIPTS}"
+alias perms="sudo chown -R chalet-le-jar:root ${ROOT}"
+alias sperms="sudo chmod -R +x ${SCRIPTS}"
 alias start="sudo ${SCRIPTS}/server-start.sh"
 alias stop="sudo ${SCRIPTS}/server-stop.sh"
 alias save="sudo ${SCRIPTS}/server-save.sh"
