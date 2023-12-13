@@ -28,7 +28,7 @@ for line in $FILE_LIST; do
   length=$(echo "$line" | cut -d':' -f2)
   directory=$(dirname "${BACKUPS}/${1}/${2}/$file")
   mkdir -p "$directory"
-  dd if="${ROOT}/worlds/$file" of="${BACKUPS}/${1}/${2}/$file" bs=1 count="$length" &
+  dd if="${ROOT}/worlds/$file" bs=4096 count="$length" | mbuffer -m 1G -q -o "${BACKUPS}/${1}/${2}/$file" &
   counter=$((counter+1))
   if (( counter % 20 == 0 )); then
     wait
