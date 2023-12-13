@@ -18,8 +18,8 @@ done
 
 IFS=$'\n'
 for line in $FILE_LIST; do
-  file=$(echo "$line" | cut -d' ' -f1)
-  length=$(echo "$line" | cut -d' ' -f2)
+  file=$(echo "$line" | cut -d':' -f1)
+  length=$(echo "$line" | cut -d':' -f2)
   dd if="${ROOT}/worlds/$file" of="${BACKUPS}/${1}/${2}/$file" bs=1 count="$length"
 done
 
