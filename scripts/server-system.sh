@@ -1,10 +1,10 @@
 #!/bin/bash
 
 set -x
-apt update -y &&
-apt upgrade -y &&
-apt full-upgrade -y &&
-apt autoremove -y &&
-apt clean -y &&
-apt install -f &&
+apt-get update -y &&
+apt-get upgrade -y &&
+apt-get full-upgrade -y &&
+apt-get autoremove -y &&
+apt-get clean -y &&
+apt-get install -f &&
 do-release-upgrade
