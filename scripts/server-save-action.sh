@@ -7,11 +7,11 @@ cd "${ROOT}" || exit
 screen -S bedrock -X stuff "save hold\n"
 
 while true; do
-  FILE_LIST=$(screen -S bedrock -X stuff "save query\n" | grep -oP 'success:\K.*')
+  FILE_LIST=$(screen -S bedrock -X stuff "save query\n" | awk '/Data saved. Files are now ready to be copied./{flag=1;next}flag')
   if [[ $FILE_LIST != "" ]]; then
     break
   fi
-  sleep 2
+  sleep 5
 done
 
 IFS=$'\n'
@@ -22,7 +22,3 @@ for line in $FILE_LIST; do
 done
 
 screen -S bedrock -X stuff "save resume\n"
-
-# need to fix file list location
-# worlds/clj/$file?
-# backups/autosave/date/clj/$file?
