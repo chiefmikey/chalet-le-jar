@@ -24,6 +24,8 @@ for line in $FILE_LIST; do
   fi
   file=$(echo "$line" | cut -d':' -f1)
   length=$(echo "$line" | cut -d':' -f2)
+  directory=$(dirname "${BACKUPS}/${1}/${2}/$file")
+  mkdir -p "$directory"
   dd if="${ROOT}/worlds/$file" of="${BACKUPS}/${1}/${2}/$file" bs=1 count="$length"
 done
 
