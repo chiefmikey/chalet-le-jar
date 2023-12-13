@@ -69,5 +69,4 @@ screen -S bedrock -X stuff "stop\n"
 
 sleep 5
 
-screen -S autosave -X quit
 screen -S bedrock -X quit
