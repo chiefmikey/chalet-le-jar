@@ -8,9 +8,9 @@ screen -L -S bedrock -X stuff "save hold\n"
 
 while true; do
   screen -L -S bedrock -X stuff "save query\n"
-  FILE_LIST=$(awk '/Data saved. Files are now ready to be copied./{flag=1;next}flag' screenlog.0)
+  FILE_LIST=$(awk '/Data saved. Files are now ready to be copied./{flag=1;next}flag' "${ROOT}"/screenlog.0)
   if [[ $FILE_LIST != "" ]]; then
-    rm screenlog.0
+    rm "${ROOT}"/screenlog.0
     FILE_LIST=$(echo "$FILE_LIST" | sed 's/, /\n/g' | awk '{if(/\r$/) {print; exit} else print}' | tr -d '\r')
     break
   fi
