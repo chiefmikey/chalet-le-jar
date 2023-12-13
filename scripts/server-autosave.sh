@@ -7,9 +7,9 @@ while true; do
   cd "${ROOT}" || exit
   CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
 
-  screen -S bedrock -X stuff "say autosave in progress...\n"
+  screen -L -S bedrock -X stuff "say autosave in progress...\n"
   "${SCRIPTS}"/server-save-action.sh autosave "${CURRENT_DATE}"
-  screen -S bedrock -X stuff "say autosave complete!\n"
+  screen -L -S bedrock -X stuff "say autosave complete!\n"
 
   CURRENT_DATE=${CURRENT_DATE} ACTION=autosave \
     "${SCRIPTS}"/server-log.sh

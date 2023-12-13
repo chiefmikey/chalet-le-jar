@@ -1,4 +1,4 @@
 #!/bin/bash
 
 set -x
-screen -S bedrock -X stuff "say ${1}\n"
+screen -L -S bedrock -X stuff "say ${1}\n"

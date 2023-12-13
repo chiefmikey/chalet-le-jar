@@ -4,11 +4,13 @@ source /home/chalet-le-jar/.bash_aliases
 set -x
 
 cd "${ROOT}" || exit
-screen -S bedrock -X stuff "save hold\n"
+screen -L -S bedrock -X stuff "save hold\n"
 
 while true; do
-  FILE_LIST=$(screen -S bedrock -X stuff "save query\n" | awk '/Data saved. Files are now ready to be copied./{flag=1;next}flag')
+  screen -L -S bedrock -X stuff "save query\n"
+  FILE_LIST=$(awk '/Data saved. Files are now ready to be copied./{flag=1;next}flag' screenlog.0)
   if [[ $FILE_LIST != "" ]]; then
+    rm screenlog.0
     break
   fi
   sleep 5
@@ -21,4 +23,4 @@ for line in $FILE_LIST; do
   dd if="${ROOT}/worlds/$file" of="${BACKUPS}/${1}/${2}/$file" bs=1 count="$length"
 done
 
-screen -S bedrock -X stuff "save resume\n"
+screen -L -S bedrock -X stuff "save resume\n"

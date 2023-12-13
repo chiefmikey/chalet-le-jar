@@ -12,5 +12,5 @@ rm -R "${ROOT}"/worlds/clj
 cp -r "${BACKUPS}"/"${1}"/clj "${ROOT}"/worlds/clj
 CURRENT_DATE=${CURRENT_DATE} ACTION=rewind \
   "${SCRIPTS}"/server-log.sh
-LD_LIBRARY_PATH=${ROOT} screen -S bedrock -dm "${ROOT}"/bedrock_server
-screen -S autosave -dm "${SCRIPTS}"/server-autosave.sh
+LD_LIBRARY_PATH=${ROOT} screen -L -S bedrock -dm "${ROOT}"/bedrock_server
+screen -L -S autosave -dm "${SCRIPTS}"/server-autosave.sh
