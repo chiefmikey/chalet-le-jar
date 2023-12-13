@@ -24,8 +24,8 @@ for line in $FILE_LIST; do
     echo "$line"
     break
   fi
-  file=$(echo "$line" | cut -d':' -f1)
-  length=$(echo "$line" | cut -d':' -f2)
+  file=$(echo "$line" | awk -F':' '{print $1}')
+  length=$(echo "$line" | awk -F':' '{print $NF}')
   directory=$(dirname "${BACKUPS}/${1}/${2}/$file")
   mkdir -p "$directory"
   dd if="${ROOT}/worlds/$file" bs=1M count="$length" | mbuffer -m 1G -q -o "${BACKUPS}/${1}/${2}/$file" &
