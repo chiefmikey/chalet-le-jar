@@ -20,6 +20,7 @@ done
 IFS=$'\n'
 for line in $FILE_LIST; do
   if [[ ! $line =~ ^clj ]]; then
+    echo "$line"
     break
   fi
   file=$(echo "$line" | cut -d':' -f1)
