@@ -7,9 +7,9 @@ BACKUPS="${ROOT}/backups"
 set -x
 cd /home/ubuntu || exit
 CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
-apt update -y
-apt upgrade -y
-apt install -y wget zip unzip git jq awscli curl
+apt-get update -y
+apt-get upgrade -y
+apt-get install -y wget zip unzip git jq awscli curl mbuffer
 wget -O bedrock-server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.19.1.01.zip
 unzip -o bedrock-server.zip
 rm bedrock-server.zip
