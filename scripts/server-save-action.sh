@@ -6,13 +6,10 @@ set -x
 cd "${ROOT}" || exit
 screen -L -S bedrock -X stuff "save hold\n"
 
-cp "${ROOT}"/screenlog.0 "${ROOT}"/screenlog.0.tmp
-
 while true; do
   screen -L -S bedrock -X stuff "save query\n"
-  FILE_LIST=$(awk '/Data saved. Files are now ready to be copied./{flag=1;next}flag' "${ROOT}"/screenlog.0.tmp)
+  FILE_LIST=$(awk '/Data saved. Files are now ready to be copied./{flag=1;next}flag' "${ROOT}"/screenlog.0)
   if [[ $FILE_LIST != "" ]]; then
-    rm "${ROOT}"/screenlog.0.tmp
     FILE_LIST=$(echo "$FILE_LIST" | sed 's/, /\n/g' | awk '{if(/\r$/) {print; exit} else print}' | tr -d '\r')
     break
   fi
@@ -39,4 +36,4 @@ done
 
 wait
 screen -L -S bedrock -X stuff "save resume\n"
-rm "${ROOT}"/screenlog.0.tmp
+mv "${ROOT}"/screenlog.0 "${ROOT}"/screenlog.0.bak
