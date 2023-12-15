@@ -36,4 +36,4 @@ done
 
 wait
 screen -L -S bedrock -X stuff "save resume\n"
-mv "${ROOT}"/screenlog.0 "${ROOT}"/screenlog.0.bak
+mv -f "${ROOT}"/screenlog.0 "${ROOT}"/screenlog.0.bak
