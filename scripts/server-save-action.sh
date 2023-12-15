@@ -29,9 +29,9 @@ for line in $FILE_LIST; do
   mkdir -p "$directory"
   dd if="${ROOT}/worlds/$file" bs=1M count="$length" | mbuffer -m 1G -q -o "${BACKUPS}/${1}/${2}/$file" &
   counter=$((counter+1))
-  if (( counter % 20 == 0 )); then
-    wait
-  fi
+  # if (( counter % 20 == 0 )); then
+  #   wait
+  # fi
 done
 
 wait
