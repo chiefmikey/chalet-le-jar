@@ -13,7 +13,7 @@ while true; do
     FILE_LIST=$(echo "$FILE_LIST" | sed 's/, /\n/g' | awk '{if(/\r$/) {print; exit} else print}' | tr -d '\r')
     break
   fi
-  sleep 5
+  sleep 2
 done
 
 IFS=$'\n'
