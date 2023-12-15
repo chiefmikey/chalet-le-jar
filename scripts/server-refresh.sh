@@ -19,4 +19,6 @@ if [ "$(cat "${ROOT}"/upgrade.txt)" = upgrade ]; then
 else
   LD_LIBRARY_PATH=${ROOT} screen -L -S bedrock -dm "${ROOT}"/bedrock_server
   screen -L -S autosave -dm "${SCRIPTS}"/server-autosave.sh
+  sleep 5
+  "${SCRIPTS}"/server-ticking.sh
 fi
