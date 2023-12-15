@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -x
-screen -L -S autosave -X quit
 
 screen -L -S bedrock -X stuff "playsound beacon.activate @a\n"
 sleep 1
@@ -64,9 +63,3 @@ sleep .8
 
 screen -L -S bedrock -X stuff "playsound beacon.deactivate @a\n"
 sleep 1
-
-screen -L -S bedrock -X stuff "stop\n"
-
-sleep 5
-
-screen -L -S bedrock -X quit
