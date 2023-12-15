@@ -27,7 +27,7 @@ for line in $FILE_LIST; do
   length=$(echo "$line" | awk -F':' '{print $NF}')
   directory=$(dirname "${BACKUPS}/${1}/${2}/$file")
   mkdir -p "$directory"
-  dd if="${ROOT}/worlds/$file" bs=1M count="$length" | mbuffer -m 1G -q -o "${BACKUPS}/${1}/${2}/$file" &
+  dd if="${ROOT}/worlds/$file" bs=10M count="$length" | mbuffer -m 1G -q -o "${BACKUPS}/${1}/${2}/$file" &
   counter=$((counter+1))
   # if (( counter % 20 == 0 )); then
   #   wait
