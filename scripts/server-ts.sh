@@ -3,7 +3,7 @@
 source /home/chalet-le-jar/.bash_aliases
 set -x
 cd "${ROOT}" || exit
-screen -L -S server -X quit
+screen -S server -X quit
 
 if ! command -v curl > /dev/null 2>&1; then
   apt-get install -y curl
@@ -28,4 +28,4 @@ fi
 cd "${ROOT}"/api || exit
 svn export https://github.com/chiefmikey/chalet-le-jar/trunk/server --force
 
-screen -L -S server -dm "${SCRIPTS}"/server-ts-start.sh
+screen -L -Logfile "${ROOT}"/server.log -S server -dm "${SCRIPTS}"/server-ts-start.sh

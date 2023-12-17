@@ -2,8 +2,8 @@
 
 source /home/chalet-le-jar/.bash_aliases
 set -x
-screen -L -S autosave -X quit
-screen -L -S bedrock -X quit
+screen -S autosave -X quit
+screen -S bedrock -X quit
 CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
 cd "${ROOT}" || exit
 "${SCRIPTS}"/server-system.sh
@@ -28,8 +28,8 @@ CURRENT_DATE=${CURRENT_DATE} ACTION=start \
 if [ "$(cat "${ROOT}"/upgrade.txt)" = "upgrade" ]; then
   START_SCREENS=y "${SCRIPTS}"/server-upgrade.sh
 else
-  LD_LIBRARY_PATH=${ROOT} screen -L -S bedrock -dm "${ROOT}"/bedrock_server
-  screen -L -S autosave -dm "${SCRIPTS}"/server-autosave.sh
+  LD_LIBRARY_PATH=${ROOT} screen -L -Logfile "${ROOT}"/bedrock.log -S bedrock -dm "${ROOT}"/bedrock_server
+  "${SCRIPTS}"/server-active.sh
   sleep 5
   "${SCRIPTS}"/server-ticking.sh
 fi

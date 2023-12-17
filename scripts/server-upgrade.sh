@@ -16,8 +16,8 @@ git push origin main
 CURRENT_DATE=${CURRENT_DATE} ACTION=upgrade \
   "${SCRIPTS}"/server-log.sh
 if [ "${START_SCREENS}" = "y" ]; then
-  LD_LIBRARY_PATH=${ROOT} screen -L -S bedrock -dm "${ROOT}"/bedrock_server
-  screen -L -S autosave -dm "${SCRIPTS}"/server-autosave.sh
+  LD_LIBRARY_PATH=${ROOT} screen -L -Logfile "${ROOT}"/bedrock.log -S bedrock -dm "${ROOT}"/bedrock_server
+  "${SCRIPTS}"/server-active.sh
   sleep 5
   "${SCRIPTS}"/server-ticking.sh
 fi

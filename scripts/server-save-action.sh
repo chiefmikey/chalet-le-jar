@@ -4,11 +4,11 @@ source /home/chalet-le-jar/.bash_aliases
 set -x
 
 cd "${ROOT}" || exit
-screen -L -S bedrock -X stuff "save hold\n"
+screen -S bedrock -X stuff "save hold\n"
 
 while true; do
-  screen -L -S bedrock -X stuff "save query\n"
-  FILE_LIST=$(awk '/Data saved. Files are now ready to be copied./{flag=1;next}flag' "${ROOT}"/screenlog.0)
+  screen -S bedrock -X stuff "save query\n"
+  FILE_LIST=$(awk '/Data saved. Files are now ready to be copied./{flag=1;next}flag' "${ROOT}"/bedrock.log)
   if [[ $FILE_LIST != "" ]]; then
     FILE_LIST=$(echo "$FILE_LIST" | sed 's/, /\n/g' | awk '{if(/\r$/) {print; exit} else print}' | tr -d '\r')
     break
@@ -35,5 +35,5 @@ for line in $FILE_LIST; do
 done
 
 wait
-screen -L -S bedrock -X stuff "save resume\n"
-mv -f "${ROOT}"/screenlog.0 "${ROOT}"/screenlog.0.bak
+screen -S bedrock -X stuff "save resume\n"
+mv -f "${ROOT}"/bedrock.log "${ROOT}"/bedrock.log.bak
