@@ -27,19 +27,21 @@ stop_autosave() {
   echo "Stopped autosave"
 }
 
-# monitor bedrock screenlog for user login and logout events
-tail -F "$SCREENLOG" | while read -r line; do
-  if [[ $line == *"User connected"* ]]; then
-    echo "User logged in"
-    ((USER_COUNT++))
-    if [[ $USER_COUNT -eq 1 ]]; then
-      start_autosave
+# monitor bedrock screenlog for player spawn events
+(
+  tail -F "$SCREENLOG" | while read -r line; do
+    if [[ $line == *"Player Spawned"* ]]; then
+      echo "Player spawned"
+      ((USER_COUNT++))
+      if [[ $USER_COUNT -eq 1 ]]; then
+        start_autosave
+      fi
+    elif [[ $line == *"Player disconnected"* ]]; then
+      echo "Player disconnected"
+      ((USER_COUNT--))
+      if [[ $USER_COUNT -eq 0 ]]; then
+        stop_autosave
+      fi
     fi
-  elif [[ $line == *"User disconnected"* ]]; then
-    echo "User logged out"
-    ((USER_COUNT--))
-    if [[ $USER_COUNT -eq 0 ]]; then
-      stop_autosave
-    fi
-  fi
-done
+  done
+)
