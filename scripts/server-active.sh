@@ -44,4 +44,4 @@ stop_autosave() {
       fi
     fi
   done
-)
+) &
