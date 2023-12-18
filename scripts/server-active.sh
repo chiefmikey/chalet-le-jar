@@ -43,14 +43,6 @@ declare -a ACTIVE_USERS=()
 # function to update the users.log file
 update_users_log() {
   printf "%s\n" "${ACTIVE_USERS[@]}" > "${USERS_LOG}"
-
-  # if there is at least one active user, start the autosave
-  if [ ${#ACTIVE_USERS[@]} -ge 1 ]; then
-    start_autosave
-  # if there are no active users, stop the autosave
-  elif [ ${#ACTIVE_USERS[@]} -eq 0 ]; then
-    stop_autosave
-  fi
 }
 
 # monitor bedrock screenlog for player spawn and disconnect events
@@ -63,6 +55,11 @@ update_users_log() {
       ACTIVE_USERS+=("$username")
       echo "Player connected: $username"
       update_users_log
+
+      # start the autosave process if it's the first user
+      if [ ${#ACTIVE_USERS[@]} -eq 1 ]; then
+        start_autosave
+      fi
     elif [[ $line == *"Player disconnected:"* ]]; then
       # extract the username and remove it from the array
       username=${line#*"Player disconnected: "}
@@ -71,6 +68,11 @@ update_users_log() {
       ACTIVE_USERS=( "${ACTIVE_USERS[@]}" ) # re-index the array
       echo "Player disconnected: $username"
       update_users_log
+
+      # stop the autosave process if it's the last user
+      if [ ${#ACTIVE_USERS[@]} -eq 0 ]; then
+        stop_autosave
+      fi
     fi
   done
 ) &
