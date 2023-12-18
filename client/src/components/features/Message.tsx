@@ -1,13 +1,14 @@
 import { Button, TextField } from '@mui/material';
 import React, { useState, useRef } from 'react';
 
+import Footer from '../Footer';
 import { sendMessage } from '../helpers/apiHelper';
 
 const handleMessage = async (text: string) => {
   await sendMessage(text);
 };
 
-const Message = () => {
+const Message = ({ activePlayerCount }: { activePlayerCount: number }) => {
   const [inputText, setInputText] = useState('');
   const textInputReference = useRef<HTMLInputElement>(null);
 
@@ -98,9 +99,7 @@ const Message = () => {
         </Button>
       </div>
 
-      <div className="message">
-        <span>DISPLAY A MESSAGE</span>
-      </div>
+      <Footer footerValue="" activePlayerCount={activePlayerCount} />
     </div>
   );
 };

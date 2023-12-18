@@ -12,6 +12,7 @@ import Save from './features/Save';
 import Settings from './features/Settings';
 import Sound from './features/Sound';
 import Teleport from './features/Teleport';
+import { getPlayerStatus } from './helpers/apiHelper';
 
 const Content = ({ username }: { username: string }) => {
   const location = useLocation();
@@ -20,7 +21,9 @@ const Content = ({ username }: { username: string }) => {
   const [rewindTabValue, setRewindTabValue] = useState(0);
   const [inputRoute, setInputRoute] = useState(0);
   const [teleportUserValue, setTeleportUserValue] = useState(0);
+  const [playerStatus, setPlayerStatus] = useState([] as string[]);
 
+  const activePlayerCount = playerStatus.length ?? 0;
   const sessionRoute = sessionStorage.getItem('route');
   const route = sessionRoute ? Number(sessionRoute) : inputRoute;
 
@@ -29,76 +32,37 @@ const Content = ({ username }: { username: string }) => {
     sessionStorage.setItem('route', value.toString());
   };
 
+  const routes = {
+    0: '/home',
+    1: '/teleport',
+    2: '/rewind',
+    3: '/save',
+    4: '/message',
+    5: '/sfx',
+    6: '/settings',
+  } as { [key: number]: string };
+
+  const handlePlayers = async () => {
+    const players = await getPlayerStatus();
+    setPlayerStatus((players as string[]) ?? []);
+  };
+
   useEffect(() => {
-    switch (location.pathname) {
-      case '/home': {
-        handleRoute(0);
-        break;
-      }
-      case '/teleport': {
-        handleRoute(1);
-        break;
-      }
-      case '/rewind': {
-        handleRoute(2);
-        break;
-      }
-      case '/save': {
-        handleRoute(3);
-        break;
-      }
-      case '/message': {
-        handleRoute(4);
-        break;
-      }
-      case '/sfx': {
-        handleRoute(5);
-        break;
-      }
-      case '/settings': {
-        handleRoute(6);
-        break;
-      }
-      default: {
-        handleRoute(0);
-        break;
-      }
-    }
+    const getPlayers = async () => await handlePlayers();
+    getPlayers();
+  }, []);
+
+  useEffect(() => {
+    const routeKey = Object.keys(routes).find(
+      (key) => routes[Number(key)] === location.pathname,
+    );
+    handleRoute(routeKey ? Number(routeKey) : 0);
   }, [location]);
 
   const handleChange = (event: SelectChangeEvent<string>): void => {
-    switch (Number(event.target.value)) {
-      case 0: {
-        navigate('/home');
-        break;
-      }
-      case 1: {
-        navigate('/teleport');
-        break;
-      }
-      case 2: {
-        navigate('/rewind');
-        break;
-      }
-      case 3: {
-        navigate('/save');
-        break;
-      }
-      case 4: {
-        navigate('/message');
-        break;
-      }
-      case 5: {
-        navigate('/sfx');
-        break;
-      }
-      case 6: {
-        navigate('/settings');
-        break;
-      }
-      default: {
-        break;
-      }
+    const route = routes[Number(event.target.value)];
+    if (route) {
+      navigate(route);
     }
   };
 
@@ -118,13 +82,28 @@ const Content = ({ username }: { username: string }) => {
       />
       <div className="content">
         <div className="content-selection">
-          {route === 0 && <Home />}
-          {route === 1 && <Teleport username={users[teleportUserValue]} />}
-          {route === 2 && <Rewind subValue={rewindTabValue} />}
-          {route === 3 && <Save />}
-          {route === 4 && <Message />}
-          {route === 5 && <Sound />}
-          {route === 6 && <Settings username={username} />}
+          {route === 0 && <Home activePlayerCount={activePlayerCount} />}
+          {route === 1 && (
+            <Teleport
+              username={users[teleportUserValue]}
+              activePlayerCount={activePlayerCount}
+            />
+          )}
+          {route === 2 && (
+            <Rewind
+              subValue={rewindTabValue}
+              activePlayerCount={activePlayerCount}
+            />
+          )}
+          {route === 3 && <Save activePlayerCount={activePlayerCount} />}
+          {route === 4 && <Message activePlayerCount={activePlayerCount} />}
+          {route === 5 && <Sound activePlayerCount={activePlayerCount} />}
+          {route === 6 && (
+            <Settings
+              username={username}
+              activePlayerCount={activePlayerCount}
+            />
+          )}
         </div>
       </div>
     </div>

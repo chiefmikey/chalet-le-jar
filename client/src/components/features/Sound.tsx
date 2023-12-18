@@ -1,10 +1,11 @@
 import { Button, List, ListItemButton, ListItemText } from '@mui/material';
 import React, { useState, useEffect, useCallback } from 'react';
 
+import Footer from '../Footer';
 import { sendSfx } from '../helpers/apiHelper';
 import { fetchSfxData } from '../helpers/fetchDataHelper';
 
-const Sound = () => {
+const Sound = ({ activePlayerCount }: { activePlayerCount: number }) => {
   const [selectedItem, setSelectedItem] = useState(0);
   const [wasSelected, setWasSelected] = useState(false);
   const [sfxList, setSfxList] = useState([] as string[]);
@@ -102,9 +103,7 @@ const Sound = () => {
         </Button>
       </div>
 
-      <div className="message">
-        <span>BARK LIKE A DOG</span>
-      </div>
+      <Footer footerValue="" activePlayerCount={activePlayerCount} />
     </div>
   );
 };

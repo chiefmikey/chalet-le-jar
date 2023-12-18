@@ -1,9 +1,16 @@
 import React, { SyntheticEvent } from 'react';
 
 import { locations, coordinates } from '../../constants';
+import Footer from '../Footer';
 import { sendTeleport } from '../helpers/apiHelper';
 
-const Teleport = ({ username }: { username: string }) => {
+const Teleport = ({
+  username,
+  activePlayerCount,
+}: {
+  username: string;
+  activePlayerCount: number;
+}) => {
   const handleTeleport = async (event: SyntheticEvent<HTMLButtonElement>) => {
     const location = (event.target as HTMLButtonElement).textContent;
     const key = Number(
@@ -36,9 +43,7 @@ const Teleport = ({ username }: { username: string }) => {
   return (
     <div className="home">
       {buttons}{' '}
-      <div className="message">
-        <span>CHOOSE WISELY</span>
-      </div>
+      <Footer footerValue={''} activePlayerCount={activePlayerCount} />
     </div>
   );
 };

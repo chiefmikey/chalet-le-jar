@@ -1,6 +1,7 @@
 import { Button, List, ListItemButton, ListItemText } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 
+import Footer from '../Footer';
 import { sendSave } from '../helpers/apiHelper';
 import { fetchSaveData } from '../helpers/fetchDataHelper';
 
@@ -8,7 +9,7 @@ const handleSave = async () => {
   await sendSave();
 };
 
-const Save = () => {
+const Save = ({ activePlayerCount }: { activePlayerCount: number }) => {
   const resultsCap = { save: 72 };
   const [saveList, setSaveList] = useState([{ raw: '', localDate: '' }]);
 
@@ -86,9 +87,7 @@ const Save = () => {
         </Button>
       </div>
 
-      <div className="message">
-        <span>{'CREATES MANUAL SAVE NOW'}</span>
-      </div>
+      <Footer footerValue="" activePlayerCount={activePlayerCount} />
     </div>
   );
 };

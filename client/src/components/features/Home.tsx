@@ -1,7 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Home = () => {
+import Footer from '../Footer';
+
+const Home = ({ activePlayerCount }: { activePlayerCount: number }) => {
   const navigate = useNavigate();
 
   return (
@@ -24,6 +26,7 @@ const Home = () => {
       <button className="home-button" onClick={() => navigate('/settings')}>
         <span>SETTINGS</span>
       </button>
+      <Footer footerValue="" activePlayerCount={activePlayerCount} />
     </div>
   );
 };

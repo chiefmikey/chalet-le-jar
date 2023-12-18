@@ -1,6 +1,7 @@
 import { Button, List, ListItemButton, ListItemText } from '@mui/material';
 import React, { useState, useEffect, useCallback } from 'react';
 
+import Footer from '../Footer';
 import { sendRewind } from '../helpers/apiHelper';
 import {
   fetchSaveData,
@@ -8,7 +9,13 @@ import {
   fetchRewindData,
 } from '../helpers/fetchDataHelper';
 
-const Rewind = ({ subValue }: { subValue: number }) => {
+const Rewind = ({
+  subValue,
+  activePlayerCount,
+}: {
+  subValue: number;
+  activePlayerCount: number;
+}) => {
   const resultsCap = { autosave: 72, save: 72, rewind: 1 };
   const [selectedItem, setSelectedItem] = useState(0);
   const [wasSelected, setWasSelected] = useState(false);
@@ -96,6 +103,7 @@ const Rewind = ({ subValue }: { subValue: number }) => {
   };
 
   const displayedList = buildList(useList);
+  const footerValue = `Recent: ${rewindList[0]?.localDate || ''}`;
 
   return (
     <div className="rewind">
@@ -125,10 +133,7 @@ const Rewind = ({ subValue }: { subValue: number }) => {
           REWIND
         </Button>
       </div>
-
-      <div className="message">
-        <span>{`Recent: ${rewindList[0]?.localDate || ''}`}</span>
-      </div>
+      <Footer footerValue={footerValue} activePlayerCount={activePlayerCount} />
     </div>
   );
 };

@@ -2,6 +2,7 @@ import { useLogto } from '@logto/react';
 import React, { SyntheticEvent } from 'react';
 
 import { version } from '../../../package';
+import Footer from '../Footer';
 import {
   sendClearTicking,
   sendResetTicking,
@@ -30,7 +31,13 @@ const handleUpgradeServer = async (
   await sendUpgradeServer();
 };
 
-const Settings = ({ username }: { username: string }) => {
+const Settings = ({
+  username,
+  activePlayerCount,
+}: {
+  username: string;
+  activePlayerCount: number;
+}) => {
   const { signOut } = useLogto();
 
   const buttons = [
@@ -93,9 +100,10 @@ const Settings = ({ username }: { username: string }) => {
   return (
     <div className="home">
       {buttons}
-      <div className="message">
-        <span>{`Client Version ${version}`}</span>
-      </div>
+      <Footer
+        footerValue={`Client Version ${version}`}
+        activePlayerCount={activePlayerCount}
+      />
     </div>
   );
 };
