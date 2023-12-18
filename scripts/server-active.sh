@@ -3,6 +3,9 @@
 source /home/chalet-le-jar/.bash_aliases
 set -x
 
+# path to the autosave script
+AUTOSAVE_SCRIPT="${SCRIPTS}/server-autosave.sh"
+
 SCREENLOG="${ROOT}/bedrock.log"
 USERS_LOG="${ROOT}/users.log"
 AUTOSAVE_LOG="${ROOT}/autosave.log"
@@ -15,6 +18,24 @@ touch "${AUTOSAVE_LOG}"
 AUTOSAVE_PID=""
 USER_COUNT=0
 AUTOSAVE_STARTED=false
+
+start_autosave() {
+  if ! screen -list | grep -q "autosave" && ! $AUTOSAVE_STARTED; then
+    screen -L -Logfile "${AUTOSAVE_LOG}" -S autosave -dm bash "${AUTOSAVE_SCRIPT}"
+    echo "Started autosave"
+    AUTOSAVE_STARTED=true
+  fi
+}
+
+# function to stop the autosave script
+stop_autosave() {
+  # check if the autosave process is running before trying to stop it
+  if screen -list | grep -q "autosave"; then
+    screen -S autosave -X quit
+    echo "Stopped autosave"
+    AUTOSAVE_STARTED=false
+  fi
+}
 
 # initialize an array to keep track of the currently active users
 declare -a ACTIVE_USERS=()
