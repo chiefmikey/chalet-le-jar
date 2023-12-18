@@ -2,6 +2,7 @@ ROOT="/home/ec2-user"
 
 # system
 alias mem="free -h"
+alias system="sudo ${ROOT}/system.sh"
 
 # ts server
 alias client-start="sudo ${ROOT}/client.sh"
