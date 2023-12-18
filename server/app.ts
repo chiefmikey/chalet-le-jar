@@ -17,6 +17,7 @@ import {
   resetTickingHelper,
   resetServerHelper,
   upgradeServerHelper,
+  playerStatusHelper,
 } from './helpers';
 
 const app = new Koa();
@@ -107,6 +108,11 @@ router.post('/resetserver', (context) => {
 router.post('/upgradeserver', (context) => {
   upgradeServerHelper();
   context.body = { status: 'success' };
+  return context;
+});
+
+router.get('/playerstatus', (context) => {
+  context.body = { users: playerStatusHelper() };
   return context;
 });
 

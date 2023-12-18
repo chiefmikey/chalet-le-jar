@@ -1,4 +1,5 @@
 import { exec } from 'node:child_process';
+import { readFileSync } from 'node:fs';
 
 const scripts = '/home/chalet-le-jar/scripts';
 
@@ -79,4 +80,11 @@ export const resetServerHelper = () => {
 export const upgradeServerHelper = () => {
   const command = `${scripts}/server-cycle.sh`;
   shell(command);
+};
+
+export const playerStatusHelper = () => {
+  const filePath = `${process.env.ROOT}/users.log`;
+  const fileContent = readFileSync(filePath, 'utf8');
+  const playerNames = fileContent.split('\n').filter(Boolean); // filter out any empty strings
+  return playerNames;
 };

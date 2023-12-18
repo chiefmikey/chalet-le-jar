@@ -100,3 +100,13 @@ export const sendUpgradeServer = async () => {
     console.error(error);
   }
 };
+
+export const getPlayerStatus = async () => {
+  try {
+    const players = await axios.get(`${address}/playerstatus`);
+    const data = players.data as { [key: string]: string[] };
+    return data.users;
+  } catch (error) {
+    console.error(error);
+  }
+};
