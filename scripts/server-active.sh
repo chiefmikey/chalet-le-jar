@@ -6,8 +6,14 @@ set -x
 # path to the autosave script
 AUTOSAVE_SCRIPT="${SCRIPTS}/server-autosave.sh"
 
-# path to bedrock screenlog
 SCREENLOG="${ROOT}/bedrock.log"
+USERS_LOG="${ROOT}/users.log"
+AUTOSAVE_LOG="${ROOT}/autosave.log"
+
+# create log files if they don't exist
+touch "${SCREENLOG}"
+touch "${USERS_LOG}"
+touch "${AUTOSAVE_LOG}"
 
 # initialize a variable to keep track of the autosave process ID
 AUTOSAVE_PID=""
@@ -17,7 +23,7 @@ USER_COUNT=0
 
 # function to start the autosave script
 start_autosave() {
-  screen -L -Logfile "${ROOT}"/autosave.log -S autosave -dm bash "${AUTOSAVE_SCRIPT}"
+  screen -L -Logfile "${AUTOSAVE_LOG}" -S autosave -dm bash "${AUTOSAVE_SCRIPT}"
   echo "Started autosave"
 }
 
@@ -32,7 +38,7 @@ declare -a ACTIVE_USERS=()
 
 # function to update the users.log file
 update_users_log() {
-  printf "%s\n" "${ACTIVE_USERS[@]}" > "${ROOT}/users.log"
+  printf "%s\n" "${ACTIVE_USERS[@]}" > "${USERS_LOG}"
 }
 
 # monitor bedrock screenlog for player spawn and disconnect events
