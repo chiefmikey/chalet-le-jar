@@ -3,9 +3,6 @@
 source /home/chalet-le-jar/.bash_aliases
 set -x
 
-# path to the autosave script
-AUTOSAVE_SCRIPT="${SCRIPTS}/server-autosave.sh"
-
 SCREENLOG="${ROOT}/bedrock.log"
 USERS_LOG="${ROOT}/users.log"
 AUTOSAVE_LOG="${ROOT}/autosave.log"
@@ -19,8 +16,6 @@ AUTOSAVE_PID=""
 USER_COUNT=0
 AUTOSAVE_STARTED=false
 
-
-
 # initialize an array to keep track of the currently active users
 declare -a ACTIVE_USERS=()
 
@@ -28,7 +23,13 @@ declare -a ACTIVE_USERS=()
 update_users_log() {
   printf "%s\n" "${ACTIVE_USERS[@]}" > "${USERS_LOG}"
 
-
+  # if there is at least one active user, start the autosave
+  if [ ${#ACTIVE_USERS[@]} -ge 1 ]; then
+    start_autosave
+  # if there are no active users, stop the autosave
+  elif [ ${#ACTIVE_USERS[@]} -eq 0 ]; then
+    stop_autosave
+  fi
 }
 
 # monitor bedrock screenlog for player spawn and disconnect events
