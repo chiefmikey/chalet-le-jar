@@ -19,25 +19,7 @@ AUTOSAVE_PID=""
 USER_COUNT=0
 AUTOSAVE_STARTED=false
 
-# function to start the autosave script
-start_autosave() {
-  # check if the autosave process is already running and if the autosave has not been started yet
-  if ! screen -list | grep -q "autosave" && ! $AUTOSAVE_STARTED; then
-    screen -L -Logfile "${AUTOSAVE_LOG}" -S autosave -dm bash "${AUTOSAVE_SCRIPT}"
-    echo "Started autosave"
-    AUTOSAVE_STARTED=true
-  fi
-}
 
-# function to stop the autosave script
-stop_autosave() {
-  # check if the autosave process is running before trying to stop it
-  if screen -list | grep -q "autosave"; then
-    screen -S autosave -X quit
-    echo "Stopped autosave"
-    AUTOSAVE_STARTED=false
-  fi
-}
 
 # initialize an array to keep track of the currently active users
 declare -a ACTIVE_USERS=()
@@ -46,13 +28,7 @@ declare -a ACTIVE_USERS=()
 update_users_log() {
   printf "%s\n" "${ACTIVE_USERS[@]}" > "${USERS_LOG}"
 
-  # if there is at least one active user, start the autosave
-  if [ ${#ACTIVE_USERS[@]} -ge 1 ]; then
-    start_autosave
-  # if there are no active users, stop the autosave
-  elif [ ${#ACTIVE_USERS[@]} -eq 0 ]; then
-    stop_autosave
-  fi
+
 }
 
 # monitor bedrock screenlog for player spawn and disconnect events
