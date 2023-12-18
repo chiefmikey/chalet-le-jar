@@ -27,21 +27,29 @@ stop_autosave() {
   echo "Stopped autosave"
 }
 
-# monitor bedrock screenlog for player spawn events
+# initialize an array to keep track of the currently active users
+declare -a ACTIVE_USERS=()
+
+# function to update the users.log file
+update_users_log() {
+  printf "%s\n" "${ACTIVE_USERS[@]}" > "${ROOT}/users.log"
+}
+
+# monitor bedrock screenlog for player spawn and disconnect events
 (
   tail -F "$SCREENLOG" | while read -r line; do
-    if [[ $line == *"Player Spawned"* ]]; then
-      echo "Player spawned"
-      ((USER_COUNT++))
-      if [[ $USER_COUNT -eq 1 ]]; then
-        start_autosave
-      fi
-    elif [[ $line == *"Player disconnected"* ]]; then
-      echo "Player disconnected"
-      ((USER_COUNT--))
-      if [[ $USER_COUNT -eq 0 ]]; then
-        stop_autosave
-      fi
+    if [[ $line == *"Player connected:"* ]]; then
+      # extract the username and add it to the array
+      username=${line#*"Player connected: "}
+      ACTIVE_USERS+=("$username")
+      echo "Player connected: $username"
+      update_users_log
+    elif [[ $line == *"Player disconnected:"* ]]; then
+      # extract the username and remove it from the array
+      username=${line#*"Player disconnected: "}
+      ACTIVE_USERS=("${ACTIVE_USERS[@]/$username}")
+      echo "Player disconnected: $username"
+      update_users_log
     fi
   done
 ) &
