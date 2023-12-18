@@ -15,22 +15,28 @@ touch "${SCREENLOG}"
 touch "${USERS_LOG}"
 touch "${AUTOSAVE_LOG}"
 
-# initialize a variable to keep track of the autosave process ID
 AUTOSAVE_PID=""
-
-# initialize a counter to keep track of the number of logged-in users
 USER_COUNT=0
+AUTOSAVE_STARTED=false
 
 # function to start the autosave script
 start_autosave() {
-  screen -L -Logfile "${AUTOSAVE_LOG}" -S autosave -dm bash "${AUTOSAVE_SCRIPT}"
-  echo "Started autosave"
+  # check if the autosave process is already running and if the autosave has not been started yet
+  if ! screen -list | grep -q "autosave" && ! $AUTOSAVE_STARTED; then
+    screen -L -Logfile "${AUTOSAVE_LOG}" -S autosave -dm bash "${AUTOSAVE_SCRIPT}"
+    echo "Started autosave"
+    AUTOSAVE_STARTED=true
+  fi
 }
 
 # function to stop the autosave script
 stop_autosave() {
-  screen -S autosave -X quit
-  echo "Stopped autosave"
+  # check if the autosave process is running before trying to stop it
+  if screen -list | grep -q "autosave"; then
+    screen -S autosave -X quit
+    echo "Stopped autosave"
+    AUTOSAVE_STARTED=false
+  fi
 }
 
 # initialize an array to keep track of the currently active users
