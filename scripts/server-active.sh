@@ -3,21 +3,19 @@
 source /home/chalet-le-jar/.bash_aliases
 set -x
 
-# path to the autosave script
 AUTOSAVE_SCRIPT="${SCRIPTS}/server-autosave.sh"
-
 SCREENLOG="${ROOT}/bedrock.log"
 USERS_LOG="${ROOT}/users.log"
 AUTOSAVE_LOG="${ROOT}/autosave.log"
+AUTOSAVE_PID=""
+USER_COUNT=0
+AUTOSAVE_STARTED=false
 
-# create log files if they don't exist
 touch "${SCREENLOG}"
 touch "${USERS_LOG}"
 touch "${AUTOSAVE_LOG}"
 
-AUTOSAVE_PID=""
-USER_COUNT=0
-AUTOSAVE_STARTED=false
+true > "${ROOT}/users.log"
 
 start_autosave() {
   if ! screen -list | grep -q "autosave" && ! $AUTOSAVE_STARTED; then
@@ -27,9 +25,7 @@ start_autosave() {
   fi
 }
 
-# function to stop the autosave script
 stop_autosave() {
-  # check if the autosave process is running before trying to stop it
   if screen -list | grep -q "autosave"; then
     screen -S autosave -X quit
     echo "Stopped autosave"
@@ -40,23 +36,20 @@ stop_autosave() {
 # initialize an array to keep track of the currently active users
 declare -a ACTIVE_USERS=()
 
-# function to update the users.log file
 update_users_log() {
   printf "%s\n" "${ACTIVE_USERS[@]}" > "${USERS_LOG}"
 }
 
-# function to check if a user is already in the ACTIVE_USERS array
 is_user_active() {
   local username=$1
   for user in "${ACTIVE_USERS[@]}"; do
     if [[ $user == "${username}" ]]; then
-      return 0  # return true if the user is found
+      return 0
     fi
   done
-  return 1  # return false if the user is not found
+  return 1
 }
 
-# monitor bedrock screenlog for player spawn and disconnect events
 (
   tail -F "$SCREENLOG" | while read -r line; do
     if [[ $line == *"Player connected:"* ]]; then
