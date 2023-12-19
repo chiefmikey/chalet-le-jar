@@ -45,20 +45,35 @@ update_users_log() {
   printf "%s\n" "${ACTIVE_USERS[@]}" > "${USERS_LOG}"
 }
 
+# function to check if a user is already in the ACTIVE_USERS array
+is_user_active() {
+  local username=$1
+  for user in "${ACTIVE_USERS[@]}"; do
+    if [[ $user == "${username}" ]]; then
+      return 0  # return true if the user is found
+    fi
+  done
+  return 1  # return false if the user is not found
+}
+
 # monitor bedrock screenlog for player spawn and disconnect events
 (
   tail -F "$SCREENLOG" | while read -r line; do
     if [[ $line == *"Player connected:"* ]]; then
-      # extract the username and add it to the array
+      # extract the username
       username=${line#*"Player connected: "}
       username=${username%%,*}  # new line to remove everything after the comma
-      ACTIVE_USERS+=("$username")
-      echo "Player connected: $username"
-      update_users_log
 
-      # start the autosave process if it's the first user
-      if [ ${#ACTIVE_USERS[@]} -eq 1 ]; then
-        start_autosave
+      # add the username to the array if it's not already there
+      if ! is_user_active "$username"; then
+        ACTIVE_USERS+=("$username")
+        echo "Player connected: $username"
+        update_users_log
+
+        # start the autosave process if it's the first user
+        if [ ${#ACTIVE_USERS[@]} -eq 1 ]; then
+          start_autosave
+        fi
       fi
     elif [[ $line == *"Player disconnected:"* ]]; then
       # extract the username and remove it from the array
