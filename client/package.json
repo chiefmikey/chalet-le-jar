@@ -13,7 +13,7 @@
     "@emotion/styled": "^11.11.0",
     "@logto/react": "^2.2.3",
     "@mui/material": "^5.15.2",
-    "axios": "^1.6.2",
+    "axios": "^1.6.3",
     "date-fns": "^3.0.6",
     "koa": "^2.14.2",
     "koa-send": "^5.0.1",
