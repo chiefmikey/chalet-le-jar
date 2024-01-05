@@ -12,8 +12,8 @@
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@logto/react": "^2.2.3",
-    "@mui/material": "^5.15.2",
-    "axios": "^1.6.3",
+    "@mui/material": "^5.15.3",
+    "axios": "^1.6.4",
     "date-fns": "^3.0.6",
     "koa": "^2.15.0",
     "koa-send": "^5.0.1",
@@ -21,7 +21,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.1",
-    "sass": "^1.69.6"
+    "sass": "^1.69.7"
   },
   "devDependencies": {
     "@babel/core": "^7.23.7",
