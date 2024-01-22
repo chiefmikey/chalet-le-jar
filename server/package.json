@@ -13,11 +13,11 @@
     "koa-router": "^12.0.1"
   },
   "devDependencies": {
-    "@types/koa": "^2.13.12",
+    "@types/koa": "^2.14.0",
     "@types/koa__cors": "^5.0.0",
     "@types/koa-bodyparser": "^4.3.12",
     "@types/koa-router": "^7.4.8",
-    "nodemon": "^3.0.2",
+    "nodemon": "^3.0.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },
