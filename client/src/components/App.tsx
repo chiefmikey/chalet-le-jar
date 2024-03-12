@@ -14,7 +14,7 @@ const App = () => {
   const updatePath = (path: string) => {
     sessionStorage.setItem('path', path);
   };
-  const path = sessionStorage.getItem('path') || '/home';
+  const path = sessionStorage.getItem('path') ?? '/home';
 
   return (
     <LogtoProvider config={config}>
