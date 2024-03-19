@@ -44,4 +44,4 @@ alias rewindcli="sudo ${SCRIPTS}/server-cli-rewind.sh"
 alias hc="sudo ${SCRIPTS}/server-health-check.sh"
 alias moo="echo moo; echo 0 ${0}; echo 1 ${1}; echo ? ${?};"
 
-alias list-alias="cat ${ROOT}/.bash_aliases"
+alias lsa="cat ${ROOT}/.bash_aliases"
