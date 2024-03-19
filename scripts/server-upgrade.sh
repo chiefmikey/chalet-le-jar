@@ -4,7 +4,7 @@ source /home/chalet-le-jar/.bash_aliases
 set -x
 cd "${ROOT}" || exit
 CURRENT_DATE=$(TZ=:US/Mountain date +%m-%d-%y_%H:%M:%S)
-wget -O bedrock-server.zip "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.20.51.01.zip"
+wget -O bedrock-server.zip "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.20.71.01.zip"
 unzip -o bedrock-server.zip
 rm bedrock-server.zip
 git fetch --prune
