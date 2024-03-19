@@ -8,8 +8,8 @@ screen -S server -X quit
 if ! command -v curl > /dev/null 2>&1; then
   apt-get install -y curl
 fi
-if ! command -v svn > /dev/null 2>&1; then
-  apt-get install -y subversion
+if ! command -v git > /dev/null 2>&1; then
+  apt-get install -y git
 fi
 if ! command -v node > /dev/null 2>&1; then
   apt-get update
@@ -26,6 +26,8 @@ if ! command -v npm > /dev/null 2>&1; then
 fi
 
 cd "${ROOT}"/api || exit
-svn export https://github.com/chiefmikey/chalet-le-jar/trunk/server --force
+git clone --depth 1 https://github.com/chiefmikey/chalet-le-jar.git
+mv chalet-le-jar/server ./
+rm -rf chalet-le-jar
 
 screen -L -Logfile "${ROOT}"/server.log -S server -dm "${SCRIPTS}"/server-ts-start.sh

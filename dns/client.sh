@@ -22,6 +22,8 @@ if ! command -v npm > /dev/null 2>&1; then
 fi
 
 rm -R ${ROOT}/client
-svn export https://github.com/chiefmikey/chalet-le-jar/trunk/client --force
+git clone --depth 1 https://github.com/chiefmikey/chalet-le-jar.git
+mv chalet-le-jar/client ./
+rm -rf chalet-le-jar
 
 screen -S client -dm ${ROOT}/client-start.sh
