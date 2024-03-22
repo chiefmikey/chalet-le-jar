@@ -7,8 +7,6 @@ AUTOSAVE_SCRIPT="${SCRIPTS}/server-autosave.sh"
 SCREENLOG="${ROOT}/bedrock.log"
 USERS_LOG="${ROOT}/users.log"
 AUTOSAVE_LOG="${ROOT}/autosave.log"
-AUTOSAVE_PID=""
-USER_COUNT=0
 AUTOSAVE_STARTED=false
 
 touch "${SCREENLOG}"

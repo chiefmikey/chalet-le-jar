@@ -21,6 +21,7 @@ alias rboot="sudo ${SCRIPTS}/server-stop.sh && sudo ${SCRIPTS}/server-reboot.sh"
 alias rb="sudo ${SCRIPTS}/server-reboot.sh"
 alias content="sudo rm -R Content*"
 alias cycle="sudo ${SCRIPTS}/server-stop.sh && sudo ${SCRIPTS}/server-start.sh"
+alias users="cat ${ROOT}/users.log"
 
 # screen
 alias cscreen="sudo screen -ls"
