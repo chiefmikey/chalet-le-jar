@@ -26,6 +26,7 @@ if ! command -v npm > /dev/null 2>&1; then
 fi
 
 cd "${ROOT}"/api || exit
+rm -R "${ROOT}"/api/server
 git clone --depth 1 https://github.com/chiefmikey/chalet-le-jar.git
 mv chalet-le-jar/server ./
 rm -rf chalet-le-jar
