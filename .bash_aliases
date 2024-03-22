@@ -20,6 +20,7 @@ alias upgrade="sudo ${SCRIPTS}/server-cycle.sh"
 alias rboot="sudo ${SCRIPTS}/server-stop.sh && sudo ${SCRIPTS}/server-reboot.sh"
 alias rb="sudo ${SCRIPTS}/server-reboot.sh"
 alias content="sudo rm -R Content*"
+alias cycle="sudo ${SCRIPTS}/server-stop.sh && sudo ${SCRIPTS}/server-start.sh"
 
 # screen
 alias cscreen="sudo screen -ls"
