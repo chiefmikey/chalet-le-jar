@@ -30,6 +30,6 @@ if [ "$(cat "${ROOT}"/upgrade.txt)" = "upgrade" ]; then
 else
   LD_LIBRARY_PATH=${ROOT} screen -L -Logfile "${ROOT}"/bedrock.log -S bedrock -dm "${ROOT}"/bedrock_server
   "${SCRIPTS}"/server-active.sh
-  sleep 5
-  "${SCRIPTS}"/server-ticking.sh
+  # sleep 5
+  # "${SCRIPTS}"/server-ticking.sh
 fi

@@ -22,6 +22,8 @@ alias rb="sudo ${SCRIPTS}/server-reboot.sh"
 alias content="sudo rm -R Content*"
 alias cycle="sudo ${SCRIPTS}/server-stop.sh && sudo ${SCRIPTS}/server-start.sh"
 alias users="cat ${ROOT}/users.log"
+alias tick="sudo ${SCRIPTS}/server-ticking.sh"
+alias ctick="sudo ${SCRIPTS}/server-ticking-clear.sh"
 
 # screen
 alias cscreen="sudo screen -ls"
