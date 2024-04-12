@@ -12,7 +12,7 @@
     "server:prod": "cd server && npm run start:prod"
   },
   "devDependencies": {
-    "mikey-pro": "^7.3.1"
+    "mikey-pro": "^7.4.0"
   },
   "homepage": "https://github.com/chiefmikey/chalet-le-jar#readme",
   "repository": {
